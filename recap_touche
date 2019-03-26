@@ -1,0 +1,53 @@
+/************** DEFINE KEY PRESS ****************/
+
+deplacements :
+A = 0
+S = 1       Q = 12
+D = 2       E = 14
+W = 13
+
+fleches regard :
+< = 123
+> = 124
+v = 125
+^ = 126
+
+nombres :
+(ligne)   /   (clavier)
+1 = 18    /    1 = 83
+2 = 19    /    2 = 84
+3 = 20    /    3 = 85
+4 = 21    /    4 = 86
+5 = 23    /    5 = 87
+6 = 22    /    6 = 88
+7 = 26    /    7 = 89
+8 = 28    /    8 = 91
+9 = 25    /    9 = 92
+0 = 29    /    0 = 82
+
+- = 27    /    - = 78
++ = 24    /    + = 69
+
+Menu :
+space = 49
+
+M = 46
+esc = 53
+
+shift_l = 257
+shift_r = 258
+
+L = 37
+K = 40
+
+/**************** Nombre murs ********************/
+0 : rien
+1 : mur pierre gris
+2 : mur blanc // 9 pour les tests
+3 : mur bleu
+4 : sol sable
+5 : floor labo
+6 : door
+7 : grid
+8 : window
+9 : ciel // 2 pour les tests sans le parceur
