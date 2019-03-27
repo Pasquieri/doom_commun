@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/27 15:44:56 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/03/27 20:57:08 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,7 @@ void	exec_calcul(t_env *env, int d_regard, int init)
 	affichage_mur(env);
 	color_case(env);
 //	quadrillage(env); // enlever pour plus de lisibilite sur la mini map
-	print_cercle(env)
-;
-	//	printf("sprite : {%c,%c,%c,%c}\n", env->sp[1].img_str[400],env->sp[1].img_str[401],env->sp[1].img_str[402],env->sp[1].img_str[403]);
+	print_cercle(env);
 	if (env->inv.gun == 1)
 		print_gun(env, 2);
 	mlx_put_image_to_window(env->mlx, env->win, env->m[0].img, 0, 0);

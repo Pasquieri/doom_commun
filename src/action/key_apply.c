@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/27 20:14:34 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/27 21:33:24 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int			key_press(int key, t_env *env)
 
 
 	if ((env->key[14] && env->door.on) || (env->door.off && env->key[14]))
+	//if ((env->key[14] && env->door.on) || (env->door.off && env->key[14]))
 	{
 		deal_door(env);
 		exec_calcul(env, env->d_regard, 0);
@@ -79,6 +80,8 @@ int			key_press(int key, t_env *env)
 int			key_release(int key, t_env *env)
 {
 	env->key[key] = 0;
+	if (key == 257 && !env->menu)
+		env->vitesse = 0.5;
 	return (0);
 }
 

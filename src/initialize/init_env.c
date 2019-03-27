@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:48:45 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/27 20:30:40 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/27 21:07:46 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	init_env(t_env *env)
 	env->lim = env->x * env->coef - (env->coef / 2);
 	env->lum_int = 220;
 	env->vitesse = 0.5;
-//	number_sprite(env);
-//	init_tab_sprite(env);
+	number_sprite(env);
+	init_tab_sprite(env);
 }

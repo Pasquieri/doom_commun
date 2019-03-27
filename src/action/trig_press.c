@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:45:50 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/26 16:51:24 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/27 21:04:52 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int			trig_press(t_env *env)
 		env->lum_int < 1 ? env->lum_int = 1 : env->lum_int;
 		env->lum_int > 500 ? env->lum_int = 500 : env->lum_int;
 	}
+	if (env->key[257] && !env->menu)
+		env->vitesse = 2;
 	if (!env->menu)
 		exec_calcul(env, 0, 0);
 	return (0);

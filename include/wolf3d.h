@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/26 18:45:12 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/27 21:38:39 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define COLUMN 12 //sprite sans mouvements
 # define BANANA 13 // idem a ramasser : disparition & gain de vie
 # define MONKEY 14 // sprite en mouvement : ennemis
+# define DOOR_CLOSE 15
 # define W_HEIGHT 870
 # define W_WIDTH 1200
 
@@ -108,8 +109,10 @@ typedef struct	s_inv
 
 typedef struct	s_index
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	_Bool	on;
+	_Bool	off;
 }				t_index;
 
 typedef struct	s_spr
@@ -193,6 +196,8 @@ int				trig_press(t_env *env);
 void			init_rgb(t_env *env);
 void			init_env(t_env *env);
 void			init_sprite(t_env *env);
+void			number_sprite(t_env *env);
+void			init_tab_sprite(t_env *env);
 void			init_texture(t_env *env);
 int				win_init(t_env *env);
 /*menu*/
