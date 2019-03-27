@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/26 18:48:43 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/27 20:24:42 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int		affichage_ciel(double h_percue, t_env *env, int x, float y)
 		j = 4 * (int)(env->text[22].width * pourcent_x / 100)
 			+ (int)(env->text[22].height * (pourcent_y + (100 - (env->h_regard
 								* 100 / W_HEIGHT))) / 100) * env->text[22].s_l;
+	//	j = 4 * (int)(env->text[22].width * pourcent_x / 100)
+	//		+ (int)(env->text[22].height * (pourcent_y / 100)) * env->text[22].s_l;
 		env->m[0].img_str[i] = env->text[22].img_str[j];
 		env->m[0].img_str[i + 1] = env->text[22].img_str[j + 1];
 		env->m[0].img_str[i + 2] = env->text[22].img_str[j + 2];
