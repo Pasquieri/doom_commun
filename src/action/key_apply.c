@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/26 19:05:34 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/27 17:07:07 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ static void	ft_arrow_menu(t_env *env)
 int			key_apply(t_env *env)
 {
 	if (env->key[53])
+	{
+		system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
 		exit(0);
+	}
 	if (env->key[49])
 	{
 		if (env->key[49] && !env->menu)

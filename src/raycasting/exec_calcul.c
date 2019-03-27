@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/26 19:12:12 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:44:56 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	exec_calcul(t_env *env, int d_regard, int init)
 	clean_img(env);
 	affichage_mur(env);
 	color_case(env);
-	quadrillage(env); // enlever pour plus de lisibilite sur la mini map
+//	quadrillage(env); // enlever pour plus de lisibilite sur la mini map
 	print_cercle(env)
 ;
 	//	printf("sprite : {%c,%c,%c,%c}\n", env->sp[1].img_str[400],env->sp[1].img_str[401],env->sp[1].img_str[402],env->sp[1].img_str[403]);

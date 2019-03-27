@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:45:50 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/26 17:17:28 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/27 17:08:28 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ static void	key_menu_extra(t_env *env)
 	if (env->menu == 1)
 		open_menu(env);
 	if (env->menu_select == 6)
+	{
+		system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
 		exit(0);
+	}
 }
 
 void		key_invalid_menu(t_env *env)
