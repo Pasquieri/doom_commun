@@ -19,21 +19,21 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# define FLOOR 0
+# define FLOOR 0 // text sol a faire + plafond Cyril
 # define W_GRAY 1
-# define W_WHITE 2
+# define W_WHITE 2 // WALL OK
 # define W_BLUE 3
 # define W_G_TAB 4
-# define W_W_TAB 5
+# define W_W_TAB 5 // TAB OK
 # define W_B_TAB 6
-# define WIN 7
+# define DOOR 7 // Clara
 # define BEGIN 8
-# define DOOR 9
-# define GRID 10
-# define END 11
-# define COLUMN 12
-# define BANANA 13
-# define MONKEY 14
+# define END 9
+# define GRID 10 // affichage comme sprite mais impossible a traverser
+# define WIN 11 // idem 1px/2
+# define COLUMN 12 //sprite sans mouvements
+# define BANANA 13 // idem a ramasser : disparition & gain de vie
+# define MONKEY 14 // sprite en mouvement : ennemis
 # define W_HEIGHT 870
 # define W_WIDTH 1200
 

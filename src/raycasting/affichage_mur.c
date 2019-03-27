@@ -53,8 +53,6 @@ static void		affichage(double h_percue, t_env *env, int x)
 	while (++y < lim && y < 870.) // affichage_mur
 		put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
 	y--;
-
-	
 	while (++y < 870.)
 		put_pxl_img(env, x, y, 7);
 	//affichage_sol(h_percue, env);
@@ -89,7 +87,6 @@ void			affichage_mur(t_env *env)
 	x = 0;
 	while (x < (env->nb_colonne))
 	{
-
 		env->angle = a;
 		env->angle = verif_angle(env->angle);
 		dist = detection_mur(env);

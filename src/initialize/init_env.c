@@ -14,8 +14,9 @@
 
 void		init_rgb(t_env *env)
 {
-	env->rgb[0] = (t_rgb){230, 230, 230,	 0}; // blanc
+	env->rgb[0] = (t_rgb){230, 230, 230, 0}; // blanc
 	env->rgb[1] = (t_rgb){113, 170, 10, 100}; // vert
+	env->rgb[2] = (t_rgb){175, 175, 200, 100}; // gris porte
 	env->rgb[3] = (t_rgb){159, 161, 255, 0}; // rose
 	env->rgb[5] = (t_rgb){130, 227, 130, 0}; // vert
 	env->rgb[6] = (t_rgb){240, 130, 44, 0}; // bleu
@@ -127,7 +128,7 @@ void	init_env(t_env *env)
 	env->h_regard = 870 / 2;
 	env->lim = env->x * env->coef - (env->coef / 2);
 	env->lum_int = 220;
-	//	env->vitesse = 2;
+	env->vitesse = 2;
 	number_sprite(env);
 	init_tab_sprite(env);
 }

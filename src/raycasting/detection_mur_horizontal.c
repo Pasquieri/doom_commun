@@ -103,13 +103,13 @@ int			verif_hor(t_env *env, t_coord *coord)
 	j = (int)(coord->y / env->coef);
 	if (i < env->x && j < env->x)
 	{
-		if (env->tab[j][i] > 0 && env->tab[j][i] <= 6)
+		if (env->tab[j][i] > 0 && env->tab[j][i] <= 7)
 		{
 			coord->nb = env->tab[j][i]; // pour les differents types de murs
 			return (1);
 		}
 		j = ((coord->y) - 1) / env->coef;
-		if (env->tab[j][i] > 0 && env->tab[j][i] <= 6)
+		if (env->tab[j][i] > 0 && env->tab[j][i] <= 7)
 		{
 			coord->nb = env->tab[j][i];
 			return (1);

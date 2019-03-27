@@ -19,11 +19,16 @@ static int	check_wall(double xa, double ya, t_env *env)
 
 	x = env->perso_x + xa;
 	y = env->perso_y + ya;
-	if (env->tab[(int)y / env->coef][(int)x / env->coef] == 0
-			&& env->tab[((int)y + 1) / env->coef][(int)x / env->coef] == 0
-			&& env->tab[((int)y - 1) / env->coef][(int)x / env->coef] == 0
-			&& env->tab[(int)y / env->coef][((int)x + 1) / env->coef] == 0
-			&& env->tab[(int)y / env->coef][((int)x - 1) / env->coef] == 0)
+	if ((env->tab[(int)y / env->coef][(int)x / env->coef] == 0
+			|| env->tab[(int)y / env->coef][(int)x / env->coef] == 15)
+			&& (env->tab[((int)y + 1) / env->coef][(int)x / env->coef] == 0
+			|| env->tab[((int)y + 1) / env->coef][(int)x / env->coef] == 15)
+			&& (env->tab[((int)y - 1) / env->coef][(int)x / env->coef] == 0
+			|| env->tab[((int)y - 1) / env->coef][(int)x / env->coef] == 15)
+			&& (env->tab[(int)y / env->coef][((int)x + 1) / env->coef] == 0
+			|| env->tab[(int)y / env->coef][((int)x + 1) / env->coef] == 15)
+			&& (env->tab[(int)y / env->coef][((int)x - 1) / env->coef] == 0
+			|| env->tab[(int)y / env->coef][((int)x - 1) / env->coef] == 15))
 		return (0);
 	else
 		return (1);
@@ -83,8 +88,9 @@ void		depla_vertical(t_env *env, int key)
 		angle = env->d_regard;
 	if (angle < 0)
 		angle = angle + 360;
-	else if (angle > 360)
-		angle = angle - 360;
+	angle = fmod(angle, 360);
+	//else if (angle > 360)
+	//	angle = angle - 360;
 	init_coef(angle, &coef_x, &coef_y);
 	xa = fabs(cos(angle * M_PI / 180) * env->vitesse) * coef_x;
 	ya = fabs(sin(angle * M_PI / 180) * env->vitesse) * coef_y;
@@ -108,8 +114,9 @@ void		depla_horizontal(t_env *env, int key)
 		angle = env->d_regard - 90;
 	if (angle < 0)
 		angle = angle + 360;
-	else if (angle > 360)
-		angle = angle - 360;
+	angle = fmod(angle, 360);
+//	else if (angle > 360)
+//		angle = angle - 360;
 	init_coef(angle, &coef_x, &coef_y);
 	angle = init_angle(angle);
 	xa = fabs(cos(angle * M_PI / 180) * env->vitesse) * coef_x;
