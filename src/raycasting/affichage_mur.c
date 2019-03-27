@@ -55,6 +55,9 @@ static void		affichage(double h_percue, t_env *env, int x)
 	y--;
 	while (++y < 870.)
 		put_pxl_img(env, x, y, 7);
+
+	//affichage_sol(h_percue, x, y, env);
+
 	//affichage_sol(h_percue, env);
 }
 
@@ -94,8 +97,7 @@ void			affichage_mur(t_env *env)
 		env->dist = dist;
 		h_percue = env->d_ecran * (env->h_mur / dist);
 		env->lum = dist * 255 / env->lum_int;
-		env->h_ref = env->d_ecran * (env->coef / dist); //
-		env->lim_sol = env->h_regard + (env->h_ref / 2); //
+		env->lim_sol = env->h_regard + (h_percue / 2); //
 		env->img_x = x;
 		affichage(h_percue, env, x);
 		//print_sprite(env); //

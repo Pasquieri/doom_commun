@@ -229,7 +229,6 @@ void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text);
 char			luminosite(int text, int coef);
 /*raycasting*/
 void			affichage_mur(t_env *env);
-void			affichage_sol(double h_percue, t_env *env);
 int				intersection_horizontal(t_env *env, t_coord *cd);
 int				intersection_vertical(t_env *env, t_coord *cd);
 double			detection_mur(t_env *env);
@@ -241,6 +240,8 @@ int				coef_ver(t_env *env, int *coef_x, int *coef_y);
 int				verif_ver(t_env *env, t_coord *coord);
 void			exec_calcul(t_env *env, int d_regard, int init);
 void			clean_img(t_env *env);
+void			affichage_sol(double h_percue, int x, int y, t_env *env);
+
 
 /*others*/
 int				recup_music(char *str);

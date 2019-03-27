@@ -41,7 +41,8 @@ SRC = src/main.c\
 	  src/raycasting/detection_mur_horizontal.c\
 	  src/raycasting/detection_mur_vertical.c\
 	  src/raycasting/affichage_mur.c\
-	  src/raycasting/exec_calcul.c 
+	  src/raycasting/exec_calcul.c\
+	  src/raycasting/affichage_sol.c
 	   
 
 HEADER = -Ilibft -Iinclude

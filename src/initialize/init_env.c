@@ -128,7 +128,7 @@ void	init_env(t_env *env)
 	env->h_regard = 870 / 2;
 	env->lim = env->x * env->coef - (env->coef / 2);
 	env->lum_int = 220;
-	env->vitesse = 2;
+	env->vitesse = 0.5;
 	number_sprite(env);
 	init_tab_sprite(env);
 }
