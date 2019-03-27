@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/26 19:01:57 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/27 18:47:41 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,67 @@ void	init_sprite(t_env *env)
 			"textures/gun.XPM", &env->sp[6].width, &env->sp[6].height);
 	env->sp[6].img_str = mlx_get_data_addr(env->sp[6].img,
 			&env->sp[6].bpp, &env->sp[6].s_l, &env->sp[6].end);
+}
+
+/*	env->nb_grid = 0;    #10
+	env->nb_win = 0;     #11
+	env->nb_column = 0;  #12
+	env->nb_banana = 0;  #13
+	env->nb_monkey = 0;  #14
+	env->nb_door = 0;    #7   */
+
+void	number_sprite(t_env *env)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i <= 5)
+		env->nb_sp[i] = 0;
+	j = -1;
+	while (++j < env->y)
+	{
+		i = -1;
+		while (++i < env->x)
+		{
+			if (env->tab[j][i] == 7)
+				env->nb_sp[5]++;
+			else if (env->tab[j][i] >= 10 && env->tab[j][i] <= 14)
+				env->nb_sp[env->tab[j][i] - 10]++;
+		}
+	}
+}
+
+void	init_tab_sprite(t_env *env)
+{
+	int	k;
+	int	i;
+	int	j;
+	int	x;
+
+	k = -1;
+	while (++k <= 5)
+	{
+		env->spr[k].nb = env->nb_sp[k];
+		env->spr[k].val = k + 10;
+		if (k == 5)
+			env->spr[k].val = 7;
+		x = 0;
+		if (!(env->spr[k].coord = (t_index *)malloc(sizeof(t_index) * (env->spr[k].nb + 1))))
+			return ;
+		j = -1;
+		while (++j < env->y)
+		{
+			i = -1;
+			while (++i < env->x)
+			{
+				if (env->tab[j][i] == env->spr[k].val)
+				{
+					env->spr[k].coord[x].i = i;
+					env->spr[k].coord[x].j = j;
+					x++;
+				}
+			}
+		}
+	}
 }
