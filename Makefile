@@ -35,6 +35,8 @@ SRC = src/main.c\
 	  src/put_image/mini_map.c\
 	  src/put_image/put_texture_img.c\
 	  src/put_image/print_sprite.c\
+	  src/put_image/print_tab.c\
+	  src/put_image/deal_door.c\
 	  \
 	  src/raycasting/detec_first_inter.c\
 	  src/raycasting/detection_mur.c\

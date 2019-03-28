@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/26 19:08:37 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/28 19:01:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,6 @@ void	print_gun(t_env *env, int k)
 
 void	print_sprite(t_env *env)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	if (env->inv.gun == 1)
 		print_gun(env, 2);
-/*	while (j < env->y)
-	{
-		i = 0;
-		while (i < env->x)
-		{
-			if (env->tab[j][i] == 2)
-				put_sprite(i, j, env);
-			i++;
-		}
-		j++;
-	}*/
 }

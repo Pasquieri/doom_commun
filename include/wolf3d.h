@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/27 21:38:39 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/28 19:05:24 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,12 +223,15 @@ int				verif_valeur(char *str, t_env *env);
 int				wall_line(char *str, t_env *env);
 int				wall_row(char *str, int nb_char, t_env *env);
 /*put_image*/
+void			deal_door(t_env *env);
+void			do_door(t_env *env);
 int				ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
 void			color_case(t_env *env);
 void			quadrillage(t_env *env);
 void			print_cercle(t_env *env);
 void			print_gun(t_env *env, int k);
 void			print_sprite(t_env *env);
+void			print_tab(t_env *env, float p_y, float p_x, t_mlx *sp);
 void			put_pxl_img(t_env *env, int x, int y, int color);
 void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text);
 char			luminosite(int text, int coef);
@@ -246,11 +249,10 @@ int				verif_ver(t_env *env, t_coord *coord);
 void			exec_calcul(t_env *env, int d_regard, int init);
 void			clean_img(t_env *env);
 void			affichage_sol(double h_percue, int x, int y, t_env *env);
-
+/*song*/
+int				recup_music(char *str);
 
 /*others*/
-int				recup_music(char *str);
-void			deal_door(t_env *env);
 
 
 #endif
