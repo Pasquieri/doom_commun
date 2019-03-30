@@ -32,7 +32,7 @@ static double	ft_distance(t_coord coord1, t_coord coord2, t_env *env)
 	{
 		env->orientation = 1;
 		env->coord_mur = coord1;
-		env->wall_nb = coord1.nb;
+		env->wall_nb = coord1.val;
 		ft_round(&coord1);
 		ft_round(&perso);
 		ft_trace_seg(env, perso, coord1);
@@ -42,7 +42,7 @@ static double	ft_distance(t_coord coord1, t_coord coord2, t_env *env)
 	{
 		env->orientation = 2;
 		env->coord_mur = coord2;
-		env->wall_nb = coord2.nb;
+		env->wall_nb = coord2.val;
 		ft_round(&coord2);
 		ft_round(&perso);
 		ft_trace_seg(env, perso, coord2);

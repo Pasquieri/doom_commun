@@ -32,38 +32,38 @@ int			key_press(int key, t_env *env)
 	int		i;
 	if (env->key[12])
 	{
-		printf("nb grid : %d, win : %d, column : %d, banana : %d, monkey : %d, door : %d\n", env->nb_sp[0], env->nb_sp[1], env->nb_sp[2], env->nb_sp[3], env->nb_sp[4], env->nb_sp[5]);
+		printf("nb grid : %d, win : %d, column : %d, banana : %d, monkey : %d, door : %d\n", env->sp[0].nb, env->sp[1].nb, env->sp[2].nb, env->sp[3].nb, env->sp[4].nb, env->sp[5].nb);
 
 
-		printf("\ngrid = nb : %d, val : %d\n",env->spr[0].nb, env->spr[0].val);
+		printf("\ngrid = nb : %d, val : %d\n",env->sp[0].nb, env->sp[0].val);
 		i = -1;
-		while (++i < env->spr[0].nb)
-			printf("coord %d : i = %d, j = %d\n",i, env->spr[0].coord[i].i,env->spr[0].coord[i].j);
+		while (++i < env->sp[0].nb)
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[0].sprite[i].pos.i,env->sp[0].sprite[i].pos.j);
 
-		printf("\nwin = nb : %d, val : %d\n",env->spr[1].nb, env->spr[1].val);
+		printf("\nwin = nb : %d, val : %d\n",env->sp[1].nb, env->sp[1].val);
 		i = -1;
-		while (++i < env->spr[1].nb)
-			printf("coord %d : i = %d, j = %d\n",i, env->spr[1].coord[i].i,env->spr[1].coord[i].j);
+		while (++i < env->sp[1].nb)
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[1].sprite[i].pos.i,env->sp[1].sprite[i].pos.j);
 
-		printf("\ncolumn = nb : %d, val : %d\n",env->spr[2].nb, env->spr[2].val);
+		printf("\ncolumn = nb : %d, val : %d\n",env->sp[2].nb, env->sp[2].val);
 		i = -1;
-		while (++i < env->spr[2].nb)
-			printf("coord %d : i = %d, j = %d\n",i, env->spr[2].coord[i].i,env->spr[2].coord[i].j);
+		while (++i < env->sp[2].nb)
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[2].sprite[i].pos.i,env->sp[2].sprite[i].pos.j);
 
-		printf("\nbanana = nb : %d, val : %d\n",env->spr[3].nb, env->spr[3].val);
+		printf("\nbanana = nb : %d, val : %d\n",env->sp[3].nb, env->sp[3].val);
 		i = -1;
-		while (++i < env->spr[3].nb)
-			printf("coord %d : i = %d, j = %d\n",i, env->spr[3].coord[i].i,env->spr[3].coord[i].j);
+		while (++i < env->sp[3].nb)
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[3].sprite[i].pos.i,env->sp[3].sprite[i].pos.j);
 
-		printf("\nmonkey = nb : %d, val : %d\n",env->spr[4].nb, env->spr[4].val);
+		printf("\nmonkey = nb : %d, val : %d\n",env->sp[4].nb, env->sp[4].val);
 		i = -1;
-		while (++i < env->spr[4].nb)
-			printf("coord %d : i = %d, j = %d\n",i, env->spr[4].coord[i].i,env->spr[4].coord[i].j);
+		while (++i < env->sp[4].nb)
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[4].sprite[i].pos.i,env->sp[4].sprite[i].pos.j);
 
-		printf("\ndoor = nb : %d, val : %d\n",env->spr[5].nb, env->spr[5].val);
+		printf("\ndoor = nb : %d, val : %d\n",env->sp[5].nb, env->sp[5].val);
 		i = -1;
-		while (++i < env->spr[5].nb)
-			printf("coord %d : i = %d, j = %d\n",i, env->spr[5].coord[i].i,env->spr[5].coord[i].j);
+		while (++i < env->sp[5].nb)
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[5].sprite[i].pos.i,env->sp[5].sprite[i].pos.j);
 	}
 
 

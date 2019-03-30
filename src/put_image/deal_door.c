@@ -12,7 +12,7 @@
 
 #include "../../include/wolf3d.h"
 
-void	deal_door(t_env *env)
+void	deal_door(t_env *env) /*utilise t_door au lieu de t_spr*/
 {
 	int	i;
 	int	j;
@@ -45,7 +45,7 @@ void	deal_door(t_env *env)
 	}*/
 }
 
-void	do_door(t_env *env)
+void	do_door(t_env *env) /*idem : a modif*/
 {
 	int	i;
 	int	j;

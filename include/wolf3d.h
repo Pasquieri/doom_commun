@@ -42,7 +42,7 @@ typedef struct	s_coord
 {
 	double	x;
 	double	y;
-	int		nb;
+	int		val;
 }				t_coord;
 
 typedef struct	s_cercle
@@ -101,28 +101,34 @@ typedef struct	s_mlx
 	int		height;
 }				t_mlx;
 
-typedef struct	s_inv
+typedef struct	s_inv /* a supp plus tard */
 {
 	int		lim_gun[5];
 	_Bool	gun;
 }				t_inv;
 
-typedef struct	s_index
+typedef struct	s_pos
 {
 	int		i;
 	int		j;
-	_Bool	on;
-	_Bool	off;
-}				t_index;
+}				t_pos;
 
-typedef struct	s_spr
+typedef struct	s_sprite
 {
-	int		val;
-	int		nb;
-	t_index	*coord; // coord[nb]
-}				t_spr;
+	t_pos	pos;
+	_Bool	proximity;
+	_Bool	alive;
+	_Bool	open;
+}				t_sprite;
 
-typedef struct	s_door
+typedef struct	s_sp
+{
+	int			val;
+	int			nb;
+	t_sprite	*sprite;
+}				t_sp;
+
+typedef struct	s_door /*a supp plus tard */
 {
 	int	i;
 	int	j;
@@ -174,9 +180,8 @@ typedef struct	s_env
 
 	t_rgb	rgb[10];
 	t_mlx	text[25];
-	t_mlx	sp[7];
-	int		nb_sp[6];
-	t_spr	spr[6];
+	t_mlx	sp_t[7]; // textures des sprites
+	t_sp	sp[6];
 
 	t_inv	inv;
 	_Bool	key[604];

@@ -107,13 +107,13 @@ int			verif_ver(t_env *env, t_coord *coord)
 	{
 		if (env->tab[j][i] > 0 &&env->tab[j][i] <= 7)
 		{
-			coord->nb = env->tab[j][i];
+			coord->val = env->tab[j][i];
 			return (1);
 		}
 		i = ((coord->x) - 1) / env->coef;
 		if (env->tab[j][i] > 0 &&env->tab[j][i] <= 7)
 		{
-			coord->nb = env->tab[j][i];
+			coord->val = env->tab[j][i];
 			return (1);
 		}
 	}

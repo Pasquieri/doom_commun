@@ -49,7 +49,7 @@ void		put_texture_img(t_env *env, double h_percue, int y, t_mlx *text)
 	if (env->wall_nb >= 4 && env->wall_nb <= 6)
 	{
 		env->img_y = y;
-		print_tab(env, pourcent_y, pourcent_x, &env->sp[5]); // sp[5] == tableau
+		print_tab(env, pourcent_y, pourcent_x, &env->sp_t[5]); // sp[5] == tableau
 	}
 	if (env->wall_nb == 7 && env->dist < env->coef - 1)
 		do_door(env);
