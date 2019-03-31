@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/27 21:33:24 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/31 04:35:11 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,46 +29,48 @@ int			key_press(int key, t_env *env)
 		mlx_put_image_to_window(env->mlx,env->win,env->m[1].img, 960,20);
 	}
 
-	int		i;
+
+
 	if (env->key[12])
 	{
-		printf("nb grid : %d, win : %d, column : %d, banana : %d, monkey : %d, door : %d\n", env->sp[0].nb, env->sp[1].nb, env->sp[2].nb, env->sp[3].nb, env->sp[4].nb, env->sp[5].nb);
+		//printf("nb grid : %d, win : %d, column : %d, banana : %d, monkey : %d, door : %d\n", env->sp[0].nb, env->sp[1].nb, env->sp[2].nb, env->sp[3].nb, env->sp[4].nb, env->sp[5].nb);
 
+/*** pour chaque sprite : affiche leur pos etc ***/
 
+/*		int	i;
 		printf("\ngrid = nb : %d, val : %d\n",env->sp[0].nb, env->sp[0].val);
 		i = -1;
 		while (++i < env->sp[0].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[0].sprite[i].pos.i,env->sp[0].sprite[i].pos.j);
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[0].sprite[i].i,env->sp[0].sprite[i].j);
 
 		printf("\nwin = nb : %d, val : %d\n",env->sp[1].nb, env->sp[1].val);
 		i = -1;
 		while (++i < env->sp[1].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[1].sprite[i].pos.i,env->sp[1].sprite[i].pos.j);
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[1].sprite[i].i,env->sp[1].sprite[i].j);
 
 		printf("\ncolumn = nb : %d, val : %d\n",env->sp[2].nb, env->sp[2].val);
 		i = -1;
 		while (++i < env->sp[2].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[2].sprite[i].pos.i,env->sp[2].sprite[i].pos.j);
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[2].sprite[i].i,env->sp[2].sprite[i].j);
 
 		printf("\nbanana = nb : %d, val : %d\n",env->sp[3].nb, env->sp[3].val);
 		i = -1;
 		while (++i < env->sp[3].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[3].sprite[i].pos.i,env->sp[3].sprite[i].pos.j);
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[3].sprite[i].i,env->sp[3].sprite[i].j);
 
 		printf("\nmonkey = nb : %d, val : %d\n",env->sp[4].nb, env->sp[4].val);
 		i = -1;
 		while (++i < env->sp[4].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[4].sprite[i].pos.i,env->sp[4].sprite[i].pos.j);
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[4].sprite[i].i,env->sp[4].sprite[i].j);
 
 		printf("\ndoor = nb : %d, val : %d\n",env->sp[5].nb, env->sp[5].val);
 		i = -1;
 		while (++i < env->sp[5].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[5].sprite[i].pos.i,env->sp[5].sprite[i].pos.j);
+			printf("sprite %d : i = %d, j = %d\n",i, env->sp[5].sprite[i].i,env->sp[5].sprite[i].j);*/
 	}
 
 
 	if ((env->key[14] && env->door.on) || (env->door.off && env->key[14]))
-	//if ((env->key[14] && env->door.on) || (env->door.off && env->key[14]))
 	{
 		deal_door(env);
 		exec_calcul(env, env->d_regard, 0);

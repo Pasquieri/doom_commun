@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:57:03 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/28 17:46:48 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/03/30 22:27:46 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			main(int ac, char **av)
 	env.menu = 1;
 	env.menu_select = 1;
 	open_menu(&env);
-	system("/usr/bin/afplay -q 1 src/song/Elevator.mp3&");
+//	system("/usr/bin/afplay -q 1 src/song/Elevator.mp3&");
 	mlx_hook(env.win, 6, 1L << 13, motion_notify, &env);
 	mlx_hook(env.win, 2, 0, key_press, &env);
 	mlx_hook(env.win, 3, 0, key_release, &env);

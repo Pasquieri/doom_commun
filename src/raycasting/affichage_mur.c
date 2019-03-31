@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/28 17:42:29 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/03/31 00:37:18 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ static void		affichage(double h_percue, t_env *env, int x)
 	y--;
 	while (++y < 870.)
 		put_pxl_img(env, x, y, 7);
-
 	//affichage_sol(h_percue, x, y, env);
-
-	//affichage_sol(h_percue, env);
 }
 
 static double	verif_angle(double angle)
@@ -102,7 +99,7 @@ void			affichage_mur(t_env *env)
 		env->lim_sol = env->h_regard + (h_percue / 2); //
 		env->img_x = x;
 		affichage(h_percue, env, x);
-		//print_sprite(env); //
+		print_sprite(env);
 		a -= (60. / (env->nb_colonne));
 		x++;
 	}

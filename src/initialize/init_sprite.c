@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/28 18:52:18 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/31 04:34:00 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_sprite(t_env *env)
 {
 	env->sp_t[0].img = mlx_xpm_file_to_image(env->mlx,
-			"textures/8-grid.XPM", &env->sp_t[0].width, &env->sp_t[0].height);
+			"textures/8-grid_2.XPM", &env->sp_t[0].width, &env->sp_t[0].height);
 	env->sp_t[0].img_str = mlx_get_data_addr(env->sp_t[0].img,
 			&env->sp_t[0].bpp, &env->sp_t[0].s_l, &env->sp_t[0].end);
 	env->sp_t[1].img = mlx_xpm_file_to_image(env->mlx,
@@ -44,13 +44,6 @@ void	init_sprite(t_env *env)
 			&env->sp_t[6].bpp, &env->sp_t[6].s_l, &env->sp_t[6].end);
 }
 
-/*	env->nb_grid = 0;    #10
-	env->nb_win = 0;     #11
-	env->nb_column = 0;  #12
-	env->nb_banana = 0;  #13
-	env->nb_monkey = 0;  #14
-	env->nb_door = 0;    #7   */
-
 void	number_sprite(t_env *env)
 {
 	int	i;
@@ -73,6 +66,13 @@ void	number_sprite(t_env *env)
 	}
 }
 
+static void	fill_pos_sprite(t_sp *sp, int *x, int i, int j)
+{
+	sp->sprite[*x].i = i;
+	sp->sprite[*x].j = j;
+	*x += 1;
+}
+
 void	init_tab_sprite(t_env *env)
 {
 	int	k;
@@ -84,10 +84,10 @@ void	init_tab_sprite(t_env *env)
 	while (++k <= 5)
 	{
 		env->sp[k].val = k + 10;
-		if (k == 5)
-			env->sp[k].val = 7;
+		k == 5 ? env->sp[k].val = 7 : env->sp[k].val;
 		x = 0;
-		if (!(env->sp[k].sprite = (t_sprite *)malloc(sizeof(t_sprite) * (env->sp[k].nb + 1))))
+		if (!(env->sp[k].sprite = (t_sprite *)malloc(sizeof(t_sprite)
+						* (env->sp[k].nb + 1))))
 			return ;
 		j = -1;
 		while (++j < env->y)
@@ -96,11 +96,7 @@ void	init_tab_sprite(t_env *env)
 			while (++i < env->x)
 			{
 				if (env->tab[j][i] == env->sp[k].val)
-				{
-					env->sp[k].sprite[x].pos.i = i;
-					env->sp[k].sprite[x].pos.j = j;
-					x++;
-				}
+					fill_pos_sprite(&env->sp[k], &x, i, j);
 			}
 		}
 	}

@@ -17,6 +17,7 @@ SRC = src/main.c\
 	  src/menu/menu_open.c\
 	  src/menu/menu_arrow.c\
 	  src/menu/key_menu.c\
+	  src/menu/free_sprite.c\
 	  \
 	  src/parser/error_message.c\
 	  src/parser/wall_row.c\
@@ -44,7 +45,8 @@ SRC = src/main.c\
 	  src/raycasting/detection_mur_vertical.c\
 	  src/raycasting/affichage_mur.c\
 	  src/raycasting/exec_calcul.c\
-	  src/raycasting/affichage_sol.c
+	  src/raycasting/affichage_sol.c\
+	  src/raycasting/check_sprite.c
 	   
 
 HEADER = -Ilibft -Iinclude

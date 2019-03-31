@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 19:02:33 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/28 19:03:46 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/31 04:46:34 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,6 @@ void	deal_door(t_env *env) /*utilise t_door au lieu de t_spr*/
 		env->tab[j][i] = 7;
 		env->door.off = 0;
 	}
-/*	i = env->door.i;
-	j = env->door.j;
-	if (env->tab[j][i] == 7 && env->door.on)
-	{
-		env->tab[j][i] = 15;
-		env->door.off = 1;
-		env->door.on = 0;
-	}
-	else if (env->tab[j][i] == 15)
-	{
-		env->tab[j][i] = 7;
-		env->door.off = 0;
-	}*/
 }
 
 void	do_door(t_env *env) /*idem : a modif*/
@@ -54,19 +41,6 @@ void	do_door(t_env *env) /*idem : a modif*/
 	i = (int)(env->coord_mur.x / env->coef);
 	j = (int)(env->coord_mur.y / env->coef);
 	a = -1;
-/*	while (++a < env->spr[5].nb)
-	{
-		if ((env->spr->coord[a].i == i && env->spr->coord[a].j == j)
-		|| (env->spr->coord[a].i == (i + 1) && env->spr->coord[a].j == j)
-		|| (env->spr->coord[a].i == (i - 1) && env->spr->coord[a].j == j)
-		|| (env->spr->coord[a].i == i && env->spr->coord[a].j == (j + 1))
-		|| (env->spr->coord[a].i == i && env->spr->coord[a].j == (j - 1)))
-		{
-			env->spr->coord[a].on = 1;
-			env->door.on = 1;
-			env->door.off = 0;
-		}
-	}*/
 	env->door.i = i;
 	env->door.j = j;
 	if (env->tab[j][i + 1] == 7)

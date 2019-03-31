@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/28 19:05:24 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/31 05:06:00 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define BANANA 13 // idem a ramasser : disparition & gain de vie
 # define MONKEY 14 // sprite en mouvement : ennemis
 # define DOOR_CLOSE 15
+# define PLAFOND 21
+# define SKY 22
 # define W_HEIGHT 870
 # define W_WIDTH 1200
 
@@ -107,15 +109,15 @@ typedef struct	s_inv /* a supp plus tard */
 	_Bool	gun;
 }				t_inv;
 
-typedef struct	s_pos
+typedef struct	s_sprite
 {
 	int		i;
 	int		j;
-}				t_pos;
-
-typedef struct	s_sprite
-{
-	t_pos	pos;
+	_Bool	detec_hor;
+	_Bool	detec_ver;
+	double	dist[2];
+	double	dist_hor;
+	double	dist_ver;
 	_Bool	proximity;
 	_Bool	alive;
 	_Bool	open;
@@ -210,6 +212,7 @@ void			key_invalid_menu(t_env *env);
 void			key_valid_menu(t_env *env);
 void			arrow_menu(t_env *env);
 void			open_menu(t_env *env);
+void			free_sprite(t_env *env);
 /*parser*/
 int				check_file(int	fd, t_env *env);
 int				check_open_map(char *map, int fd, t_env *env);
@@ -254,6 +257,7 @@ int				verif_ver(t_env *env, t_coord *coord);
 void			exec_calcul(t_env *env, int d_regard, int init);
 void			clean_img(t_env *env);
 void			affichage_sol(double h_percue, int x, int y, t_env *env);
+void			check_sprite(int i, int j, t_env *env, int orientation, t_coord cd);
 /*song*/
 int				recup_music(char *str);
 

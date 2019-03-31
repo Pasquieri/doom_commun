@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/27 20:57:08 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/31 04:55:33 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,29 @@ static void	init_var(t_env *env, int d_regard)
 	env->inv.lim_gun[4] = 732;
 }
 
+static void	detect_sprite_null(t_env *env)
+{
+	int	k;
+	int	x;
+
+	k = -1;
+	while (++k <= 5)
+	{
+		x = -1;
+		while (++x < env->sp[k].nb)
+		{
+			env->sp[k].sprite[x].detec_hor = 0;
+			env->sp[k].sprite[x].detec_ver = 0;
+		}
+	}
+}
+
 void	exec_calcul(t_env *env, int d_regard, int init)
 {
 	if (init == 1)
 		init_var(env, d_regard);
 	env->door.on = 0;
+	detect_sprite_null(env); // ???? a tester : utilite ?
 	clean_img(env);
 	affichage_mur(env);
 	color_case(env);

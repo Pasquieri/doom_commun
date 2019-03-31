@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:53:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/26 19:06:51 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/31 04:47:14 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-void		color_case(t_env *env)
+void		color_case(t_env *env) // case avec sprite coloriees
 {
 	int	i;
 	int	j;
@@ -26,7 +26,8 @@ void		color_case(t_env *env)
 		i = -1;
 		while (++i < env->x)
 		{
-			if (env->tab[j][i] > 0 && env->tab[j][i] <= 7)
+			if ((env->tab[j][i] > 0 && env->tab[j][i] <= 7)
+					|| (env->tab[j][i] >= 10 && env->tab[j][i] <= 14))
 			{
 				y = j * env->coef - 1;
 				while (++y < (j * env->coef + env->coef))
@@ -34,6 +35,11 @@ void		color_case(t_env *env)
 					x = i * env->coef - 1;
 					color = 1;
 					env->tab[j][i] == 7 ? color = 2 : color;
+					env->tab[j][i] == 10 ? color = 3 : color;
+					env->tab[j][i] == 11 ? color = 3 : color;
+					env->tab[j][i] == 12 ? color = 4 : color;
+					env->tab[j][i] == 13 ? color = 4 : color;
+					env->tab[j][i] == 14 ? color = 4 : color;
 					while (++x < (i * env->coef + env->coef))
 						put_pxl_img(env, x, y, color);
 				}

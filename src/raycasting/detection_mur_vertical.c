@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/26 18:24:42 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/31 00:35:07 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,19 @@ int			verif_ver(t_env *env, t_coord *coord)
 	j = (int)(coord->y / env->coef);
 	if (i < env->x && j < env->x)
 	{
-		if (env->tab[j][i] > 0 &&env->tab[j][i] <= 7)
+		if (env->tab[j][i] > 0 && env->tab[j][i] <= 7)
 		{
 			coord->val = env->tab[j][i];
 			return (1);
 		}
+		check_sprite(i, j, env, 2, *coord);
 		i = ((coord->x) - 1) / env->coef;
-		if (env->tab[j][i] > 0 &&env->tab[j][i] <= 7)
+		if (env->tab[j][i] > 0 && env->tab[j][i] <= 7)
 		{
 			coord->val = env->tab[j][i];
 			return (1);
 		}
+		check_sprite(i, j, env, 2, *coord);
 	}
 	return (0);
 }

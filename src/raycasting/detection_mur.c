@@ -6,16 +6,21 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:43:51 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/15 20:52:02 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/03/31 00:31:13 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-static void		ft_round(t_coord *coord)
+static void		stock_info(t_env *env, t_coord *cd, t_coord *perso, int nb)
 {
-	coord->x = round(coord->x);
-	coord->y = round(coord->y);
+	env->orientation = nb;
+	env->coord_mur = *cd;
+	env->wall_nb = cd->val;
+	cd->x = round(cd->x);
+	cd->y = round(cd->y);
+	perso->x = round(perso->x);
+	perso->y = round(perso->y);
 }
 
 static double	ft_distance(t_coord coord1, t_coord coord2, t_env *env)
@@ -28,23 +33,15 @@ static double	ft_distance(t_coord coord1, t_coord coord2, t_env *env)
 	perso.y = env->perso_y;
 	dist1 = sqrt(pow(perso.x - coord1.x, 2) + pow(perso.y - coord1.y, 2));
 	dist2 = sqrt(pow(perso.x - coord2.x, 2) + pow(perso.y - coord2.y, 2));
-	if (dist1 < dist2)
+	if (dist1 <= dist2)
 	{
-		env->orientation = 1;
-		env->coord_mur = coord1;
-		env->wall_nb = coord1.val;
-		ft_round(&coord1);
-		ft_round(&perso);
+		stock_info(env, &coord1, &perso, 1);
 		ft_trace_seg(env, perso, coord1);
 		return (dist1);
 	}
 	else
 	{
-		env->orientation = 2;
-		env->coord_mur = coord2;
-		env->wall_nb = coord2.val;
-		ft_round(&coord2);
-		ft_round(&perso);
+		stock_info(env, &coord2, &perso, 2);
 		ft_trace_seg(env, perso, coord2);
 		return (dist2);
 	}

@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   affichage_sol.c                                    :+:      :+:    :+:   */
+/*   free_sprite.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/26 10:28:54 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/03/26 18:07:50 by cpalmier         ###   ########.fr       */
+/*   Created: 2019/03/31 05:08:38 by cpalmier          #+#    #+#             */
+/*   Updated: 2019/03/31 05:12:08 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+# include "../../include/wolf3d.h"
 
-void	affichage_sol(double h_percue, t_env *env)
+void	free_sprite(t_env *env)
 {
-	double lim;
-	lim = (env->h_regard - (h_percue / 2));
-	//printf("lim sol:%f", lim)
+	int	k;
+
+	k = -1;
+	while (++k <= 5)
+		free(env->sp[k].sprite);
 }

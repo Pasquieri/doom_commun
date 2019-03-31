@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_sprite.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
+/*   Updated: 2019/03/31 00:42:32 by cpalmier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "../../include/wolf3d.h"
+
+void	check_sprite(int i, int j, t_env *env, int orientation, t_coord cd)
+{
+	int		value;
+	int		k;
+	int		index_sp;
+	double	dist;
+
+	value = -1;
+	if (env->tab[j][i] >= 10 && env->tab[j][i] <= 15)
+		value = env->tab[j][i];
+	if (value != -1)
+	{
+		k = -1;
+		index_sp = value - 10;
+		while (++k < env->sp[index_sp].nb)
+		{
+			if (env->sp[index_sp].sprite[k].i == i
+					&& env->sp[index_sp].sprite[k].j == j)
+			{
+				dist = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
+				dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);
+				if (orientation == 1)
+					env->sp[index_sp].sprite[k].detec_hor = 1;
+				else
+					env->sp[index_sp].sprite[k].detec_ver = 1;
+				env->sp[index_sp].sprite[k].dist[orientation - 1] = dist;
+				k = env->sp[index_sp].nb;
+			}
+		}
+	}
+}
