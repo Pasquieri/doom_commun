@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/31 04:35:11 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/03 17:52:53 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,29 @@ int			key_press(int key, t_env *env)
 
 	if (env->key[12])
 	{
-		//printf("nb grid : %d, win : %d, column : %d, banana : %d, monkey : %d, door : %d\n", env->sp[0].nb, env->sp[1].nb, env->sp[2].nb, env->sp[3].nb, env->sp[4].nb, env->sp[5].nb);
+		printf("nb grid : %d, win : %d, column : %d, banana : %d, monkey : %d, door : %d\n", env->sp[0].nb, env->sp[1].nb, env->sp[2].nb, env->sp[3].nb, env->sp[4].nb, env->sp[5].nb);
+/*		int i;
+		int	k;
+
+		i = -1;
+		while (++i <= 5)
+		{
+			k = -1;
+			printf("type sprite : %d\n", i);
+			while (++k < env->sp[i].nb)
+			{
+				if (env->sp[i].sprite[k].detec_hor == 1)
+					printf("horizontal : %d\n", i+10);
+				else
+					printf("NULL horizontal\n");
+				if (env->sp[i].sprite[k].detec_ver == 1)
+					printf("vertical : %d\n", i+10);
+				else
+					printf("NULL vertical\n");
+				printf("\n");
+			}
+			printf("\n");
+		}*/
 
 /*** pour chaque sprite : affiche leur pos etc ***/
 

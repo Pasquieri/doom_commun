@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/31 04:55:33 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/03 18:17:24 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	init_var(t_env *env, int d_regard)
 	env->inv.lim_gun[4] = 732;
 }
 
-static void	detect_sprite_null(t_env *env)
+/*static void	detect_sprite_null(t_env *env)
 {
 	int	k;
 	int	x;
@@ -85,18 +85,18 @@ static void	detect_sprite_null(t_env *env)
 		x = -1;
 		while (++x < env->sp[k].nb)
 		{
-			env->sp[k].sprite[x].detec_hor = 0;
-			env->sp[k].sprite[x].detec_ver = 0;
+			env->sp[k].sprite[x].detec[0].on = 0;
+			env->sp[k].sprite[x].detec[1].on = 0;
 		}
 	}
-}
+}*/
 
 void	exec_calcul(t_env *env, int d_regard, int init)
 {
 	if (init == 1)
 		init_var(env, d_regard);
 	env->door.on = 0;
-	detect_sprite_null(env); // ???? a tester : utilite ?
+//	detect_sprite_null(env); // ???? a tester : utilite ?
 	clean_img(env);
 	affichage_mur(env);
 	color_case(env);

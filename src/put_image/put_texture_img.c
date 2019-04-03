@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:49:23 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/31 04:50:42 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/03 18:07:24 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		put_texture_img(t_env *env, double h_percue, int y, t_mlx *text)
 	int		i;
 	int		j;
 
-	if (env->orientation == 1)
+	if (env->orientation == 0)
 		p_x = fmod(env->coord_mur.x, (float)env->coef) * 100 / env->coef;
 	else
 		p_x = fmod(env->coord_mur.y, (float)env->coef) * 100 / env->coef;

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/31 05:06:00 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/03 18:43:33 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,23 @@ typedef struct	s_inv /* a supp plus tard */
 	_Bool	gun;
 }				t_inv;
 
+typedef struct	s_det
+{
+	_Bool	on;
+	double	dist;
+	t_coord	cd;
+}				t_det;
+
 typedef struct	s_sprite
 {
 	int		i;
 	int		j;
-	_Bool	detec_hor;
-	_Bool	detec_ver;
-	double	dist[2];
-	double	dist_hor;
-	double	dist_ver;
+	t_det	detec[2];
+//	_Bool	detec_hor;
+//	_Bool	detec_ver;
+//	double	dist[2];
+//	double	dist_hor;
+//	double	dist_ver;
 	_Bool	proximity;
 	_Bool	alive;
 	_Bool	open;

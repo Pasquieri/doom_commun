@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/31 00:42:32 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/03 18:43:58 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,9 @@ void	check_sprite(int i, int j, t_env *env, int orientation, t_coord cd)
 			{
 				dist = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
 				dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);
-				if (orientation == 1)
-					env->sp[index_sp].sprite[k].detec_hor = 1;
-				else
-					env->sp[index_sp].sprite[k].detec_ver = 1;
-				env->sp[index_sp].sprite[k].dist[orientation - 1] = dist;
-				k = env->sp[index_sp].nb;
+				env->sp[index_sp].sprite[k].detec[orientation].on = 1;
+				env->sp[index_sp].sprite[k].detec[orientation].dist = dist;
+				env->sp[index_sp].sprite[k].detec[orientation].cd = cd;
 			}
 		}
 	}
