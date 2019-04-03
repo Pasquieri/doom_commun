@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/31 00:37:18 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/03 14:14:19 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ static int		affichage_ciel(double h_percue, t_env *env, int x, float y)
 	return (y - 1);
 }*/
 
-static void		affichage(double h_percue, t_env *env, int x)
+/*static void		affichage(double h_percue, t_env *env, int x)
 {
 	float	y;
 	float	lim;
 
-	y = 0;
+	//y = 0;
 	//y = affichage_ciel(h_percue, env, x, y);
 	y = env->h_regard - (h_percue / 2);
 	//	lim = (env->h_regard + (h_percue / 2));
@@ -56,6 +56,24 @@ static void		affichage(double h_percue, t_env *env, int x)
 	while (++y < lim && y < 870.) // affichage_mur
 		put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
 	affichage_sol(x, y, env);
+}*/
+
+static void		affichage(double h_percue, t_env *env, int x)
+{
+	float	y;
+	float	lim;
+
+	y = -1;
+	lim = env->h_regard - (h_percue / 2);
+	while (++y < lim && y < 870.)
+		put_pxl_img(env, x, y, 6);
+	y--;
+	lim = env->lim_sol;
+	while (++y < lim && y < 870.) // affichage_mur
+		put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
+	y--;
+	while (++y < 870.)
+		put_pxl_img(env, x, y, 7);
 }
 
 static double	verif_angle(double angle)
