@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
-
+/*
 static int		affichage_ciel(double h_percue, t_env *env, int x, float y)
 {
 	float	lim;
@@ -41,7 +41,7 @@ static int		affichage_ciel(double h_percue, t_env *env, int x, float y)
 		//env->m[0].img_str[i + 2] = luminosite(env->text[22].img_str[j + 2], env->lum);
 	}
 	return (y - 1);
-}
+}*/
 
 static void		affichage(double h_percue, t_env *env, int x)
 {
@@ -49,15 +49,13 @@ static void		affichage(double h_percue, t_env *env, int x)
 	float	lim;
 
 	y = 0;
-	y = affichage_ciel(h_percue, env, x, y);
+	//y = affichage_ciel(h_percue, env, x, y);
+	y = env->h_regard - (h_percue / 2);
 	//	lim = (env->h_regard + (h_percue / 2));
 	lim = env->lim_sol;
 	while (++y < lim && y < 870.) // affichage_mur
 		put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
-	y--;
-	while (++y < 870.)
-		put_pxl_img(env, x, y, 7);
-	//affichage_sol(h_percue, x, y, env);
+	affichage_sol(x, y, env);
 }
 
 static double	verif_angle(double angle)

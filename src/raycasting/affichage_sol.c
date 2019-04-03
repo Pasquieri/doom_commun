@@ -11,99 +11,79 @@
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
-#include <stdio.h>
 
-
-void	affichage_sol(double h_percue, int x, int y, t_env *env)
+void	affichage_sol(int x, int y, t_env *env)
 {
 
 	double ac;
 	double m;
 	double n;
 	double tmp;
+	double e;
+	double pos_perso_x;
+	double pos_perso_y;
+	double pos_sol_x;
+	double pos_sol_y;
 
+	pos_perso_x = env->perso_x / (double)env->coef;
+	pos_perso_y = env->perso_y / (double)env->coef;
 	tmp = (env->h_regard) / ((y - env->h_regard) / env->d_ecran );
 	while (y < W_HEIGHT)
-	//while (tmp++ < 20)
 	{
-		printf("%d\n", y);
-		
-		ac = (env->h_regard) / ((y - env->h_regard) / (env->d_ecran * (env->dist / tmp)));
+
+		ac = (env->h_regard) / ((double)(y - env->h_regard) / (env->d_ecran * (env->dist / tmp)));
+		ac = ac / cos((env->angle - env->d_regard) * M_PI / 180); //algo oeil de poisson
 		if (env->angle > 0 && env-> angle <= 90)
 		{
-			n = sin((M_PI * env->angle) / 180) * ac;
 			m = cos((M_PI * env->angle) / 180) * ac;
+			n = sin((M_PI * env->angle) / 180) * ac;
+			pos_sol_x = pos_perso_x + m / env->coef;
+			pos_sol_y = pos_perso_y - n / env->coef;
 		}
 		else if (env->angle > 90 && env-> angle <= 180)
 		{
-			n = sin((M_PI * env->angle) / 180) * ac;
 			m = -1 * cos((M_PI * env->angle) / 180) * ac;
+			n = sin((M_PI * env->angle) / 180) * ac;
+			pos_sol_x = pos_perso_x - m / env->coef;
+			pos_sol_y = pos_perso_y - n / env->coef;
 		}
 		else if (env->angle > 180 && env-> angle <= 270)
 		{
-			n = -1 * sin((M_PI * env->angle) / 180) * ac;
 			m = -1 * cos((M_PI * env->angle) / 180) * ac;
+			n = -1 * sin((M_PI * env->angle) / 180) * ac;
+			pos_sol_x = pos_perso_x - m / env->coef;
+			pos_sol_y = pos_perso_y + n / env->coef;
 		}
 		else
 		{
-			n = -1 * sin((M_PI * env->angle) / 180) * ac;
 			m = cos((M_PI * env->angle) / 180) * ac;
+			n = -1 * sin((M_PI * env->angle) / 180) * ac;
+			pos_sol_x = pos_perso_x + m / env->coef;
+			pos_sol_y = pos_perso_y + n / env->coef;
 		}
-		int a;
-		int b;
-		a = env->perso_x / env->coef;
-		b = env->perso_y / env->coef;
-		printf("perso (%d,%d) : sol (%f, %f)\n", a, b, a-m, b-n);
-		printf("tmp : %.1f  distance: %f - dist %f\n", tmp, ac, env->dist);
-		printf("angle: %.1f m n (%.1f ; %.1f)\n\n", env->angle, m, n);
+		e = y;
+
+		int p_x;
+		int	p_y;
+		int	i;
+		int	j;
+
+		p_x = (int)(pos_sol_x * 100) % 100; 
+		p_y = (int)(pos_sol_y * 100) % 100; 
+		i = 4 * x + y * env->m[0].s_l;
+		j = 4 * (int)(env->text[0].width * p_x / 100)
+			+ (int)(env->text[0].height * p_y / 100) * env->text[0].s_l;
+		env->m[0].img_str[i] = (env->text[0].img_str[j]);
+		env->m[0].img_str[i + 1] = (env->text[0].img_str[j + 1]);
+		env->m[0].img_str[i + 2] = (env->text[0].img_str[j + 2]);
+		env->m[0].img_str[i + 3] = (char)0;
+		
+
+		if (((int)pos_sol_x + (int)pos_sol_y) % 2 == 1)
+			put_pxl_img(env, x, W_HEIGHT - e, 7);
+		else
+			put_pxl_img(env, x, W_HEIGHT - e, 6);
+
 		y++;
 	}
-	x = 0;
-	h_percue = 0;
-/*	double	distEcran_plafond_mur;
-	double	distEcran_sol_mur;
-	double	lim_sol;
-//	double		y;
-
-	distEcran_plafond_mur  = env->h_regard - (h_percue / 2);
-	distEcran_sol_mur = W_HEIGHT - h_percue - distEcran_plafond_mur;
-	//printf("P + M + S: %.1f %.1f %.1f = %.1f \n", distEcran_plafond_mur, h_percue, distEcran_sol_mur, dist_plafond_mur + h_percue + dist_sol_mur);
-	lim_sol = W_HEIGHT - distEcran_sol_mur ;
-
-	printf("orientation: %.1f\n", env->angle);
-	printf("d_camera - ecran: %.1f\n",env->d_ecran);
-//	printf("d_ecran - mur: %.1f\n",env->distance);
-	printf("h_ecran: %d\n",W_HEIGHT);
-	printf("h_camera - sol: %d\n",env->h_regard);
-	printf("h_mur_surEcran: %.1f\n", h_percue );
-	double h_limsol_centreEcran;
-	h_limsol_centreEcran = lim_sol - env->h_regard;
-	printf("h_lim_sol: %.1f\n",lim_sol);
-	printf("lim_sol: %.1f\n",env->lim_sol);
-
-
-	put_pxl_img(env, x, lim_sol, 8);
-
-	double d_cam_mur = ( env->h_regard * env->d_ecran ) /  h_limsol_centreEcran;
-	printf("d_cam_mur: %f\n",d_cam_mur );
-	double angle_limsol;
-	angle_limsol = atan((lim_sol - env->h_regard) / env->d_ecran);
-	printf("angle_limsol: %.1f : ( %.1f -  %d) /  %.1f) \n",angle_limsol, lim_sol, env->h_regard, env->d_ecran);
-
-	double d_cam_ecran;
-	d_cam_ecran = sqrt(pow(lim_sol - env->h_regard, 2) + pow(env->d_ecran, 2));
-	printf("d_cam_ecran: %.1f\n", d_cam_ecran);
-
-	double	rayons = 0;
-	while (rayons)
-
-	//valeur y sur ecran dur mur au sol
-	while (lim_sol <= W_HEIGHT)
-	{
-		//put_pxl_img(env, x, lim_sol, 8);
-		lim_sol++;
-	}
-	printf("\n");*/
-
-
 }
