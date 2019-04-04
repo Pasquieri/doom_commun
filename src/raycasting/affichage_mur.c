@@ -60,20 +60,30 @@ static int		affichage_ciel(double h_percue, t_env *env, int x, float y)
 
 static void		affichage(double h_percue, t_env *env, int x)
 {
-	float	y;
-	float	lim;
+	double	y;
+	double	lim;
 
-	y = -1;
+	//y = -1;
 	lim = env->h_regard - (h_percue / 2);
-	while (++y < lim && y < 870.)
+	/*while (++y < lim && y < 870.)
 		put_pxl_img(env, x, y, 6);
-	y--;
+	y--;*/
+	if (lim > 0)
+	{
+		affichage_plafond(lim, x, env);
+		y = lim;
+	}
+	else
+		y = 0;
 	lim = env->lim_sol;
 	while (++y < lim && y < 870.) // affichage_mur
 		put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
-	y--;
+	/*y--;
 	while (++y < 870.)
-		put_pxl_img(env, x, y, 7);
+		put_pxl_img(env, x, y, 7);*/
+
+	affichage_sol(x, y, env);
+
 }
 
 static double	verif_angle(double angle)

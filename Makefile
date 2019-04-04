@@ -46,7 +46,8 @@ SRC = src/main.c\
 	  src/raycasting/affichage_mur.c\
 	  src/raycasting/exec_calcul.c\
 	  src/raycasting/affichage_sol.c\
-	  src/raycasting/check_sprite.c
+	  src/raycasting/check_sprite.c\
+	  src/raycasting/affichage_plafond.c
 	   
 
 HEADER = -Ilibft -Iinclude

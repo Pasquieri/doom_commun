@@ -266,6 +266,7 @@ void			exec_calcul(t_env *env, int d_regard, int init);
 void			clean_img(t_env *env);
 void			affichage_sol(int x, int y, t_env *env);
 void			check_sprite(int i, int j, t_env *env, int orientation, t_coord cd);
+void			affichage_plafond(double y, int x, t_env *env);
 /*song*/
 int				recup_music(char *str);
 

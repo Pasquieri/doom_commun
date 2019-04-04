@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   affichage_sol.c                                    :+:      :+:    :+:   */
+/*   affichage_plafond.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../../include/wolf3d.h"
 
-static void	put_texture_floor(double pos_sol_x, double pos_sol_y, t_env *env, int y)
+static void	put_texture_sky(double pos_sol_x, double pos_sol_y, t_env *env, int y)
 {
 	int p_x;
 	int	p_y;
@@ -22,15 +22,15 @@ static void	put_texture_floor(double pos_sol_x, double pos_sol_y, t_env *env, in
 	p_x = (int)(pos_sol_x * 100) % 100; 
 	p_y = (int)(pos_sol_y * 100) % 100; 
 	i = 4 * env->img_x + y * env->m[0].s_l;
-	j = 4 * (int)(env->text[0].width * p_x / 100)
-		+ (int)(env->text[0].height * p_y / 100) * env->text[0].s_l;
-	env->m[0].img_str[i] = luminosite(env->text[0].img_str[j], env->lum);
-	env->m[0].img_str[i + 1] = luminosite(env->text[0].img_str[j + 1], env->lum);
-	env->m[0].img_str[i + 2] = luminosite(env->text[0].img_str[j + 2], env->lum);
+	j = 4 * (int)(env->text[21].width * p_x / 100)
+		+ (int)(env->text[21].height * p_y / 100) * env->text[21].s_l;
+	env->m[0].img_str[i] = luminosite(env->text[21].img_str[j], env->lum);
+	env->m[0].img_str[i + 1] = luminosite(env->text[21].img_str[j + 1], env->lum);
+	env->m[0].img_str[i + 2] = luminosite(env->text[21].img_str[j + 2], env->lum);
 	env->m[0].img_str[i + 3] = (char)0;
 }
 
-void	affichage_sol(int x, int y, t_env *env)
+void	affichage_plafond(double y, int x, t_env *env)
 {
 
 	double ac;
@@ -45,7 +45,7 @@ void	affichage_sol(int x, int y, t_env *env)
 	pos_perso_x = env->perso_x / (double)env->coef;
 	pos_perso_y = env->perso_y / (double)env->coef;
 	tmp = (env->h_regard) / ((y - env->h_regard) / env->d_ecran );
-	while (y < W_HEIGHT)
+	while (y > 0)
 	{
 
 		ac = (env->h_regard) / ((double)(y - env->h_regard) / (env->d_ecran * (env->dist / tmp)));
@@ -80,11 +80,12 @@ void	affichage_sol(int x, int y, t_env *env)
 		}
 		(void)x;
 		env->lum = ac * 255 / env->lum_int;
-		put_texture_floor(pos_sol_x, pos_sol_y, env, y);
+
 /*		if (((int)pos_sol_x + (int)pos_sol_y) % 2 == 1)
 			put_pxl_img(env, x, W_HEIGHT - e, 7);
 		else
 			put_pxl_img(env, x, W_HEIGHT - e, 6);*/
-		y++;
+		put_texture_sky(pos_sol_x, pos_sol_y, env, y);
+		y--;
 	}
 }
