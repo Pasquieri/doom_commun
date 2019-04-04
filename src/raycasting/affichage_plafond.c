@@ -39,8 +39,8 @@ void	affichage_plafond(double y, int x, t_env *env)
 	double tmp;
 	double pos_perso_x;
 	double pos_perso_y;
-	double pos_sol_x;
-	double pos_sol_y;
+	double pos_plafond_x;
+	double pos_plafond_y;
 
 	pos_perso_x = env->perso_x / (double)env->coef;
 	pos_perso_y = env->perso_y / (double)env->coef;
@@ -54,38 +54,38 @@ void	affichage_plafond(double y, int x, t_env *env)
 		{
 			m = cos((M_PI * env->angle) / 180) * ac;
 			n = sin((M_PI * env->angle) / 180) * ac;
-			pos_sol_x = pos_perso_x + m / env->coef;
-			pos_sol_y = pos_perso_y - n / env->coef;
+			pos_plafond_x = pos_perso_x + m / env->coef;
+			pos_plafond_y = pos_perso_y - n / env->coef;
 		}
 		else if (env->angle > 90 && env-> angle <= 180)
 		{
 			m = -1 * cos((M_PI * env->angle) / 180) * ac;
 			n = sin((M_PI * env->angle) / 180) * ac;
-			pos_sol_x = pos_perso_x - m / env->coef;
-			pos_sol_y = pos_perso_y - n / env->coef;
+			pos_plafond_x = pos_perso_x - m / env->coef;
+			pos_plafond_y = pos_perso_y - n / env->coef;
 		}
 		else if (env->angle > 180 && env-> angle <= 270)
 		{
 			m = -1 * cos((M_PI * env->angle) / 180) * ac;
 			n = -1 * sin((M_PI * env->angle) / 180) * ac;
-			pos_sol_x = pos_perso_x - m / env->coef;
-			pos_sol_y = pos_perso_y + n / env->coef;
+			pos_plafond_x = pos_perso_x - m / env->coef;
+			pos_plafond_y = pos_perso_y + n / env->coef;
 		}
 		else
 		{
 			m = cos((M_PI * env->angle) / 180) * ac;
 			n = -1 * sin((M_PI * env->angle) / 180) * ac;
-			pos_sol_x = pos_perso_x + m / env->coef;
-			pos_sol_y = pos_perso_y + n / env->coef;
+			pos_plafond_x = pos_perso_x + m / env->coef;
+			pos_plafond_y = pos_perso_y + n / env->coef;
 		}
 		(void)x;
 		env->lum = ac * 255 / env->lum_int;
 
-/*		if (((int)pos_sol_x + (int)pos_sol_y) % 2 == 1)
+/*		if (((int)pos_plafond_x + (int)pos_plafond_y) % 2 == 1)
 			put_pxl_img(env, x, W_HEIGHT - e, 7);
 		else
 			put_pxl_img(env, x, W_HEIGHT - e, 6);*/
-		put_texture_sky(pos_sol_x, pos_sol_y, env, y);
+		put_texture_sky(pos_plafond_x, pos_plafond_y, env, y);
 		y--;
 	}
 }
