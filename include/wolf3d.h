@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/03 18:43:33 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/05 16:03:58 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,15 @@ typedef struct	s_env
 	void	*win;
 	t_mlx	m[2];
 
+	//Hub
+	void	*H_mlx;
+	void	*H_end_mlx;
+	int		H_life;
+	int		H_monkey;
+	int		H_init;
+	int		H_ammo;
+	int		H_end;
+
 	int		coef;
 	int		x;
 	int		y;
@@ -216,6 +225,8 @@ void			init_tab_sprite(t_env *env);
 void			init_texture(t_env *env);
 int				win_init(t_env *env);
 /*menu*/
+void			hub_init(t_env *env);
+void			print_hub(t_env *env);
 void			key_invalid_menu(t_env *env);
 void			key_valid_menu(t_env *env);
 void			arrow_menu(t_env *env);

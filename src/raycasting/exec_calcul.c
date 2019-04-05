@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/03 18:17:24 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/05 13:18:33 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void	exec_calcul(t_env *env, int d_regard, int init)
 	mlx_put_image_to_window(env->mlx, env->win, env->m[0].img, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->win, env->m[1].img, 960, 20);
 	print_text(env);
+	print_hub(env);
 }
