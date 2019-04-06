@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/06 09:55:21 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/06 13:55:15 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ void		init_sprite(t_env *env)
 	env->sp_t[1].img_str = mlx_get_data_addr(env->sp_t[1].img,
 		&env->sp_t[1].bpp, &env->sp_t[1].s_l, &env->sp_t[1].end);
 	env->sp_t[2].img = mlx_xpm_file_to_image(env->mlx,
-		"textures/12-column.XPM", &env->sp_t[2].width, &env->sp_t[2].height);
+		"textures/12-column_edit.XPM", &env->sp_t[2].width, &env->sp_t[2].height);
 	env->sp_t[2].img_str = mlx_get_data_addr(env->sp_t[2].img,
 		&env->sp_t[2].bpp, &env->sp_t[2].s_l, &env->sp_t[2].end);
+//printf("w : %d, h : %d\n", env->sp_t[2].width, env->sp_t[2].height);
 	env->sp_t[3].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/13-banana.XPM", &env->sp_t[3].width, &env->sp_t[3].height);
 	env->sp_t[3].img_str = mlx_get_data_addr(env->sp_t[3].img,
@@ -72,10 +73,22 @@ void		number_sprite(t_env *env)
 	}
 }
 
-static void	fill_pos_sprite(t_sp *sp, int *x, int i, int j)
+static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 {
+	double	pos_x;
+	double	pos_y;
+	double	coef;
+
+	coef = 5.;
 	sp->sprite[*x].i = i;
 	sp->sprite[*x].j = j;
+	if (sp->val == COLUMN || sp->val == BANANA || sp->val == MONKEY)
+	{
+		pos_x = i * coef + coef / 2;
+		pos_y = j * coef + coef / 2;
+		sp->sprite[*x].cd.x = pos_x;
+		sp->sprite[*x].cd.y = pos_y;
+	}
 	*x += 1;
 }
 
@@ -102,7 +115,7 @@ void		init_tab_sprite(t_env *env)
 			while (++i < env->x)
 			{
 				if (env->tab[j][i] == env->sp[k].val)
-					fill_pos_sprite(&env->sp[k], &x, i, j);
+					fill_info_sprite(&env->sp[k], &x, i, j);
 			}
 		}
 	}

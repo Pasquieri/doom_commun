@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/06 09:50:48 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/06 10:47:27 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct	s_sprite
 {
 	int		i;
 	int		j;
+	t_coord	cd;
 	t_det	detec[2];
 	_Bool	proximity;
 	_Bool	alive;

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/06 07:33:02 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/06 13:50:00 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,21 @@ static void	ft_check_sprite(t_env *env, int o, t_coord cd)
 	int	i;
 	int	j;
 
+/*	j = (int)(cd.y / env->coef);
+	if (env->angle > 90 && env->angle < 270)
+	{
+		i = ((cd.x) - 1) / env->coef;
+		check_sprite(i, j, env, o, cd);
+		i = (int)(cd.x / env->coef);
+		check_sprite(i, j, env, o, cd);
+	}
+	else
+	{
+		i = (int)(cd.x / env->coef);
+		check_sprite(i, j, env, o, cd);
+		i = ((cd.x) - 1) / env->coef;
+		check_sprite(i, j, env, o, cd);
+	}*/
 	if (env->angle > 90 && env->angle < 270)
 		i = ((cd.x) - 1) / env->coef;
 	else
