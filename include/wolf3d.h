@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/06 08:07:50 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/06 09:50:48 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,15 +182,15 @@ typedef struct	s_env
 	int		img_y; // ?
 	int		h_regard;
 	float	lim;
+	float	lim_sol;
 	int		orientation; // cardinaux
+	_Bool	skybox;
 	int		lum;
 	int		lum_int;
 
 	double	dist;
 	t_door	door;
 
-	float	lim_sol; // test
-	double	h_ref; // test
 
 	t_rgb	rgb[10];
 	t_mlx	text[25];
@@ -204,6 +204,7 @@ typedef struct	s_env
 
 /*action*/
 void			deplacements(t_env *env);
+int				check_wall(double xa, double ya, t_env *env);
 void			depla_horizontal(t_env *env, int key);
 void			depla_vertical(t_env *env, int key);
 int				key_press(int key, t_env *env);

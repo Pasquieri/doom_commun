@@ -6,37 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:41:52 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/27 21:38:44 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/06 09:52:20 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
-
-static int	check(int value)
-{
-	if (value == FLOOR || value == BEGIN || value == END ||value == BANANA
-			|| value == MONKEY || value == DOOR_CLOSE)
-		return (1);
-	else
-		return (0);
-}
-
-static int	check_wall(double xa, double ya, t_env *env)
-{
-	double	x;
-	double	y;
-
-	x = env->perso_x + xa;
-	y = env->perso_y + ya;
-	if (check(env->tab[(int)y / env->coef][(int)x / env->coef])
-			&& check(env->tab[((int)y + 1) / env->coef][(int)x / env->coef])
-			&& check(env->tab[((int)y - 1) / env->coef][(int)x / env->coef])
-			&& check(env->tab[(int)y / env->coef][((int)x + 1) / env->coef])
-			&& check(env->tab[(int)y / env->coef][((int)x - 1) / env->coef]))
-		return (0);
-	else
-		return (1);
-}
 
 static double	init_angle(double d_regard)
 {
@@ -54,7 +28,7 @@ static double	init_angle(double d_regard)
 	return (angle);
 }
 
-static void	init_coef(double d_regard, double *coef_x, double *coef_y)
+static void		init_coef(double d_regard, double *coef_x, double *coef_y)
 {
 	if (d_regard >= 0 && d_regard < 90)
 	{
@@ -78,7 +52,7 @@ static void	init_coef(double d_regard, double *coef_x, double *coef_y)
 	}
 }
 
-void		depla_vertical(t_env *env, int key)
+void			depla_vertical(t_env *env, int key)
 {
 	double	xa;
 	double	ya;
@@ -102,7 +76,7 @@ void		depla_vertical(t_env *env, int key)
 		env->perso_y = env->perso_y + ya;
 }
 
-void		depla_horizontal(t_env *env, int key)
+void			depla_horizontal(t_env *env, int key)
 {
 	double	xa;
 	double	ya;

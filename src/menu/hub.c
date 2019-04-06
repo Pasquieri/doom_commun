@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:12:49 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/05 17:00:48 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/06 09:26:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void			hub_init(t_env *env)
 	env->H_end_mlx = mlx_new_image(env->mlx, (W_WIDTH - 400), (W_HEIGHT - 660));
 	env->H_init = 1;
 	env->H_life = 100;
-	env->H_monkey = 0;
+//	env->H_monkey = 0;
+	env->H_monkey = env->sp[4].nb; // nombre de singe
 	env->H_ammo = 30;
 	env->H_end = 0;
 }

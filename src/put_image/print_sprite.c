@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/05 06:08:27 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/06 10:07:43 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ static void	put_sprite_img(t_env *env, double h_percue, int y, t_mlx *sp_t)
 	i = 4 * env->img_x + y * env->m[0].s_l;
 	j = 4 * (int)(sp_t->width * p_x / 100)
 		+ (int)(sp_t->height * p_y / 100) * sp_t->s_l;
-	if (sp_t->img_str[j + 3] != -1) // si pas transparent
+//	if (sp_t->img_str[j + 3] != -1) // si pas transparent
 	{
-	env->m[0].img_str[i] = luminosite((int)sp_t->img_str[j], env->lum);
-	env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
-	env->m[0].img_str[i + 2] = luminosite(sp_t->img_str[j + 2], env->lum);
-	env->m[0].img_str[i + 3] = (char)0;
-//		env->m[0].img_str[i] = (char)150;
-//		env->m[0].img_str[i + 1] = (char)100;
-//		env->m[0].img_str[i + 2] = (char)250;
+//	env->m[0].img_str[i] = luminosite((int)sp_t->img_str[j], env->lum);
+//	env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
+//	env->m[0].img_str[i + 2] = luminosite(sp_t->img_str[j + 2], env->lum);
+//	env->m[0].img_str[i + 3] = (char)0;
+		env->m[0].img_str[i] = (char)150;
+		env->m[0].img_str[i + 1] = (char)100;
+		env->m[0].img_str[i + 2] = (char)250;
 	}
 }
 
@@ -112,7 +112,7 @@ void	print_sprite(t_env *env)
 	double	h_percue;
 
 	i = -1;
-	while (++i < 4) // < 5 pour tous les sprites
+	while (++i < 4) // < 5 pour tous les sprites sp[4] = monkey
 	{
 		cmp = -1;
 		while (++cmp < env->sp[i].nb)

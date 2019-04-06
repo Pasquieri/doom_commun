@@ -30,6 +30,7 @@ nombres :
 
 Menu :
 space = 49
+return / enter = 36
 
 M = 46
 esc = 53

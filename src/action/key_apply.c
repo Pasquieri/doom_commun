@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/03 17:52:53 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/06 09:44:42 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,24 @@
 int			key_press(int key, t_env *env)
 {
 	env->key[key] = 1;
+	if (env->key[53])
+	{
+		system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
+		exit(0);
+	}
+	if (env->key[49])
+	{
+		if (env->key[49] && !env->menu)
+		{
+			open_menu(env);
+			env->menu = 1;
+			return (0);
+		}
+		else if (env->key[49] && env->menu && env->map_entree == -1)
+			key_invalid_menu(env);
+		else if (env->key[49] && env->menu && env->map_entree != -1)
+			key_valid_menu(env);
+	}
 	if (env->key[40] && !env->menu) // pour afficher le gun : key k
 	{
 		if (env->inv.gun == 0)
@@ -28,9 +46,13 @@ int			key_press(int key, t_env *env)
 		mlx_put_image_to_window(env->mlx,env->win,env->m[0].img, 0,0);
 		mlx_put_image_to_window(env->mlx,env->win,env->m[1].img, 960,20);
 	}
-
-
-
+	if (env->key[18] && !env->menu)
+	{
+		if (!env->skybox)
+			env->skybox = 1;
+		else
+			env->skybox = 0;
+	}
 	if (env->key[12])
 	{
 		printf("nb grid : %d, win : %d, column : %d, banana : %d, monkey : %d, door : %d\n", env->sp[0].nb, env->sp[1].nb, env->sp[2].nb, env->sp[3].nb, env->sp[4].nb, env->sp[5].nb);
@@ -118,26 +140,6 @@ static void	ft_arrow_menu(t_env *env)
 
 int			key_apply(t_env *env)
 {
-	if (env->key[53])
-	{
-		system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
-		exit(0);
-	}
-	if (env->key[49])
-	{
-		if (env->key[49] && !env->menu)
-		{
-			open_menu(env);
-			env->menu = 1;
-			env->key[49] = 0;
-			return (0);
-		}
-		else if (env->key[49] && env->menu && env->map_entree == -1)
-			key_invalid_menu(env);
-		else if (env->key[49] && env->menu && env->map_entree != -1)
-			key_valid_menu(env);
-		env->key[49] = 0; // pour ne pas boucler (affiche deaffiche le menu)
-	}
 	if ((env->key[125] || env->key[126]) && env->menu == 1)
 		ft_arrow_menu(env);
 	if (!env->menu)

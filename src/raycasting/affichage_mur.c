@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/06 08:18:54 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/06 09:22:40 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-/*static int		affichage_ciel(double h_percue, t_env *env, int x, float y)
+static int		affichage_ciel(double h_percue, t_env *env, int x, float y)
 {
 	float	lim;
 	float	pourcent_x;
@@ -35,7 +35,7 @@
 		env->m[0].img_str[i + 2] = env->text[22].img_str[j + 2];
 	}
 	return (y - 1);
-}*/
+}
 
 static void		affichage(double h_percue, t_env *env, int x)
 {
@@ -46,15 +46,17 @@ static void		affichage(double h_percue, t_env *env, int x)
 	y = env->h_regard + (h_percue / 2);
 	affichage_sol(y, env);
 	y = env->h_regard - (h_percue / 2);
-	if (y > 0)
+	if (!env->skybox)
 		affichage_plafond(y, env);
 	else
-		y = 0;
+		affichage_ciel(h_percue, env, x, 0);
 /*	y = -1;
 	while (++y < lim && y < 870.)
 		put_pxl_img(env, x, y, 6);
 	y--;*/
+	y < 0 ? y = 0 : y;
 	lim = env->lim_sol;
+	env->lum = env->dist * 255 / env->lum_int;
 	while (++y < lim && y < 870.)
 		put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
 /*	y--;
@@ -97,7 +99,6 @@ void			affichage_mur(t_env *env)
 		dist = dist * cos((a - env->d_regard) * M_PI / 180);
 		env->dist = dist;
 		h_percue = env->d_ecran * (env->h_mur / dist);
-		env->lum = dist * 255 / env->lum_int;
 		env->lim_sol = env->h_regard + (h_percue / 2); //
 		env->img_x = x;
 		affichage(h_percue, env, x);

@@ -6,13 +6,39 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:41:36 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/03 15:09:43 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/06 09:51:58 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-void	deplacements(t_env *env)
+static int	check(int value)
+{
+	if (value == FLOOR || value == BEGIN || value == END || value == BANANA
+			|| value == MONKEY || value == DOOR_CLOSE)
+		return (1);
+	else
+		return (0);
+}
+
+int			check_wall(double xa, double ya, t_env *env)
+{
+	double	x;
+	double	y;
+
+	x = env->perso_x + xa;
+	y = env->perso_y + ya;
+	if (check(env->tab[(int)y / env->coef][(int)x / env->coef])
+			&& check(env->tab[((int)y + 1) / env->coef][(int)x / env->coef])
+			&& check(env->tab[((int)y - 1) / env->coef][(int)x / env->coef])
+			&& check(env->tab[(int)y / env->coef][((int)x + 1) / env->coef])
+			&& check(env->tab[(int)y / env->coef][((int)x - 1) / env->coef]))
+		return (0);
+	else
+		return (1);
+}
+
+void		deplacements(t_env *env)
 {
 	if (env->key[1])
 		depla_vertical(env, 1);
