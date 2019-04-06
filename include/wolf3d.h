@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/05 16:03:58 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/06 08:07:50 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,6 @@ typedef struct	s_sprite
 	int		i;
 	int		j;
 	t_det	detec[2];
-//	_Bool	detec_hor;
-//	_Bool	detec_ver;
-//	double	dist[2];
-//	double	dist_hor;
-//	double	dist_ver;
 	_Bool	proximity;
 	_Bool	alive;
 	_Bool	open;
@@ -201,6 +196,7 @@ typedef struct	s_env
 	t_mlx	text[25];
 	t_mlx	sp_t[7]; // textures des sprites
 	t_sp	sp[6];
+	t_coord	coord_spr;
 
 	t_inv	inv;
 	_Bool	key[604];
@@ -275,9 +271,9 @@ int				coef_ver(t_env *env, int *coef_x, int *coef_y);
 int				verif_ver(t_env *env, t_coord *coord);
 void			exec_calcul(t_env *env, int d_regard, int init);
 void			clean_img(t_env *env);
-void			affichage_sol(int x, int y, t_env *env);
+void			affichage_sol(double y, t_env *env);
+void			affichage_plafond(double y, t_env *env);
 void			check_sprite(int i, int j, t_env *env, int orientation, t_coord cd);
-void			affichage_plafond(double y, int x, t_env *env);
 /*song*/
 int				recup_music(char *str);
 

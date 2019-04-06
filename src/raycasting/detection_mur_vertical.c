@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/03 18:18:39 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/06 07:33:02 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,18 @@ int			coef_ver(t_env *env, int *coef_x, int *coef_y)
 	return (0);
 }
 
+static void	ft_check_sprite(t_env *env, int o, t_coord cd)
+{
+	int	i;
+	int	j;
 
+	if (env->angle > 90 && env->angle < 270)
+		i = ((cd.x) - 1) / env->coef;
+	else
+		i = (int)(cd.x / env->coef);
+	j = (int)(cd.y / env->coef);
+	check_sprite(i, j, env, o, cd);
+}
 
 int			verif_ver(t_env *env, t_coord *coord)
 {
@@ -105,19 +116,18 @@ int			verif_ver(t_env *env, t_coord *coord)
 	j = (int)(coord->y / env->coef);
 	if (i < env->x && j < env->x)
 	{
+		ft_check_sprite(env, 1, *coord);
 		if (env->tab[j][i] > 0 && env->tab[j][i] <= 7)
 		{
 			coord->val = env->tab[j][i];
 			return (1);
 		}
-		check_sprite(i, j, env, 1, *coord);
 		i = ((coord->x) - 1) / env->coef;
 		if (env->tab[j][i] > 0 && env->tab[j][i] <= 7)
 		{
 			coord->val = env->tab[j][i];
 			return (1);
 		}
-		check_sprite(i, j, env, 1, *coord);
 	}
 	return (0);
 }

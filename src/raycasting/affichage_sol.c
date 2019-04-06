@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 10:28:54 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/03 14:13:15 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/06 08:18:21 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	put_texture_floor(double pos_sol_x, double pos_sol_y, t_env *env, in
 	env->m[0].img_str[i + 3] = (char)0;
 }
 
-void	affichage_sol(int x, int y, t_env *env)
+void	affichage_sol(double y, t_env *env)
 {
 
 	double ac;
@@ -78,13 +78,8 @@ void	affichage_sol(int x, int y, t_env *env)
 			pos_sol_x = pos_perso_x + m / env->coef;
 			pos_sol_y = pos_perso_y + n / env->coef;
 		}
-		(void)x;
 		env->lum = ac * 255 / env->lum_int;
 		put_texture_floor(pos_sol_x, pos_sol_y, env, y);
-/*		if (((int)pos_sol_x + (int)pos_sol_y) % 2 == 1)
-			put_pxl_img(env, x, W_HEIGHT - e, 7);
-		else
-			put_pxl_img(env, x, W_HEIGHT - e, 6);*/
 		y++;
 	}
 }
