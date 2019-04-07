@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/07 13:37:28 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/07 16:13:26 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ typedef struct	s_env
 	int		H_init;
 	int		H_ammo;
 	int		H_end;
+	int		H_help;
 
 	int		coef;
 	int		x;

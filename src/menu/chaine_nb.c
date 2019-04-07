@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 13:09:06 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/07 13:27:31 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/07 16:13:20 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ char			*chaine_nb(char *str, int nb)
 	j = 0;
 	i = 0;
 	res = NULL;
-	res = (char *)malloc(sizeof(char) * (ft_strlen(char_int(nb)) + ft_strlen(str) + 1));
+	str2 = char_int(nb);
+	res = (char *)malloc(sizeof(char) * (ft_strlen(str2) + ft_strlen(str) + 1));
 	if (res == NULL)
 		return ("");
 	while (str[i] != '\0')
@@ -79,13 +80,13 @@ char			*chaine_nb(char *str, int nb)
 		res[i] = str[i];
 		i++;
 	}
-	str2 = char_int(nb);
 	while (str2[j] != '\0')
 	{
 		res[i] = str2[j];
 		i++;
 		j++;
 	}
+	free(str2);
 	res[i] = '\0';
 	return (res);
 }
