@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/06 10:47:27 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/07 13:29:08 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ typedef struct	s_env
 
 	//Hub
 	void	*H_mlx;
+	t_mlx   hub_end;
 	void	*H_end_mlx;
 	int		H_life;
 	int		H_monkey;
@@ -223,6 +224,7 @@ void			init_tab_sprite(t_env *env);
 void			init_texture(t_env *env);
 int				win_init(t_env *env);
 /*menu*/
+char			*chaine_nb(char *str, int nb);
 void			hub_init(t_env *env);
 void			print_hub(t_env *env);
 void			key_invalid_menu(t_env *env);

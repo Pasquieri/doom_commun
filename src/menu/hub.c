@@ -6,94 +6,41 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:12:49 by mpasquie          #+#    #+#             */
+/*   Updated: 2019/04/07 13:20:08 by mpasquie         ###   ########.fr       */
 /*   Updated: 2019/04/06 09:26:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/wolf3d.h"
 
-static int		ft_size(int nb)
+static void		put_pxl(t_env *env, int x, int y, int color)
 {
-	int			i;
+	int	i;
 
-	i = 0;
-	while (nb > 10)
-	{
-		nb = nb / 10;
-		i++;
-	}
-	return (i);
-}
-
-static int		size_int(int nb)
-{
-	int     size;
-
-	size = 1;
-	while (nb / 10 > 0)
-	{
-		nb = nb / 10;
-		size = size * 10;
-	}
-	return (size);
-}
-
-static char		*char_int(int nb)
-{
-	int			size;
-	char		*tab;
-	int			i;
-
-	i = 0;
-	size = size_int(nb);
-	tab = NULL;
-	tab = (char *)malloc(sizeof(char) * (ft_size(nb) + 1));
-	if (tab == NULL)
-		return ("");
-	while (size)
-	{
-		tab[i] = ((nb / size) + '0');
-		nb = nb % size;
-		size = size / 10;
-		i++;
-	}
-	tab[i] = '\0';
-	return (tab);
-}
-
-static char		*chaine_nb(char *str, int nb)
-{
-	char	*res;
-	char	*str2;
-	int		i;
-	int		j;
-
-	j = 0;
-	i = 0;
-	res = NULL;
-	res = (char *)malloc(sizeof(char) * (ft_strlen(char_int(nb)) + ft_strlen(str) + 1));
-	if (res == NULL)
-		return ("");
-	while (str[i] != '\0')
-	{
-		res[i] = str[i];
-		i++;
-	}
-	str2 = char_int(nb);
-	while (str2[j] != '\0')
-	{
-		res[i] = str2[j];
-		i++;
-		j++;
-	}
-	res[i] = '\0';
-	return (res);
+	i = 4 * x + y * env->hub_end.s_l;
+	env->hub_end.img_str[i] = (char)env->rgb[color].b;
+	env->hub_end.img_str[i + 1] = (char)env->rgb[color].g;
+	env->hub_end.img_str[i + 2] = (char)env->rgb[color].r;
+	env->hub_end.img_str[i + 3] = (char)env->rgb[color].a;
 }
 
 void			hub_init(t_env *env)
 {
-	env->H_mlx = mlx_new_image(env->mlx, 400, 75);
-	env->H_end_mlx = mlx_new_image(env->mlx, (W_WIDTH - 400), (W_HEIGHT - 660));
+	int	x;
+	int	y;
+
+	env->hub_end.img = mlx_new_image(env->mlx, (W_WIDTH - 400), (W_HEIGHT - 660));
+	env->hub_end.img_str = mlx_get_data_addr(env->hub_end.img, &env->hub_end.bpp,
+			&env->hub_end.s_l, &env->hub_end.end);
+	y = -1;
+	while (++y < (W_HEIGHT - 660))
+	{
+		x = -1;
+		while (++x < (W_WIDTH - 400))
+			put_pxl(env, x, y, 8);
+	}
+//	env->H_mlx = mlx_new_image(env->mlx, 400, 75);
+//	env->H_end_mlx = mlx_new_image(env->mlx, (W_WIDTH - 400), (W_HEIGHT - 660));
 	env->H_init = 1;
 	env->H_life = 100;
 //	env->H_monkey = 0;
@@ -108,9 +55,11 @@ void			print_hub(t_env *env)
 		hub_init(env);
 	//env->H_end = 1;
 	//env->H_life = 0;
+	mlx_put_image_to_window(env->mlx, env->win, env->text[23].img, 10, 10);
 	if (env->H_end <= 0)
 	{
-		//mlx_put_image_to_window(env->mlx, env->win, env->H_mlx, 10, 10);
+		mlx_string_put(env->mlx, env->win, 599, 434, 0xFFFFFF,
+				"+");
 		mlx_string_put(env->mlx, env->win, 30, 740, 0x2B502B,
 				chaine_nb("Life : ", env->H_life));
 		mlx_string_put(env->mlx, env->win, 30, 780, 0x2B502B,
@@ -120,7 +69,8 @@ void			print_hub(t_env *env)
 	}
 	else
 	{
-		mlx_put_image_to_window(env->mlx, env->win, env->H_end_mlx, 200, 400);
+		//mlx_put_image_to_window(env->mlx, env->win, env->H_end_mlx, 200, 400);
+		mlx_put_image_to_window(env->mlx, env->win, env->hub_end.img, 200, 400);
 		if (env->H_life <= 0)
 			mlx_string_put(env->mlx, env->win, 510, 450, 0xD51515,
 					"Vous avez perdu :(");
@@ -131,7 +81,6 @@ void			print_hub(t_env *env)
 					"Appuyer sur [espace] pour revenir au menu");
 		mlx_string_put(env->mlx, env->win, 410, 530, 0x1A79D3,
 					"Appuyer sur [esc] pour quitter le jeu");
-
 	}
 }
 
