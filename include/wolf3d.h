@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/07 13:29:08 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/07 13:37:28 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ typedef struct	s_env
 }				t_env;
 
 /*action*/
+void			mouse_move(t_env *env);
 void			deplacements(t_env *env);
 int				check_wall(double xa, double ya, t_env *env);
 void			depla_horizontal(t_env *env, int key);

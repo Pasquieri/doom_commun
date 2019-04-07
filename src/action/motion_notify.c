@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:43:26 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/28 17:39:59 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/07 13:51:26 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int		motion_notify(int x, int y, t_env *env)
 
 	tmp_x = abs(x - 600);
 	tmp_y = abs(y - 435);
-	mlx_mouse_hide();
-	mlx_mouse_move(env->win, 1200 / 2, 870 / 2);
+	mouse_move(env);
 	if (env->menu == 1)
 		return (0);
 	if (x > W_WIDTH || x < 0 || y > W_HEIGHT || y < 0)

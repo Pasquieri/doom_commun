@@ -7,6 +7,7 @@ SRC = src/main.c\
 	  src/initialize/init_env.c\
 	  src/initialize/win_init.c\
 	  \
+	  src/action/mouse_move.c\
 	  src/action/deplacements.c\
 	  src/action/deplacements_extra.c\
 	  src/action/key_apply.c\
