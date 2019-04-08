@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/07 16:42:42 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/08 16:15:18 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,17 +149,17 @@ typedef struct	s_env
 	t_mlx	m[2];
 
 	//Hub
-	void	*H_mlx;
+	void	*h_mlx;
 	void	*story_mlx;
 	t_mlx   hub_end;
-	void	*H_end_mlx;
-	int		H_life;
-	int		H_monkey;
-	int		H_init;
-	int		H_ammo;
-	int		H_end;
-	int		H_help;
-	int		H_story;
+	void	*h_end_mlx;
+	int		h_life;
+	int		h_monkey;
+	int		h_init;
+	int		h_ammo;
+	int		h_end;
+	int		h_help;
+	int		h_story;
 
 	int		coef;
 	int		x;

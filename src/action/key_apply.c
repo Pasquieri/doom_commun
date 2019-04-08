@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/08 15:56:45 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/08 16:17:24 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			key_press(int key, t_env *env)
 {
 	env->key[key] = 1;
 	if (env->key[4] == 1)
-		env->H_help = env->H_help == 0 ? 1 : 0;
+		env->h_help = env->h_help == 0 ? 1 : 0;
 	if (env->key[53])
 	{
 		system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");

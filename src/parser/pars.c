@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 16:41:37 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/05 14:31:45 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/08 16:18:02 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		pars_init(int argc, char **argv, t_env *env)
 		return (-1);
 	if (check_file(fd, env) == -1)
 		return (-1);
-	env->H_init = 0;
+	env->h_init = 0;
 	env->map_entree = 0;
 	return (0);
 }
@@ -61,7 +61,7 @@ int		re_pars(char *str, t_env *env)
 	//printf("repars ok\n");
 	if (check_file(fd, env) == -1)
 		return (-1);
-	env->H_init = 0;
+	env->h_init = 0;
 	env->map_entree = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:12:49 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/07 16:50:58 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/08 16:19:44 by mpasquie         ###   ########.fr       */
 /*   Updated: 2019/04/06 09:26:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -47,62 +47,62 @@ void			hub_init(t_env *env)
 		while (++x < (W_WIDTH - 400))
 			put_pxl(env, x, y, 8);
 	}
-	env->H_init = 1;
-	env->H_life = 100;
-//env->H_monkey = 0;
-	env->H_monkey = env->sp[4].nb; // nombre de singe
-	env->H_ammo = 30;
-	env->H_end = 0;
-	env->H_story = 0;
+	env->h_init = 1;
+	env->h_life = 100;
+//env->h_monkey = 0;
+	env->h_monkey = env->sp[4].nb; // nombre de singe
+	env->h_ammo = 30;
+	env->h_end = 0;
+	env->h_story = 0;
 }
 
 static void		help_affiche(t_env *env)
 {
 	mlx_put_image_to_window(env->mlx, env->win, env->hub_end.img, 200, 400);
 	mlx_string_put(env->mlx, env->win, 210, 410, 0xFFFFFF,
-			"-- Aide -- Appyer sur les touches suivantes :");
+			"-- Aide -- Appuyer sur les touches suivantes :");
 	mlx_string_put(env->mlx, env->win, 220, 450, 0xFFFFFF,
-			"[H] ==> Ouvrir / Fermer l'aide              [Shift] ==> Courir");
+			"[H] : Ouvrir / Fermer l'aide              [Shift] : Courir");
 	mlx_string_put(env->mlx, env->win, 220, 480, 0xFFFFFF,
-			"[espace] ==> Ouvrir le menu");
+			"[espace] : Ouvrir le menu                 [ESC] : Fermer");
 	mlx_string_put(env->mlx, env->win, 220, 510, 0xFFFFFF,
-			"[WQSD] ==> Se deplacer");
+			"[WASD] : Se deplacer");
 	mlx_string_put(env->mlx, env->win, 220, 540, 0xFFFFFF,
-			"[Fleches] || [Souris] ==> Regarder");
+			"[Fleches] [Souris] : Regarder");
 	mlx_string_put(env->mlx, env->win, 220, 570, 0xFFFFFF,
-			"[+] || [-] ==> Changer la lumiere");
+			"[+] [-] [0] : Changer la lumiere");
 }
 
 void			print_hub(t_env *env)
 {
 	char	*message;
 
-	if (env->H_init == 0)
+	if (env->h_init == 0)
 		hub_init(env);
 	//env->H_end = 1; //Met fin au niveau
 	//env->H_life = 0; // vie du personnage
 	//env->H_help = 1; // 1 == affiche l'aide et 0 == l'enleve
-	if (env->H_story == 0)
+	if (env->h_story == 0)
 	{
 		mlx_put_image_to_window(env->mlx, env->win, env->text[23].img, 10, 10);
-		if (env->H_end <= 0)
+		if (env->h_end <= 0)
 		{
 			mlx_string_put(env->mlx, env->win, 599, 434, 0xFFFFFF,
 					"+");
 			
-			message = chaine_nb("Life : ", env->H_life);
+			message = chaine_nb("Life : ", env->h_life);
 			mlx_string_put(env->mlx, env->win, 170, 10, 0x2B502B, message);
 			free(message);
 			
-			message = chaine_nb("Monkeys : ", env->H_monkey);
+			message = chaine_nb("Monkeys : ", env->h_monkey);
 			mlx_string_put(env->mlx, env->win, 170, 50, 0x2B502B, message);
 			free(message);
 			
-			message = chaine_nb("Ammo : ", env->H_ammo);
+			message = chaine_nb("Ammo : ", env->h_ammo);
 			mlx_string_put(env->mlx, env->win, 170, 90, 0x2B502B, message);
 			free(message);
 			
-			if (env->H_help != 1)
+			if (env->h_help != 1)
 				mlx_string_put(env->mlx, env->win, 170, 130, 0x2B502B,
 						"Appuyer sur [H] pour l'aide");
 			else
@@ -112,7 +112,7 @@ void			print_hub(t_env *env)
 		{
 			//mlx_put_image_to_window(env->mlx, env->win, env->H_end_mlx, 200, 400);
 			mlx_put_image_to_window(env->mlx, env->win, env->hub_end.img, 200, 400);
-			if (env->H_life <= 0)
+			if (env->h_life <= 0)
 				mlx_string_put(env->mlx, env->win, 510, 450, 0xD51515,
 						"Vous avez perdu :(");
 			else
