@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/06 13:55:15 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/08 13:42:11 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	init_sprite_extra(t_env *env)
 void		init_sprite(t_env *env)
 {
 	env->sp_t[0].img = mlx_xpm_file_to_image(env->mlx,
-		"textures/8-grid_2.XPM", &env->sp_t[0].width, &env->sp_t[0].height);
+		"textures/8-grid.XPM", &env->sp_t[0].width, &env->sp_t[0].height);
 	env->sp_t[0].img_str = mlx_get_data_addr(env->sp_t[0].img,
 		&env->sp_t[0].bpp, &env->sp_t[0].s_l, &env->sp_t[0].end);
 	env->sp_t[1].img = mlx_xpm_file_to_image(env->mlx,
