@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 20:37:03 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/18 18:52:05 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/09 22:45:48 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	affiche_menu_valide(t_env *env, t_color_menu *color_menu)
 {
 	mlx_string_put(env->mlx, env->win, 380, 330, color_menu->black_color,
-				"WOLF3D : appuyer sur espace pour selectionner");
+				"-DOOM- : appuyer sur espace pour selectionner");
 	mlx_string_put(env->mlx, env->win, 560, 530, color_menu->play_color,
 				"Jouer");
 	mlx_string_put(env->mlx, env->win, 560, 560, color_menu->map1_color,
@@ -33,7 +33,7 @@ static void	affiche_menu_valide(t_env *env, t_color_menu *color_menu)
 static void	affiche_menu_invalide(t_env *env, t_color_menu *color_menu)
 {
 	mlx_string_put(env->mlx, env->win, 495, 330, color_menu->black_color,
-				"WOLF3D : map invalide");
+				"-DOOM- : map invalide");
 	mlx_string_put(env->mlx, env->win, 560, 530, color_menu->map1_color,
 				"Niveau 1");
 	mlx_string_put(env->mlx, env->win, 560, 560, color_menu->map2_color,
@@ -48,7 +48,7 @@ static void	affiche_menu_invalide(t_env *env, t_color_menu *color_menu)
 
 static void	init_color(t_color_menu *color_menu)
 {
-	color_menu->black_color = 0x000000;
+	color_menu->black_color = 0xFFFFFF;
 	color_menu->red_color = 0xc00000;
 	color_menu->play_color = color_menu->black_color;
 	color_menu->exit_color = color_menu->black_color;
@@ -75,7 +75,7 @@ void		open_menu(t_env *env)
 		color_menu.map4_color = color_menu.red_color;
 	else if (env->menu_select == 6)
 		color_menu.exit_color = color_menu.red_color;
-	mlx_put_image_to_window(env->mlx, env->win, env->text[20].img, 0, 0);
+	mlx_put_image_to_window(env->mlx, env->win, env->text[20].img, 0, -10);
 	if (env->map_entree == 0)
 		affiche_menu_valide(env, &color_menu);
 	else

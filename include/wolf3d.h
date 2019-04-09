@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/09 15:58:09 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/09 21:44:35 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <pthread.h>
 
 # define FLOOR 0 // text sol a faire + plafond Cyril
 # define W_GRAY 1
@@ -149,6 +150,10 @@ typedef struct	s_env
 	void	*win;
 	t_mlx	m[2];
 
+	//thread
+	int		current_thread;
+	int		angle_thread;
+
 	//Hub
 	void	*h_mlx;
 	void	*story_mlx;
@@ -269,7 +274,8 @@ void			put_pxl_img(t_env *env, int x, int y, int color);
 void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text);
 char			luminosite(int text, int coef);
 /*raycasting*/
-void			affichage_mur(t_env *env);
+void			ft_pthread(t_env *env);
+void			*affichage_mur(void *env);
 int				intersection_horizontal(t_env *env, t_coord *cd);
 int				intersection_vertical(t_env *env, t_coord *cd);
 double			detection_mur(t_env *env);

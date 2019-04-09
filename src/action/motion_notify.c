@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:43:26 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/08 20:10:59 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/09 22:23:38 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ int		motion_notify(int x, int y, t_env *env)
 	mouse_move(env);
 	if (env->menu == 1)
 		return (0);
-	if (x > W_WIDTH || x < 0 || y > W_HEIGHT || y < 0)
-		return (0);
+//	if (x > W_WIDTH || x < 0 || y > W_HEIGHT || y < 0)
+//		return (0);
 	if (x > 600)
 		env->d_regard -= (40 * tmp_x / 600);
 	else if (x < 600)
 		env->d_regard += (40 * tmp_x / 600);
-	if (y < 435 && (env->h_regard < (W_HEIGHT / 2 + 200))) //+200
+	if (y < 435 && (env->h_regard < (W_HEIGHT / 2 + 400))) //+200
 		env->h_regard += (100 * tmp_y / 435);
-	else if (y > 435 && (env->h_regard > (W_HEIGHT / 2 - 200))) //-200
+	else if (y > 435 && (env->h_regard > (W_HEIGHT / 2 - 400))) //-200
 		env->h_regard -= (100 * tmp_y / 435);
 	env->d_regard = env->d_regard % 360;
 	if (env->d_regard < 0)
 		env->d_regard = env->d_regard + 360;
-	//exec_calcul(env, 0, 0);
+//	exec_calcul(env, 0, 0);
 	return (0);
 }

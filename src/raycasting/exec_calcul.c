@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/09 17:21:24 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/09 22:11:59 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,15 @@ static void	init_var(t_env *env, int d_regard)
 
 void	exec_calcul(t_env *env, int d_regard, int init)
 {
+	env->img_x = 0;
+	env->angle_thread = 0;
 	if (init == 1)
 		init_var(env, d_regard);
 	env->door.on = 0;
 //	detect_sprite_null(env); // ???? a tester : utilite ?
 	clean_img(env);
-	affichage_mur(env);
+	//affichage_mur(env);
+	ft_pthread(env);
 	color_case(env);
 //	quadrillage(env); // enlever pour plus de lisibilite sur la mini map
 	print_cercle(env);

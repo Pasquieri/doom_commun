@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/08 20:17:31 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/09 21:28:32 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ static double	ft_distance(t_env *env, int i, int cmp)
 	if (env->sp[i].sprite[cmp].detec[0].on == 1)
 		dist0 = env->sp[i].sprite[cmp].detec[0].dist;
 	else
-		dist0 = env->sp[i].sprite[cmp].detec[1].dist;
+		dist0 = env->sp[i].sprite[cmp].detec[1].dist + 1;
 	if (env->sp[i].sprite[cmp].detec[1].on == 1)
 		dist1 = env->sp[i].sprite[cmp].detec[1].dist;
 	else
-		dist1 = env->sp[i].sprite[cmp].detec[0].dist;
+		dist1 = env->sp[i].sprite[cmp].detec[0].dist + 1;
 	env->orientation = 0;
 	dist1 < dist0 ? env->orientation = 1 : env->orientation;
 	d = dist0;

@@ -42,6 +42,7 @@ SRC = src/main.c\
 	  src/put_image/print_tab.c\
 	  src/put_image/deal_door.c\
 	  \
+	  src/raycasting/ft_pthread.c\
 	  src/raycasting/detec_first_inter.c\
 	  src/raycasting/detection_mur.c\
 	  src/raycasting/detection_mur_horizontal.c\

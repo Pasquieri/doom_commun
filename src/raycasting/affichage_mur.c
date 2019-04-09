@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/08 17:05:03 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/09 22:11:23 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,30 +82,33 @@ static double	verif_angle(double angle)
 	return (angle);
 }
 
-void			affichage_mur(t_env *env)
+void			*affichage_mur(void *tab)
 {
+	t_env	env;
 	double	a;
 	double	dist;
 	double	h_percue;
 	int		x;
 
-	a = env->d_regard + 30;
+	env = *(t_env *)tab;
+	a = env.d_regard + env.angle_thread;
 	a = verif_angle(a);
-	x = 0;
-	while (x < (env->nb_colonne))
+	x = env.img_x;
+	while (x < (env.nb_colonne))
 	{
-		env->angle = a;
-		env->angle = verif_angle(env->angle);
-		env->sp_nb = 0; // add
-		dist = detection_mur(env);
-		dist = dist * cos((a - env->d_regard) * M_PI / 180);
-		env->dist = dist;
-		h_percue = env->d_ecran * (env->h_mur / dist);
-		env->lim_sol = env->h_regard + (h_percue / 2); //
-		env->img_x = x;
-		affichage(h_percue, env, x);
-		print_sprite(env);
-		a -= (60. / (env->nb_colonne));
+		env.angle = a;
+		env.angle = verif_angle(env.angle);
+		env.sp_nb = 0; // add
+		dist = detection_mur(&env);
+		dist = dist * cos((a - env.d_regard) * M_PI / 180);
+		env.dist = dist;
+		h_percue = env.d_ecran * (env.h_mur / dist);
+		env.lim_sol = env.h_regard + (h_percue / 2); //
+		env.img_x = x;
+		affichage(h_percue, &env, x);
+		print_sprite(&env);
+		a -= (60. / W_WIDTH);
 		x++;
 	}
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:48:45 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/08 17:38:39 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/09 23:03:20 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_rgb(t_env *env)
 {
 	env->rgb[0] = (t_rgb){230, 230, 230, 0}; // blanc
-	env->rgb[1] = (t_rgb){113, 170, 10, 100}; // vert
+	env->rgb[1] = (t_rgb){88, 68, 21, 100}; // vert
 	env->rgb[2] = (t_rgb){175, 175, 200, 100}; // gris porte
 	env->rgb[3] = (t_rgb){159, 161, 255, 0}; // rose
 	env->rgb[4] = (t_rgb){159, 0, 240, 0}; // rouge
