@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/09 21:44:35 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/10 00:51:23 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ typedef struct	s_env
 	float	lim;
 	float	lim_sol;
 	int		orientation; // cardinaux
-	_Bool	skybox;
+	int		skybox;
 	int		lum;
 	int		lum_int;
 

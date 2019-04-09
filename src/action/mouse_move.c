@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 13:34:03 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/09 22:16:35 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/09 23:40:56 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	mouse_move(t_env *env)
 	{
 		mlx_mouse_hide();
 		mlx_mouse_move(env->win, 1200 / 2, 870 / 2);
-		exec_calcul(env, 0, 0);
+	//	exec_calcul(env, 0, 0);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:44:47 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/09 22:45:10 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/10 00:47:57 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		win_init(t_env *env)
 	env->m[1].img_str = mlx_get_data_addr(env->m[1].img, &env->m[1].bpp,
 			&env->m[1].s_l, &env->m[1].end);
 	env->text[20].img = mlx_xpm_file_to_image(env->mlx,
-			"textures/labo2.XPM",
+			"textures/labo.XPM",
 			&env->text[20].width, &env->text[20].height);
 	env->text[20].img_str = mlx_get_data_addr(env->text[20].img,
 		&env->text[20].bpp, &env->text[20].s_l, &env->text[20].end);

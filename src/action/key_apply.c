@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/09 15:56:25 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/10 01:02:47 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ int			key_press(int key, t_env *env)
 		env->lum_int = 255;
 	if (env->key[257] && !env->menu)
 		env->vitesse = 2;
-	if (env->key[18] && !env->menu)
+	if ((env->key[18] || env->key[19]) && !env->menu)
 	{
-		if (!env->skybox)
-			env->skybox = 1;
+		if (env->skybox != 22 && env->key[18])
+			env->skybox = 22;
+		else if (env->skybox != 24 && env->key[19])
+			env->skybox = 24;
 		else
 			env->skybox = 0;
 	}

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2011/03/01 20:15:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/09 22:58:44 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/10 00:59:52 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ void		init_texture(t_env *env)
 			"textures/space.XPM", &env->text[22].width, &env->text[22].height);
 	env->text[22].img_str = mlx_get_data_addr(env->text[22].img,
 			&env->text[22].bpp, &env->text[22].s_l, &env->text[22].end);
+	env->text[24].img = mlx_xpm_file_to_image(env->mlx,
+			"textures/space2.XPM", &env->text[24].width, &env->text[24].height);
+	env->text[24].img_str = mlx_get_data_addr(env->text[24].img,
+			&env->text[24].bpp, &env->text[24].s_l, &env->text[24].end);
 	env->text[23].img = mlx_xpm_file_to_image(env->mlx,
 			"textures/savant_face.xpm", // mettre tete perso
 			&env->text[23].width, &env->text[23].height);

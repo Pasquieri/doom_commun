@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/09 22:11:23 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/10 00:58:45 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-static int		affichage_ciel(double h_percue, t_env *env, int x, float y)
+static void		affichage_ciel(double h_percue, t_env *env, int x, float y)
 {
 	float	lim;
 	float	pourcent_x;
@@ -28,14 +28,13 @@ static int		affichage_ciel(double h_percue, t_env *env, int x, float y)
 	{
 		pourcent_y = (100. * y) / (W_HEIGHT);
 		i = 4 * x + y * env->m[0].s_l;
-		j = 4 * (int)(env->text[22].width * pourcent_x / 100)
-			+ (int)(env->text[22].height * (pourcent_y + (100 - (env->h_regard
-								* 100 / W_HEIGHT))) / 100) * env->text[22].s_l;
-		env->m[0].img_str[i] = env->text[22].img_str[j];
-		env->m[0].img_str[i + 1] = env->text[22].img_str[j + 1];
-		env->m[0].img_str[i + 2] = env->text[22].img_str[j + 2];
+		j = 4 * (int)(env->text[env->skybox].width * pourcent_x / 100)
+			+ (int)(env->text[env->skybox].height * (pourcent_y + (100 - (env->h_regard
+								* 100 / W_HEIGHT))) / 100) * env->text[env->skybox].s_l;
+		env->m[0].img_str[i] = env->text[env->skybox].img_str[j];
+		env->m[0].img_str[i + 1] = env->text[env->skybox].img_str[j + 1];
+		env->m[0].img_str[i + 2] = env->text[env->skybox].img_str[j + 2];
 	}
-	return (y - 1);
 }
 
 static void		affichage(double h_percue, t_env *env, int x)
@@ -44,17 +43,18 @@ static void		affichage(double h_percue, t_env *env, int x)
 	double	lim;
 
 	(void)x;
-	y = env->h_regard + (h_percue / 2);
-	affichage_sol(y, env);
 	y = env->h_regard - (h_percue / 2);
 	if (!env->skybox)
 		affichage_plafond(y, env);
 	else
 		affichage_ciel(h_percue, env, x, 0);
+	y = env->h_regard + (h_percue / 2);
+	affichage_sol(y, env);
 /*	y = -1;
 	while (++y < lim && y < 870.)
 		put_pxl_img(env, x, y, 6);
 	y--;*/
+	y = env->h_regard - (h_percue / 2);
 	y < 0 ? y = 0 : y;
 	lim = env->lim_sol;
 	env->lum = env->dist * 255 / env->lum_int;
@@ -106,7 +106,7 @@ void			*affichage_mur(void *tab)
 		env.lim_sol = env.h_regard + (h_percue / 2); //
 		env.img_x = x;
 		affichage(h_percue, &env, x);
-		print_sprite(&env);
+	//	print_sprite(&env);
 		a -= (60. / W_WIDTH);
 		x++;
 	}

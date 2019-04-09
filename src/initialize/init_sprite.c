@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/08 16:40:38 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/10 00:48:57 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		init_sprite(t_env *env)
 	env->sp_t[1].img_str = mlx_get_data_addr(env->sp_t[1].img,
 		&env->sp_t[1].bpp, &env->sp_t[1].s_l, &env->sp_t[1].end);
 	env->sp_t[2].img = mlx_xpm_file_to_image(env->mlx,
-		"textures/12-column_edit.XPM", &env->sp_t[2].width, &env->sp_t[2].height);
+		"textures/12-column.XPM", &env->sp_t[2].width, &env->sp_t[2].height);
 	env->sp_t[2].img_str = mlx_get_data_addr(env->sp_t[2].img,
 		&env->sp_t[2].bpp, &env->sp_t[2].s_l, &env->sp_t[2].end);
 //printf("w : %d, h : %d\n", env->sp_t[2].width, env->sp_t[2].height);

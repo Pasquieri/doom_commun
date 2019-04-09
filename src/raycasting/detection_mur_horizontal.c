@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:45:43 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/06 13:50:28 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/09 23:30:01 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ int			coef_hor(t_env *env, int *coef_x, int *coef_y)
 	return (0);
 }
 
-static void	ft_check_sprite(t_env *env, int o, t_coord cd)
+/*static void	ft_check_sprite(t_env *env, int o, t_coord cd)
 {
 	int	i;
 	int	j;
-
+*/
 /*	i = (int)(cd.x / env->coef);
 	if (env->angle > 0 && env->angle < 180)
 	{
@@ -107,13 +107,13 @@ static void	ft_check_sprite(t_env *env, int o, t_coord cd)
 		j = ((cd.y) - 1) / env->coef;
 		check_sprite(i, j, env, o, cd);
 	}*/
-	if (env->angle > 0 && env->angle < 180)
+/*	if (env->angle > 0 && env->angle < 180)
 		j = ((cd.y) - 1) / env->coef;
 	else
 		j = (int)(cd.y / env->coef);
 	i = (int)(cd.x / env->coef);
 	check_sprite(i, j, env, o, cd);
-}
+}*/
 
 int			verif_hor(t_env *env, t_coord *coord)
 {
@@ -131,7 +131,7 @@ int			verif_hor(t_env *env, t_coord *coord)
 	j = (int)(coord->y / env->coef);
 	if (i < env->x && j < env->x)
 	{
-		ft_check_sprite(env, 0, *coord);
+	//	ft_check_sprite(env, 0, *coord);
 		if (env->tab[j][i] > 0 && env->tab[j][i] <= 7)
 		{
 			coord->val = env->tab[j][i]; // pour les differents types de murs
