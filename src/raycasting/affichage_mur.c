@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/08 13:30:13 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/08 17:05:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void			affichage_mur(t_env *env)
 	{
 		env->angle = a;
 		env->angle = verif_angle(env->angle);
+		env->sp_nb = 0; // add
 		dist = detection_mur(env);
 		dist = dist * cos((a - env->d_regard) * M_PI / 180);
 		env->dist = dist;

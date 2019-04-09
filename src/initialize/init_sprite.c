@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/08 13:42:11 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/08 16:40:38 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	init_sprite_extra(t_env *env)
 {
 	env->sp_t[5].img = mlx_xpm_file_to_image(env->mlx,
-		"textures/4-5-6-van_gogh.XPM", &env->sp_t[5].width,
+		"textures/7-door.XPM", &env->sp_t[5].width,
 		&env->sp_t[5].height);
 	env->sp_t[5].img_str = mlx_get_data_addr(env->sp_t[5].img,
 		&env->sp_t[5].bpp, &env->sp_t[5].s_l, &env->sp_t[5].end);
@@ -23,6 +23,11 @@ static void	init_sprite_extra(t_env *env)
 		"textures/gun.XPM", &env->sp_t[6].width, &env->sp_t[6].height);
 	env->sp_t[6].img_str = mlx_get_data_addr(env->sp_t[6].img,
 		&env->sp_t[6].bpp, &env->sp_t[6].s_l, &env->sp_t[6].end);
+	env->sp_t[7].img = mlx_xpm_file_to_image(env->mlx,
+		"textures/4-5-6-van_gogh.XPM", &env->sp_t[7].width,
+		&env->sp_t[7].height);
+	env->sp_t[7].img_str = mlx_get_data_addr(env->sp_t[7].img,
+		&env->sp_t[7].bpp, &env->sp_t[7].s_l, &env->sp_t[7].end);
 }
 
 void		init_sprite(t_env *env)
@@ -65,7 +70,7 @@ void		number_sprite(t_env *env)
 		i = -1;
 		while (++i < env->x)
 		{
-			if (env->tab[j][i] == 7)
+			if (env->tab[j][i] == DOOR) // || == 15 ??
 				env->sp[5].nb++;
 			else if (env->tab[j][i] >= 10 && env->tab[j][i] <= 14)
 				env->sp[env->tab[j][i] - 10].nb++;
@@ -89,6 +94,7 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 		sp->sprite[*x].cd.x = pos_x;
 		sp->sprite[*x].cd.y = pos_y;
 	}
+	// 15 : open = 1 ??
 	*x += 1;
 }
 
@@ -114,7 +120,7 @@ void		init_tab_sprite(t_env *env)
 			i = -1;
 			while (++i < env->x)
 			{
-				if (env->tab[j][i] == env->sp[k].val)
+				if (env->tab[j][i] == env->sp[k].val) // 15 ??
 					fill_info_sprite(&env->sp[k], &x, i, j);
 			}
 		}

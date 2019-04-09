@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:49:23 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/03 18:07:24 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/08 18:08:19 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void		put_texture_img(t_env *env, double h_percue, int y, t_mlx *text)
 	if (env->wall_nb >= 4 && env->wall_nb <= 6)
 	{
 		env->img_y = y;
-		print_tab(env, p_y, p_x, &env->sp_t[5]); // sp[5] == tableau
+		print_tab(env, p_y, p_x, &env->sp_t[7]); // sp[7] == tableau
 	}
-	if (env->wall_nb == 7 && env->dist < env->coef - 1)
-		do_door(env);
+//	if (env->wall_nb == 7 && env->dist < env->coef - 1)
+//		do_door(env);
 }

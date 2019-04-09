@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/08 16:15:18 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/09 15:58:09 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,15 +113,16 @@ typedef struct	s_det
 {
 	_Bool	on;
 	double	dist;
-	t_coord	cd;
+	t_coord	cd; // horizontal || vertical
 }				t_det;
 
 typedef struct	s_sprite
 {
 	int		i;
 	int		j;
-	t_coord	cd;
+	t_coord	cd; // milieu de la case
 	t_det	detec[2];
+	int		ordre; //affichage sprite dans l'ordre ?
 	_Bool	proximity;
 	_Bool	alive;
 	_Bool	open;
@@ -199,9 +200,10 @@ typedef struct	s_env
 
 	t_rgb	rgb[10];
 	t_mlx	text[25];
-	t_mlx	sp_t[7]; // textures des sprites
+	t_mlx	sp_t[8]; // textures des sprites
 	t_sp	sp[6];
 	t_coord	coord_spr;
+	int		sp_nb;
 
 	t_inv	inv;
 	_Bool	key[604];

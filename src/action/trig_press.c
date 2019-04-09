@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:45:50 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/07 13:51:41 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/08 16:27:11 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ int			trig_press(t_env *env)
 	if ((env->key[69] || env->key[78] || env->key[123] || env->key[124]
 				|| env->key[125] || env->key[126]) && !env->menu)
 		rotation_regard(env);
-	if (env->key[27] || env->key[24] || env->key[29])
+	if (env->key[27] || env->key[24])
 	{
-		if (env->key[29])
-			env->lum_int = 255;
 		if (env->key[27])
 			env->lum_int -= 3;
 		if (env->key[24])
@@ -34,8 +32,6 @@ int			trig_press(t_env *env)
 		env->lum_int < 1 ? env->lum_int = 1 : env->lum_int;
 		env->lum_int > 500 ? env->lum_int = 500 : env->lum_int;
 	}
-	if (env->key[257] && !env->menu)
-		env->vitesse = 2;
 	if (!env->menu)
 		exec_calcul(env, 0, 0);
 	
