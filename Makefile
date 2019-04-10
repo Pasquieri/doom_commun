@@ -40,6 +40,7 @@ SRC = src/main.c\
 	  src/put_image/put_texture_img.c\
 	  src/put_image/print_sprite.c\
 	  src/put_image/print_tab.c\
+	  src/put_image/print_gun.c\
 	  src/put_image/deal_door.c\
 	  \
 	  src/raycasting/ft_pthread.c\
@@ -48,6 +49,7 @@ SRC = src/main.c\
 	  src/raycasting/detection_mur_horizontal.c\
 	  src/raycasting/detection_mur_vertical.c\
 	  src/raycasting/affichage_mur.c\
+	  src/raycasting/affichage_sprite.c\
 	  src/raycasting/exec_calcul.c\
 	  src/raycasting/affichage_sol.c\
 	  src/raycasting/check_sprite.c\

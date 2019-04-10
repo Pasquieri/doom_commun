@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 00:51:23 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/10 04:58:40 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,6 @@ typedef struct	s_env
 	t_mlx	sp_t[8]; // textures des sprites
 	t_sp	sp[6];
 	t_coord	coord_spr;
-	int		sp_nb;
 
 	t_inv	inv;
 	_Bool	key[604];
@@ -262,7 +261,6 @@ int				wall_line(char *str, t_env *env);
 int				wall_row(char *str, int nb_char, t_env *env);
 /*put_image*/
 void			deal_door(t_env *env);
-void			do_door(t_env *env);
 int				ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
 void			color_case(t_env *env);
 void			quadrillage(t_env *env);
@@ -276,6 +274,7 @@ char			luminosite(int text, int coef);
 /*raycasting*/
 void			ft_pthread(t_env *env);
 void			*affichage_mur(void *env);
+void			affichage_sprite(t_env *env);
 int				intersection_horizontal(t_env *env, t_coord *cd);
 int				intersection_vertical(t_env *env, t_coord *cd);
 double			detection_mur(t_env *env);

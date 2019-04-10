@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 00:58:45 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/10 04:09:20 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,21 @@
 static void		affichage_ciel(double h_percue, t_env *env, int x, float y)
 {
 	float	lim;
-	float	pourcent_x;
-	float	pourcent_y;
+	float	p_x;
+	float	p_y;
 	int		i;
 	int		j;
 
 	y = -1;
 	lim = (env->h_regard - (h_percue / 2));
-//	pourcent_x = (100. * x) / env->nb_colonne;
-	pourcent_x = (100. * env->angle) / 120.;
+	p_x = (100. * env->angle) / 120.;
 	while (++y < lim && y < W_HEIGHT)
 	{
-		pourcent_y = (100. * y) / (W_HEIGHT);
+		p_y = (100. * y) / (W_HEIGHT);
 		i = 4 * x + y * env->m[0].s_l;
-		j = 4 * (int)(env->text[env->skybox].width * pourcent_x / 100)
-			+ (int)(env->text[env->skybox].height * (pourcent_y + (100 - (env->h_regard
-								* 100 / W_HEIGHT))) / 100) * env->text[env->skybox].s_l;
+		j = 4 * (int)(env->text[env->skybox].width * p_x / 100)
+			+ (int)(env->text[env->skybox].height * (p_y + (100 - (env->h_regard
+			* 100 / W_HEIGHT))) / 100) * env->text[env->skybox].s_l;
 		env->m[0].img_str[i] = env->text[env->skybox].img_str[j];
 		env->m[0].img_str[i + 1] = env->text[env->skybox].img_str[j + 1];
 		env->m[0].img_str[i + 2] = env->text[env->skybox].img_str[j + 2];
@@ -98,15 +97,13 @@ void			*affichage_mur(void *tab)
 	{
 		env.angle = a;
 		env.angle = verif_angle(env.angle);
-		env.sp_nb = 0; // add
 		dist = detection_mur(&env);
 		dist = dist * cos((a - env.d_regard) * M_PI / 180);
 		env.dist = dist;
 		h_percue = env.d_ecran * (env.h_mur / dist);
-		env.lim_sol = env.h_regard + (h_percue / 2); //
+		env.lim_sol = env.h_regard + (h_percue / 2);
 		env.img_x = x;
 		affichage(h_percue, &env, x);
-	//	print_sprite(&env);
 		a -= (60. / W_WIDTH);
 		x++;
 	}

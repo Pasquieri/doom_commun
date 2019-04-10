@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:43:51 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/03 18:06:27 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/10 01:43:20 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,19 @@ double			detection_mur(t_env *env)
 	t_coord	coord2;
 	t_coef	coef;
 
-	
-	init_var_ver(env, &ya, &xa, &coord2);
-	coef_ver(env, &coef.x, &coef.y);
-	while (verif_ver(env, &coord2) == 0)
-	{
-		coord2.x += (xa * coef.x);
-		coord2.y += (ya * coef.y);
-	}
 	init_var_hor(env, &ya, &xa, &coord1);
 	coef_hor(env, &coef.x, &coef.y);
 	while (verif_hor(env, &coord1) == 0)
 	{
 		coord1.x += (xa * coef.x);
 		coord1.y += (ya * coef.y);
+	}
+	init_var_ver(env, &ya, &xa, &coord2);
+	coef_ver(env, &coef.x, &coef.y);
+	while (verif_ver(env, &coord2) == 0)
+	{
+		coord2.x += (xa * coef.x);
+		coord2.y += (ya * coef.y);
 	}
 	return (ft_distance(coord1, coord2, env));
 }

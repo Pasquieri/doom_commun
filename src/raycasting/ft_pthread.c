@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 20:48:26 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/09 22:12:53 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/10 03:44:26 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_pthread(t_env *env)
 	t_env		tab[10];
 	pthread_t	t[10];
 	int			i;
+
 
 	// thread 1 //
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:48:45 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 00:15:32 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/10 04:03:22 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	init_env(t_env *env)
 	env->perso_x = (env->perso_x + 1) * env->coef - env->coef / 2;
 	env->perso_y = (env->perso_y + 1) * env->coef - env->coef / 2;
 	env->nb_colonne = 1200;
-	env->d_ecran = (env->nb_colonne / 2) / tan(30 * M_PI / 180);
+	env->d_ecran = (W_WIDTH / 2) / tan(30 * M_PI / 180);
 	env->h_mur = env->coef;
-	env->h_regard = 870 / 2;
+	env->h_regard = W_HEIGHT / 2;
 	env->lim = env->x * env->coef - (env->coef / 2);
 	env->lum_int = 125;
 	env->vitesse = 0.8;

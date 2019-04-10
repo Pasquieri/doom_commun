@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/09 22:11:59 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/10 05:09:43 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,6 @@ void		clean_img(t_env *env)
 	}
 }
 
-static void	print_text(t_env *env)
-{
-	int	x;
-	int	y;
-
-	x = (int)(env->perso_x / env->coef);
-	y = (int)(env->perso_y / env->coef);
-	if (env->door.on == 1
-			&& (env->tab[y][x + 1] == 7 || env->tab[y][x - 1] == 7
-				|| env->tab[y - 1][x] == 7 || env->tab[y + 1][x] == 7))
-		mlx_string_put(env->mlx, env->win, 550, 430, 0xe63d3d, "Press E to open");
-	if (env->door.off == 1
-			&& (env->tab[y][x + 1] == 15 || env->tab[y][x - 1] == 15
-				|| env->tab[y - 1][x] == 15 || env->tab[y + 1][x] == 15))
-		mlx_string_put(env->mlx, env->win, 550, 430, 0xe63d3d, "Press E to close");
-}
-
 static void	init_var(t_env *env, int d_regard)
 {
 	env->map_entree = 0;
@@ -74,22 +57,19 @@ static void	init_var(t_env *env, int d_regard)
 	env->inv.lim_gun[4] = 732;
 }
 
-/*static void	detect_sprite_null(t_env *env)
+static void	print_text(t_env *env)
 {
-	int	k;
-	int	x;
+	int	i;
 
-	k = -1;
-	while (++k <= 5)
+	i = -1;
+	while (++i < env->sp[5].nb) // 5 = DOOR
 	{
-		x = -1;
-		while (++x < env->sp[k].nb)
-		{
-			env->sp[k].sprite[x].detec[0].on = 0;
-			env->sp[k].sprite[x].detec[1].on = 0;
-		}
+		if (env->sp[5].sprite[i].proximity == 1 && env->sp[5].sprite[i].open == 0)
+			mlx_string_put(env->mlx, env->win, 550, 430, 0xe63d3d, "Press E to open");
+		else if (env->sp[5].sprite[i].proximity == 1 && env->sp[5].sprite[i].open == 1)
+			mlx_string_put(env->mlx, env->win, 550, 430, 0xe63d3d, "Press E to close");
 	}
-}*/
+}
 
 void	exec_calcul(t_env *env, int d_regard, int init)
 {
@@ -98,10 +78,9 @@ void	exec_calcul(t_env *env, int d_regard, int init)
 	if (init == 1)
 		init_var(env, d_regard);
 	env->door.on = 0;
-//	detect_sprite_null(env); // ???? a tester : utilite ?
 	clean_img(env);
-	//affichage_mur(env);
-	ft_pthread(env);
+	ft_pthread(env); // remplace affichage_mur(env);
+	affichage_sprite(env);
 	color_case(env);
 //	quadrillage(env); // enlever pour plus de lisibilite sur la mini map
 	print_cercle(env);
