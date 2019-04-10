@@ -6,11 +6,31 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2011/03/01 20:15:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 00:59:52 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/10 16:07:21 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
+
+static void	verif_text(t_env *env)
+{
+	int		i;
+
+	i = 0;
+	while (i < 8)
+	{
+		if (env->text[i].img == NULL)
+			printf("i invalide : %d\n", i);
+		i++;
+	}
+	i = 20;
+	while (i < 25)
+	{
+		if (env->text[i].img == NULL)
+			printf("i invalide : %d\n", i);
+		i++;
+	}
+}
 
 static void	init_texture_wall(t_env *env)
 {
@@ -73,5 +93,5 @@ void		init_texture(t_env *env)
 			&env->text[23].width, &env->text[23].height);
 	env->text[23].img_str = mlx_get_data_addr(env->text[23].img,
 			&env->text[23].bpp, &env->text[23].s_l, &env->text[23].end);
-
+	verif_text(env); //verifie que les textures sont bien presentes
 }

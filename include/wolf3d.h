@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 04:58:40 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/10 16:16:06 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ typedef struct	s_env
 	void	*h_mlx;
 	void	*story_mlx;
 	t_mlx   hub_end;
-	void	*h_end_mlx;
+	//void	*h_end_mlx;
 	int		h_life;
 	int		h_monkey;
 	int		h_init;
@@ -179,10 +179,12 @@ typedef struct	s_env
 	double	vitesse;
 	int		musique;
 
+	//menu
 	int		detail;
 	int		menu;
 	int		menu_select;
 	int		map_entree;
+	t_mlx	menu_txt;
 
 	int		nb_colonne;
 	float	d_ecran;

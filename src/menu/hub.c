@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:12:49 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/08 16:19:44 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/10 16:41:04 by mpasquie         ###   ########.fr       */
 /*   Updated: 2019/04/06 09:26:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -110,7 +110,6 @@ void			print_hub(t_env *env)
 		}
 		else
 		{
-			//mlx_put_image_to_window(env->mlx, env->win, env->H_end_mlx, 200, 400);
 			mlx_put_image_to_window(env->mlx, env->win, env->hub_end.img, 200, 400);
 			if (env->h_life <= 0)
 				mlx_string_put(env->mlx, env->win, 510, 450, 0xD51515,
