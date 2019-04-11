@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/11 16:40:45 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/11 17:31:58 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-static void		affichage_ciel(double h_percue, t_env *env, int x, float y)
+static void		affichage_ciel(double h_percue, t_env *env, int x, int y)
 {
 	float	lim;
 	float	p_x;
@@ -42,9 +42,9 @@ static void		affichage(double h_percue, t_env *env, int x)
 	double	lim;
 
 	(void)x;
-	y = env->h_regard - (env->coef_h_wall * h_percue / 2);
+	lim = env->h_regard - (env->coef_h_wall * h_percue / 2);
 	if (!env->skybox)
-		affichage_plafond(y, env);
+		affichage_plafond(lim, env);
 	else
 		affichage_ciel(h_percue, env, x, 0);
 /*	y = -1;

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/11 16:04:30 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/11 17:53:13 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 # include <stdio.h>
 # include <pthread.h>
 
-# define FLOOR 0 // text sol a faire + plafond Cyril
+# define FLOOR 0 // TEXT SOL && PLAFOND OK
 # define W_GRAY 1
 # define W_WHITE 2 // WALL OK
 # define W_BLUE 3
 # define W_G_TAB 4
 # define W_W_TAB 5 // TAB OK
 # define W_B_TAB 6
-# define DOOR 7 // Clara
+# define DOOR 7 // OK : manque animation
 # define BEGIN 8
 # define END 9
 # define GRID 10 // affichage comme sprite mais impossible a traverser

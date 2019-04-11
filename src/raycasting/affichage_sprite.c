@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/11 14:40:05 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/11 17:38:36 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void			affichage_sprite(t_env *env)
 
 	a = env->d_regard + 30;
 	a = verif_angle(a);
-	x = 0;
+	x = -1;
 	door_proximity(env);
-	while (x < W_WIDTH)
+	while (++x < W_WIDTH)
 	{
 		env->angle = a;
 		env->angle = verif_angle(env->angle);
@@ -60,6 +60,5 @@ void			affichage_sprite(t_env *env)
 		env->img_x = x;
 		print_sprite(env);
 		a -= (60. / W_WIDTH);
-		x++;
 	}
 }

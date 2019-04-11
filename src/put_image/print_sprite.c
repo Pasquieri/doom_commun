@@ -6,11 +6,75 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/11 15:04:18 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/11 18:19:26 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
+
+static void	put_sprite_grid(t_env *env, double h_percue, int y, t_mlx *sp_t)
+{
+	float	p_x;
+	float	p_y;
+	int		i;
+	int		j;
+
+	if (env->orientation == 0)
+		p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
+	else
+		p_x = fmod(env->coord_spr.y, (float)env->coef) * 100 / env->coef;
+	if (y > (env->h_regard - (h_percue / 2)))
+		p_y = (y - (env->h_regard - (h_percue / 2.))) * 100. / h_percue;
+	else
+		p_y = y * 100. / h_percue;
+	i = 4 * env->img_x + y * env->m[0].s_l;
+	j = 4 * (int)(sp_t->width * p_x / 100)
+		+ (int)(sp_t->height * p_y / 100) * sp_t->s_l;
+	if (!sp_t->img_str[j + 3]) // si pas transparent
+	{
+	env->m[0].img_str[i] = luminosite((int)sp_t->img_str[j], env->lum);
+	env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
+	env->m[0].img_str[i + 2] = luminosite(sp_t->img_str[j + 2], env->lum);
+	env->m[0].img_str[i + 3] = (char)0;
+//		env->m[0].img_str[i] = (char)150;
+//		env->m[0].img_str[i + 1] = (char)100;
+//		env->m[0].img_str[i + 2] = (char)250;
+	}
+}
+
+/*static void	give_p_x(float *p_x, t_env *env)
+{
+	int	perso_i;
+	int	perso_j;
+	int	sp_i;
+	int	sp_j;
+
+	perso_i = (int)(env->perso_x / env->coef);
+	perso_j = (int)(env->perso_y / env->coef);
+	sp_i = (int)(env->coord_spr.x / env->coef);
+	sp_j = (int)(env->coord_spr.y / env->coef);
+	if (perso_j == sp_j)
+		*p_x = fmod(env->coord_spr.y, (float)env->coef) * 100 / env->coef;
+	else if (perso_i == sp_i)
+		*p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
+	else
+	{
+		if (env->d_regard >= 0 && env->d_regard < 90)
+		{
+			if (env->orientation == 1)
+				*p_x = fmod(env->coord_spr.y, (float)env->coef) * 100 / env->coef;
+			else
+				*p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
+		}
+		else if (env->d_regard >= 90 && env->d_regard < 360) // tjrs pareil --'
+		{
+			if (env->orientation == 1)
+				*p_x = fmod(env->coord_spr.y, (float)env->coef) * 100 / env->coef;
+			else
+				*p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
+		}
+	}
+}*/
 
 static void	put_sprite_img(t_env *env, double h_percue, int y, t_mlx *sp_t)
 {
@@ -19,6 +83,8 @@ static void	put_sprite_img(t_env *env, double h_percue, int y, t_mlx *sp_t)
 	int		i;
 	int		j;
 
+
+	//give_p_x(&p_x, env);
 	if (env->orientation == 0)
 		p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
 	else
@@ -66,8 +132,12 @@ static void	affiche_sprite(double d_sprite, t_env *env, int i, int cmp)
 	y = env->h_regard - (h_percue / 2);
 	y < 0. ? y = -1. : y;
 	lim = env->h_regard + (h_percue / 2);
-	while (++y < lim && y < W_HEIGHT)
-		put_sprite_img(env, h_percue, y, &env->sp_t[i]);
+	if ((i + 10) == GRID || (i + 10) == WIN)
+		while (++y < lim && y < W_HEIGHT)
+			put_sprite_grid(env, h_percue, y, &env->sp_t[i]);
+	else
+		while (++y < lim && y < W_HEIGHT)
+			put_sprite_img(env, h_percue, y, &env->sp_t[i]);
 }
 
 static double	ft_distance(t_env *env, int i, int cmp)
