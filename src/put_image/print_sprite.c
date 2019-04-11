@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 05:05:56 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/11 15:04:18 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	put_sprite_img(t_env *env, double h_percue, int y, t_mlx *sp_t)
 	i = 4 * env->img_x + y * env->m[0].s_l;
 	j = 4 * (int)(sp_t->width * p_x / 100)
 		+ (int)(sp_t->height * p_y / 100) * sp_t->s_l;
-	if (sp_t->img_str[j + 3] != -1) // si pas transparent
+	if (!sp_t->img_str[j + 3]) // si pas transparent
 	{
 	env->m[0].img_str[i] = luminosite((int)sp_t->img_str[j], env->lum);
 	env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
@@ -69,22 +69,6 @@ static void	affiche_sprite(double d_sprite, t_env *env, int i, int cmp)
 	while (++y < lim && y < W_HEIGHT)
 		put_sprite_img(env, h_percue, y, &env->sp_t[i]);
 }
-
-/*static void		do_door(t_env *env, int i, int cmp, double d_sprite)
-{
-	int	a;
-	int	b;
-
-	a = env->sp[i].sprite[cmp].i;
-	b = env->sp[i].sprite[cmp].j;
-	env->sp[i].sprite[cmp].open = 1;
-	env->tab[b][a] == 7 ? env->sp[i].sprite[cmp].open = 0 : env->sp[i].sprite[cmp].open;
-	if (d_sprite < (3 * env->coef / 2))
-		env->sp[i].sprite[cmp].proximity = 1;
-	else
-		env->sp[i].sprite[cmp].proximity = 0;
-	//	printf("door : val %d, proximity %d, open %d\n ", env->tab[b][a], env->sp[i].sprite[cmp].proximity, env->sp[i].sprite[cmp].open);
-}*/
 
 static double	ft_distance(t_env *env, int i, int cmp)
 {
@@ -127,9 +111,9 @@ void	print_sprite(t_env *env)
 			{
 				d_sprite = ft_distance(env, i, cmp);
 				//do_door(env, i, cmp, d_sprite);
-				if (env->sp[i].val == COLUMN || env->sp[i].val == BANANA)
-					d_sprite = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd.x, 2)
-							+ pow(env->perso_y - env->sp[i].sprite[cmp].cd.y, 2));
+			//	if (env->sp[i].val == COLUMN || env->sp[i].val == BANANA)
+			//		d_sprite = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd.x, 2)
+			//				+ pow(env->perso_y - env->sp[i].sprite[cmp].cd.y, 2));
 				env->lum = d_sprite * 255 / env->lum_int;
 				if (d_sprite <= env->dist)
 					affiche_sprite(d_sprite, env, i, cmp);

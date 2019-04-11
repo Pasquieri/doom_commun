@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/10 04:02:08 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:28:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int			key_press(int key, t_env *env)
 		env->lum_int = 255;
 	if (env->key[257] && !env->menu)
 		env->vitesse = 2;
+	if (env->key[14] && !env->menu)
+		deal_door(env);
 	if ((env->key[18] || env->key[19]) && !env->menu)
 	{
 		if (env->skybox != 22 && env->key[18])
@@ -60,6 +62,17 @@ int			key_press(int key, t_env *env)
 			env->skybox = 24;
 		else
 			env->skybox = 0;
+	}
+	if (env->key[83] || env->key[84] || env->key[85] || env->key[86])
+	{
+		if (env->key[83])
+			env->coef_h_wall = 1;
+		else if (env->key[84])
+			env->coef_h_wall = 3;
+		else if (env->key[85])
+			env->coef_h_wall = 5;
+		else if (env->key[86])
+			env->coef_h_wall = 7;
 	}
 	if (env->key[12])
 	{
@@ -120,16 +133,6 @@ int			key_press(int key, t_env *env)
 		while (++i < env->sp[5].nb)
 			printf("sprite %d : i = %d, j = %d\n",i, env->sp[5].sprite[i].i,env->sp[5].sprite[i].j);*/
 	}
-
-	if (env->key[14] && !env->menu)
-		deal_door(env);
-
-	/*if ((env->key[14] && env->door.on) || (env->door.off && env->key[14]))
-	{
-		deal_door(env);
-		exec_calcul(env, env->d_regard, 0);
-		printf("door_on : %d, door_off : %d\n",env->door.on, env->door.off);
-	}*/
 	return (0);
 }
 

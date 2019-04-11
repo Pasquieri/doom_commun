@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 16:16:06 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:04:30 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,8 @@ typedef struct	s_env
 	int		nb_colonne;
 	float	d_ecran;
 	int		h_mur;
+	int		coef_h_wall;
+	int		cmp_wall;
 	t_coord	coord_mur;
 	int		wall_nb;
 	int		img_x;

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:49:23 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/08 18:08:19 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:21:09 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void		put_texture_img(t_env *env, double h_percue, int y, t_mlx *text)
 		p_x = fmod(env->coord_mur.x, (float)env->coef) * 100 / env->coef;
 	else
 		p_x = fmod(env->coord_mur.y, (float)env->coef) * 100 / env->coef;
-	if (y > (env->h_regard - (h_percue / 2)))
-		p_y = (y - (env->h_regard - (h_percue / 2.))) * 100. / h_percue;
+	if (y > (env->h_regard - (env->cmp_wall * h_percue / 2)))
+		p_y = (y - (env->h_regard - (env->cmp_wall * h_percue / 2.))) * 100. / h_percue;
 	else
 		p_y = y * 100. / h_percue;
 	i = 4 * env->img_x + y * env->m[0].s_l;
@@ -51,6 +51,4 @@ void		put_texture_img(t_env *env, double h_percue, int y, t_mlx *text)
 		env->img_y = y;
 		print_tab(env, p_y, p_x, &env->sp_t[7]); // sp[7] == tableau
 	}
-//	if (env->wall_nb == 7 && env->dist < env->coef - 1)
-//		do_door(env);
 }

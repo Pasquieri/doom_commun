@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:12:49 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/10 16:41:04 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:40:00 by cpalmier         ###   ########.fr       */
 /*   Updated: 2019/04/06 09:26:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -66,11 +66,11 @@ static void		help_affiche(t_env *env)
 	mlx_string_put(env->mlx, env->win, 220, 480, 0xFFFFFF,
 			"[espace] : Ouvrir le menu                 [ESC] : Fermer");
 	mlx_string_put(env->mlx, env->win, 220, 510, 0xFFFFFF,
-			"[WASD] : Se deplacer");
+			"[WASD] : Se deplacer                      [1] [2] : Skybox");
 	mlx_string_put(env->mlx, env->win, 220, 540, 0xFFFFFF,
-			"[Fleches] [Souris] : Regarder");
+			"[Fleches] [Souris] : Rotation regard      [1-4] : Hauteur des murs");
 	mlx_string_put(env->mlx, env->win, 220, 570, 0xFFFFFF,
-			"[+] [-] [0] : Changer la lumiere");
+			"[+] [-] [0] : Changer la luminosite");
 }
 
 void			print_hub(t_env *env)
@@ -79,9 +79,9 @@ void			print_hub(t_env *env)
 
 	if (env->h_init == 0)
 		hub_init(env);
-	//env->H_end = 1; //Met fin au niveau
-	//env->H_life = 0; // vie du personnage
-	//env->H_help = 1; // 1 == affiche l'aide et 0 == l'enleve
+	//env->h_end = 1; //Met fin au niveau
+	//env->h_life = 0; // vie du personnage
+	//env->h_help = 1; // 1 == affiche l'aide et 0 == l'enleve
 	if (env->h_story == 0)
 	{
 		mlx_put_image_to_window(env->mlx, env->win, env->text[23].img, 10, 10);

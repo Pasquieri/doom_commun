@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 04:10:32 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/11 14:41:20 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ void	check_sprite(int i, int j, t_env *env, int orientation, t_coord cd)
 	value = -1;
 	if (env->tab[j][i] >= 10 && env->tab[j][i] <= 15)
 		value = env->tab[j][i];
-	if (env->tab[j][i] == DOOR) // add
-		value = DOOR; // add
+	env->tab[j][i] == DOOR ? value = 15 : value; // add
 	if (value != -1)
 	{
 		k = -1;
 		index_sp = value - 10;
-		value == DOOR ? index_sp = 5 : index_sp; // add
 		while (++k < env->sp[index_sp].nb)
 		{
 			if (env->sp[index_sp].sprite[k].i == i

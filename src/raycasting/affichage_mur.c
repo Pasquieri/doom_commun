@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 04:09:20 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:40:45 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,28 @@ static void		affichage(double h_percue, t_env *env, int x)
 	double	lim;
 
 	(void)x;
-	y = env->h_regard - (h_percue / 2);
+	y = env->h_regard - (env->coef_h_wall * h_percue / 2);
 	if (!env->skybox)
 		affichage_plafond(y, env);
 	else
 		affichage_ciel(h_percue, env, x, 0);
-	y = env->h_regard + (h_percue / 2);
-	affichage_sol(y, env);
 /*	y = -1;
 	while (++y < lim && y < 870.)
 		put_pxl_img(env, x, y, 6);
 	y--;*/
-	y = env->h_regard - (h_percue / 2);
-	y < 0 ? y = 0 : y;
-	lim = env->lim_sol;
-	env->lum = env->dist * 255 / env->lum_int;
-	while (++y < lim && y < 870.)
-		put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
+	env->cmp_wall = env->coef_h_wall;
+	while (env->cmp_wall > 0)
+	{
+		y = env->h_regard - (env->cmp_wall * h_percue / 2);
+		y < 0 ? y = 0 : y;
+		lim = y + h_percue + 1;
+		env->lum = env->dist * 255 / env->lum_int;
+		while (++y <= lim && y < 870.)
+			put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
+		env->cmp_wall -= 2;
+	}
+	y = env->h_regard + (h_percue / 2);
+	affichage_sol(y, env);
 /*	y--;
 	while (++y < 870.)
 		put_pxl_img(env, x, y, 7);*/
