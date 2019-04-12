@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:49:23 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/11 16:21:09 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:51:44 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		put_texture_img(t_env *env, double h_percue, int y, t_mlx *text)
 	env->m[0].img_str[i + 1] = luminosite(text->img_str[j + 1], env->lum);
 	env->m[0].img_str[i + 2] = luminosite(text->img_str[j + 2], env->lum);
 	env->m[0].img_str[i + 3] = (char)0;
-	if (env->wall_nb >= 4 && env->wall_nb <= 6)
+	if (env->wall_nb >= 4 && env->wall_nb <= 6 && env->cmp_wall == 1)
 	{
 		env->img_y = y;
 		print_tab(env, p_y, p_x, &env->sp_t[7]); // sp[7] == tableau

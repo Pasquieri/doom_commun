@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2011/03/01 20:15:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 16:07:21 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:22:33 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ void		init_texture(t_env *env)
 			"textures/7-door.XPM", &env->text[7].width, &env->text[7].height);
 	env->text[7].img_str = mlx_get_data_addr(env->text[7].img,
 			&env->text[7].bpp, &env->text[7].s_l, &env->text[7].end);
+	env->text[8].img = mlx_xpm_file_to_image(env->mlx,
+			"textures/door2.XPM", &env->text[8].width, &env->text[8].height);
+	env->text[8].img_str = mlx_get_data_addr(env->text[8].img,
+			&env->text[8].bpp, &env->text[8].s_l, &env->text[8].end);
 	env->text[21].img = mlx_xpm_file_to_image(env->mlx,
 			"textures/21-plafond_white.XPM",
 			&env->text[21].width, &env->text[21].height);

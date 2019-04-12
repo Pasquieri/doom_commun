@@ -38,6 +38,7 @@ SRC = src/main.c\
       src/put_image/put_pxl_img.c\
 	  src/put_image/mini_map.c\
 	  src/put_image/put_texture_img.c\
+	  src/put_image/put_sprite_img.c\
 	  src/put_image/print_sprite.c\
 	  src/put_image/print_tab.c\
 	  src/put_image/print_gun.c\

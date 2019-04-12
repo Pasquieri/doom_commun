@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:48:45 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/11 16:00:02 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:15:22 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_rgb(t_env *env)
 	env->rgb[7] = (t_rgb){93, 145, 190, 0}; // marron
 	env->rgb[8] = (t_rgb){0, 0, 0, 100}; // noir transparent
 }
+
 
 void	init_env(t_env *env)
 {

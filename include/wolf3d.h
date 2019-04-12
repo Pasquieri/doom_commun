@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/11 17:53:13 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:21:05 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@
 # define DOOR 7 // OK : manque animation
 # define BEGIN 8
 # define END 9
-# define GRID 10 // affichage comme sprite mais impossible a traverser
-# define WIN 11 // idem 1px/2
+# define GRID 10 // OK : revoir pour afficher les 4 cotes ou pas
+# define WIN 11 // OK
 # define COLUMN 12 //sprite sans mouvements
 # define BANANA 13 // idem a ramasser : disparition & gain de vie
 # define MONKEY 14 // sprite en mouvement : ennemis
-# define DOOR_CLOSE 15
-# define PLAFOND 21
-# define SKY 22
+# define DOOR_CLOSE 15 // animation a faire
+# define PLAFOND 21 // OK
+# define SKY 22 // OK
 # define W_HEIGHT 870
 # define W_WIDTH 1200
 
@@ -110,18 +110,30 @@ typedef struct	s_inv /* a supp plus tard */
 	_Bool	gun;
 }				t_inv;
 
-typedef struct	s_det
+typedef struct	s_det // horizontal || vertical
 {
 	_Bool	on;
 	double	dist;
-	t_coord	cd; // horizontal || vertical
+	t_coord	cd;
 }				t_det;
 
 typedef struct	s_sprite
 {
 	int		i;
 	int		j;
+
 	t_coord	cd; // milieu de la case
+
+	double	d_milieu;
+	double	h_percue;
+	int		det; // detec // USE
+	int		det_hor; // USE
+	int		win_x; // USE
+	t_coord	cd_i;  // USE
+	int		o_i; // USE
+	t_coord	cd_f;
+	int		o_f;
+
 	t_det	detec[2];
 	int		ordre; //affichage sprite dans l'ordre ?
 	_Bool	proximity;
@@ -275,6 +287,7 @@ void			print_tab(t_env *env, float p_y, float p_x, t_mlx *sp);
 void			put_pxl_img(t_env *env, int x, int y, int color);
 void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text);
 char			luminosite(int text, int coef);
+void			put_sprite_img(t_env *env);
 /*raycasting*/
 void			ft_pthread(t_env *env);
 void			*affichage_mur(void *env);

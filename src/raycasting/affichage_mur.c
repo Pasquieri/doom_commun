@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/11 17:31:58 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/12 21:27:15 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ static void		affichage(double h_percue, t_env *env, int x)
 		y < 0 ? y = 0 : y;
 		lim = y + h_percue + 1;
 		env->lum = env->dist * 255 / env->lum_int;
+		env->wall_nb == 7 ? env->wall_nb = 8 : env->wall_nb;
+		if (env->cmp_wall == 1 && env->wall_nb == 8)
+			env->wall_nb = 7;
 		while (++y <= lim && y < 870.)
 			put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
 		env->cmp_wall -= 2;
