@@ -38,6 +38,9 @@ void	init_env(t_env *env)
 	env->lim = env->x * env->coef - (env->coef / 2);
 	env->lum_int = 125;
 	env->vitesse = 0.8;
+	env->jump = 0;
+	env->h_jump = 0;
+	env->h_jump2 = 0;
 	number_sprite(env);
 	init_tab_sprite(env);
 }

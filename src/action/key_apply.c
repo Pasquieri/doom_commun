@@ -74,6 +74,8 @@ int			key_press(int key, t_env *env)
 		else if (env->key[86])
 			env->coef_h_wall = 7;
 	}
+	if (env->key[8] && !env->menu)
+		env->jump = 1;
 	if (env->key[12])
 	{
 		printf("nb grid : %d, win : %d, column : %d, banana : %d, monkey : %d, door : %d\n", env->sp[0].nb, env->sp[1].nb, env->sp[2].nb, env->sp[3].nb, env->sp[4].nb, env->sp[5].nb);
@@ -153,9 +155,52 @@ static void	ft_arrow_menu(t_env *env)
 
 int			key_apply(t_env *env)
 {
+	int jump_height = 100;
+	if (env->jump != 0) // si touche saut
+	{
+		if (env->jump > 0) // si saut en mode "monter"
+		{
+			if (env->jump > 1) // on monte le saut de 1
+			{
+				env->jump = 0;
+				if (env->h_jump + jump_height < 8 * jump_height) // si monter est possible
+				{
+					env->h_jump += jump_height;
+					env->h_jump2 += jump_height - 10;
+					//env->h_regard += jump_height; // alors on monte
+				}
+				else
+					env->jump = -2; // alors on dessend
+			}
+			env->jump = env->jump + 1;
+		}
+		if (env->jump < 0) // si saut en mode "dessendre"
+		{
+			if (env->jump < 2) // on descend le saut de 1
+			{
+				env->jump = 0;
+				if (env->h_jump - jump_height > 0) // si descendre est possible
+				{
+					env->h_jump -= jump_height;
+					env->h_jump2 -= jump_height - 5;
+					//env->h_regard -= jump_height; // alors on descend
+				}
+				else // si on peut pas dessendre
+				{
+					env->jump = 1;
+					env->h_jump = 0;
+					env->h_jump2 = 0;
+					//env->h_regard = W_HEIGHT / 2; // on reinitialise
+				}
+			}
+			env->jump = env->jump - 1;
+		}
+	}
+	
 	if ((env->key[125] || env->key[126]) && env->menu == 1)
 		ft_arrow_menu(env);
 	if (!env->menu)
 		trig_press(env);
 	return (0);
 }
+

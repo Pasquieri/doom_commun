@@ -218,6 +218,9 @@ typedef struct	s_env
 	double	dist;
 	t_door	door;
 
+	double	jump;
+	double	h_jump;
+	double	h_jump2;
 
 	t_rgb	rgb[10];
 	t_mlx	text[25];
@@ -303,8 +306,8 @@ int				coef_ver(t_env *env, int *coef_x, int *coef_y);
 int				verif_ver(t_env *env, t_coord *coord);
 void			exec_calcul(t_env *env, int d_regard, int init);
 void			clean_img(t_env *env);
-void			affichage_sol(double y, t_env *env);
-void			affichage_plafond(double y, t_env *env);
+void			affichage_sol(double y, double h_percue, t_env *env);
+void			affichage_plafond(double y, double h_percue, t_env *env);
 void			check_sprite(int i, int j, t_env *env, int orientation, t_coord cd);
 /*song*/
 int				recup_music(char *str);
