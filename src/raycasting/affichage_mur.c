@@ -41,25 +41,24 @@ static void		affichage(double h_percue, t_env *env, int x)
 	double	y;
 	double	lim;
 
-	double be;
 	double ddp;
 	ddp = env->d_ecran * env->h_mur;
-	double ad;
-	ad = ddp / 2 - env->h_jump;
+	double adp;
+	adp = ddp / 2 - env->h_jump;
 	double bc;
 	bc = env->d_ecran;
 	double ac;
 	ac = env->dist * env->d_ecran;
-	be = (bc * ad) / ac;
-	//be = be / env->d_ecran;
+	double bep;
+	bep = (bc * adp) / ac;
 
 	(void)x;
-	//lim = env->h_regard - (env->coef_h_wall * h_percue / 2);
-	lim = env->h_regard - be;
+	lim = env->h_regard - (env->coef_h_wall * bep);
 	if (!env->skybox)
 		affichage_plafond(lim, h_percue, env);
 	else
 		affichage_ciel(h_percue, env, x, 0);
+
 /*	y = -1;
 	while (++y < lim && y < 870.)
 		put_pxl_img(env, x, y, 6);
@@ -67,8 +66,7 @@ static void		affichage(double h_percue, t_env *env, int x)
 	env->cmp_wall = env->coef_h_wall;
 	while (env->cmp_wall > 0)
 	{
-		//y = env->h_regard - (env->cmp_wall * h_percue / 2);
-		y = env->h_regard - be;
+		y = env->h_regard - (env->cmp_wall * bep);
 		y < 0 ? y = 0 : y;
 		lim = y + h_percue + 1;
 		env->lum = env->dist * 255 / env->lum_int;
@@ -76,10 +74,10 @@ static void		affichage(double h_percue, t_env *env, int x)
 		if (env->cmp_wall == 1 && env->wall_nb == 8)
 			env->wall_nb = 7;
 		while (++y <= lim && y < 870.)
-			put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
+			put_texture_img(env, h_percue, y, &env->text[env->wall_nb], bep);
 		env->cmp_wall -= 2;
 	}
-	y = env->h_regard + (h_percue / 2);
+	y = env->h_regard - bep + h_percue;
 	affichage_sol(y, h_percue, env);
 /*	y--;
 	while (++y < 870.)

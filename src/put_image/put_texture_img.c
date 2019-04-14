@@ -24,7 +24,7 @@ char		luminosite(int text, int coef)
 	return ((char)tmp);
 }
 
-void		put_texture_img(t_env *env, double h_percue, int y, t_mlx *text)
+void		put_texture_img(t_env *env, double h_percue, int y, t_mlx *text, double bep)
 {
 	float	p_x;
 	float	p_y;
@@ -35,8 +35,8 @@ void		put_texture_img(t_env *env, double h_percue, int y, t_mlx *text)
 		p_x = fmod(env->coord_mur.x, (float)env->coef) * 100 / env->coef;
 	else
 		p_x = fmod(env->coord_mur.y, (float)env->coef) * 100 / env->coef;
-	if (y > (env->h_regard - (env->cmp_wall * h_percue / 2)))
-		p_y = (y - (env->h_regard - (env->cmp_wall * h_percue / 2.))) * 100. / h_percue;
+	if (y > (env->h_regard - (env->cmp_wall * bep)))
+		p_y = (y - (env->h_regard - (env->cmp_wall * bep))) * 100. / h_percue;
 	else
 		p_y = y * 100. / h_percue;
 	i = 4 * env->img_x + y * env->m[0].s_l;

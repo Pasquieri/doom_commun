@@ -121,8 +121,6 @@ void	affichage_sol(double y, double h_percue, t_env *env)
 	bk = env->h_regard;
 	double by = 0;
 
-//	printf("ac:%.1f bc:%.1f dd':%.1f ee':%.1f dc:%.1f be:%.1f bk:%.1f  \n", ac, bc, ddp, eep, dc, be, bk);
-
 	pos_perso_x = env->perso_x / (double)env->coef;
 	pos_perso_y = env->perso_y / (double)env->coef;
 	tmp = (env->h_regard) / ((y - env->h_regard) / env->d_ecran);
@@ -132,7 +130,6 @@ void	affichage_sol(double y, double h_percue, t_env *env)
 		by = y - bk;
 		ac_sol = (bc * ad) / by;
 		ac_sol = ac_sol / env->d_ecran;
-//		printf("ac_sol: %.1f\n", ac_sol);
 		//ac_sol = (env->h_regard) / ((double)(y - env->h_regard) / (env->d_ecran * (env->dist / tmp)));
 		ac_sol = ac_sol / cos((env->angle - env->d_regard) * M_PI / 180); //algo oeil de poisson
 		if (env->angle > 0 && env-> angle <= 90)

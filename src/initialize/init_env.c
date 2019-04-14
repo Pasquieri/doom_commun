@@ -40,7 +40,6 @@ void	init_env(t_env *env)
 	env->vitesse = 0.8;
 	env->jump = 0;
 	env->h_jump = 0;
-	env->h_jump2 = 0;
 	number_sprite(env);
 	init_tab_sprite(env);
 }

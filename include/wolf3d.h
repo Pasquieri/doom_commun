@@ -220,7 +220,6 @@ typedef struct	s_env
 
 	double	jump;
 	double	h_jump;
-	double	h_jump2;
 
 	t_rgb	rgb[10];
 	t_mlx	text[25];
@@ -288,7 +287,7 @@ void			print_gun(t_env *env, int k);
 void			print_sprite(t_env *env);
 void			print_tab(t_env *env, float p_y, float p_x, t_mlx *sp);
 void			put_pxl_img(t_env *env, int x, int y, int color);
-void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text);
+void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text, double bep);
 char			luminosite(int text, int coef);
 void			put_sprite_img(t_env *env);
 /*raycasting*/
