@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/14 19:36:57 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 20:30:28 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		mlx_put_image_to_window(env->mlx,env->win,env->m[0].img, 0,0);
 		mlx_put_image_to_window(env->mlx,env->win,env->m[1].img, 960,20);
 	}
-	if (env->key[29])
-		env->lum_int = 255;
+	if (env->key[29] && !env->menu)
+		env->lum_int = 400;
+	if (env->key[25] && !env->menu)
+		env->lum_int = 25;
 	if (env->key[257] && !env->menu)
-		env->vitesse *= 2;
+		env->vitesse = SPEED * 2;
 	if (env->key[14] && !env->menu)
 		deal_door(env);
 	if ((env->key[18] || env->key[19]) && !env->menu)

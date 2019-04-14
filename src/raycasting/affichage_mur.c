@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/12 21:27:15 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 20:45:23 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-static void		affichage_ciel(double h_percue, t_env *env, int x, int y)
+static void		affichage_ciel(t_env *env, int y, double bep)
 {
 	float	lim;
 	float	p_x;
@@ -21,12 +21,12 @@ static void		affichage_ciel(double h_percue, t_env *env, int x, int y)
 	int		j;
 
 	y = -1;
-	lim = (env->h_regard - (h_percue / 2));
+	lim = (env->h_regard - bep);
 	p_x = (100. * env->angle) / 120.;
 	while (++y < lim && y < W_HEIGHT)
 	{
 		p_y = (100. * y) / (W_HEIGHT);
-		i = 4 * x + y * env->m[0].s_l;
+		i = 4 * env->img_x + y * env->m[0].s_l;
 		j = 4 * (int)(env->text[env->skybox].width * p_x / 100)
 			+ (int)(env->text[env->skybox].height * (p_y + (100 - (env->h_regard
 			* 100 / W_HEIGHT))) / 100) * env->text[env->skybox].s_l;
@@ -57,7 +57,7 @@ static void		affichage(double h_percue, t_env *env, int x)
 	if (!env->skybox)
 		affichage_plafond(lim, h_percue, env);
 	else
-		affichage_ciel(h_percue, env, x, 0);
+		affichage_ciel(env, 0, bep);
 
 /*	y = -1;
 	while (++y < lim && y < 870.)
@@ -66,7 +66,7 @@ static void		affichage(double h_percue, t_env *env, int x)
 	env->cmp_wall = env->coef_h_wall;
 	while (env->cmp_wall > 0)
 	{
-		y = env->h_regard - (env->cmp_wall * bep);
+		y = env->h_regard - (env->cmp_wall * bep) ;
 		y < 0 ? y = 0 : y;
 		lim = y + h_percue + 1;
 		env->lum = env->dist * 255 / env->lum_int;
