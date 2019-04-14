@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/11 16:28:59 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 19:36:57 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
 		exit(0);
 	}
-	if (env->key[49])
+	if (env->key[36] || env->key[76])
 	{
-		if (env->key[49] && !env->menu)
+		if ((env->key[36] || env->key[76]) && !env->menu)
 		{
 			open_menu(env);
 			env->menu = 1;
 			return (0);
 		}
-		else if (env->key[49] && env->menu && env->map_entree == -1)
+		else if ((env->key[36] || env->key[76]) && env->menu && env->map_entree == -1)
 			key_invalid_menu(env);
-		else if (env->key[49] && env->menu && env->map_entree != -1)
+		else if ((env->key[36] || env->key[76]) && env->menu && env->map_entree != -1)
 			key_valid_menu(env);
 	}
 	if (env->key[40] && !env->menu) // pour afficher le gun : key k
@@ -51,7 +51,7 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 	if (env->key[29])
 		env->lum_int = 255;
 	if (env->key[257] && !env->menu)
-		env->vitesse = 2;
+		env->vitesse *= 2;
 	if (env->key[14] && !env->menu)
 		deal_door(env);
 	if ((env->key[18] || env->key[19]) && !env->menu)
@@ -74,10 +74,38 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		else if (env->key[86])
 			env->coef_h_wall = 7;
 	}
-	if (env->key[8] && !env->menu) // il faut que quand on appuie sur c on monte, et quand on redescend on peut plus remonter jusqu'a toucher le sol
+	if (env->key[49] && !env->menu) // il faut que quand on appuie sur c on monte, et quand on redescend on peut plus remonter jusqu'a toucher le sol
 	{
 	//	if (env->jump >= 0)
+		if (env->key[13])
+		{
+			env->vitesse = env->vitesse / 3;
+			env->jump_move = 13;
+		}
+		else if (env->key[1])
+		{
+			env->vitesse = env->vitesse / 6;
+			env->jump_move = 1;
+		}
+		else if (env->key[0])
+		{
+			env->vitesse = env->vitesse / 6;
+			env->jump_move = 0;
+		}
+		else if (env->key[2])
+		{
+			env->vitesse = env->vitesse / 6;
+			env->jump_move = 2;
+		}
+		else
+			env->vitesse = 0;
 		env->jump = 1;
+	}
+	if (env->key[8] && !env->menu)
+	{
+		if (env->h_jump > -1200)
+			env->h_jump -= 100;
+		env->vitesse = SPEED / 3;
 	}
 	if (env->key[12])
 	{
@@ -145,7 +173,12 @@ int			key_release(int key, t_env *env)
 {
 	env->key[key] = 0;
 	if (key == 257 && !env->menu)
-		env->vitesse = 0.8;
+		env->vitesse = SPEED;
+	if (key == 8 && !env->menu)
+	{
+		env->h_jump = 0;
+		env->vitesse = SPEED;
+	}
 	return (0);
 }
 
@@ -168,6 +201,13 @@ int			key_apply(t_env *env)
 				env->jump = 0;
 				if (env->h_jump + jump_height < 15 * jump_height) // si monter est possible
 				{
+					if (env->jump_move != 0)
+					{
+						if (env->jump_move == 1 || env->jump_move == 13)
+							depla_vertical(env, env->jump_move);
+						else if (env->jump_move == 0 || env->jump_move == 2)
+							depla_horizontal(env, env->jump_move);
+					}
 					env->h_jump += jump_height;
 					//env->h_regard += jump_height; // alors on monte
 				}
@@ -183,6 +223,13 @@ int			key_apply(t_env *env)
 				env->jump = 0;
 				if (env->h_jump - jump_height > 0) // si descendre est possible
 				{
+					if (env->jump_move != 0)
+					{
+						if (env->jump_move == 1 || env->jump_move == 13)
+							depla_vertical(env, env->jump_move);
+						else if (env->jump_move == 0 || env->jump_move == 2)
+							depla_horizontal(env, env->jump_move);
+					}
 					env->h_jump -= jump_height;
 					//env->h_regard -= jump_height; // alors on descend
 				}
@@ -190,13 +237,15 @@ int			key_apply(t_env *env)
 				{
 					env->jump = 1;
 					env->h_jump = 0;
+					env->vitesse = SPEED;
+					env->jump_move = 0;
 					//env->h_regard = W_HEIGHT / 2; // on reinitialise
 				}
 			}
 			env->jump = env->jump - 1;
 		}
 	}
-	
+
 	if ((env->key[125] || env->key[126]) && env->menu == 1)
 		ft_arrow_menu(env);
 	if (!env->menu)

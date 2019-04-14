@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 20:37:03 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/10 16:40:57 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/14 18:37:26 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	affiche_menu_valide(t_env *env, t_color_menu *color_menu)
 {
 	mlx_string_put(env->mlx, env->win, 380, 330, color_menu->black_color,
-				"-DOOM- : appuyer sur espace pour selectionner");
+				"-DOOM- : appuyer sur entrer pour selectionner");
 	mlx_string_put(env->mlx, env->win, 560, 530, color_menu->play_color,
 				"Jouer");
 	mlx_string_put(env->mlx, env->win, 560, 560, color_menu->map1_color,

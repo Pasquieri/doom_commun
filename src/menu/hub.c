@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:12:49 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/11 16:40:00 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 18:35:51 by cpalmier         ###   ########.fr       */
 /*   Updated: 2019/04/06 09:26:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -64,13 +64,13 @@ static void		help_affiche(t_env *env)
 	mlx_string_put(env->mlx, env->win, 220, 450, 0xFFFFFF,
 			"[H] : Ouvrir / Fermer l'aide              [Shift] : Courir");
 	mlx_string_put(env->mlx, env->win, 220, 480, 0xFFFFFF,
-			"[espace] : Ouvrir le menu                 [ESC] : Fermer");
+			"[Enter] : Ouvrir le menu                 [ESC] : Fermer");
 	mlx_string_put(env->mlx, env->win, 220, 510, 0xFFFFFF,
 			"[WASD] : Se deplacer                      [1] [2] : Skybox");
 	mlx_string_put(env->mlx, env->win, 220, 540, 0xFFFFFF,
 			"[Fleches] [Souris] : Rotation regard      [1-4] : Hauteur des murs");
 	mlx_string_put(env->mlx, env->win, 220, 570, 0xFFFFFF,
-			"[+] [-] [0] : Changer la luminosite");
+			"[+] [-] [0] : Changer la luminosite       [Space] : Sauter");
 }
 
 void			print_hub(t_env *env)
@@ -118,7 +118,7 @@ void			print_hub(t_env *env)
 				mlx_string_put(env->mlx, env->win, 510, 450, 0x32901D,
 						"Vous avez gagne :)");
 			mlx_string_put(env->mlx, env->win, 400, 500, 0x1A79D3,
-						"Appuyer sur [espace] pour revenir au menu");
+						"Appuyer sur [enter] pour revenir au menu");
 			mlx_string_put(env->mlx, env->win, 410, 530, 0x1A79D3,
 						"Appuyer sur [esc] pour quitter le jeu");
 		}

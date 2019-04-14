@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:48:45 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/12 20:15:22 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 19:06:55 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	init_env(t_env *env)
 	env->vitesse = 0.8;
 	env->jump = 0;
 	env->h_jump = 0;
+	env->jump_move = 0;
 	number_sprite(env);
 	init_tab_sprite(env);
 }

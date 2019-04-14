@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/12 20:21:05 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 19:19:08 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define SKY 22 // OK
 # define W_HEIGHT 870
 # define W_WIDTH 1200
+# define SPEED 0.8
 
 typedef struct	s_coord
 {
@@ -220,6 +221,7 @@ typedef struct	s_env
 
 	double	jump;
 	double	h_jump;
+	int		jump_move;
 
 	t_rgb	rgb[10];
 	t_mlx	text[25];

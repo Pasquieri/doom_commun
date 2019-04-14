@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 10:28:54 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/08 19:30:09 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 19:30:14 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,67 +29,6 @@ static void	put_texture_floor(double pos_sol_x, double pos_sol_y, t_env *env, in
 	env->m[0].img_str[i + 2] = luminosite(env->text[0].img_str[j + 2], env->lum);
 	env->m[0].img_str[i + 3] = (char)0;
 }
-
-/*void	affichage_sol(double y, t_env *env)
-{
-
-	double ac;
-	double m;
-	double n;
-	double tmp;
-	double pos_perso_x;
-	double pos_perso_y;
-	double pos_sol_x;
-	double pos_sol_y;
-	double alpha;
-	double diffalpha;
-
-	alpha = atan((y - env->h_regard) / env->d_ecran);
-	diffalpha = fabs(alpha - atan((y + 1 - env->h_regard) / env->d_ecran)) * (180 / M_PI);
-	printf("alpha : %f\n",alpha );
-	pos_perso_x = env->perso_x / (double)env->coef; // i,??
-	pos_perso_y = env->perso_y / (double)env->coef; // j,??
-	tmp = (env->h_regard) / ((y - env->h_regard) / env->d_ecran );
-	while (y < W_HEIGHT)
-	{
-		ac = (env->h_regard) / ((double)(y - env->h_regard) / (env->d_ecran * (env->dist / tmp)));
-		ac = ac / cos((env->angle - env->d_regard) * M_PI / 180); //algo oeil de poisson
-		if (env->angle > 0 && env-> angle <= 90)
-		{
-			//m = cos((M_PI * env->angle) / 180) * ac;
-			//n = sin((M_PI * env->angle) / 180) * ac;
-			m = cos((M_PI * alpha) / 180) * ac;
-			n = sin((M_PI * alpha) / 180) * ac;
-			pos_sol_x = pos_perso_x + m / env->coef;
-			pos_sol_y = pos_perso_y - n / env->coef;
-			alpha += diffalpha;
-		}
-		else if (env->angle > 90 && env-> angle <= 180)
-		{
-			m = -1 * cos((M_PI * env->angle) / 180) * ac;
-			n = sin((M_PI * env->angle) / 180) * ac;
-			pos_sol_x = pos_perso_x - m / env->coef;
-			pos_sol_y = pos_perso_y - n / env->coef;
-		}
-		else if (env->angle > 180 && env-> angle <= 270)
-		{
-			m = -1 * cos((M_PI * env->angle) / 180) * ac;
-			n = -1 * sin((M_PI * env->angle) / 180) * ac;
-			pos_sol_x = pos_perso_x - m / env->coef;
-			pos_sol_y = pos_perso_y + n / env->coef;
-		}
-		else
-		{
-			m = cos((M_PI * env->angle) / 180) * ac;
-			n = -1 * sin((M_PI * env->angle) / 180) * ac;
-			pos_sol_x = pos_perso_x + m / env->coef;
-			pos_sol_y = pos_perso_y + n / env->coef;
-		}
-		env->lum = ac * 255 / env->lum_int;
-		put_texture_floor(pos_sol_x, pos_sol_y, env, y);
-		y++;
-	}
-}*/
 
 void	affichage_sol(double y, double h_percue, t_env *env)
 {
