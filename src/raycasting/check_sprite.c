@@ -6,13 +6,14 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/12 18:35:16 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 21:30:44 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/wolf3d.h"
 
-static void	fill_hor(int index_sp, int k, t_env *env, t_coord cd)
+/**************************** ADD TEST ********************************/
+/*static void	fill_hor(int index_sp, int k, t_env *env, t_coord cd)
 {
 	if (env->sp[index_sp].sprite[k].det == 0)
 	{
@@ -48,7 +49,8 @@ static void	fill_ver(int index_sp, int k, t_env *env, t_coord cd)
 		env->sp[index_sp].sprite[k].o_i = 1;
 		env->sp[index_sp].sprite[k].win_x = env->img_x;
 	}
-}
+}*/
+/***********************************************************************/
 
 void	check_sprite(int i, int j, t_env *env, int orientation, t_coord cd)
 {
@@ -70,17 +72,34 @@ void	check_sprite(int i, int j, t_env *env, int orientation, t_coord cd)
 			if (env->sp[index_sp].sprite[k].i == i
 					&& env->sp[index_sp].sprite[k].j == j)
 			{
+				/*************** ADD TEST 12/04 **************/
+			//	if (orientation == 0)
+			//		fill_hor(index_sp, k, env, cd);
+			//	else
+			//		fill_ver(index_sp, k, env, cd);
+				/********************************************/
+
+				/*********GRID && WIN ***************/
 				dist = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
 				dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);
-				/*************** ADD TEST **************/
-				if (orientation == 0)
-					fill_hor(index_sp, k, env, cd);
-				else
-					fill_ver(index_sp, k, env, cd);
-				/***************************************/
-				env->sp[index_sp].sprite[k].detec[orientation].on = 1; // a supp
-				env->sp[index_sp].sprite[k].detec[orientation].dist = dist; // idem
-				env->sp[index_sp].sprite[k].detec[orientation].cd = cd; // idem
+				env->sp[index_sp].sprite[k].detec[orientation].on = 1;
+				env->sp[index_sp].sprite[k].detec[orientation].dist = dist;
+				env->sp[index_sp].sprite[k].detec[orientation].cd = cd;
+				/************************************/
+
+				/******************* ADD 14/04 ***************************/
+				env->sp[index_sp].sprite[k].det = 1; // 14/04
+				if (orientation == 0 && env->sp[index_sp].sprite[k].cd_h.x == -1 && (env->sp[index_sp].sprite[k].cd_h.y == -1))
+				{
+					env->sp[index_sp].sprite[k].cd_h = cd;
+					env->sp[index_sp].sprite[k].win_h_x = env->img_x;
+				}
+				else if (orientation == 1 && env->sp[index_sp].sprite[k].cd_v.x == -1 && (env->sp[index_sp].sprite[k].cd_v.y == -1))
+				{
+					env->sp[index_sp].sprite[k].cd_v = cd;
+					env->sp[index_sp].sprite[k].win_v_x = env->img_x;
+				}
+				/***********************************************************/
 			}
 		}
 	}

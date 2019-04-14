@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/14 20:30:28 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 21:53:43 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 	}
 	if (env->key[8] && !env->menu)
 	{
-		if (env->h_jump > -1200)
+		if (env->h_jump > -1000)
 			env->h_jump -= 100;
 		env->vitesse = SPEED / 3;
 	}
@@ -134,39 +134,6 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 			}
 			printf("\n");
 		}*/
-
-/*** pour chaque sprite : affiche leur pos etc ***/
-
-/*		int	i;
-		printf("\ngrid = nb : %d, val : %d\n",env->sp[0].nb, env->sp[0].val);
-		i = -1;
-		while (++i < env->sp[0].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[0].sprite[i].i,env->sp[0].sprite[i].j);
-
-		printf("\nwin = nb : %d, val : %d\n",env->sp[1].nb, env->sp[1].val);
-		i = -1;
-		while (++i < env->sp[1].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[1].sprite[i].i,env->sp[1].sprite[i].j);
-
-		printf("\ncolumn = nb : %d, val : %d\n",env->sp[2].nb, env->sp[2].val);
-		i = -1;
-		while (++i < env->sp[2].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[2].sprite[i].i,env->sp[2].sprite[i].j);
-
-		printf("\nbanana = nb : %d, val : %d\n",env->sp[3].nb, env->sp[3].val);
-		i = -1;
-		while (++i < env->sp[3].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[3].sprite[i].i,env->sp[3].sprite[i].j);
-
-		printf("\nmonkey = nb : %d, val : %d\n",env->sp[4].nb, env->sp[4].val);
-		i = -1;
-		while (++i < env->sp[4].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[4].sprite[i].i,env->sp[4].sprite[i].j);
-
-		printf("\ndoor = nb : %d, val : %d\n",env->sp[5].nb, env->sp[5].val);
-		i = -1;
-		while (++i < env->sp[5].nb)
-			printf("sprite %d : i = %d, j = %d\n",i, env->sp[5].sprite[i].i,env->sp[5].sprite[i].j);*/
 	}
 	return (0);
 }

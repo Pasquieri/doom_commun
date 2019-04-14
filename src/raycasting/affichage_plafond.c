@@ -6,21 +6,21 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 10:28:54 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/14 20:46:59 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 20:57:43 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-static void	put_texture_sky(double pos_sol_x, double pos_sol_y, t_env *env, int y)
+static void	put_texture_sky(double pos_plafond_x, double pos_plafond_y, t_env *env, int y)
 {
 	int p_x;
 	int	p_y;
 	int	i;
 	int	j;
 
-	p_x = (int)(pos_sol_x * 100) % 100; 
-	p_y = (int)(pos_sol_y * 100) % 100; 
+	p_x = (int)(pos_plafond_x * 100) % 100;
+	p_y = (int)(pos_plafond_y * 100) % 100;
 	i = 4 * env->img_x + y * env->m[0].s_l;
 	j = 4 * (int)(env->text[21].width * p_x / 100)
 		+ (int)(env->text[21].height * p_y / 100) * env->text[21].s_l;
@@ -67,10 +67,13 @@ void	affichage_plafond(double y, double h_percue, t_env *env)
 	{
 		by = bk - y;
 		//printf("%.1f\n", by);
-		ac_plafond = (bc * adp) / by;
-		ac_plafond = ac_plafond / env->d_ecran;
 
-		//ac_plafond = (env->h_regard) / ((double)(y - env->h_regard) / (env->d_ecran * (env->dist / tmp)));
+		//ac_plafond = (bc * adp) / by;
+		//ac_plafond = ac_plafond / env->d_ecran;
+
+		ac_plafond = (env->h_regard) / ((double)(y - env->h_regard) / (env->d_ecran * (env->dist / tmp)));
+		// cette formule ne fait pas le pb du plafond qui ne s'eloigne pas avec la hauteur des murs qui augmente
+		// mais je ne sais pas comment modifer avec tes nouvelles valeurs :D
 		ac_plafond = ac_plafond / cos((env->angle - env->d_regard) * M_PI / 180); //algo oeil de poisson
 		if (env->angle > 0 && env-> angle <= 90)
 		{

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/14 19:19:08 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/14 21:23:43 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,12 @@ typedef struct	s_sprite
 	int		det; // detec // USE
 	int		det_hor; // USE
 	int		win_x; // USE
-	t_coord	cd_i;  // USE
+	int		win_h_x;
+	int		win_v_x;
+	t_coord	cd_h;  // USE
+	t_coord	cd_v;
+
 	int		o_i; // USE
-	t_coord	cd_f;
 	int		o_f;
 
 	t_det	detec[2];
