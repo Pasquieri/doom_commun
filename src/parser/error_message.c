@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:26:48 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/26 17:58:17 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/15 15:49:21 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	extra_20(int num)
 		ft_putstr("Le joueur est place dans un mur");
 	else if (num == 16)
 		ft_putstr("Le nombre de ligne est invalide");
+	else if (num == 17)
+		ft_putstr("Texture(s) introuvable(s)");
 }
 
 static void	extra_10(int num)

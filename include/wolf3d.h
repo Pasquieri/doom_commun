@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/14 21:23:43 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/15 15:58:03 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,7 @@ void			init_env(t_env *env);
 void			init_sprite(t_env *env);
 void			number_sprite(t_env *env);
 void			init_tab_sprite(t_env *env);
-void			init_texture(t_env *env);
+int				init_texture(t_env *env);
 int				win_init(t_env *env);
 /*menu*/
 char			*chaine_nb(char *str, int nb);

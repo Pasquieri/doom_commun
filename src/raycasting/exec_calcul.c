@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/10 05:09:43 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/15 16:33:54 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	init_var(t_env *env, int d_regard)
 	init_env(env);
 	env->d_regard = d_regard;
 
-	init_sprite(env);
+	//init_sprite(env);
 	//	env->inv.gun = 1; // faire quand obj ramasse
 	env->inv.lim_gun[0] = 0;   // pour les 4 imgs dans la sprite sheet :
 	env->inv.lim_gun[1] = 150; // separation (x) entre chaque 
