@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:53:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/11 14:03:13 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/15 19:52:43 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,21 @@ void		color_case(t_env *env) // case avec sprite coloriees
 		while (++i < env->x)
 		{
 			if ((env->tab[j][i] > 0 && env->tab[j][i] <= 7)
-					|| (env->tab[j][i] >= 10 && env->tab[j][i] <= 15))
+					|| (env->tab[j][i] >= 10 && env->tab[j][i] <= 15)
+					|| env->tab[j][i] == 18)
 			{
 				y = j * env->coef - 1;
 				while (++y < (j * env->coef + env->coef))
 				{
 					x = i * env->coef - 1;
 					color = 1;
-					env->tab[j][i] == 7 ? color = 2 : color;
-					env->tab[j][i] == 15 ? color = 2 : color;
-					env->tab[j][i] == 10 ? color = 3 : color;
-					env->tab[j][i] == 11 ? color = 3 : color;
-					env->tab[j][i] == 12 ? color = 4 : color;
-					env->tab[j][i] == 13 ? color = 4 : color;
-					env->tab[j][i] == 14 ? color = 4 : color;
+					if (env->tab[j][i] == 7 || env->tab[j][i] == 15)
+						color = 2;
+					else if (env->tab[j][i] == 10 || env->tab[j][i] == 11)
+						color = 3;
+					else if (env->tab[j][i] == 12 || env->tab[j][i] == 13
+						|| env->tab[j][i] == 14 || env->tab[j][i] == 18)
+						color = 4;
 					while (++x < (i * env->coef + env->coef))
 						put_pxl_img(env, x, y, color);
 				}

@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/14 21:49:15 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/15 21:01:39 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-static void	put_sprite(t_env *env, double h_percue, int y, t_mlx *sp_t, int x)
+static void	put_sprite(t_env *env, double h_percue, int y, t_mlx *sp_t, int x, double test)
 {
 	float	p_x;
 	float	p_y;
@@ -25,8 +25,8 @@ static void	put_sprite(t_env *env, double h_percue, int y, t_mlx *sp_t, int x)
 //	else
 //		p_x = fmod(COORD.Y, (float)env->coef) * 100 / env->coef;
 	p_x = x * 100. / h_percue;
-	if (y > (env->h_regard - (h_percue / 2)))
-		p_y = (y - (env->h_regard - (h_percue / 2.))) * 100. / h_percue;
+	if (y > (env->h_regard + test))
+		p_y = (y - (env->h_regard + test)) * 100. / h_percue;
 	else
 		p_y = y * 100. / h_percue;
 	i = 4 * env->img_x + y * env->m[0].s_l;
@@ -50,20 +50,26 @@ static void	affiche_sprite(double d_sp, t_env *env, int i, int cmp)
 	int		x;
 	double	lim;
 	double	h_percue;
+	double	test;
 
 	h_percue = env->d_ecran * (env->h_mur / d_sp);
-	if (i == 3) // pour avoir une banane plus petite : a revoir
-		h_percue /= 3;
 	y = env->h_regard - (h_percue / 2);
+	test = - h_percue / 2;
+	if (i == 3 || i == 8) // pour avoir une banane plus petite : a revoir
+	{
+		h_percue /= 3;
+		y = env->h_regard + (h_percue / 2);
+		test = h_percue / 2;
+	}
 	y < 0. ? y = -1. : y;
-	lim = env->h_regard + (h_percue / 2);
+	lim = y + h_percue;
 	while (++y < lim && y < W_HEIGHT)
 	{
 		x = -1;
 		env->img_x = env->sp[i].sprite[cmp].win_x;
 		while (++x < h_percue && env->img_x < W_WIDTH)
 		{
-			put_sprite(env, h_percue, y, &env->sp_t[i], x);
+			put_sprite(env, h_percue, y, &env->sp_t[i], x, test);
 			env->img_x++;
 		}
 	}
@@ -99,8 +105,10 @@ void	put_sprite_img(t_env *env)
 	double	d_sp;
 
 	i = 1;
-	while (++i < 4) // < 5 pour tous les sprites sp[4] = monkey
+	while (++i < NB_SP) // < 5 pour tous les sprites sp[4] = monkey
 	{
+		if (i == 5) // porte +  tableau + gun
+			i += 3;
 		cmp = -1;
 		while (++cmp < env->sp[i].nb)
 		{

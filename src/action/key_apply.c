@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/15 18:34:24 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/15 21:09:18 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,8 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
 		exit(0);
 	}
-	if (env->key[16])
+	if (env->key[16] && !env->menu)
 		env->h_story = 0;
-	if (env->key[36] || env->key[76])
-	{
-		if ((env->key[36] || env->key[76]) && !env->menu)
-		{
-			open_menu(env);
-			env->menu = 1;
-			return (0);
-		}
-		else if ((env->key[36] || env->key[76]) && env->menu && env->map_entree == -1)
-			key_invalid_menu(env);
-		else if ((env->key[36] || env->key[76]) && env->menu && env->map_entree != -1)
-			key_valid_menu(env);
-	}
-	if (env->key[40] && !env->menu) // pour afficher le gun : key k
-	{
-		if (env->inv.gun == 0)
-			env->inv.gun = 1;
-		else
-			env->inv.gun = 0;
-	}
 	if (env->key[37] && env->inv.gun == 1 && !env->menu) // coup de feu : key l
 	{
 		print_gun(env, 3);
@@ -51,22 +31,13 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		mlx_put_image_to_window(env->mlx,env->win,env->m[1].img, 960,20);
 	}
 	if (env->key[29] && !env->menu)
-		env->lum_int = 400;
+		env->lum_int = 370;
 	if (env->key[25] && !env->menu)
 		env->lum_int = 25;
 	if (env->key[257] && !env->menu)
 		env->vitesse = SPEED * 2;
 	if (env->key[14] && !env->menu)
 		deal_door(env);
-	if ((env->key[18] || env->key[19]) && !env->menu)
-	{
-		if (env->skybox != 22 && env->key[18])
-			env->skybox = 22;
-		else if (env->skybox != 24 && env->key[19])
-			env->skybox = 24;
-		else
-			env->skybox = 0;
-	}
 	if (env->key[83] || env->key[84] || env->key[85] || env->key[86])
 	{
 		if (env->key[83])
@@ -149,6 +120,35 @@ int			key_release(int key, t_env *env)
 	{
 		env->h_jump = 0;
 		env->vitesse = SPEED;
+	}
+	if (key == 36 || key == 76)
+	{
+		if ((key == 36 || key == 76) && !env->menu)
+		{
+			open_menu(env);
+			env->menu = 1;
+			return (0);
+		}
+		else if ((key == 36 || key == 76) && env->menu && env->map_entree == -1)
+			key_invalid_menu(env);
+		else if ((key == 36 || key == 76) && env->menu && env->map_entree != -1)
+			key_valid_menu(env);
+	}
+	if ((key == 18 || key == 19) && !env->menu)
+	{
+		if (env->skybox != 22 && key == 18)
+			env->skybox = 22;
+		else if (env->skybox != 24 && key == 19)
+			env->skybox = 24;
+		else
+			env->skybox = 0;
+	}
+	if (key == 40 && !env->menu) // pour afficher le gun : key k
+	{
+		if (env->inv.gun == 0)
+			env->inv.gun = 1;
+		else
+			env->inv.gun = 0;
 	}
 	return (0);
 }

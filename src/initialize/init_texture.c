@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2011/03/01 20:15:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/15 16:32:55 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/15 19:57:30 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	verif_sprt(t_env *env, int i, int k)
 {
-	if (i < 8)
+	if (i < NB_SP)
 	{
 		if (env->sp_t[i].img == NULL)
 			return (verif_sprt(env, ++i, ++k));
@@ -114,9 +114,9 @@ int		init_texture(t_env *env)
 			&env->text[23].width, &env->text[23].height);
 	//env->text[23].img_str = mlx_get_data_addr(env->text[23].img,
 	//		&env->text[23].bpp, &env->text[23].s_l, &env->text[23].end);
-	
+
 	init_sprite(env);
-	
+
 	v_text = verif_text(env, 0, 0); //nb de text pas get_data
 	v_sprt = verif_sprt(env, 0, 0); //nb de spri pas get_data
 

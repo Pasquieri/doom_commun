@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/14 21:22:28 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/15 20:07:22 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static void		sprite_init(t_env *env)
 	int	cmp;
 
 	k = -1;
-	while (++k < 6)
+	while (++k < NB_SP)
 	{
-		if (k == 4)
-			k++;
+		if (k == 6)
+			k += 2;
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
 		{
@@ -55,10 +55,6 @@ static void		sprite_init(t_env *env)
 			env->sp[k].sprite[cmp].cd_h.y = -1;
 			env->sp[k].sprite[cmp].cd_v.x = -1;
 			env->sp[k].sprite[cmp].cd_v.y = -1;
-			//env->sp[k].sprite[cmp].detec[0].cd.x = -1;
-			//env->sp[k].sprite[cmp].detec[0].cd.y = -1;
-			//env->sp[k].sprite[cmp].detec[1].cd.x = -1;
-			//env->sp[k].sprite[cmp].detec[1].cd.y = -1;
 			env->sp[k].sprite[cmp].det = 0;
 			env->sp[k].sprite[cmp].win_x = 0;
 		}

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/15 16:21:31 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/15 20:11:29 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	init_sprite_extra(t_env *env)
 		&env->sp_t[7].height);
 	//env->sp_t[7].img_str = mlx_get_data_addr(env->sp_t[7].img,
 	//	&env->sp_t[7].bpp, &env->sp_t[7].s_l, &env->sp_t[7].end);
+	env->sp_t[8].img = mlx_xpm_file_to_image(env->mlx,
+		"textures/seringue.XPM", &env->sp_t[8].width, &env->sp_t[8].height);
 }
 
 void		init_sprite(t_env *env)
@@ -50,7 +52,7 @@ void		init_sprite(t_env *env)
 	//env->sp_t[3].img_str = mlx_get_data_addr(env->sp_t[3].img,
 	//	&env->sp_t[3].bpp, &env->sp_t[3].s_l, &env->sp_t[3].end);
 	env->sp_t[4].img = mlx_xpm_file_to_image(env->mlx,
-		"textures/14-monkey.XPM", &env->sp_t[4].width, &env->sp_t[4].height);
+		"textures/monkeymiddle.XPM", &env->sp_t[4].width, &env->sp_t[4].height);
 	//env->sp_t[4].img_str = mlx_get_data_addr(env->sp_t[4].img,
 	//	&env->sp_t[4].bpp, &env->sp_t[4].s_l, &env->sp_t[4].end);
 	init_sprite_extra(env);
@@ -62,7 +64,7 @@ void		number_sprite(t_env *env)
 	int	j;
 
 	i = -1;
-	while (++i <= 5)
+	while (++i < NB_SP)
 		env->sp[i].nb = 0;
 	j = -1;
 	while (++j < env->y)
@@ -72,7 +74,7 @@ void		number_sprite(t_env *env)
 		{
 			if (env->tab[j][i] == DOOR) // || == 15 ??
 				env->sp[5].nb++;
-			else if (env->tab[j][i] >= 10 && env->tab[j][i] <= 14)
+			else if ((env->tab[j][i] >= 10 && env->tab[j][i] <= 15) || env->tab[j][i] == 18)
 				env->sp[env->tab[j][i] - 10].nb++;
 		}
 	}
@@ -87,7 +89,7 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 	coef = 5.;
 	sp->sprite[*x].i = i;
 	sp->sprite[*x].j = j;
-	if (sp->val == COLUMN || sp->val == BANANA || sp->val == MONKEY)
+	if (sp->val == COLUMN || sp->val == BANANA || sp->val == MONKEY || sp->val == SYRINGE)
 	{
 		pos_x = i * coef + coef / 2;
 		pos_y = j * coef + coef / 2;
@@ -106,8 +108,10 @@ void		init_tab_sprite(t_env *env)
 	int	x;
 
 	k = -1;
-	while (++k <= 5)
+	while (++k < NB_SP)
 	{
+	//	if (k == 6)
+	//		k += 2;
 		env->sp[k].val = k + 10;
 		k == 5 ? env->sp[k].val = 7 : env->sp[k].val;
 		x = 0;
@@ -120,7 +124,8 @@ void		init_tab_sprite(t_env *env)
 			i = -1;
 			while (++i < env->x)
 			{
-				if (env->tab[j][i] == env->sp[k].val) // 15 ??
+				if (env->tab[j][i] == env->sp[k].val ||
+						(k == 5 && env->tab[j][i] == 15)) // 15 ??
 					fill_info_sprite(&env->sp[k], &x, i, j);
 			}
 		}

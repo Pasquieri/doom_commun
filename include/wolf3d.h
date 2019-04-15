@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/15 15:58:03 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/15 20:12:16 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define BANANA 13 // idem a ramasser : disparition & gain de vie
 # define MONKEY 14 // sprite en mouvement : ennemis
 # define DOOR_CLOSE 15 // animation a faire
+# define SYRINGE 18
+# define NB_SP 9
 # define PLAFOND 21 // OK
 # define SKY 22 // OK
 # define W_HEIGHT 870
@@ -228,8 +230,8 @@ typedef struct	s_env
 
 	t_rgb	rgb[10];
 	t_mlx	text[25];
-	t_mlx	sp_t[8]; // textures des sprites
-	t_sp	sp[6];
+	t_mlx	sp_t[NB_SP]; // textures des sprites
+	t_sp	sp[NB_SP];
 	t_coord	coord_spr;
 
 	t_inv	inv;

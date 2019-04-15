@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/14 21:30:44 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/15 19:55:15 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	check_sprite(int i, int j, t_env *env, int orientation, t_coord cd)
 	double	dist;
 
 	value = -1;
-	if (env->tab[j][i] >= 10 && env->tab[j][i] <= 15)
+	if ((env->tab[j][i] >= 10 && env->tab[j][i] <= 15) || env->tab[j][i] == 18)
 		value = env->tab[j][i];
 	env->tab[j][i] == DOOR ? value = 15 : value;
 	if (value != -1)
