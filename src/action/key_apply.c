@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/14 21:53:43 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/15 17:57:34 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
 		exit(0);
 	}
+	if (env->key[16])
+		env->h_story = 0;
 	if (env->key[36] || env->key[76])
 	{
 		if ((env->key[36] || env->key[76]) && !env->menu)

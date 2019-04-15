@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:12:49 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/14 21:55:09 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/15 18:04:19 by mpasquie         ###   ########.fr       */
 /*   Updated: 2019/04/06 09:26:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -26,9 +26,26 @@ static void		put_pxl(t_env *env, int x, int y, int color)
 
 static void		story_affiche(t_env *env)
 {
+	int		i;
+
+	i = 30;
 	mlx_put_image_to_window(env->mlx, env->win, env->story_mlx, 0, 0);
-	mlx_string_put(env->mlx, env->win, 200, 400, 0xFFFFFF,
-			"Ici sera afficher l'histoire du jeu");
+	mlx_string_put(env->mlx, env->win, 250, 100 - i, 0xFFFFFF,
+			"Will Rodeman, un jeune scientifque ambitieux est reste travailler");
+	mlx_string_put(env->mlx, env->win, 250, 200 - i, 0xFFFFFF,
+			"tard ce soir de noel. Passionne par ses recherches, il est alle au");
+	mlx_string_put(env->mlx, env->win, 250, 300 - i, 0xFFFFFF,
+			"dela du raisonnable et a fusionne l ADN du singe, du poulpe et du");
+	mlx_string_put(env->mlx, env->win, 250, 400 - i, 0xFFFFFF,
+			"caniche ! se laissant submerger par ces creatures a plusieurs tetes.");
+	mlx_string_put(env->mlx, env->win, 250, 500 - i, 0xFFFFFF,
+			"Pris de panique, Dr Rodman s enferme dans son bureau ..");
+	mlx_string_put(env->mlx, env->win, 250, 600 - i, 0xFFFFFF,
+			"Prenez votre courage a deux mains et eliminez toutes ces abominations");
+	mlx_string_put(env->mlx, env->win, 250, 700 - i, 0xFFFFFF,
+			"pour vous echapper !");
+	mlx_string_put(env->mlx, env->win, 250, 800 - i, 0xFFFFFF,
+			"Appuyer sur [y] pour commencer !");
 }
 
 void			hub_init(t_env *env)
@@ -53,7 +70,7 @@ void			hub_init(t_env *env)
 	env->h_monkey = env->sp[4].nb; // nombre de singe
 	env->h_ammo = 30;
 	env->h_end = 0;
-	env->h_story = 0;
+	env->h_story = 1;
 }
 
 static void		help_affiche(t_env *env)
