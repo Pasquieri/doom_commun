@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 16:41:37 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/08 16:18:02 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/15 18:38:41 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		pars_init(int argc, char **argv, t_env *env)
 	int		fd;
 
 	fd = -1;
-	env->detail = 0;
+	env->detail = 1;
 	if (argc != 2)
 	{
 		if (argc == 3)
