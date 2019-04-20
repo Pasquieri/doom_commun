@@ -61,29 +61,6 @@ static void		sprite_init(t_env *env)
 	}
 }
 
-/************** TEST PREMIERE COORD ********************/
-/*static void	printf_sprite(t_env *env)
-{
-	int	i;
-	int	cmp;
-
-	i = -1;
-	while (++i < 6) // < 5 pour tous les sprites sp[4] = monkey
-	{
-		if (i == 4)
-			i++;
-		cmp = -1;
-		while (++cmp < env->sp[i].nb)
-		{
-			if (env->sp[i].sprite[cmp].det == 1)
-			{
-				printf("sp[%d].sprite[%d] : coord i : (%f, %f), orient : %d win_X : %d\n",i,cmp, env->sp[i].sprite[cmp].cd_i.x, env->sp[i].sprite[cmp].cd_i.y, env->sp[i].sprite[cmp].o_i, env->sp[i].sprite[cmp].win_x);
-			}
-		}
-	}
-}*/
-/**************************************************/
-
 void			affichage_sprite(t_env *env)
 {
 	double	a;

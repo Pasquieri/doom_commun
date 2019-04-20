@@ -93,11 +93,13 @@ void	check_sprite(int i, int j, t_env *env, int orientation, t_coord cd)
 				{
 					env->sp[index_sp].sprite[k].cd_h = cd;
 					env->sp[index_sp].sprite[k].win_h_x = env->img_x;
+					env->sp[index_sp].sprite[k].angle_h = env->angle; // 18/04
 				}
 				else if (orientation == 1 && env->sp[index_sp].sprite[k].cd_v.x == -1 && (env->sp[index_sp].sprite[k].cd_v.y == -1))
 				{
 					env->sp[index_sp].sprite[k].cd_v = cd;
 					env->sp[index_sp].sprite[k].win_v_x = env->img_x;
+					env->sp[index_sp].sprite[k].angle_v = env->angle; // 18/04
 				}
 				/***********************************************************/
 			}

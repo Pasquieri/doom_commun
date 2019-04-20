@@ -17,17 +17,11 @@ static void	init_sprite_extra(t_env *env)
 	env->sp_t[5].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/7-door.XPM", &env->sp_t[5].width,
 		&env->sp_t[5].height);
-	//env->sp_t[5].img_str = mlx_get_data_addr(env->sp_t[5].img,
-	//	&env->sp_t[5].bpp, &env->sp_t[5].s_l, &env->sp_t[5].end);
 	env->sp_t[6].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/gun.XPM", &env->sp_t[6].width, &env->sp_t[6].height);
-	//env->sp_t[6].img_str = mlx_get_data_addr(env->sp_t[6].img,
-	//	&env->sp_t[6].bpp, &env->sp_t[6].s_l, &env->sp_t[6].end);
 	env->sp_t[7].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/4-5-6-van_gogh.XPM", &env->sp_t[7].width,
 		&env->sp_t[7].height);
-	//env->sp_t[7].img_str = mlx_get_data_addr(env->sp_t[7].img,
-	//	&env->sp_t[7].bpp, &env->sp_t[7].s_l, &env->sp_t[7].end);
 	env->sp_t[8].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/seringue.XPM", &env->sp_t[8].width, &env->sp_t[8].height);
 }
@@ -36,25 +30,15 @@ void		init_sprite(t_env *env)
 {
 	env->sp_t[0].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/8-grid.XPM", &env->sp_t[0].width, &env->sp_t[0].height);
-	//env->sp_t[0].img_str = mlx_get_data_addr(env->sp_t[0].img,
-	//	&env->sp_t[0].bpp, &env->sp_t[0].s_l, &env->sp_t[0].end);
 	env->sp_t[1].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/9-win4.xpm", &env->sp_t[1].width, &env->sp_t[1].height);
-	//env->sp_t[1].img_str = mlx_get_data_addr(env->sp_t[1].img,
-	//	&env->sp_t[1].bpp, &env->sp_t[1].s_l, &env->sp_t[1].end);
 	env->sp_t[2].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/12-column.XPM", &env->sp_t[2].width, &env->sp_t[2].height);
-	//env->sp_t[2].img_str = mlx_get_data_addr(env->sp_t[2].img,
-	//	&env->sp_t[2].bpp, &env->sp_t[2].s_l, &env->sp_t[2].end);
 //printf("w : %d, h : %d\n", env->sp_t[2].width, env->sp_t[2].height);
 	env->sp_t[3].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/13-banana.XPM", &env->sp_t[3].width, &env->sp_t[3].height);
-	//env->sp_t[3].img_str = mlx_get_data_addr(env->sp_t[3].img,
-	//	&env->sp_t[3].bpp, &env->sp_t[3].s_l, &env->sp_t[3].end);
 	env->sp_t[4].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/monkeymiddle.XPM", &env->sp_t[4].width, &env->sp_t[4].height);
-	//env->sp_t[4].img_str = mlx_get_data_addr(env->sp_t[4].img,
-	//	&env->sp_t[4].bpp, &env->sp_t[4].s_l, &env->sp_t[4].end);
 	init_sprite_extra(env);
 }
 
@@ -95,6 +79,20 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 		pos_y = j * coef + coef / 2;
 		sp->sprite[*x].cd.x = pos_x;
 		sp->sprite[*x].cd.y = pos_y;
+		/***************** 18/04/19 *********************/
+		pos_x = i * coef;
+		pos_y = j * coef;
+		sp->sprite[*x].t.mid.x = pos_x;
+		sp->sprite[*x].t.mid.y = pos_y;
+		sp->sprite[*x].t.c_left_h.x = pos_x;
+		sp->sprite[*x].t.c_left_h.y = pos_y;
+		sp->sprite[*x].t.c_right_h.x = pos_x + coef;
+		sp->sprite[*x].t.c_right_h.y = pos_y;
+		sp->sprite[*x].t.c_right_b.x = pos_x + coef;
+		sp->sprite[*x].t.c_right_b.y = pos_y + coef;
+		sp->sprite[*x].t.c_left_b.x = pos_x;
+		sp->sprite[*x].t.c_left_b.y = pos_y + coef;
+		/************************************************/
 	}
 	// 15 : open = 1 ??
 	*x += 1;

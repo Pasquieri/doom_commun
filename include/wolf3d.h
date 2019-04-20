@@ -120,6 +120,35 @@ typedef struct	s_det // horizontal || vertical
 	t_coord	cd;
 }				t_det;
 
+typedef struct	s_test_sp
+{
+	double	alpha;
+	double	beta;
+	double	gamma;
+	double	a1;
+	double	a2;
+
+	//coordonnees initialisées dans put_sprite_img : init_lim_cd
+	t_coord	cd_1; // OK
+	t_coord	cd_2; // OK
+	/**** BEGIN *********************************************/
+	//coordonnees initialisées dans init_Sprite : init_tab_Sprite
+	/************************************   -> fill_info_sprite  */
+	t_coord	mid; // => correspond a cd
+	t_coord	c_left_h; // coin haut gauche
+	t_coord	c_right_h; // coin haut droit
+	t_coord	c_right_b; // coin bas droit
+	t_coord	c_left_b; // coin bas gauche
+	/********************************************** END ******/
+	/*** BEGIN ***********************************************/
+	// => init dans put_Sprite_img => init_win_x
+	t_coord	f_int; // => correspond a cd_h ou cd_v
+	double	angle_f_int; // necessite h et v
+	int		win_x; // == > correspond a win_x : h ou v
+	/********************************************* END *******/
+
+}				t_test_sp;
+
 typedef struct	s_sprite
 {
 	int		i;
@@ -129,6 +158,7 @@ typedef struct	s_sprite
 
 	double	d_milieu;
 	double	h_percue;
+
 	int		det; // detec // USE
 	int		det_hor; // USE
 	int		win_x; // USE
@@ -137,9 +167,12 @@ typedef struct	s_sprite
 	t_coord	cd_h;  // USE
 	t_coord	cd_v;
 
+	t_test_sp	t;
+	double	angle_h;
+	double	angle_v;
+
 	int		o_i; // USE
 	int		o_f;
-
 	t_det	detec[2];
 	int		ordre; //affichage sprite dans l'ordre ?
 	_Bool	proximity;
