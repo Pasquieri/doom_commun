@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/15 20:53:09 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/21 20:36:58 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ static void	put_sprite_grid(t_env *env, double h_percue, int y, t_mlx *sp_t, dou
 	int		j;
 
 	if (env->orientation == 0)
-		p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
+			p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
+// pour etre dans le meme sens : necessaire ?
+//	p_x = fmod((env->coef - env->coord_spr.x), (float)env->coef) * 100 / env->coef;
 	else
-		p_x = fmod(env->coord_spr.y, (float)env->coef) * 100 / env->coef;
+			p_x = fmod(env->coord_spr.y, (float)env->coef) * 100 / env->coef;
 	if (y > (env->h_regard - bep))
 		p_y = (y - (env->h_regard - bep)) * 100. / h_percue;
-//	(void)bep;
-//	if (y > (env->h_regard - (h_percue / 2)))
-//		p_y = (y - (env->h_regard - (h_percue / 2))) * 100. / h_percue;
 	else
 		p_y = y * 100. / h_percue;
 	i = 4 * env->img_x + y * env->m[0].s_l;
@@ -39,9 +38,6 @@ static void	put_sprite_grid(t_env *env, double h_percue, int y, t_mlx *sp_t, dou
 	env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
 	env->m[0].img_str[i + 2] = luminosite(sp_t->img_str[j + 2], env->lum);
 	env->m[0].img_str[i + 3] = (char)0;
-//		env->m[0].img_str[i] = (char)150;
-//		env->m[0].img_str[i + 1] = (char)100;
-//		env->m[0].img_str[i + 2] = (char)250;
 	}
 //	test_grid(env, h_percue, y, sp_t); // cf plus bas pour un test
 }
@@ -110,7 +106,7 @@ static double	ft_distance(t_env *env, int i, int cmp)
 	return (d);
 }
 
-void	print_sprite(t_env *env)
+void	print_sprite_wall(t_env *env)
 {
 	int	i;
 	int	cmp;

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/15 20:12:16 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/21 21:17:39 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdio.h>
 # include <pthread.h>
 
-# define FLOOR 0 // TEXT SOL && PLAFOND OK
+# define FLOOR 0 // SOL OK
 # define W_GRAY 1
 # define W_WHITE 2 // WALL OK
 # define W_BLUE 3
@@ -37,9 +37,9 @@
 # define MONKEY 14 // sprite en mouvement : ennemis
 # define DOOR_CLOSE 15 // animation a faire
 # define SYRINGE 18
+# define PLAFOND 21 // PLAFOND OK
+# define SKY 22 // SKYBOX OK
 # define NB_SP 9
-# define PLAFOND 21 // OK
-# define SKY 22 // OK
 # define W_HEIGHT 870
 # define W_WIDTH 1200
 # define SPEED 0.8
@@ -107,12 +107,6 @@ typedef struct	s_mlx
 	int		height;
 }				t_mlx;
 
-typedef struct	s_inv /* a supp plus tard */
-{
-	int		lim_gun[5];
-	_Bool	gun;
-}				t_inv;
-
 typedef struct	s_det // horizontal || vertical
 {
 	_Bool	on;
@@ -127,57 +121,53 @@ typedef struct	s_test_sp
 	double	gamma;
 	double	a1;
 	double	a2;
-
-	//coordonnees initialisées dans put_sprite_img : init_lim_cd
-	t_coord	cd_1; // OK
-	t_coord	cd_2; // OK
-	/**** BEGIN *********************************************/
-	//coordonnees initialisées dans init_Sprite : init_tab_Sprite
-	/************************************   -> fill_info_sprite  */
-	t_coord	mid; // => correspond a cd
-	t_coord	c_left_h; // coin haut gauche
-	t_coord	c_right_h; // coin haut droit
-	t_coord	c_right_b; // coin bas droit
-	t_coord	c_left_b; // coin bas gauche
-	/********************************************** END ******/
-	/*** BEGIN ***********************************************/
-	// => init dans put_Sprite_img => init_win_x
-	t_coord	f_int; // => correspond a cd_h ou cd_v
-	double	angle_f_int; // necessite h et v
-	int		win_x; // == > correspond a win_x : h ou v
-	/********************************************* END *******/
-
 }				t_test_sp;
+
+typedef struct	s_cd
+{
+	t_coord	mid;
+	t_coord	left_h;
+	t_coord	left_b;
+	t_coord	right_h;
+	t_coord	right_b;
+}				t_cd;
 
 typedef struct	s_sprite
 {
 	int		i;
 	int		j;
+	t_cd	c;
 
-	t_coord	cd; // milieu de la case
-
-	double	d_milieu;
-	double	h_percue;
-
-	int		det; // detec // USE
-	int		det_hor; // USE
-	int		win_x; // USE
-	int		win_h_x;
-	int		win_v_x;
-	t_coord	cd_h;  // USE
-	t_coord	cd_v;
-
+/****** SPRITES *******/
+	int		det;
+	int		f_win_x;
+	t_coord	f_int;
+	double	f_angle;
+	t_coord	coin1;
+	t_coord	coin2;
 	t_test_sp	t;
+
+	int		win_h_x;
+	t_coord	cd_h;
 	double	angle_h;
+	int		win_v_x;
+	t_coord	cd_v;
 	double	angle_v;
 
-	int		o_i; // USE
-	int		o_f;
+/***** ADD TEST *****/
+//	int		o_i;
+//	int		o_f;
+//	int		det;
+//	int		det_hor;
+//	int		win_x;
+
+/****** GRID && WIN ******/
 	t_det	detec[2];
-	int		ordre; //affichage sprite dans l'ordre ?
+
 	_Bool	proximity;
-	_Bool	alive;
 	_Bool	open;
+	//_Bool	alive; // mob
+	//int	ordre; //affichage sprite dans l'ordre ?
 }				t_sprite;
 
 typedef struct	s_sp
@@ -187,19 +177,12 @@ typedef struct	s_sp
 	t_sprite	*sprite;
 }				t_sp;
 
-typedef struct	s_door /*a supp plus tard */
-{
-	int	i;
-	int	j;
-	int	on;
-	int	off;
-}				t_door;
-
 typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
 	t_mlx	m[2];
+	_Bool	key[604];
 
 	//thread
 	int		current_thread;
@@ -244,18 +227,16 @@ typedef struct	s_env
 	int		cmp_wall;
 	t_coord	coord_mur;
 	int		wall_nb;
+	double	dist;
 	int		img_x;
-	int		img_y; // ?
+	int		img_y;
 	int		h_regard;
 	float	lim;
 	float	lim_sol;
-	int		orientation; // cardinaux
+	int		orientation;
 	int		skybox;
 	int		lum;
 	int		lum_int;
-
-	double	dist;
-	t_door	door;
 
 	double	jump;
 	double	h_jump;
@@ -266,9 +247,8 @@ typedef struct	s_env
 	t_mlx	sp_t[NB_SP]; // textures des sprites
 	t_sp	sp[NB_SP];
 	t_coord	coord_spr;
-
-	t_inv	inv;
-	_Bool	key[604];
+	int		lim_gun[5]; // seringue ??
+	_Bool	gun;
 }				t_env;
 
 /*action*/
@@ -318,22 +298,19 @@ int				verif_valeur(char *str, t_env *env);
 int				wall_line(char *str, t_env *env);
 int				wall_row(char *str, int nb_char, t_env *env);
 /*put_image*/
-void			deal_door(t_env *env);
 int				ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
 void			color_case(t_env *env);
 void			quadrillage(t_env *env);
 void			print_cercle(t_env *env);
 void			print_gun(t_env *env, int k);
-void			print_sprite(t_env *env);
 void			print_tab(t_env *env, float p_y, float p_x, t_mlx *sp);
 void			put_pxl_img(t_env *env, int x, int y, int color);
-void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text, double bep);
+void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text,
+					double bep);
 char			luminosite(int text, int coef);
-void			put_sprite_img(t_env *env);
 /*raycasting*/
 void			ft_pthread(t_env *env);
 void			*affichage_mur(void *env);
-void			affichage_sprite(t_env *env);
 int				intersection_horizontal(t_env *env, t_coord *cd);
 int				intersection_vertical(t_env *env, t_coord *cd);
 double			detection_mur(t_env *env);
@@ -347,11 +324,17 @@ void			exec_calcul(t_env *env, int d_regard, int init);
 void			clean_img(t_env *env);
 void			affichage_sol(double y, double h_percue, t_env *env);
 void			affichage_plafond(double y, double h_percue, t_env *env);
-void			check_sprite(int i, int j, t_env *env, int orientation, t_coord cd);
+/*sprites*/
+void			affichage_sprite(t_env *env);
+void			detection_mur_sp(t_env *env);
+int				verif_hor_sp(t_env *env, t_coord *coord);
+int				verif_ver_sp(t_env *env, t_coord *coord);
+void			check_sprite(int i, int j, t_env *env, int orient, t_coord cd);
+void			put_sprite_img(t_env *env);
+void			print_sprite_wall(t_env *env);
+void			deal_door(t_env *env);
+void			check_grid_win(t_env *env, t_coord cd, int o, int i, int j);
 /*song*/
 int				recup_music(char *str);
-
-/*others*/
-
 
 #endif

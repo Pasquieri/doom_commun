@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/21 19:35:16 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/21 21:18:47 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,23 @@ static int	init_coord_lim(t_env *env, t_coord *coord)
 	return (0);
 }
 
-int			verif_ver(t_env *env, t_coord *coord)
+static void	ft_check_sprite(t_env *env, int o, t_coord cd)
+{
+	int	i;
+	int	j;
+
+	if (env->angle > 90 && env->angle < 270)
+		i = ((cd.x) - 1) / env->coef;
+	else
+		i = (int)(cd.x / env->coef);
+	j = (int)(cd.y / env->coef);
+	if (env->tab[j][i] == 10 || env->tab[j][i] == 11)
+		check_grid_win(env, cd, o, i, j);
+	else
+		check_sprite(i, j, env, o, cd);
+}
+
+int			verif_ver_sp(t_env *env, t_coord *coord)
 {
 	int	i;
 	int	j;
@@ -39,6 +55,7 @@ int			verif_ver(t_env *env, t_coord *coord)
 	j = (int)(coord->y / env->coef);
 	if (i < env->x && j < env->x)
 	{
+		ft_check_sprite(env, 1, *coord);
 		if (env->tab[j][i] > 0 && env->tab[j][i] <= 7)
 		{
 			coord->val = env->tab[j][i];
@@ -54,69 +71,3 @@ int			verif_ver(t_env *env, t_coord *coord)
 	return (0);
 }
 
-int			coef_ver(t_env *env, int *coef_x, int *coef_y)
-{
-	*coef_x = 1;
-	*coef_y = 1;
-	if (env->angle > 90. && env->angle < 270.)
-		*coef_x = -1;
-	if (!(env->angle > 90. && env->angle <= 270.))
-		*coef_y = -1;
-	return (0);
-}
-
-static void	init_coord(t_env *env, t_coord *coord, int coef, int cas)
-{
-	int	a;
-
-	a = 0;
-	if (cas == 1)
-	{
-		a = env->perso_x;
-		while ((coef == 1) && (a % env->coef) != 0)
-			a++;
-		while ((coef == -1) && (a % env->coef) != 0)
-			a--;
-		coord->x = a;
-		coord->y = env->perso_y;
-	}
-	else if (cas == 2)
-	{
-		a = env->perso_y;
-		while ((coef == 1) && (a % env->coef) != 0)
-			a++;
-		while ((coef == -1) && (a % env->coef) != 0)
-			a--;
-		coord->x = env->perso_x;
-		coord->y = a;
-	}
-}
-
-int			init_var_ver(t_env *env, double *ya, double *xa, t_coord *coord2)
-{
-	int	coef;
-
-	coef = 1;
-	if (env->angle == 0. || env->angle == 180.)
-	{
-		*ya = 0;
-		*xa = env->coef;
-		env->angle == 180. ? coef = -1 : coef;
-		init_coord(env, coord2, coef, 1);
-	}
-	else if (env->angle == 90. || env->angle == 270.)
-	{
-		*ya = env->coef;
-		*xa = 0;
-		env->angle == 90. ? coef = -1 : coef;
-		init_coord(env, coord2, coef, 2);
-	}
-	else
-	{
-		*xa = env->coef;
-		*ya = env->coef * tan(env->angle * M_PI / 180);
-		if (intersection_vertical(env, coord2) == 1)
-			return (1);
-	}
-	return (0);
-}

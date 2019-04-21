@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/15 20:07:22 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/21 21:10:24 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void		sprite_init(t_env *env)
 			env->sp[k].sprite[cmp].cd_v.x = -1;
 			env->sp[k].sprite[cmp].cd_v.y = -1;
 			env->sp[k].sprite[cmp].det = 0;
-			env->sp[k].sprite[cmp].win_x = 0;
+			env->sp[k].sprite[cmp].f_win_x = 0;
 		}
 	}
 }
@@ -64,7 +64,6 @@ static void		sprite_init(t_env *env)
 void			affichage_sprite(t_env *env)
 {
 	double	a;
-	double	d_mur;
 	int		x;
 
 	a = env->d_regard + 30;
@@ -74,17 +73,14 @@ void			affichage_sprite(t_env *env)
 	sprite_init(env); // ADD initialise les coords i de chaque sprite == -1;
 	while (++x < W_WIDTH)
 	{
-		env->angle = a;
-		env->angle = verif_angle(env->angle);
-		d_mur = detection_mur(env);
-		d_mur = d_mur * cos((a - env->d_regard) * M_PI / 180);
-		env->dist = d_mur;
+		env->angle = verif_angle(a);
+		detection_mur_sp(env);
+		env->dist = env->dist * cos((a - env->d_regard) * M_PI / 180);
 		env->img_x = x;
-		print_sprite(env);
+		print_sprite_wall(env);
 		a -= (60. / W_WIDTH);
 	}
 	put_sprite_img(env);
-//	printf_sprite(env);
 }
 
 

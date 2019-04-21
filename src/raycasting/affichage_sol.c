@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 10:28:54 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/14 19:30:14 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/21 19:32:11 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,20 @@ static void	put_texture_floor(double pos_sol_x, double pos_sol_y, t_env *env, in
 	int	i;
 	int	j;
 
-	p_x = (int)(pos_sol_x * 100) % 100; 
-	p_y = (int)(pos_sol_y * 100) % 100; 
+	p_x = (int)(pos_sol_x * 100) % 100;
+	p_y = (int)(pos_sol_y * 100) % 100;
 	i = 4 * env->img_x + y * env->m[0].s_l;
 	j = 4 * (int)(env->text[0].width * p_x / 100)
 		+ (int)(env->text[0].height * p_y / 100) * env->text[0].s_l;
 	env->m[0].img_str[i] = luminosite(env->text[0].img_str[j], env->lum);
-	env->m[0].img_str[i + 1] = luminosite(env->text[0].img_str[j + 1], env->lum);
-	env->m[0].img_str[i + 2] = luminosite(env->text[0].img_str[j + 2], env->lum);
+	env->m[0].img_str[i + 1] = luminosite(env->text[0].img_str[j + 1],
+			env->lum);
+	env->m[0].img_str[i + 2] = luminosite(env->text[0].img_str[j + 2],
+			env->lum);
 	env->m[0].img_str[i + 3] = (char)0;
 }
 
-void	affichage_sol(double y, double h_percue, t_env *env)
+void		affichage_sol(double y, double h_percue, t_env *env)
 {
 
 	double ac_sol;
@@ -70,22 +72,23 @@ void	affichage_sol(double y, double h_percue, t_env *env)
 		ac_sol = (bc * ad) / by;
 		ac_sol = ac_sol / env->d_ecran;
 		//ac_sol = (env->h_regard) / ((double)(y - env->h_regard) / (env->d_ecran * (env->dist / tmp)));
-		ac_sol = ac_sol / cos((env->angle - env->d_regard) * M_PI / 180); //algo oeil de poisson
-		if (env->angle > 0 && env-> angle <= 90)
+		ac_sol = ac_sol / cos((env->angle - env->d_regard) * M_PI / 180);
+		//algo oeil de poisson
+		if (env->angle > 0 && env->angle <= 90)
 		{
 			m = cos((M_PI * env->angle) / 180) * ac_sol;
 			n = sin((M_PI * env->angle) / 180) * ac_sol;
 			pos_sol_x = pos_perso_x + m / env->coef;
 			pos_sol_y = pos_perso_y - n / env->coef;
 		}
-		else if (env->angle > 90 && env-> angle <= 180)
+		else if (env->angle > 90 && env->angle <= 180)
 		{
 			m = -1 * cos((M_PI * env->angle) / 180) * ac_sol;
 			n = sin((M_PI * env->angle) / 180) * ac_sol;
 			pos_sol_x = pos_perso_x - m / env->coef;
 			pos_sol_y = pos_perso_y - n / env->coef;
 		}
-		else if (env->angle > 180 && env-> angle <= 270)
+		else if (env->angle > 180 && env->angle <= 270)
 		{
 			m = -1 * cos((M_PI * env->angle) / 180) * ac_sol;
 			n = -1 * sin((M_PI * env->angle) / 180) * ac_sol;
@@ -104,4 +107,3 @@ void	affichage_sol(double y, double h_percue, t_env *env)
 		y++;
 	}
 }
-

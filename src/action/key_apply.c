@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/15 21:09:18 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/21 19:57:48 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 	}
 	if (env->key[16] && !env->menu)
 		env->h_story = 0;
-	if (env->key[37] && env->inv.gun == 1 && !env->menu) // coup de feu : key l
+	if (env->key[37] && env->gun == 1 && !env->menu) // coup de feu : key l
 	{
 		print_gun(env, 3);
 		mlx_put_image_to_window(env->mlx,env->win,env->m[0].img, 0,0);
@@ -145,10 +145,10 @@ int			key_release(int key, t_env *env)
 	}
 	if (key == 40 && !env->menu) // pour afficher le gun : key k
 	{
-		if (env->inv.gun == 0)
-			env->inv.gun = 1;
+		if (env->gun == 0)
+			env->gun = 1;
 		else
-			env->inv.gun = 0;
+			env->gun = 0;
 	}
 	return (0);
 }

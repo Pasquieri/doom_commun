@@ -38,11 +38,8 @@ SRC = src/main.c\
       src/put_image/put_pxl_img.c\
 	  src/put_image/mini_map.c\
 	  src/put_image/put_texture_img.c\
-	  src/put_image/put_sprite_img.c\
-	  src/put_image/print_sprite.c\
 	  src/put_image/print_tab.c\
 	  src/put_image/print_gun.c\
-	  src/put_image/deal_door.c\
 	  \
 	  src/raycasting/ft_pthread.c\
 	  src/raycasting/detec_first_inter.c\
@@ -50,12 +47,19 @@ SRC = src/main.c\
 	  src/raycasting/detection_mur_horizontal.c\
 	  src/raycasting/detection_mur_vertical.c\
 	  src/raycasting/affichage_mur.c\
-	  src/raycasting/affichage_sprite.c\
 	  src/raycasting/exec_calcul.c\
 	  src/raycasting/affichage_sol.c\
-	  src/raycasting/check_sprite.c\
-	  src/raycasting/affichage_plafond.c
-	   
+	  src/raycasting/affichage_plafond.c\
+	  \
+	  src/sprites/affichage_sprite.c\
+	  src/sprites/detection_mur_sp.c\
+	  src/sprites/check_sprite.c\
+	  src/sprites/verif_mur_ver.c\
+	  src/sprites/verif_mur_hor.c\
+	  src/sprites/put_sprite_img.c\
+	  src/sprites/print_sprite.c\
+	  src/sprites/deal_door.c
+
 
 HEADER = -Ilibft -Iinclude
 

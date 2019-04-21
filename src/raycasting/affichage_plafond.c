@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 10:28:54 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/15 16:39:28 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/21 19:32:55 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ static void	put_texture_sky(double pos_plafond_x, double pos_plafond_y, t_env *e
 	j = 4 * (int)(env->text[21].width * p_x / 100)
 		+ (int)(env->text[21].height * p_y / 100) * env->text[21].s_l;
 	env->m[0].img_str[i] = luminosite(env->text[21].img_str[j], env->lum);
-	env->m[0].img_str[i + 1] = luminosite(env->text[21].img_str[j + 1], env->lum);
-	env->m[0].img_str[i + 2] = luminosite(env->text[21].img_str[j + 2], env->lum);
+	env->m[0].img_str[i + 1] = luminosite(env->text[21].img_str[j + 1],
+			env->lum);
+	env->m[0].img_str[i + 2] = luminosite(env->text[21].img_str[j + 2],
+			env->lum);
 	env->m[0].img_str[i + 3] = (char)0;
 }
 
-void	affichage_plafond(double y, double h_percue, t_env *env)
+void		affichage_plafond(double y, double h_percue, t_env *env)
 {
 
 	double ac_plafond;
@@ -62,7 +64,7 @@ void	affichage_plafond(double y, double h_percue, t_env *env)
 
 	pos_perso_x = env->perso_x / (double)env->coef;
 	pos_perso_y = env->perso_y / (double)env->coef;
-	tmp = (env->h_regard) / ((y - env->h_regard) / env->d_ecran );
+	tmp = (env->h_regard) / ((y - env->h_regard) / env->d_ecran);
 	while (y > 0)
 	{
 		by = bk - y;
@@ -71,25 +73,27 @@ void	affichage_plafond(double y, double h_percue, t_env *env)
 		//ac_plafond = (bc * adp) / by;
 		//ac_plafond = ac_plafond / env->d_ecran;
 
-		ac_plafond = (env->h_regard) / ((double)(y - env->h_regard) / (env->d_ecran * (env->dist / tmp)));
+		ac_plafond = (env->h_regard) / ((double)(y - env->h_regard)
+				/ (env->d_ecran * (env->dist / tmp)));
 		// cette formule ne fait pas le pb du plafond qui ne s'eloigne pas avec la hauteur des murs qui augmente
 		// mais je ne sais pas comment modifer avec tes nouvelles valeurs :D
-		ac_plafond = ac_plafond / cos((env->angle - env->d_regard) * M_PI / 180); //algo oeil de poisson
-		if (env->angle > 0 && env-> angle <= 90)
+		ac_plafond = ac_plafond / cos((env->angle - env->d_regard) * M_PI / 180);
+		//algo oeil de poisson
+		if (env->angle > 0 && env->angle <= 90)
 		{
 			m = cos((M_PI * env->angle) / 180) * ac_plafond;
 			n = sin((M_PI * env->angle) / 180) * ac_plafond;
 			pos_plafond_x = pos_perso_x + m / env->coef;
 			pos_plafond_y = pos_perso_y - n / env->coef;
 		}
-		else if (env->angle > 90 && env-> angle <= 180)
+		else if (env->angle > 90 && env->angle <= 180)
 		{
 			m = -1 * cos((M_PI * env->angle) / 180) * ac_plafond;
 			n = sin((M_PI * env->angle) / 180) * ac_plafond;
 			pos_plafond_x = pos_perso_x - m / env->coef;
 			pos_plafond_y = pos_perso_y - n / env->coef;
 		}
-		else if (env->angle > 180 && env-> angle <= 270)
+		else if (env->angle > 180 && env->angle <= 270)
 		{
 			m = -1 * cos((M_PI * env->angle) / 180) * ac_plafond;
 			n = -1 * sin((M_PI * env->angle) / 180) * ac_plafond;
