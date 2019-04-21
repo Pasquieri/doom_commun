@@ -12,19 +12,21 @@
 
 #include "../../include/wolf3d.h"
 
-static void	put_sprite(t_env *env, double h_percue, int y, t_mlx *sp_t, int x, double d_sol)
+static void	put_sprite(t_env *env, double h_percue, int y, t_mlx *sp_t, double d_sol, double det, double a1)
 {
 	float	p_x;
 	float	p_y;
 	int		i;
 	int		j;
 
-
 //	if (env->orientation == 0)
 //		p_x = fmod(COORD.X, (float)env->coef) * 100 / env->coef;
 //	else
 //		p_x = fmod(COORD.Y, (float)env->coef) * 100 / env->coef;
-	p_x = x * 100. / h_percue;
+//	p_x = x * 100. / h_percue;
+
+	p_x = det * 100. / a1;
+
 	if (y > (env->h_regard + d_sol))
 		p_y = (y - (env->h_regard + d_sol)) * 100. / h_percue;
 	else
@@ -47,7 +49,6 @@ static void	put_sprite(t_env *env, double h_percue, int y, t_mlx *sp_t, int x, d
 static void	affiche_sprite(double d_sp, t_env *env, int i, int cmp)
 {
 	double	y;
-	int		x;
 	double	lim;
 	double	h_percue;
 	double	hauteur;
@@ -60,18 +61,25 @@ static void	affiche_sprite(double d_sp, t_env *env, int i, int cmp)
 	d_sol = - h_percue / 2;
 	if (i == 3 || i == 8)
 		d_sol = h_percue / 2;
-	y = env->h_regard + d_sol;
-	y < 0. ? y = -1. : y;
-	lim = y + h_percue;
-	while (++y < lim && y < W_HEIGHT)
+	double	a1;
+	double	a2;
+	double	det;
+
+	a2 = env->sp[i].sprite[cmp].t.a2;
+	a1 = env->sp[i].sprite[cmp].t.a1 - a2;
+	det = env->sp[i].sprite[cmp].t.angle_f_int - a2;
+	env->img_x = env->sp[i].sprite[cmp].win_x;
+	while (det > 0. && env->img_x < W_WIDTH)
 	{
-		x = -1;
-		env->img_x = env->sp[i].sprite[cmp].win_x;
-		while (++x < h_percue && env->img_x < W_WIDTH)
+		y = env->h_regard + d_sol;
+		y < 0. ? y = -1. : y;
+		lim = y + h_percue;
+		while (++y < lim && y < W_HEIGHT) // reste cette partie a modifier ...
 		{
-			put_sprite(env, h_percue, y, &env->sp_t[i], x, d_sol);
-			env->img_x++;
+			put_sprite(env, h_percue, y, &env->sp_t[i], d_sol, det, a1);
 		}
+		det -= (60. / W_WIDTH);
+		env->img_x++;
 	}
 }
 
