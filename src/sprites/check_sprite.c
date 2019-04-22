@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/21 21:19:31 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/22 17:34:55 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	check_grid_win(t_env *env, t_coord cd, int orient, int i, int j)
 
 	k = -1;
 	index_sp = env->tab[j][i] - 10;
+	if (env->tab[j][i] == DOOR)
+		index_sp = 5;
 	while (++k < env->sp[index_sp].nb)
 	{
 		if (env->sp[index_sp].sprite[k].i == i

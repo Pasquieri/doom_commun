@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 19:12:01 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/21 21:18:39 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/22 17:34:36 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void	ft_check_sprite(t_env *env, int o, t_coord cd)
 	else
 		j = (int)(cd.y / env->coef);
 	i = (int)(cd.x / env->coef);
-	if (env->tab[j][i] == 10 || env->tab[j][i] == 11)
+	if (env->tab[j][i] == 10 || env->tab[j][i] == 11
+			|| env->tab[j][i] == 15 || env->tab[j][i] == DOOR)
 		check_grid_win(env, cd, o, i, j);
 	else
 		check_sprite(i, j, env, o, cd);
