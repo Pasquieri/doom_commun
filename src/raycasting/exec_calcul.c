@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/21 19:59:00 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/22 18:38:18 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static void	init_var(t_env *env, int d_regard)
 	env->map_entree = 0;
 	env->coef = 200 / (env->x);
 	init_env(env);
-	env->d_regard = d_regard;
+	(void)d_regard;
+	env->d_regard = env->perso_r;
 	env->lim_gun[0] = 0;   // pour les 4 imgs dans la sprite sheet :
 	env->lim_gun[1] = 150; // separation (x) entre chaque
 	env->lim_gun[2] = 365; // theoriquement ... a voir si besoin de le
