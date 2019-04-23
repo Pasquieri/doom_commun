@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/21 21:37:17 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:48:14 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,46 @@ static void	affiche_sprite(double d_sp, t_env *env, int i, int cmp)
 
 static	void	init_win_x(t_env *env, int i, int cmp)
 {
-	double	d_h;
-	double	d_v;
+//	double	d_h;
+//	double	d_v;
+
+/*	if (env->sp[i].sprite[cmp].detec[0].on == 1 && env->sp[i].sprite[cmp].detec[1].on == 1)
+	{
+		if (env->sp[i].sprite[cmp].win_h_x < env->sp[i].sprite[cmp].win_v_x)
+		{
+			d_h = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd_h.x, 2)
+				+ pow(env->perso_y - env->sp[i].sprite[cmp].cd_h.y, 2));
+			d_v = d_h + 1;
+		}
+		else if (env->sp[i].sprite[cmp].win_v_x < env->sp[i].sprite[cmp].win_h_x)
+		{
+			d_v = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd_v.x, 2)
+				+ pow(env->perso_y - env->sp[i].sprite[cmp].cd_v.y, 2));
+			d_h = d_v + 1;
+		}
+		else
+		{
+			d_h = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd_h.x, 2)
+				+ pow(env->perso_y - env->sp[i].sprite[cmp].cd_h.y, 2));
+			d_v = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd_v.x, 2)
+				+ pow(env->perso_y - env->sp[i].sprite[cmp].cd_v.y, 2));
+		}
+	}
+	else
+	{
+		if (env->sp[i].sprite[cmp].detec[0].on == 1)
+		{
+			d_h = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd_h.x, 2)
+				+ pow(env->perso_y - env->sp[i].sprite[cmp].cd_h.y, 2));
+			d_v = d_h + 1;
+		}
+		else
+		{
+			d_v = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd_v.x, 2)
+				+ pow(env->perso_y - env->sp[i].sprite[cmp].cd_v.y, 2));
+			d_h = d_v + 1;
+		}
+	}
 
 	if (env->sp[i].sprite[cmp].detec[0].on == 1)
 		d_h = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd_h.x, 2)
@@ -111,21 +149,24 @@ static	void	init_win_x(t_env *env, int i, int cmp)
 		+ pow(env->perso_y - env->sp[i].sprite[cmp].cd_h.y, 2)) + 1;
 
 	if (d_h < d_v)
-	{
+	{*/
 		/****************** 18/04/19 ************************/
-		env->sp[i].sprite[cmp].f_int = env->sp[i].sprite[cmp].cd_h;
+/*		env->sp[i].sprite[cmp].f_int = env->sp[i].sprite[cmp].cd_h;
 		env->sp[i].sprite[cmp].f_win_x = env->sp[i].sprite[cmp].win_h_x;
 		env->sp[i].sprite[cmp].f_angle = env->sp[i].sprite[cmp].angle_h;
-		/****************************************************/
-	}
+		*//****************************************************/
+/*	}
 	else
-	{
+	{*/
 		/******************* 18/04/19 **************************/
-		env->sp[i].sprite[cmp].f_int = env->sp[i].sprite[cmp].cd_v;
+/*		env->sp[i].sprite[cmp].f_int = env->sp[i].sprite[cmp].cd_v;
 		env->sp[i].sprite[cmp].f_win_x = env->sp[i].sprite[cmp].win_v_x;
 		env->sp[i].sprite[cmp].f_angle = env->sp[i].sprite[cmp].angle_v;
-		/********************************************************/
-	}
+		*//********************************************************/
+//	}
+	env->sp[i].sprite[cmp].f_int = env->sp[i].sprite[cmp].cd_i;
+	env->sp[i].sprite[cmp].f_win_x = env->sp[i].sprite[cmp].win_x;
+	env->sp[i].sprite[cmp].f_angle = env->sp[i].sprite[cmp].a_i;
 //	printf("angle first int : %f\n", env->sp[i].sprite[cmp].t.angle_f_int);
 }
 
@@ -141,7 +182,7 @@ static void	init_lim_cd(t_env *env, int k, int cmp)
 	x = env->sp[k].sprite[cmp].c.mid.x;
 	y = env->sp[k].sprite[cmp].c.mid.y;
 
-	if (i == env->sp[k].sprite[cmp].i && j != env->sp[k].sprite[cmp].j)
+/*	if (i == env->sp[k].sprite[cmp].i && j != env->sp[k].sprite[cmp].j)
 	{
 		if (env->d_regard > 0 && env->d_regard <= 180)
 		{
@@ -167,9 +208,8 @@ static void	init_lim_cd(t_env *env, int k, int cmp)
 			env->sp[k].sprite[cmp].coin2 = env->sp[k].sprite[cmp].c.left_b;
 		}
 	}
-	else
+	else*/
 	{
-		/*********** en fonction de perso (x;y) **************/
 		if (env->perso_x <= x && env->perso_y <= y)
 		{
 			env->sp[k].sprite[cmp].coin1 = env->sp[k].sprite[cmp].c.right_h;
@@ -190,28 +230,6 @@ static void	init_lim_cd(t_env *env, int k, int cmp)
 			env->sp[k].sprite[cmp].coin1  = env->sp[k].sprite[cmp].c.left_h;
 			env->sp[k].sprite[cmp].coin2 = env->sp[k].sprite[cmp].c.right_b;
 		}
-
-		/************ en fonction de l'angle **************/
-/*		if (env->d_regard > 90 && env->d_regard <= 180)
-		{
-			env->sp[k].sprite[cmp].coin1 = env->sp[k].sprite[cmp].t.c_left_b;
-			env->sp[k].sprite[cmp].coin2 = env->sp[k].sprite[cmp].t.c_right_h;
-		}
-		else if (env->d_regard > 270 && env->d_regard <= 360)
-		{
-			env->sp[k].sprite[cmp].coin1 = env->sp[k].sprite[cmp].t.c_right_h;
-			env->sp[k].sprite[cmp].coin2 = env->sp[k].sprite[cmp].t.c_left_b;
-		}
-		else if (env->d_regard > 180 && env->d_regard <= 270)
-		{
-			env->sp[k].sprite[cmp].coin1 = env->sp[k].sprite[cmp].t.c_right_b;
-			env->sp[k].sprite[cmp].coin2 = env->sp[k].sprite[cmp].t.c_left_h;
-		}
-		else if (env->d_regard > 0 && env->d_regard <= 90)
-		{
-			env->sp[k].sprite[cmp].coin1 = env->sp[k].sprite[cmp].t.c_left_h;
-			env->sp[k].sprite[cmp].coin2 = env->sp[k].sprite[cmp].t.c_right_b;
-		}*/
 	}
 }
 
@@ -285,9 +303,10 @@ void	put_sprite_img(t_env *env)
 				d_sp = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].c.mid.x, 2)
 					+ pow(env->perso_y - env->sp[i].sprite[cmp].c.mid.y, 2));
 				env->lum = d_sp * 255 / env->lum_int;
-				init_win_x(env, i, cmp);
-				init_lim_cd(env, i , cmp); // 18/04/19
-				init_angle(env, i, cmp); // 18/04/19
+
+				init_win_x(env, i, cmp); // inutile si deja fait ds check_sprite
+				init_lim_cd(env, i , cmp);
+				init_angle(env, i, cmp);
 				//if (d_sp <= env->dist) // a gerer d'une certaine maniere ...
 				affiche_sprite(d_sp, env, i, cmp);
 			}

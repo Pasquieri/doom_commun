@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:56:40 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/22 18:51:21 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/22 19:10:07 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int			recup_info_player(char *str, char c)
 		x = recup_x(str, 0, x, c);
 	else if (c == 'r')
 		r = recup_x(str, 0, x, c);
-	printf("r : %d\n", r);
 	if (c == 'x' || c == 'y')
 		return (((x < 1) || (x > 39)) ? -1 : x);
 	else if (c == 'r')

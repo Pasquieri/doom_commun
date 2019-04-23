@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/21 21:17:39 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:47:51 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ typedef struct	s_mlx
 	int		height;
 }				t_mlx;
 
-typedef struct	s_det // horizontal || vertical
+typedef struct	s_det
 {
 	_Bool	on;
 	double	dist;
@@ -155,11 +155,12 @@ typedef struct	s_sprite
 	double	angle_v;
 
 /***** ADD TEST *****/
-//	int		o_i;
+	int		o_i;
+	t_coord	cd_i;
+	double	a_i;
 //	int		o_f;
-//	int		det;
-//	int		det_hor;
-//	int		win_x;
+	int		det_hor;
+	int		win_x;
 
 /****** GRID && WIN ******/
 	t_det	detec[2];

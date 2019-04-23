@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/21 21:10:24 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/22 19:13:16 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,37 @@ static void		sprite_init(t_env *env)
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
 		{
-			env->sp[k].sprite[cmp].cd_h.x = -1;
-			env->sp[k].sprite[cmp].cd_h.y = -1;
-			env->sp[k].sprite[cmp].cd_v.x = -1;
-			env->sp[k].sprite[cmp].cd_v.y = -1;
 			env->sp[k].sprite[cmp].det = 0;
 			env->sp[k].sprite[cmp].f_win_x = 0;
+			env->sp[k].sprite[cmp].detec[0].on = 0;
+			env->sp[k].sprite[cmp].cd_h.x = -1;
+			env->sp[k].sprite[cmp].cd_h.y = -1;
+			env->sp[k].sprite[cmp].win_h_x = 0;
+			env->sp[k].sprite[cmp].detec[1].on = 0;
+			env->sp[k].sprite[cmp].cd_v.x = -1;
+			env->sp[k].sprite[cmp].cd_v.y = -1;
+			env->sp[k].sprite[cmp].win_v_x = 0;
 		}
 	}
 }
+
+/*static void	clean(t_env *env) // a supp
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < (200 * 200))
+	{
+		env->m[1].img_str[x] = (char)0;
+		env->m[1].img_str[x + 1] = (char)0;
+		env->m[1].img_str[x + 2] = (char)0;
+		env->m[1].img_str[x + 3] = (char)0;
+		x = x + 4;
+		y++;
+	}
+}*/
 
 void			affichage_sprite(t_env *env)
 {
@@ -71,6 +93,7 @@ void			affichage_sprite(t_env *env)
 	x = -1;
 	door_proximity(env);
 	sprite_init(env); // ADD initialise les coords i de chaque sprite == -1;
+//	clean(env); // a supp
 	while (++x < W_WIDTH)
 	{
 		env->angle = verif_angle(a);
