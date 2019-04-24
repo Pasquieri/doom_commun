@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/14 20:45:23 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/24 20:45:53 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,23 +82,6 @@ static void		affichage(double h_percue, t_env *env, int x)
 /*	y--;
 	while (++y < 870.)
 		put_pxl_img(env, x, y, 7);*/
-}
-
-static double	verif_angle(double angle)
-{
-	if (angle < 0.)
-	{
-		while (angle < 0.)
-			angle = angle + 360.;
-	}
-	else if (angle > 360.)
-	{
-		while (angle > 360.)
-			angle = angle - 360.;
-	}
-	if (angle == 360.)
-		angle = 0.;
-	return (angle);
 }
 
 void			*affichage_mur(void *tab)

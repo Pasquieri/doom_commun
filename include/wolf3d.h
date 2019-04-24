@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/24 16:52:19 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/24 20:53:26 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,11 +339,14 @@ void			affichage_sprite(t_env *env);
 void			detection_mur_sp(t_env *env);
 int				verif_hor_sp(t_env *env, t_coord *coord);
 int				verif_ver_sp(t_env *env, t_coord *coord);
-void			check_sprite(int i, int j, t_env *env, int orient, t_coord cd);
+void			check_sprite(int i, int j, t_env *env, int orie, t_coord cd);
 void			put_sprite_img(t_env *env);
 void			print_sprite_wall(t_env *env);
 void			deal_door(t_env *env);
 void			check_grid_win(t_env *env, t_coord cd, int o, int i, int j);
+double			verif_angle(double angle);
+t_coord			init_lim_coord(t_env *env, int k, int cmp, double theta);
+double			init_lim_angle(t_env *env, t_coord cd);
 /*song*/
 int				recup_music(char *str);
 

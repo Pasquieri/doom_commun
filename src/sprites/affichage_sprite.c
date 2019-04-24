@@ -6,28 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/24 16:56:12 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/24 20:48:24 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
-
-static double	verif_angle(double angle)
-{
-	if (angle < 0.)
-	{
-		while (angle < 0.)
-			angle = angle + 360.;
-	}
-	else if (angle > 360.)
-	{
-		while (angle > 360.)
-			angle = angle - 360.;
-	}
-	if (angle == 360.)
-		angle = 0.;
-	return (angle);
-}
 
 static void		door_proximity(t_env *env)
 {

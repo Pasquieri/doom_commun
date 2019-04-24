@@ -58,6 +58,7 @@ SRC = src/main.c\
 	  src/sprites/verif_mur_hor.c\
 	  src/sprites/put_sprite_img.c\
 	  src/sprites/print_sprite.c\
+	  src/sprites/calcul_spr.c\
 	  src/sprites/deal_door.c
 
 
