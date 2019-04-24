@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/23 16:47:51 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/24 16:52:19 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,32 +114,33 @@ typedef struct	s_det
 	t_coord	cd;
 }				t_det;
 
-typedef struct	s_test_sp
+/*typedef struct	s_test_sp
 {
 	double	alpha;
 	double	beta;
 	double	gamma;
 	double	a1;
 	double	a2;
-}				t_test_sp;
+}				t_test_sp;*/
 
-typedef struct	s_cd
+/*typedef struct	s_cd
 {
 	t_coord	mid;
 	t_coord	left_h;
 	t_coord	left_b;
 	t_coord	right_h;
 	t_coord	right_b;
-}				t_cd;
+}				t_cd;*/
 
 typedef struct	s_sprite
 {
 	int		i;
 	int		j;
-	t_cd	c;
+//	t_cd	c;
+	t_coord	cd;
 
 /****** SPRITES *******/
-	int		det;
+/*	int		det;
 	int		f_win_x;
 	t_coord	f_int;
 	double	f_angle;
@@ -152,15 +153,23 @@ typedef struct	s_sprite
 	double	angle_h;
 	int		win_v_x;
 	t_coord	cd_v;
-	double	angle_v;
+	double	angle_v;*/
 
 /***** ADD TEST *****/
+
 	int		o_i;
-	t_coord	cd_i;
 	double	a_i;
-//	int		o_f;
+	double	a1;
+	double	a2;
+	t_coord	cd_i;
+
+	int		det;
 	int		det_hor;
 	int		win_x;
+	int		win_h_x;
+	int		win_v_x;
+	t_coord	cd_h;
+	t_coord	cd_v;
 
 /****** GRID && WIN ******/
 	t_det	detec[2];

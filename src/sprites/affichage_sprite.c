@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/24 16:35:07 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/24 16:56:12 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static void		sprite_init(t_env *env)
 		while (++cmp < env->sp[k].nb)
 		{
 			env->sp[k].sprite[cmp].det = 0;
-			env->sp[k].sprite[cmp].f_win_x = 0;
+			env->sp[k].sprite[cmp].win_x = 0;
+			//env->sp[k].sprite[cmp].f_win_x = 0;
 			env->sp[k].sprite[cmp].detec[0].on = 0;
 			env->sp[k].sprite[cmp].cd_h.x = -1;
 			env->sp[k].sprite[cmp].cd_h.y = -1;
@@ -103,7 +104,7 @@ void			affichage_sprite(t_env *env)
 		print_sprite_wall(env);
 		a -= (60. / W_WIDTH);
 	}
-//	put_sprite_img(env);
+	put_sprite_img(env);
 }
 
 
