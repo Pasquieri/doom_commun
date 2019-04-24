@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/22 19:13:16 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/24 16:35:07 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void			affichage_sprite(t_env *env)
 		print_sprite_wall(env);
 		a -= (60. / W_WIDTH);
 	}
-	put_sprite_img(env);
+//	put_sprite_img(env);
 }
 
 
