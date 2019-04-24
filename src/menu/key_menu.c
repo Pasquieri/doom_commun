@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:45:50 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/15 21:09:55 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/24 17:04:05 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	key_menu_extra(t_env *env)
 		}
 		else
 		{
-			free_sprite(env);
+			if (env->map_entree != 0)
+				free_sprite(env);
 			exec_calcul(env, 315, 1);
 			env->map_entree = 0;
 			env->menu_select = 1;
@@ -38,7 +39,8 @@ static void	key_menu_extra(t_env *env)
 		}
 		else
 		{
-			free_sprite(env);
+			if (env->map_entree != 0)
+				free_sprite(env);
 			exec_calcul(env, 225, 1);
 			env->map_entree = 0;
 			env->menu_select = 1;
@@ -53,7 +55,8 @@ static void	key_menu_extra(t_env *env)
 		}
 		else
 		{
-			free_sprite(env);
+			if (env->map_entree != 0)
+				free_sprite(env);
 			exec_calcul(env, 0, 1);
 			env->map_entree = 0;
 			env->menu_select = 1;
@@ -80,7 +83,8 @@ void		key_invalid_menu(t_env *env)
 		}
 		else
 		{
-			free_sprite(env);
+			if (env->map_entree != 0)
+				free_sprite(env);
 			exec_calcul(env, 0, 1);
 			env->map_entree = 0;
 		}
@@ -100,7 +104,8 @@ void		key_valid_menu(t_env *env)
 		}
 		else
 		{
-			free_sprite(env);
+			if (env->map_entree != 0)
+				free_sprite(env);
 			exec_calcul(env, 0, 1);
 			env->map_entree = 0;
 			env->menu_select = 1;
