@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/24 21:28:10 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:07:37 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,13 +164,13 @@ void	put_sprite_img(t_env *env)
 				theta = verif_angle(env->d_regard + 90);
 				cd = init_lim_coord(env, i, cmp, theta);
 				env->sp[i].sprite[cmp].a1 = init_lim_angle(env, cd);
-		//		printf("theta 1 : %f, cd (%f,%f), a1: %f, d_regard %d\n", theta, cd.x, cd.y, env->sp[i].sprite[cmp].a1, env->d_regard);
+			//	printf("theta 1 : %f, cd (%f,%f), a1: %f, d_regard %d\n", theta, cd.x, cd.y, env->sp[i].sprite[cmp].a1, env->d_regard);
 			//	printf("theta 1 : %f, a1: %f, d_regard %d\n", theta, env->sp[i].sprite[cmp].a1, env->d_regard);
 				theta = verif_angle(env->d_regard - 90);
 				cd = init_lim_coord(env, i, cmp, theta);
 				env->sp[i].sprite[cmp].a2 = init_lim_angle(env, cd);
 			//	printf("      2 : %f, a2: %f\n", theta, env->sp[i].sprite[cmp].a2);
-		//		printf("      2 : %f, cd (%f,%f), a2: %f\n", theta, cd.x, cd.y, env->sp[i].sprite[cmp].a2);
+			//	printf("      2 : %f, cd (%f,%f), a2: %f\n", theta, cd.x, cd.y, env->sp[i].sprite[cmp].a2);
 			//	printf("         sp mid : cd (%f,%f), angle i : %f\n", env->sp[i].sprite[cmp].cd.x, env->sp[i].sprite[cmp].cd.y, env->sp[i].sprite[cmp].a_i);
 				affiche_sprite(d_sp, env, i, cmp);
 			}

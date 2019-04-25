@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/21 19:57:48 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/25 16:04:40 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,29 +84,7 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 	}
 	if (env->key[12])
 	{
-		printf("nb grid : %d, win : %d, column : %d, banana : %d, monkey : %d, door : %d\n", env->sp[0].nb, env->sp[1].nb, env->sp[2].nb, env->sp[3].nb, env->sp[4].nb, env->sp[5].nb);
-	/*	int i;
-		int	k;
-
-		i = -1;
-		while (++i <= 5)
-		{
-			k = -1;
-			printf("type sprite : %d\n", i);
-			while (++k < env->sp[i].nb)
-			{
-				if (env->sp[i].sprite[k].detec[0].on == 1)
-					printf("horizontal : %d\n", i+10);
-				else
-					printf("NULL horizontal\n");
-				if (env->sp[i].sprite[k].detec[1].on == 1)
-					printf("vertical : %d\n", i+10);
-				else
-					printf("NULL vertical\n");
-				printf("\n");
-			}
-			printf("\n");
-		}*/
+		;
 	}
 	return (0);
 }

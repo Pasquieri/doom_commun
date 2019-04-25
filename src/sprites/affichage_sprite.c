@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/24 20:48:24 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/25 16:03:17 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ static void		door_proximity(t_env *env)
 		env->sp[5].sprite[cmp].proximity = 0;
 }
 
+static void		initialise_struct(t_env *env, int k, int cmp)
+{
+	env->sp[k].sprite[cmp].det = 0;
+	env->sp[k].sprite[cmp].win_x = 0;
+	env->sp[k].sprite[cmp].detec[0].on = 0;
+	env->sp[k].sprite[cmp].cd_h.x = -1;
+	env->sp[k].sprite[cmp].cd_h.y = -1;
+	env->sp[k].sprite[cmp].win_h_x = 0;
+	env->sp[k].sprite[cmp].detec[1].on = 0;
+	env->sp[k].sprite[cmp].cd_v.x = -1;
+	env->sp[k].sprite[cmp].cd_v.y = -1;
+	env->sp[k].sprite[cmp].win_v_x = 0;
+	env->sp[k].sprite[cmp].check = 0;
+}
+
 static void		sprite_init(t_env *env)
 {
 	int	k;
@@ -33,39 +48,36 @@ static void		sprite_init(t_env *env)
 			k += 2;
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
-		{
-			env->sp[k].sprite[cmp].det = 0;
-			env->sp[k].sprite[cmp].win_x = 0;
-			//env->sp[k].sprite[cmp].f_win_x = 0;
-			env->sp[k].sprite[cmp].detec[0].on = 0;
-			env->sp[k].sprite[cmp].cd_h.x = -1;
-			env->sp[k].sprite[cmp].cd_h.y = -1;
-			env->sp[k].sprite[cmp].win_h_x = 0;
-			env->sp[k].sprite[cmp].detec[1].on = 0;
-			env->sp[k].sprite[cmp].cd_v.x = -1;
-			env->sp[k].sprite[cmp].cd_v.y = -1;
-			env->sp[k].sprite[cmp].win_v_x = 0;
-		}
+			initialise_struct(env, k, cmp);
 	}
 }
 
-/*static void	clean(t_env *env) // a supp
+static void	check_wall_sp(t_env *env)
 {
-	int	x;
-	int	y;
+	int		k;
+	int		cmp;
+	double	d_sp;
 
-	x = 0;
-	y = 0;
-	while (y < (200 * 200))
+	k = 1;
+	while (++k < NB_SP)
 	{
-		env->m[1].img_str[x] = (char)0;
-		env->m[1].img_str[x + 1] = (char)0;
-		env->m[1].img_str[x + 2] = (char)0;
-		env->m[1].img_str[x + 3] = (char)0;
-		x = x + 4;
-		y++;
+		if (k == 5)
+			k += 3;
+		cmp = -1;
+		while (++cmp < env->sp[k].nb)
+		{
+			if (env->sp[k].sprite[cmp].det == 1
+					&& env->sp[k].sprite[cmp].check == 0)
+			{
+				d_sp = sqrt(pow(env->perso_x - env->sp[k].sprite[cmp].cd_i.x, 2)
+						+ pow(env->perso_y - env->sp[k].sprite[cmp].cd_i.y, 2));
+				env->sp[k].sprite[cmp].check = 1;
+				if (d_sp > env->dist)
+					initialise_struct(env, k, cmp);
+			}
+		}
 	}
-}*/
+}
 
 void			affichage_sprite(t_env *env)
 {
@@ -77,7 +89,6 @@ void			affichage_sprite(t_env *env)
 	x = -1;
 	door_proximity(env);
 	sprite_init(env); // ADD initialise les coords i de chaque sprite == -1;
-//	clean(env); // a supp
 	while (++x < W_WIDTH)
 	{
 		env->angle = verif_angle(a);
@@ -85,6 +96,7 @@ void			affichage_sprite(t_env *env)
 		env->dist = env->dist * cos((a - env->d_regard) * M_PI / 180);
 		env->img_x = x;
 		print_sprite_wall(env);
+		check_wall_sp(env);
 		a -= (60. / W_WIDTH);
 	}
 	put_sprite_img(env);

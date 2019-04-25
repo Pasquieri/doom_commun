@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/24 16:53:41 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/25 16:32:24 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,28 +73,19 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 	coef = 5.;
 	sp->sprite[*x].i = i;
 	sp->sprite[*x].j = j;
-	if (sp->val == COLUMN || sp->val == BANANA || sp->val == MONKEY || sp->val == SYRINGE)
+	if (sp->val == MONKEY)
 	{
 		pos_x = i * coef + coef / 2;
 		pos_y = j * coef + coef / 2;
 		sp->sprite[*x].cd.x = pos_x;
 		sp->sprite[*x].cd.y = pos_y;
-//		sp->sprite[*x].c.mid.x = pos_x;
-//		sp->sprite[*x].c.mid.y = pos_y;
-		/***************** 18/04/19 *********************/
-		pos_x = i * coef;
-		pos_y = j * coef;
-	//	sp->sprite[*x].t.mid.x = pos_x;
-	//	sp->sprite[*x].t.mid.y = pos_y;
-/*		sp->sprite[*x].c.left_h.x = pos_x;
-		sp->sprite[*x].c.left_h.y = pos_y;
-		sp->sprite[*x].c.right_h.x = pos_x + coef;
-		sp->sprite[*x].c.right_h.y = pos_y;
-		sp->sprite[*x].c.right_b.x = pos_x + coef;
-		sp->sprite[*x].c.right_b.y = pos_y + coef;
-		sp->sprite[*x].c.left_b.x = pos_x;
-		sp->sprite[*x].c.left_b.y = pos_y + coef;*/
-		/************************************************/
+	}
+	else if (sp->val == COLUMN || sp->val == BANANA || sp->val == SYRINGE)
+	{
+		pos_x = i * coef + coef / 2;
+		pos_y = j * coef + coef / 2;
+		sp->sprite[*x].cd.x = pos_x;
+		sp->sprite[*x].cd.y = pos_y;
 	}
 	// 15 : open = 1 ??
 	*x += 1;

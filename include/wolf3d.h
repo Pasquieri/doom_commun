@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/24 20:53:26 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:58:20 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ typedef struct	s_sprite
 
 /****** GRID && WIN ******/
 	t_det	detec[2];
+	_Bool	check;
 
 	_Bool	proximity;
 	_Bool	open;
