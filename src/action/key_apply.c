@@ -49,7 +49,7 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		else if (env->key[86])
 			env->coef_h_wall = 7;
 	}
-	if (env->key[49] && !env->menu) // il faut que quand on appuie sur c on monte, et quand on redescend on peut plus remonter jusqu'a toucher le sol
+	if (env->key[49] && !env->menu  && env->jump == 0)
 	{
 	//	if (env->jump >= 0)
 		if (env->key[13])
@@ -138,7 +138,7 @@ static void	ft_arrow_menu(t_env *env)
 	env->key[126] = 0;
 }
 
-int			key_apply(t_env *env)
+void	ft_jump(t_env *env)
 {
 	int jump_height = 100;
 	if (env->jump != 0) // si touche saut
@@ -194,7 +194,15 @@ int			key_apply(t_env *env)
 			env->jump = env->jump - 1;
 		}
 	}
+}
 
+int			key_apply(t_env *env)
+{
+	ft_jump(env);
+	ft_monkey(env);
+	env->time += 1;
+	if (env->time > 10000)
+		env->time = 1;
 	if ((env->key[125] || env->key[126]) && env->menu == 1)
 		ft_arrow_menu(env);
 	if (!env->menu)

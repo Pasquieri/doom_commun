@@ -252,6 +252,7 @@ typedef struct	s_env
 	double	jump;
 	double	h_jump;
 	int		jump_move;
+	int 	time;
 
 	t_rgb	rgb[10];
 	t_mlx	text[25];
@@ -274,6 +275,7 @@ int				key_apply(t_env *env);
 int				motion_notify(int x, int y, t_env *env);
 void			rotation_regard(t_env *env);
 int				trig_press(t_env *env);
+void			ft_monkey(t_env *env);
 /*initialize*/
 void			init_rgb(t_env *env);
 void			init_env(t_env *env);

@@ -23,6 +23,7 @@ void	init_rgb(t_env *env)
 	env->rgb[6] = (t_rgb){240, 130, 44, 0}; // bleu
 	env->rgb[7] = (t_rgb){93, 145, 190, 0}; // marron
 	env->rgb[8] = (t_rgb){0, 0, 0, 100}; // noir transparent
+	env->rgb[9] = (t_rgb){0, 0, 0, 0}; // noir
 }
 
 
@@ -42,6 +43,7 @@ void	init_env(t_env *env)
 	env->h_jump = 0;
 	env->jump_move = 0;
 	env->gun = 0;
+	env->time = 1;
 	number_sprite(env);
 	init_tab_sprite(env);
 }

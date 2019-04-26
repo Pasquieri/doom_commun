@@ -14,6 +14,7 @@ SRC = src/main.c\
 	  src/action/rotation_regard.c\
 	  src/action/motion_notify.c \
 	  src/action/trig_press.c\
+	  src/action/monkey.c\
 	  \
 	  src/menu/chaine_nb.c\
 	  src/menu/hub.c\
