@@ -249,10 +249,12 @@ typedef struct	s_env
 	int		lum;
 	int		lum_int;
 
+	int 	time;
 	double	jump;
 	double	h_jump;
 	int		jump_move;
-	int 	time;
+	double	crouch;
+
 
 	t_rgb	rgb[10];
 	t_mlx	text[25];

@@ -41,7 +41,8 @@ void	init_env(t_env *env)
 	env->vitesse = 0.8;
 	env->jump = 0;
 	env->h_jump = 0;
-	env->jump_move = 0;
+	env->jump_move = -1;
+	env->crouch = 0;
 	env->gun = 0;
 	env->time = 1;
 	number_sprite(env);
