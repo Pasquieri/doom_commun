@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/25 16:04:40 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 19:43:11 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,29 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 	}
 	if (env->key[16] && !env->menu)
 		env->h_story = 0;
+	/*************** a modif pour changer l'arme etc ******************/
 	if (env->key[37] && env->gun == 1 && !env->menu) // coup de feu : key l
 	{
 		print_gun(env, 3);
 		mlx_put_image_to_window(env->mlx,env->win,env->m[0].img, 0,0);
 		mlx_put_image_to_window(env->mlx,env->win,env->m[1].img, 960,20);
 	}
+	/*******************************************************************/
 	if (env->key[29] && !env->menu)
 		env->lum_int = 370;
 	if (env->key[25] && !env->menu)
 		env->lum_int = 25;
 	if (env->key[257] && !env->menu)
 		env->vitesse = SPEED * 2;
-	if (env->key[14] && !env->menu)
-		deal_door(env);
-	if (env->key[83] || env->key[84] || env->key[85] || env->key[86])
-	{
-		if (env->key[83])
-			env->coef_h_wall = 1;
-		else if (env->key[84])
-			env->coef_h_wall = 3;
-		else if (env->key[85])
-			env->coef_h_wall = 5;
-		else if (env->key[86])
-			env->coef_h_wall = 7;
-	}
-	if (env->key[49] && !env->menu  && env->jump == 0)
+	if (env->key[83] && !env->menu)
+		env->coef_h_wall = 1;
+	else if (env->key[84] && !env->menu)
+		env->coef_h_wall = 3;
+	else if (env->key[85] && !env->menu)
+		env->coef_h_wall = 5;
+	else if (env->key[86] && !env->menu)
+		env->coef_h_wall = 7;
+	if (env->key[49] && !env->menu && env->jump == 0)
 	{
 	//	if (env->jump >= 0)
 		if (env->key[13])
@@ -91,10 +88,6 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		else
 			env->crouch = 1;
 	}
-	if (env->key[12]) //wtf ????
-	{
-		;
-	}
 	return (0);
 }
 
@@ -103,6 +96,10 @@ int			key_release(int key, t_env *env)
 	env->key[key] = 0;
 	if (key == 257 && !env->menu)
 		env->vitesse = SPEED;
+	if (key == 14 && !env->menu)
+		deal_door(env);
+	if (key == 12 && !env->menu)
+		deal_tab(env);
 	if (key == 8 && !env->menu)
 	{
 		env->h_jump = 0;
@@ -125,11 +122,12 @@ int			key_release(int key, t_env *env)
 	{
 		if (env->skybox != 22 && key == 18)
 			env->skybox = 22;
-		else if (env->skybox != 24 && key == 19)
-			env->skybox = 24;
-		else
+	//	else if (env->skybox != 24 && key == 19)
+	//		env->skybox = 24;
+		else if (key == 18)
 			env->skybox = 0;
 	}
+	/****************** a modifier pour changer l'arme ********************/
 	if (key == 40 && !env->menu) // pour afficher le gun : key k
 	{
 		if (env->gun == 0)
@@ -137,6 +135,7 @@ int			key_release(int key, t_env *env)
 		else
 			env->gun = 0;
 	}
+	/**********************************************************************/
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:41:36 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/06 09:51:58 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 17:47:37 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	check(int value)
 {
 	if (value == FLOOR || value == BEGIN || value == END || value == BANANA
-			|| value == MONKEY || value == DOOR_CLOSE)
+			|| value == MONKEY || value == DOOR_CLOSE || value == SYRINGE)
 		return (1);
 	else
 		return (0);

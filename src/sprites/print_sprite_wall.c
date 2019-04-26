@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_sprite.c                                     :+:      :+:    :+:   */
+/*   print_sprite_wall.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/21 20:36:58 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 19:36:14 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static void	put_sprite_grid(t_env *env, double h_percue, int y, t_mlx *sp_t, dou
 
 	if (env->orientation == 0)
 			p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
-// pour etre dans le meme sens : necessaire ?
-//	p_x = fmod((env->coef - env->coord_spr.x), (float)env->coef) * 100 / env->coef;
 	else
 			p_x = fmod(env->coord_spr.y, (float)env->coef) * 100 / env->coef;
 	if (y > (env->h_regard - bep))
@@ -32,7 +30,7 @@ static void	put_sprite_grid(t_env *env, double h_percue, int y, t_mlx *sp_t, dou
 	i = 4 * env->img_x + y * env->m[0].s_l;
 	j = 4 * (int)(sp_t->width * p_x / 100)
 		+ (int)(sp_t->height * p_y / 100) * sp_t->s_l;
-	if (!sp_t->img_str[j + 3]) // si pas transparent
+	if (!sp_t->img_str[j + 3])
 	{
 	env->m[0].img_str[i] = luminosite((int)sp_t->img_str[j], env->lum);
 	env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
@@ -42,97 +40,103 @@ static void	put_sprite_grid(t_env *env, double h_percue, int y, t_mlx *sp_t, dou
 //	test_grid(env, h_percue, y, sp_t); // cf plus bas pour un test
 }
 
-static void	affiche_sprite(double d_sprite, t_env *env, int i, int cmp)
+static void	check_proximity(double d_sprite, t_env *env, int k, int cmp)
+{
+	int	a;
+	int	b;
+
+	if (k == 5)
+	{
+		a = env->sp[k].sprite[cmp].i;
+		b = env->sp[k].sprite[cmp].j;
+		env->sp[k].sprite[cmp].open = 1;
+		env->tab[b][a] == 7 ? env->sp[k].sprite[cmp].open = 0 : env->sp[k].sprite[cmp].open;
+		if (d_sprite < (3 * env->coef / 2))
+			env->sp[k].sprite[cmp].proximity = 1;
+		else
+			env->sp[k].sprite[cmp].proximity = 0;
+	}
+	else
+	{
+		if (d_sprite < env->coef)
+			env->sp[k].sprite[cmp].proximity = 1;
+		else
+			env->sp[k].sprite[cmp].proximity = 0;
+	}
+}
+
+static void	print_sprite(double d_sprite, t_env *env, int k, int cmp)
 {
 	double	y;
 	double	lim;
 	double	h_percue;
-	int	a;
-	int	b;
+	double bep;
 
-	if (i == 5) /************ DOOR **************/
+	if (k == 5 || k == 7) /************ DOOR **************/
 	{
-		a = env->sp[i].sprite[cmp].i;
-		b = env->sp[i].sprite[cmp].j;
-		env->sp[i].sprite[cmp].open = 1;
-		env->tab[b][a] == 7 ? env->sp[i].sprite[cmp].open = 0 : env->sp[i].sprite[cmp].open;
-		if (d_sprite < (3 * env->coef / 2))
-			env->sp[i].sprite[cmp].proximity = 1;
-		else
-			env->sp[i].sprite[cmp].proximity = 0;
+		check_proximity(d_sprite, env, k, cmp);
 		return ;
 	} /****************************************************/
-
-	double bep;
 	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
 		/ (d_sprite * env->d_ecran);
-
 	h_percue = env->d_ecran * (env->h_mur / d_sprite);
 	y = env->h_regard - bep;
 	y < 0. ? y = -1. : y;
 	lim = y + h_percue;
-	if ((i + 10) == GRID || (i + 10) == WIN)
+	if ((k + 10) == GRID || (k + 10) == WIN)
 		while (++y < lim && y < W_HEIGHT)
 		{
-			if ((i + 10) == GRID || ((int)y + env->img_x) % 2 == 0)
-				put_sprite_grid(env, h_percue, y, &env->sp_t[i], bep);
+			if ((k + 10) == GRID || ((int)y + env->img_x) % 2 == 0)
+				put_sprite_grid(env, h_percue, y, &env->sp_t[k], bep);
 		}
-	/************ TEST SEPARE POUR SPRITE EN FACE DE SOI *************/
-/*	else
-		while (++y < lim && y < W_HEIGHT)
-			put_sprite(env, h_percue, y, &env->sp_t[i]);*/
-	/*****************************************************************/
 }
 
-static double	ft_distance(t_env *env, int i, int cmp)
+static double	ft_distance(t_env *env, int k, int cmp)
 {
 	double	dist0;
 	double	dist1;
-	double	d;
 
-	if (env->sp[i].sprite[cmp].detec[0].on == 1)
-		dist0 = env->sp[i].sprite[cmp].detec[0].dist;
+	if (env->sp[k].sprite[cmp].detec[0].on == 1)
+		dist0 = env->sp[k].sprite[cmp].detec[0].dist;
 	else
-		dist0 = env->sp[i].sprite[cmp].detec[1].dist + 1;
-	if (env->sp[i].sprite[cmp].detec[1].on == 1)
-		dist1 = env->sp[i].sprite[cmp].detec[1].dist;
+		dist0 = env->sp[k].sprite[cmp].detec[1].dist + 1;
+	if (env->sp[k].sprite[cmp].detec[1].on == 1)
+		dist1 = env->sp[k].sprite[cmp].detec[1].dist;
 	else
-		dist1 = env->sp[i].sprite[cmp].detec[0].dist + 1;
+		dist1 = env->sp[k].sprite[cmp].detec[0].dist + 1;
 	env->orientation = 0;
 	dist1 < dist0 ? env->orientation = 1 : env->orientation;
-	d = dist0;
-	dist1 < dist0 ? d = dist1 : d;
-	env->coord_spr = env->sp[i].sprite[cmp].detec[env->orientation].cd;
-	return (d);
+	env->coord_spr = env->sp[k].sprite[cmp].detec[env->orientation].cd;
+	if (dist1 < dist0)
+		return (dist1);
+	return (dist0);
 }
 
 void	print_sprite_wall(t_env *env)
 {
-	int	i;
+	int	k;
 	int	cmp;
 	double	d_sprite;
 
-	i = -1;
-	while (++i < NB_SP) // < 5 pour tous les sprites sp[4] = monkey
+	k = -1;
+	while (++k < NB_SP)
 	{
-		if (i == 6) // 6 = gun && 7 = tableau
-			i += 2;
+		if (k == 6) // 6 = gun && 7 = tableau
+			k++;
+		//	k += 2;
 		cmp = -1;
-		while (++cmp < env->sp[i].nb)
+		while (++cmp < env->sp[k].nb)
 		{
-			if ((env->sp[i].sprite[cmp].detec[0].on == 1)
-					|| (env->sp[i].sprite[cmp].detec[1].on == 1))
+			if ((env->sp[k].sprite[cmp].detec[0].on == 1)
+					|| (env->sp[k].sprite[cmp].detec[1].on == 1))
 			{
-				d_sprite = ft_distance(env, i, cmp);
-			//	if (env->sp[i].val == COLUMN || env->sp[i].val == BANANA)
-			//		d_sprite = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd.x, 2)
-			//				+ pow(env->perso_y - env->sp[i].sprite[cmp].cd.y, 2));
+				d_sprite = ft_distance(env, k, cmp);
 				env->lum = d_sprite * 255 / env->lum_int;
 				if (d_sprite <= env->dist)
-					affiche_sprite(d_sprite, env, i, cmp);
+					print_sprite(d_sprite, env, k, cmp);
 			}
-			env->sp[i].sprite[cmp].detec[0].on = 0;
-			env->sp[i].sprite[cmp].detec[1].on = 0;
+			env->sp[k].sprite[cmp].detec[0].on = 0;
+			env->sp[k].sprite[cmp].detec[1].on = 0;
 		}
 	}
 }

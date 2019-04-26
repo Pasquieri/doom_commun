@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/22 18:38:18 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 19:31:20 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,19 @@ static void	print_text(t_env *env)
 	{
 		if (env->sp[5].sprite[i].proximity == 1
 				&& env->sp[5].sprite[i].open == 0)
-			mlx_string_put(env->mlx, env->win, 550, 430, 0xe63d3d,
+			mlx_string_put(env->mlx, env->win, 525, 420, 0xe63d3d,
 					"Press E to open");
 		else if (env->sp[5].sprite[i].proximity == 1
 				&& env->sp[5].sprite[i].open == 1)
-			mlx_string_put(env->mlx, env->win, 550, 430, 0xe63d3d,
+			mlx_string_put(env->mlx, env->win, 520, 450, 0xe63d3d,
 					"Press E to close");
+	}
+	i = -1;
+	while (++i < env->sp[7].nb)
+	{
+		if (env->sp[7].sprite[i].proximity == 1)
+			mlx_string_put(env->mlx, env->win, 480, 470, 0xe1e3e8,
+					"Press Q to change the sky");
 	}
 }
 

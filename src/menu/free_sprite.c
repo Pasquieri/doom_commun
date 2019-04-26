@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 05:08:38 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/31 05:12:08 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/25 18:13:47 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	free_sprite(t_env *env)
 	int	k;
 
 	k = -1;
-	while (++k <= 5)
+	while (++k < NB_SP)
 		free(env->sp[k].sprite);
 }

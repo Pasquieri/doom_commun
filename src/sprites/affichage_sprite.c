@@ -6,20 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/25 16:03:17 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 19:23:05 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
-
-static void		door_proximity(t_env *env)
-{
-	int	cmp;
-
-	cmp = -1;
-	while (++cmp < env->sp[5].nb)
-		env->sp[5].sprite[cmp].proximity = 0;
-}
 
 static void		initialise_struct(t_env *env, int k, int cmp)
 {
@@ -36,33 +27,18 @@ static void		initialise_struct(t_env *env, int k, int cmp)
 	env->sp[k].sprite[cmp].check = 0;
 }
 
-static void		sprite_init(t_env *env)
-{
-	int	k;
-	int	cmp;
-
-	k = -1;
-	while (++k < NB_SP)
-	{
-		if (k == 6)
-			k += 2;
-		cmp = -1;
-		while (++cmp < env->sp[k].nb)
-			initialise_struct(env, k, cmp);
-	}
-}
-
-static void	check_wall_sp(t_env *env)
+static void	check_obj_behind_wall(t_env *env)
 {
 	int		k;
 	int		cmp;
 	double	d_sp;
 
 	k = 1;
-	while (++k < NB_SP)
+	while (++k < 5)
+//	while (++k < NB_SP) // 2, 3, 4
 	{
-		if (k == 5)
-			k += 3;
+	//	if (k == 5)
+	//		k += 3;
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
 		{
@@ -78,6 +54,36 @@ static void	check_wall_sp(t_env *env)
 		}
 	}
 }
+
+static void		sprite_init(t_env *env)
+{
+	int	k;
+	int	cmp;
+
+	k = -1;
+	while (++k < NB_SP)
+	{
+		if (k == 6)
+		//	k += 2;
+			k++;
+		cmp = -1;
+		while (++cmp < env->sp[k].nb)
+			initialise_struct(env, k, cmp);
+	}
+}
+
+static void		door_proximity(t_env *env)
+{
+	int	cmp;
+
+	cmp = -1;
+	while (++cmp < env->sp[5].nb)
+		env->sp[5].sprite[cmp].proximity = 0;
+	cmp = -1; // tableau : skybox
+	while (++cmp < env->sp[7].nb)
+		env->sp[7].sprite[cmp].proximity = 0;
+}
+
 
 void			affichage_sprite(t_env *env)
 {
@@ -96,10 +102,10 @@ void			affichage_sprite(t_env *env)
 		env->dist = env->dist * cos((a - env->d_regard) * M_PI / 180);
 		env->img_x = x;
 		print_sprite_wall(env);
-		check_wall_sp(env);
+		check_obj_behind_wall(env);
 		a -= (60. / W_WIDTH);
 	}
-	put_sprite_img(env);
+	print_sprite_object(env);
 }
 
 

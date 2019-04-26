@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 20:47:18 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/24 20:54:46 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 18:15:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ double	init_lim_angle(t_env *env, t_coord cd)
 		angle = alpha;
 	else if (env->perso_x > cd.x && env->perso_y > cd.y)
 		angle = 180. - alpha;
-	/*else if (env->perso_x ==	 cd.x && env->perso_y < cd.y)
-	 *	a = 270.;
-	 *else if (env->perso_x == cd.x && env->perso_y > cd.y)
-	 *	a = 90.;
-	 *else if (env->perso_x < cd.x && env->perso_y == cd.y)
-	 *	a = 0.;
-	 *else if (env->perso_x > cd.x && env->perso_y ==  cd.y)
-	 *	a = 180.;*/
+	else if (env->perso_x == cd.x && env->perso_y < cd.y) // pas sure
+		a = 270.;
+	else if (env->perso_x == cd.x && env->perso_y > cd.y) //
+		a = 90.;
+	else if (env->perso_x < cd.x && env->perso_y == cd.y) //
+		a = 0.;
+	else if (env->perso_x > cd.x && env->perso_y ==  cd.y) //
+		a = 180.;
 	return (angle);
 }

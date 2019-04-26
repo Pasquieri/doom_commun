@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/25 15:58:20 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 19:23:00 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,9 +345,10 @@ void			detection_mur_sp(t_env *env);
 int				verif_hor_sp(t_env *env, t_coord *coord);
 int				verif_ver_sp(t_env *env, t_coord *coord);
 void			check_sprite(int i, int j, t_env *env, int orie, t_coord cd);
-void			put_sprite_img(t_env *env);
+void			print_sprite_object(t_env *env);
 void			print_sprite_wall(t_env *env);
 void			deal_door(t_env *env);
+void			deal_tab(t_env *env);
 void			check_grid_win(t_env *env, t_coord cd, int o, int i, int j);
 double			verif_angle(double angle);
 t_coord			init_lim_coord(t_env *env, int k, int cmp, double theta);

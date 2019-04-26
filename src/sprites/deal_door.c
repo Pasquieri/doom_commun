@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 19:02:33 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 05:13:15 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 19:38:54 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,23 @@ void	deal_door(t_env *env)
 				env->tab[j][i] = 7;
 				env->sp[5].sprite[cmp].open = 0;
 			}
+		}
+	}
+}
+
+void	deal_tab(t_env *env)
+{
+	int	cmp;
+
+	cmp = -1;
+	while (++cmp < env->sp[7].nb)
+	{
+		if (env->sp[7].sprite[cmp].proximity == 1)
+		{
+			if (env->skybox == 0)
+				env->skybox = 24;
+			else if (env->skybox == 24 || env->skybox == 22)
+				env->skybox = 0;
 		}
 	}
 }

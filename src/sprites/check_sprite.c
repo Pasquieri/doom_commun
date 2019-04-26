@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/23 17:18:51 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 18:59:01 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	check_grid_win(t_env *env, t_coord cd, int orient, int i, int j)
 	index_sp = env->tab[j][i] - 10;
 	if (env->tab[j][i] == DOOR)
 		index_sp = 5;
+	if (env->tab[j][i] >= 4 && env->tab[j][i] <= 6)
+		index_sp = 7;
 	while (++k < env->sp[index_sp].nb)
 	{
 		if (env->sp[index_sp].sprite[k].i == i
@@ -36,7 +38,6 @@ void	check_grid_win(t_env *env, t_coord cd, int orient, int i, int j)
 	}
 }
 
-/**************************** ADD TEST ********************************/
 static void	fill_hor(int index_sp, int k, t_env *env, t_coord cd)
 {
 	if (env->sp[index_sp].sprite[k].det == 0)
@@ -47,7 +48,6 @@ static void	fill_hor(int index_sp, int k, t_env *env, t_coord cd)
 		env->sp[index_sp].sprite[k].o_i = 0;
 		env->sp[index_sp].sprite[k].a_i = env->angle;
 		env->sp[index_sp].sprite[k].win_x = env->img_x;
-//		printf("hor : angle = %f, win_x = %d, sprite : %d\n", env->angle, env->img_x, index_sp);
 	}
 }
 
@@ -67,8 +67,6 @@ static void	fill_ver(int index_sp, int k, t_env *env, t_coord cd)
 		if (d_ver < d_hor)
 			env->sp[index_sp].sprite[k].det = 0;
 		env->sp[index_sp].sprite[k].det_hor = 0;
-	//	printf("deux det : a1 = %f, a2 : %f, win_x_1 = %d, win_x_2 : %d, sprite : %dd_ho : %f, d_ver : %f\n", env->sp[index_sp].sprite[k].a_i, env->angle, env->sp[index_sp].sprite[k].win_x, env->img_x, index_sp, d_hor, d_ver);
-	//	pour eviter de rerentrer dedans a tester
 	}
 	if (env->sp[index_sp].sprite[k].det == 0)
 	{
@@ -77,10 +75,8 @@ static void	fill_ver(int index_sp, int k, t_env *env, t_coord cd)
 		env->sp[index_sp].sprite[k].o_i = 1;
 		env->sp[index_sp].sprite[k].a_i = env->angle;
 		env->sp[index_sp].sprite[k].win_x = env->img_x;
-	//	printf("ver : angle = %f, win_x = %d, sprite : %d\n", env->angle, env->img_x, index_sp);
 	}
 }
-/***********************************************************************/
 
 void	check_sprite(int i, int j, t_env *env, int orient, t_coord cd)
 {
@@ -101,12 +97,10 @@ void	check_sprite(int i, int j, t_env *env, int orient, t_coord cd)
 			if (env->sp[index_sp].sprite[k].i == i
 					&& env->sp[index_sp].sprite[k].j == j)
 			{
-				/*************** ADD TEST 12/04 **************/
 				if (orient == 0)
 					fill_hor(index_sp, k, env, cd);
 				else
 					fill_ver(index_sp, k, env, cd);
-				/********************************************/
 				/******************* ADD 14/04 ***************************/
 			//	env->sp[index_sp].sprite[k].det = 1; // 14/04
 			//	if (env->sp[index_sp].sprite[k].detec[orient].on != 1)

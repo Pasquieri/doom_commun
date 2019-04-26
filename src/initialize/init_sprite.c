@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/25 16:32:24 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 19:33:27 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,13 @@ void		number_sprite(t_env *env)
 		i = -1;
 		while (++i < env->x)
 		{
-			if (env->tab[j][i] == DOOR) // || == 15 ??
+			if (env->tab[j][i] == DOOR)
 				env->sp[5].nb++;
-			else if ((env->tab[j][i] >= 10 && env->tab[j][i] <= 15) || env->tab[j][i] == 18)
+			else if ((env->tab[j][i] >= 10 && env->tab[j][i] <= 15)
+					|| env->tab[j][i] == 18)
 				env->sp[env->tab[j][i] - 10].nb++;
+			else if (env->tab[j][i] >= 4 && env->tab[j][i] <= 6)
+				env->sp[7].nb++;
 		}
 	}
 }
@@ -73,7 +76,7 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 	coef = 5.;
 	sp->sprite[*x].i = i;
 	sp->sprite[*x].j = j;
-	if (sp->val == MONKEY)
+	if (sp->val == MONKEY) // pour test affichage monkey hors du milieu d'une case
 	{
 		pos_x = i * coef + coef / 2;
 		pos_y = j * coef + coef / 2;
@@ -87,7 +90,6 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 		sp->sprite[*x].cd.x = pos_x;
 		sp->sprite[*x].cd.y = pos_y;
 	}
-	// 15 : open = 1 ??
 	*x += 1;
 }
 
@@ -101,10 +103,9 @@ void		init_tab_sprite(t_env *env)
 	k = -1;
 	while (++k < NB_SP)
 	{
-	//	if (k == 6)
-	//		k += 2;
 		env->sp[k].val = k + 10;
 		k == 5 ? env->sp[k].val = 7 : env->sp[k].val;
+		k == 7 ? env->sp[k].val = 4 : env->sp[k].val;
 		x = 0;
 		if (!(env->sp[k].sprite = (t_sprite *)malloc(sizeof(t_sprite)
 						* (env->sp[k].nb + 1))))
@@ -115,8 +116,11 @@ void		init_tab_sprite(t_env *env)
 			i = -1;
 			while (++i < env->x)
 			{
-				if (env->tab[j][i] == env->sp[k].val ||
-						(k == 5 && env->tab[j][i] == 15)) // 15 ??
+				if (k == 5 && env->tab[j][i] == 15) // porte ouverte a test
+					env->sp[k].sprite[x].open = 1; // a test
+				if (env->tab[j][i] == env->sp[k].val
+						|| (k == 5 && env->tab[j][i] == 15) || (k == 7
+							&& (env->tab[j][i] == 5 || env->tab[j][i] == 6)))
 					fill_info_sprite(&env->sp[k], &x, i, j);
 			}
 		}
