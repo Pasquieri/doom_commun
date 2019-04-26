@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:12:49 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/15 19:18:45 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 21:12:31 by cpalmier         ###   ########.fr       */
 /*   Updated: 2019/04/06 09:26:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -26,33 +26,30 @@ static void		put_pxl(t_env *env, int x, int y, int color)
 
 static void		story_affiche(t_env *env)
 {
-	int		i;
-
-	i = 30;
 	mlx_put_image_to_window(env->mlx, env->win, env->story_mlx, 0, 0);
-	mlx_string_put(env->mlx, env->win, 250, 100 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 70, 0xFFFFFF,
 		"Will Rodman, un jeune scientifique ambitieux est reste travailler");
-	mlx_string_put(env->mlx, env->win, 250, 160 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 130, 0xFFFFFF,
 		"tard ce soir de noel.");
-	mlx_string_put(env->mlx, env->win, 250, 220 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 190, 0xFFFFFF,
 		"Passionne par ses recherches, il est alle au dela du raisonnable et");
-	mlx_string_put(env->mlx, env->win, 250, 280 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 250, 0xFFFFFF,
 		"a fusionne l'ADN du singe, du poulpe et du caniche !");
-	mlx_string_put(env->mlx, env->win, 250, 340 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 310, 0xFFFFFF,
 		"L'experience suivait son cours quand tout d'un coup, le Dr Rodman");
-	mlx_string_put(env->mlx, env->win, 250, 400 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 370, 0xFFFFFF,
 		"fut submerge et une seconde tete apparut sur le singe ...");
-	mlx_string_put(env->mlx, env->win, 250, 460 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 430, 0xFFFFFF,
 		"Alors que celui-ci succombe a la terreur, une troisieme tete vient");
-	mlx_string_put(env->mlx, env->win, 250, 520 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 490, 0xFFFFFF,
 		"rejoindre ses comperes.");
-	mlx_string_put(env->mlx, env->win, 250, 580 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 550, 0xFFFFFF,
 		"Pris de panique, le Dr Rodman s'enferme dans son bureau...");
-	mlx_string_put(env->mlx, env->win, 250, 680 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 650, 0xFFFFFF,
 		"Apres une longue attente, il est temps d'agir, prenez votre courage");
-	mlx_string_put(env->mlx, env->win, 250, 740 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 710, 0xFFFFFF,
 		"a deux mains et eliminez toutes ces abominations pour vous echapper!");
-	mlx_string_put(env->mlx, env->win, 250, 790 - i, 0xFFFFFF,
+	mlx_string_put(env->mlx, env->win, 250, 760, 0xFFFFFF,
 		"                Appuyez sur [y] pour commencer !                  ");
 }
 

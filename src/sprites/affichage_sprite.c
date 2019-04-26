@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 20:39:42 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 21:41:01 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ static void	check_obj_behind_wall(t_env *env)
 	double	d_sp;
 
 	k = 1;
-	while (++k < NB_SP)
+	while (++k < NB_SP) // <= 6
 	{
-		if (k == 5)
-			k += 3;
+		k == 5 ? k = k + 1 : k;
+		//if (k == 5)
+		//	k += 3;
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
 		{
@@ -49,6 +50,8 @@ static void	check_obj_behind_wall(t_env *env)
 				env->sp[k].sprite[cmp].check = 1;
 				if (d_sp > env->dist)
 					initialize_struct(env, k, cmp);
+				// rajouter une comparaison avec le milieu du sprite pour 
+				// trouver le vrai 1er angle
 			}
 		}
 	}
@@ -60,24 +63,22 @@ static void		sprite_init(t_env *env)
 	int	cmp;
 
 	k = -1;
-	while (++k < NB_SP)
+	while (++k < 8)
 	{
-		if (k == 6)
-			k++;
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
 			initialize_struct(env, k, cmp);
 	}
 }
 
-static void		door_proximity(t_env *env)
+static void		action_proximity(t_env *env)
 {
 	int	cmp;
 
 	cmp = -1;
 	while (++cmp < env->sp[5].nb)
 		env->sp[5].sprite[cmp].proximity = 0;
-	cmp = -1; // tableau : skybox
+	cmp = -1;
 	while (++cmp < env->sp[7].nb)
 		env->sp[7].sprite[cmp].proximity = 0;
 }
@@ -91,7 +92,7 @@ void			affichage_sprite(t_env *env)
 	a = env->d_regard + 30;
 	a = verif_angle(a);
 	x = -1;
-	door_proximity(env);
+	action_proximity(env);
 	sprite_init(env); // ADD initialise les coords i de chaque sprite == -1;
 	while (++x < W_WIDTH)
 	{

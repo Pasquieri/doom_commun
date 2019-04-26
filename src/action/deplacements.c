@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:41:36 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 20:33:14 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 21:01:16 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void		deplacements(t_env *env)
 	if (env->value != -1)
 	{
 		deal_items(env, 3);
-		deal_items(env, 8);
+		deal_items(env, 6);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 19:02:33 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 20:47:30 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 21:39:45 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,10 @@ static void	check_pos(t_env *env, int k, int cmp)
 		{
 			if (k == 3)
 				env->h_life += 30;
-			else if (k == 8)
+			else if (k == 6)
 				env->h_ammo += 15;
 			env->sp[k].sprite[cmp].alive = 0;
+			env->tab[env->sp[k].sprite[cmp].j][env->sp[k].sprite[cmp].i] = 0;
 		}
 	}
 }

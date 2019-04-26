@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 19:36:14 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 21:47:58 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,8 @@ void	print_sprite_wall(t_env *env)
 	double	d_sprite;
 
 	k = -1;
-	while (++k < NB_SP)
+	while (++k < NB_SP - 1)
 	{
-		if (k == 6) // 6 = gun && 7 = tableau
-			k++;
-		//	k += 2;
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
 		{

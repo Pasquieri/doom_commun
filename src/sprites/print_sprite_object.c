@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 20:40:03 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 21:43:22 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	h_percue = env->d_ecran * (env->h_mur / d_sp);
 	y = env->h_regard - (h_percue / 2);
 	test = - h_percue / 2;
-	if (i == 3 || i == 8) // pour avoir une banane plus petite : a revoir
+	if (i == 3 || i == 6) // pour avoir une banane plus petite : a revoir
 	{
 		h_percue /= 3;
 		y = env->h_regard + (h_percue / 2);
@@ -96,10 +96,8 @@ void	print_sprite_object(t_env *env)
 	t_coord	cd;
 
 	i = 1;
-	while (++i < NB_SP)
+	while (++i <= 6)
 	{
-		if (i == 5)
-			i += 3;
 		cmp = -1;
 		while (++cmp < env->sp[i].nb)
 		{

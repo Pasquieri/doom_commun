@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 19:53:58 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 21:42:58 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_grid_win(t_env *env, t_coord cd, int orient, int i, int j)
 	index_sp = env->tab[j][i] - 10;
 	if (env->tab[j][i] == DOOR)
 		index_sp = 5;
-	if (env->tab[j][i] >= 4 && env->tab[j][i] <= 6)
+	if (env->tab[j][i] >= W_G_TAB && env->tab[j][i] <= W_B_TAB)
 		index_sp = 7;
 	while (++k < env->sp[index_sp].nb)
 	{
@@ -85,9 +85,9 @@ void	check_sprite(int i, int j, t_env *env, int orient, t_coord cd)
 	int		index_sp;
 
 	value = -1;
-	// 12 = COLUMN / 13 = BANANA / 14 = MONKEY / 18 = SYRINGE
-	if ((env->tab[j][i] >= 12 && env->tab[j][i] <= 14) || env->tab[j][i] == 18)
+	if ((env->tab[j][i] >= COLUMN && env->tab[j][i] <= SYRINGE))
 		value = env->tab[j][i];
+	value == DOOR_CLOSE ? value = -1 : value;
 	if (value != -1)
 	{
 		k = -1;

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 20:32:50 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 20:59:05 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@
 # define BANANA 13 // idem a ramasser : disparition & gain de vie
 # define MONKEY 14 // sprite en mouvement : ennemis
 # define DOOR_CLOSE 15 // animation a faire
-# define SYRINGE 18
+# define SYRINGE 16 // 18
 # define PLAFOND 21 // PLAFOND OK
 # define SKY 22 // SKYBOX OK
 # define NB_SP 9
 # define W_HEIGHT 870
 # define W_WIDTH 1200
-# define SPEED 0.8
+# define SPEED 0.5
 
 typedef struct	s_coord
 {
