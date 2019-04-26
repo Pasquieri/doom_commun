@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 19:23:18 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 20:40:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,10 @@ void	print_sprite_object(t_env *env)
 	t_coord	cd;
 
 	i = 1;
-	while (++i < 5)
-//	while (++i < NB_SP)
+	while (++i < NB_SP)
 	{
-//		if (i == 5) // porte +  tableau + gun
-//			i += 3;
+		if (i == 5)
+			i += 3;
 		cmp = -1;
 		while (++cmp < env->sp[i].nb)
 		{

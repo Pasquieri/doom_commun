@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 19:23:05 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 20:39:42 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-static void		initialise_struct(t_env *env, int k, int cmp)
+static void		initialize_struct(t_env *env, int k, int cmp)
 {
 	env->sp[k].sprite[cmp].det = 0;
 	env->sp[k].sprite[cmp].win_x = 0;
@@ -34,11 +34,10 @@ static void	check_obj_behind_wall(t_env *env)
 	double	d_sp;
 
 	k = 1;
-	while (++k < 5)
-//	while (++k < NB_SP) // 2, 3, 4
+	while (++k < NB_SP)
 	{
-	//	if (k == 5)
-	//		k += 3;
+		if (k == 5)
+			k += 3;
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
 		{
@@ -49,7 +48,7 @@ static void	check_obj_behind_wall(t_env *env)
 						+ pow(env->perso_y - env->sp[k].sprite[cmp].cd_i.y, 2));
 				env->sp[k].sprite[cmp].check = 1;
 				if (d_sp > env->dist)
-					initialise_struct(env, k, cmp);
+					initialize_struct(env, k, cmp);
 			}
 		}
 	}
@@ -64,11 +63,10 @@ static void		sprite_init(t_env *env)
 	while (++k < NB_SP)
 	{
 		if (k == 6)
-		//	k += 2;
 			k++;
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
-			initialise_struct(env, k, cmp);
+			initialize_struct(env, k, cmp);
 	}
 }
 

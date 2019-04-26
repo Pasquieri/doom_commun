@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 18:59:01 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 19:53:58 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ void	check_sprite(int i, int j, t_env *env, int orient, t_coord cd)
 			if (env->sp[index_sp].sprite[k].i == i
 					&& env->sp[index_sp].sprite[k].j == j)
 			{
-				if (orient == 0)
+				if (env->sp[index_sp].sprite[k].alive == 1 && orient == 0)
 					fill_hor(index_sp, k, env, cd);
-				else
+				else if (env->sp[index_sp].sprite[k].alive == 1 && orient == 1)
 					fill_ver(index_sp, k, env, cd);
 				/******************* ADD 14/04 ***************************/
 			//	env->sp[index_sp].sprite[k].det = 1; // 14/04

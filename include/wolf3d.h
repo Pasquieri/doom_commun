@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 19:23:00 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 20:32:50 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,13 +155,15 @@ typedef struct	s_sprite
 	t_coord	cd_v;
 	double	angle_v;*/
 
-/***** ADD TEST *****/
-
 	int		o_i;
 	double	a_i;
 	double	a1;
 	double	a2;
 	t_coord	cd_i;
+
+	int		o_f; // pour la fin du sprite a afficher
+	double	a_f;
+	t_coord	cd_f;
 
 	int		det;
 	int		det_hor;
@@ -171,13 +173,12 @@ typedef struct	s_sprite
 	t_coord	cd_h;
 	t_coord	cd_v;
 
-/****** GRID && WIN ******/
 	t_det	detec[2];
 	_Bool	check;
 
 	_Bool	proximity;
 	_Bool	open;
-	//_Bool	alive; // mob
+	_Bool	alive;
 	//int	ordre; //affichage sprite dans l'ordre ?
 }				t_sprite;
 
@@ -223,6 +224,7 @@ typedef struct	s_env
 	int		perso_r;
 	double	vitesse;
 	int		musique;
+	int		value;
 
 	//menu
 	int		detail;
@@ -277,6 +279,9 @@ int				key_apply(t_env *env);
 int				motion_notify(int x, int y, t_env *env);
 void			rotation_regard(t_env *env);
 int				trig_press(t_env *env);
+void			deal_door(t_env *env);
+void			deal_tab(t_env *env);
+void			deal_items(t_env *env, int k);
 void			ft_monkey(t_env *env);
 /*initialize*/
 void			init_rgb(t_env *env);
@@ -347,8 +352,6 @@ int				verif_ver_sp(t_env *env, t_coord *coord);
 void			check_sprite(int i, int j, t_env *env, int orie, t_coord cd);
 void			print_sprite_object(t_env *env);
 void			print_sprite_wall(t_env *env);
-void			deal_door(t_env *env);
-void			deal_tab(t_env *env);
 void			check_grid_win(t_env *env, t_coord cd, int o, int i, int j);
 double			verif_angle(double angle);
 t_coord			init_lim_coord(t_env *env, int k, int cmp, double theta);

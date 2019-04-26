@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 19:33:27 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/26 19:54:41 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 	coef = 5.;
 	sp->sprite[*x].i = i;
 	sp->sprite[*x].j = j;
+	sp->sprite[*x].alive = 1;
 	if (sp->val == MONKEY) // pour test affichage monkey hors du milieu d'une case
 	{
 		pos_x = i * coef + coef / 2;

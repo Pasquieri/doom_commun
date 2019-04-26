@@ -14,6 +14,7 @@ SRC = src/main.c\
 	  src/action/rotation_regard.c\
 	  src/action/motion_notify.c \
 	  src/action/trig_press.c\
+	  src/action/deal_door.c\
 	  src/action/monkey.c\
 	  \
 	  src/menu/chaine_nb.c\
@@ -59,8 +60,7 @@ SRC = src/main.c\
 	  src/sprites/verif_mur_hor.c\
 	  src/sprites/print_sprite_object.c\
 	  src/sprites/print_sprite_wall.c\
-	  src/sprites/calcul_spr.c\
-	  src/sprites/deal_door.c
+	  src/sprites/calcul_spr.c
 
 
 HEADER = -Ilibft -Iinclude
