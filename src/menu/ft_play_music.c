@@ -1,0 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_play_music.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/27 13:09:15 by mpasquie          #+#    #+#             */
+/*   Updated: 2019/04/27 13:13:16 by mpasquie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/wolf3d.h"
+
+void	ft_play_music(int i)
+{
+	system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
+	if (i == 1)
+		system("/usr/bin/afplay -q 1 src/song/musique1.mp3&");
+	else if (i == 2)
+		system("/usr/bin/afplay -q 1 src/song/musique2.mp3&");
+	else if (i == 3)
+		system("/usr/bin/afplay -q 1 src/song/musique3.mp3&");
+	else if (i == 4)
+		system("/usr/bin/afplay -q 1 src/song/musique4.mp3&");
+}
