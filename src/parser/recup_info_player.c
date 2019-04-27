@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:56:40 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/22 19:10:07 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/27 16:46:45 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ static char	*remplit_str(char *str, char c)
 	}
 	str[i] = ' ';
 	return (str);
+}
+
+static int	recup_r(char *str, int i)
+{
+	while (str[i] != ',')
+	{
+		if (str[i] == '\0')
+			return (-1);
+		i++;
+	}
+	str = remplit_str(str, ',');
+	return (ft_atoi(str));
 }
 
 static int	recup_x(char *str, int i, int x, char c)
@@ -51,18 +63,7 @@ static int	recup_x(char *str, int i, int x, char c)
 		str = remplit_str(str, ',');
 		return (ft_atoi(str));
 	}
-	if (c == 'r')
-	{
-		while (str[i] != ',')
-		{
-			if (str[i] == '\0')
-				return (-1);
-			i++;
-		}
-		str = remplit_str(str, ',');
-		return (ft_atoi(str));
-	}
-	return (-1);
+	return ((c == 'r') ? recup_r(str, i) : -1);
 }
 
 int			recup_info_player(char *str, char c)

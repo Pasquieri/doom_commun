@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:28:17 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/26 17:58:11 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/27 16:35:26 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	fill_condition_1(t_fill *fill, t_env *env)
 	fill->tmp = ft_strsplit(fill->line, ' ');
 	if (tablen(fill->tmp) < env->perso_x)
 		i = 14;
-	if (verif_case(fill->tmp[(int)env->perso_x][0]) == -1) /// verif que la case du perso ne soit pas un mur '0'
+	if (verif_case(fill->tmp[(int)env->perso_x][0]) == -1)
 		i = 15;
 	fill->k = tablen(fill->tmp);
 	while (fill->k >= 0)
@@ -58,13 +58,12 @@ static int	fill_extra(t_env *env, t_fill *fill)
 {
 	if (init_fill_tab(fill, env) == -1)
 		return (-1);
-	//Verif les cadres
 	fill->nb_sol += compte_char(fill->line, '0');
 	fill->j = 0;
 	fill->tmp = ft_strsplit(fill->line, ' ');
 	if (verif_nb_tab(fill->tmp, env) == -1)
 		return (-1);
-	while (fill->j <= 41 && fill->tmp[fill->j]) // mettre une comparaison pour que la map fasse 40 * 40
+	while (fill->j <= 41 && fill->tmp[fill->j])
 	{
 		env->tab[fill->i][fill->j] = ft_atoi(fill->tmp[fill->j]);
 		free(fill->tmp[fill->j]);
@@ -72,7 +71,6 @@ static int	fill_extra(t_env *env, t_fill *fill)
 	}
 	free(fill->tmp);
 	fill->i++;
-	//Verif les cadres
 	if (fill->i == env->y)
 		if (wall_line(fill->line, env) == -1)
 			return (-1);
@@ -97,11 +95,11 @@ int			fill_tab(int fd, t_env *env)
 			return (-1);
 	}
 	if (env->perso_y >= fill.i)
-		return (free_error(fill.line, 14, env)); // si le perso est hors map
+		return (free_error(fill.line, 14, env));
 	if (fill.i != env->y)
-		return (free_error(fill.line, 4, env)); // si il y a plus le de ligne que prevu
+		return (free_error(fill.line, 4, env));
 	if (fill.nb_sol == 0)
-		return (free_error(fill.line, 11, env)); // si la map n'a pas de case vide
+		return (free_error(fill.line, 11, env));
 	free(fill.line);
 	return (0);
 }

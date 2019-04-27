@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:25:16 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/26 17:58:25 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/27 16:33:08 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ int			check_file(int fd, t_env *env)
 	line1 = NULL;
 	if (get_next_line(fd, &line1) != 1)
 		return (free_error(line1, env, 13));
-//	printf("et de un\n");
 	if (check_perso_coord(line1, env) == -1)
 		return (free_error(line1, env, 14));
-//	printf("et de deux\n");
 	if (get_next_line(fd, &line1) != 1)
 		return (free_error(line1, env, 13));
 	if (verif_valeur(line1, env) == -1)

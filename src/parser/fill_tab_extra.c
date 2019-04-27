@@ -6,25 +6,18 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 15:26:07 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/12 17:13:54 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/27 16:35:53 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-int		verif_case(char c) // modif de clara pour le debut
+int		verif_case(char c)
 {
 	if (c == '8' || c == '0')
 		return (0);
 	return (-1);
 }
-
-/*int		verif_case(char c) // fonction de matt a l'origine
-{
-	if (c != '0')
-		return (-1);
-	return (0);
-}*/
 
 int		verif_nb_tab(char **str, t_env *env)
 {

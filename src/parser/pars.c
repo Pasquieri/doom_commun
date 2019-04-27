@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 16:41:37 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 16:24:42 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/27 16:37:17 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int		re_pars(char *str, t_env *env)
 	int	fd;
 	int	j;
 
-//	env->map_entree = -1;
 	fd = -1;
 	env->detail = 0;
 	fd = check_open_map(str, fd, env);
@@ -52,13 +51,11 @@ int		re_pars(char *str, t_env *env)
 	j = 0;
 	while (j < env->y && env->map_entree == 0)
 	{
-	//	printf("free\n");
 		free(env->tab[j]);
 		j++;
 	}
 	if (env->map_entree == 0)
 		free(env->tab);
-	//printf("repars ok\n");
 	if (check_file(fd, env) == -1)
 		return (-1);
 	env->h_init = 0;
