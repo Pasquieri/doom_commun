@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:45:50 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/24 17:04:05 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/27 13:15:02 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	key_menu_extra(t_env *env)
 			exec_calcul(env, 315, 1);
 			env->map_entree = 0;
 			env->menu_select = 1;
+			ft_play_music(env->musique);
 		}
 	}
 	if (env->menu_select == 4)
@@ -44,6 +45,7 @@ static void	key_menu_extra(t_env *env)
 			exec_calcul(env, 225, 1);
 			env->map_entree = 0;
 			env->menu_select = 1;
+			ft_play_music(env->musique);
 		}
 	}
 	if (env->menu_select == 5)
@@ -60,6 +62,7 @@ static void	key_menu_extra(t_env *env)
 			exec_calcul(env, 0, 1);
 			env->map_entree = 0;
 			env->menu_select = 1;
+			ft_play_music(env->musique);
 		}
 	}
 	if (env->menu == 1)
@@ -87,6 +90,7 @@ void		key_invalid_menu(t_env *env)
 				free_sprite(env);
 			exec_calcul(env, 0, 1);
 			env->map_entree = 0;
+			ft_play_music(env->musique);
 		}
 	}
 	key_menu_extra(env);
@@ -109,6 +113,7 @@ void		key_valid_menu(t_env *env)
 			exec_calcul(env, 0, 1);
 			env->map_entree = 0;
 			env->menu_select = 1;
+			ft_play_music(env->musique);
 		}
 	}
 	key_menu_extra(env);

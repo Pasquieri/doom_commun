@@ -18,6 +18,7 @@ SRC = src/main.c\
 	  src/action/monkey.c\
 	  src/action/jump_crouch.c\
 	  \
+	  src/menu/ft_play_music.c\
 	  src/menu/chaine_nb.c\
 	  src/menu/hub.c\
 	  src/menu/menu_open.c\
@@ -82,6 +83,14 @@ $(NAME) : $(OBJ)
 		-framework OpenGL -framework AppKit \
 		$(HEADER) $(SRC) libft/libft.a
 	@mv a.out $(NAME)
+	tar -xvf src/song/musique1.tar musique1.mp3
+	tar -xvf src/song/musique2.tar musique2.mp3
+	tar -xvf src/song/musique3.tar musique3.mp3
+	tar -xvf src/song/musique4.tar musique4.mp3
+	mv musique1.mp3 src/song/musique1.mp3
+	mv musique2.mp3 src/song/musique2.mp3
+	mv musique3.mp3 src/song/musique3.mp3
+	mv musique4.mp3 src/song/musique4.mp3
 	@echo "${COLOR}all : Doom-nukem created √${COLOR_OFF}"
 
 ./%.o : src/%.c
@@ -98,6 +107,7 @@ clean :
 fclean : clean
 	make -C libft fclean
 	@rm -rf $(NAME)
+	rm src/song/*.mp3
 	@echo "${COLOR}Doom-nukem fclean √${COLOR_OFF}"
 
 re : fclean all
