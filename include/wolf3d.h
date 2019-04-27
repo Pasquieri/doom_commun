@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/27 13:12:29 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/27 15:22:15 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,13 +286,14 @@ void			ft_monkey(t_env *env);
 /*initialize*/
 void			init_rgb(t_env *env);
 void			init_env(t_env *env);
+
 void			init_sprite(t_env *env);
 void			number_sprite(t_env *env);
 void			init_tab_sprite(t_env *env);
 int				init_texture(t_env *env);
 int				win_init(t_env *env);
 /*menu*/
-void			ft_play_music(int i);
+void			ft_play_music(int i, char c);
 char			*chaine_nb(char *str, int nb);
 void			hub_init(t_env *env);
 void			print_hub(t_env *env);

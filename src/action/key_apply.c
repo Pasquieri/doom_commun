@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/26 19:43:11 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/27 15:23:01 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		exit(0);
 	}
 	if (env->key[16] && !env->menu)
+	{
+		if (env->h_story != 0)
+			ft_play_music(env->musique, ' ');
 		env->h_story = 0;
+	}
 	/*************** a modif pour changer l'arme etc ******************/
 	if (env->key[37] && env->gun == 1 && !env->menu) // coup de feu : key l
 	{
