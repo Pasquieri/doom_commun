@@ -42,15 +42,15 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		env->lum_int = 25;
 	if (env->key[257] && !env->menu)
 		env->vitesse = SPEED * 2;
-	if (env->key[83] && !env->menu)
+	if (env->key[83] && !env->menu && env->jump == 0 && env->crouch == 0)
 		env->coef_h_wall = 1;
-	else if (env->key[84] && !env->menu)
+	else if (env->key[84] && !env->menu && env->jump == 0 && env->crouch == 0)
 		env->coef_h_wall = 3;
-	else if (env->key[85] && !env->menu)
+	else if (env->key[85] && !env->menu && env->jump == 0 && env->crouch == 0)
 		env->coef_h_wall = 5;
-	else if (env->key[86] && !env->menu)
+	else if (env->key[86] && !env->menu && env->jump == 0 && env->crouch == 0)
 		env->coef_h_wall = 7;
-	if (env->key[49] && !env->menu && env->jump == 0 && env->crouch == 0)
+	if (env->key[49] && !env->menu && env->jump == 0 && env->crouch == 0 && env->coef_h_wall == 1)
 	{
 		if (env->key[13])
 			env->jump_move = 13;
@@ -62,7 +62,7 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		env->jump_move = 2;
 		env->jump = 1;
 	}
-	if (env->key[8] && !env->menu && (env->crouch == 0 || env->crouch == -2) && env->jump == 0)
+	if (env->key[8] && !env->menu && (env->crouch == 0 || env->crouch == -2) && env->jump == 0 && env->coef_h_wall == 1)
 	{
 		if (env->key[13])
 			env->jump_move = 13;

@@ -18,9 +18,9 @@ void	attack(t_env *env, int i)
 	int mJy = (env->perso_y / env->coef) / 1;
 	int x;
 	int y;
+
 	x = 0;
 	y = 0;
-
 	if (((int)(env->sp[4].sprite[i].cd.x-3) / env->coef) / 1 == mJx)
 		x = 1;
 	else if(((int)(env->sp[4].sprite[i].cd.x+3) / env->coef) / 1 == mJx)
@@ -30,17 +30,16 @@ void	attack(t_env *env, int i)
 	else if (((int)(env->sp[4].sprite[i].cd.y+3) / env->coef) / 1 == mJy)
 		y = 1;
 	if (x && y)
-		env->h_life -= 2;
-		
+		env->h_life -= 2;		
 }
 
 void	runToPlayer(t_env *env, int i) // colision mur a add
 {
-	int mJx = (env->perso_x / env->coef) / 1;
-	int mJy = (env->perso_y / env->coef) / 1;
+	int mJx;
+	mJx = (env->perso_x / env->coef) / 1;
+	int mJy;
+	mJy = (env->perso_y / env->coef) / 1;
 
-	if ((((env->sp[4].sprite[i].cd.x-1) / env->coef) / 1 == mJx))
-		printf("ERROR: %.1f - %d\n",((env->sp[4].sprite[i].cd.x-1) / env->coef) / 1, mJx );
 	if (env->sp[4].sprite[i].cd.x / env->coef != env->perso_x / env->coef &&
 	 env->sp[4].sprite[i].cd.y / env->coef != env->perso_y / env->coef)
 	{
@@ -57,8 +56,6 @@ void	runToPlayer(t_env *env, int i) // colision mur a add
 		env->tab[(int)(env->sp[4].sprite[i].cd.y / env->coef)][(int)(env->sp[4].sprite[i].cd.x / env->coef)] = 14;
 	}
 }
-
-// pause sur banane
 
 void	ft_monkey(t_env *env)
 {
