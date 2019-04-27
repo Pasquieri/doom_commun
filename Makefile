@@ -16,6 +16,7 @@ SRC = src/main.c\
 	  src/action/trig_press.c\
 	  src/action/deal_door.c\
 	  src/action/monkey.c\
+	  src/action/jump_crouch.c\
 	  \
 	  src/menu/chaine_nb.c\
 	  src/menu/hub.c\
