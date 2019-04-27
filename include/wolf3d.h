@@ -283,6 +283,8 @@ void			deal_door(t_env *env);
 void			deal_tab(t_env *env);
 void			deal_items(t_env *env, int k);
 void			ft_monkey(t_env *env);
+void			ft_crouch(t_env *env);
+void			ft_jump(t_env *env);
 /*initialize*/
 void			init_rgb(t_env *env);
 void			init_env(t_env *env);
