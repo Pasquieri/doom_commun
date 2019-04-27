@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 05:08:38 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/25 18:13:47 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/27 16:56:07 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/wolf3d.h"
+#include "../../include/wolf3d.h"
 
 void	free_sprite(t_env *env)
 {

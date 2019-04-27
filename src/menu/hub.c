@@ -5,24 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/05 13:12:49 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/26 21:12:31 by cpalmier         ###   ########.fr       */
-/*   Updated: 2019/04/06 09:26:03 by cpalmier         ###   ########.fr       */
+/*   Created: 2019/04/27 16:57:46 by mpasquie          #+#    #+#             */
+/*   Updated: 2019/04/27 17:29:52 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/wolf3d.h"
-
-static void		put_pxl(t_env *env, int x, int y, int color)
-{
-	int	i;
-
-	i = 4 * x + y * env->hub_end.s_l;
-	env->hub_end.img_str[i] = (char)env->rgb[color].b;
-	env->hub_end.img_str[i + 1] = (char)env->rgb[color].g;
-	env->hub_end.img_str[i + 2] = (char)env->rgb[color].r;
-	env->hub_end.img_str[i + 3] = (char)env->rgb[color].a;
-}
+#include "../../include/wolf3d.h"
 
 static void		story_affiche(t_env *env)
 {
@@ -53,31 +41,6 @@ static void		story_affiche(t_env *env)
 		"                Appuyez sur [y] pour commencer !                  ");
 }
 
-void			hub_init(t_env *env)
-{
-	int	x;
-	int	y;
-
-	env->story_mlx = mlx_new_image(env->mlx, W_WIDTH, W_HEIGHT);
-	env->hub_end.img = mlx_new_image(env->mlx, (W_WIDTH - 400), (W_HEIGHT - 660));
-	env->hub_end.img_str = mlx_get_data_addr(env->hub_end.img, &env->hub_end.bpp,
-			&env->hub_end.s_l, &env->hub_end.end);
-	y = -1;
-	while (++y < (W_HEIGHT - 660))
-	{
-		x = -1;
-		while (++x < (W_WIDTH - 400))
-			put_pxl(env, x, y, 8);
-	}
-	env->h_init = 1;
-	env->h_life = 100;
-	//env->h_monkey = 0;
-	env->h_monkey = env->sp[4].nb; // nombre de singe
-	env->h_ammo = 30;
-	env->h_end = 0;
-	env->h_story = 1;
-}
-
 static void		help_affiche(t_env *env)
 {
 	mlx_put_image_to_window(env->mlx, env->win, env->hub_end.img, 200, 400);
@@ -92,47 +55,43 @@ static void		help_affiche(t_env *env)
 	mlx_string_put(env->mlx, env->win, 220, 540, 0xFFFFFF,
 		"[Fleches] [Souris] : Rotation regard      [1-4] : Hauteur des murs");
 	mlx_string_put(env->mlx, env->win, 220, 570, 0xFFFFFF,
-		"[+][-] [0][9] : Changer la luminosite     [Space] : Sauter [c] : S'accroupir");
+		"[+][-] [0][9] : Changer la luminosite     [Space][c] Sauter Baisser");
+}
+
+static void		affiche_hub_extra(t_env *env)
+{
+	char		*message;
+
+	mlx_string_put(env->mlx, env->win, 599, 434, 0xFFFFFF, "+");
+	message = chaine_nb("Life : ", env->h_life, 0, 0);
+	mlx_string_put(env->mlx, env->win, 170, 10, 0x2B502B, message);
+	free(message);
+	message = chaine_nb("Monkeys : ", env->h_monkey, 0, 0);
+	mlx_string_put(env->mlx, env->win, 170, 50, 0x2B502B, message);
+	free(message);
+	message = chaine_nb("Ammo : ", env->h_ammo, 0, 0);
+	mlx_string_put(env->mlx, env->win, 170, 90, 0x2B502B, message);
+	free(message);
+	if (env->h_help != 1)
+		mlx_string_put(env->mlx, env->win, 170, 130, 0x2B502B,
+				"Appuyez sur [H] pour l'aide");
+	else
+		help_affiche(env);
 }
 
 void			print_hub(t_env *env)
 {
-	char	*message;
-
 	if (env->h_init == 0)
 		hub_init(env);
-	//env->h_end = 1; //Met fin au niveau
-	//env->h_life = 0; // vie du personnage
-	//env->h_help = 1; // 1 == affiche l'aide et 0 == l'enleve
 	if (env->h_story == 0)
 	{
 		mlx_put_image_to_window(env->mlx, env->win, env->text[23].img, 10, 10);
 		if (env->h_end <= 0)
-		{
-			mlx_string_put(env->mlx, env->win, 599, 434, 0xFFFFFF,
-					"+");
-
-			message = chaine_nb("Life : ", env->h_life);
-			mlx_string_put(env->mlx, env->win, 170, 10, 0x2B502B, message);
-			free(message);
-
-			message = chaine_nb("Monkeys : ", env->h_monkey);
-			mlx_string_put(env->mlx, env->win, 170, 50, 0x2B502B, message);
-			free(message);
-
-			message = chaine_nb("Ammo : ", env->h_ammo);
-			mlx_string_put(env->mlx, env->win, 170, 90, 0x2B502B, message);
-			free(message);
-
-			if (env->h_help != 1)
-				mlx_string_put(env->mlx, env->win, 170, 130, 0x2B502B,
-						"Appuyez sur [H] pour l'aide");
-			else
-				help_affiche(env);
-		}
+			affiche_hub_extra(env);
 		else
 		{
-			mlx_put_image_to_window(env->mlx, env->win, env->hub_end.img, 200, 400);
+			mlx_put_image_to_window(env->mlx, env->win,
+					env->hub_end.img, 200, 400);
 			if (env->h_life <= 0)
 				mlx_string_put(env->mlx, env->win, 510, 450, 0xD51515,
 						"Vous avez perdu :(");
@@ -148,7 +107,3 @@ void			print_hub(t_env *env)
 	else
 		story_affiche(env);
 }
-
-// donc pour afficher le message de fin il faut que env->H_end = 1
-// pour le message de victoire le perso doit finir avec de la vie
-// pour le message de defaite le perso doit finir sans vie

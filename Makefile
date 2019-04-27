@@ -18,6 +18,8 @@ SRC = src/main.c\
 	  src/action/monkey.c\
 	  src/action/jump_crouch.c\
 	  \
+	  src/menu/menu_init.c\
+	  src/menu/hub_init.c\
 	  src/menu/ft_play_music.c\
 	  src/menu/chaine_nb.c\
 	  src/menu/hub.c\

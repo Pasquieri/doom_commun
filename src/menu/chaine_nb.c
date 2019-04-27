@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 13:09:06 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/08 16:16:58 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/27 17:23:45 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/wolf3d.h"
+#include "../../include/wolf3d.h"
 
 static int		ft_size(int nb)
 {
@@ -27,7 +27,7 @@ static int		ft_size(int nb)
 
 static int		size_int(int nb)
 {
-	int     size;
+	int			size;
 
 	size = 1;
 	while (nb / 10 > 0)
@@ -61,15 +61,11 @@ static char		*char_int(int nb)
 	return (tab);
 }
 
-char			*chaine_nb(char *str, int nb)
+char			*chaine_nb(char *str, int nb, int i, int j)
 {
-	char	*res;
-	char	*str2;
-	int		i;
-	int		j;
+	char		*res;
+	char		*str2;
 
-	j = 0;
-	i = 0;
 	res = NULL;
 	str2 = char_int(nb);
 	res = (char *)malloc(sizeof(char) * (ft_strlen(str2) + ft_strlen(str) + 1));

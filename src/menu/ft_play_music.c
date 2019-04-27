@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 13:09:15 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 15:34:52 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/27 16:56:34 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,4 @@ void	ft_play_music(int i, char c)
 		system("/usr/bin/afplay -q 1 src/song/musique7.mp3&");
 	else if (c == 's')
 		system("/usr/bin/afplay -q 1 src/song/story.mp3&");
-
 }
