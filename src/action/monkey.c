@@ -12,24 +12,8 @@
 
 #include "../../include/wolf3d.h"
 
-void	attack(t_env *env, int i)
+void	attack_bruit(int x, int y, t_env *env)
 {
-	int mJx = (env->perso_x / env->coef) / 1;
-	int mJy = (env->perso_y / env->coef) / 1;
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	if (((int)(env->sp[4].sprite[i].cd.x-3) / env->coef) / 1 == mJx)
-		x = 1;
-	else if(((int)(env->sp[4].sprite[i].cd.x+3) / env->coef) / 1 == mJx)
-		x = 1;
-	if (((int)(env->sp[4].sprite[i].cd.y-3) / env->coef) / 1 == mJy)
-		y = 1;
-	else if (((int)(env->sp[4].sprite[i].cd.y+3) / env->coef) / 1 == mJy)
-		y = 1;
-	atack_bruit(x, y, env);
 	if (x && y && env->h_end == 0)
 	{
 		env->h_life -= 10;
@@ -48,28 +32,48 @@ void	attack(t_env *env, int i)
 			}
 		}
 	}
+}
+
+void	attack(t_env *env, int i)
+{
+	int mjx = (env->perso_x / env->coef) / 1;
+	int mjy = (env->perso_y / env->coef) / 1;
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	if (((int)(env->sp[4].sprite[i].cd.x - 3) / env->coef) / 1 == mjx)
+		x = 1;
+	else if(((int)(env->sp[4].sprite[i].cd.x + 3) / env->coef) / 1 == mjx)
+		x = 1;
+	if (((int)(env->sp[4].sprite[i].cd.y - 3) / env->coef) / 1 == mjy)
+		y = 1;
+	else if (((int)(env->sp[4].sprite[i].cd.y + 3) / env->coef) / 1 == mjy)
+		y = 1;
+	attack_bruit(x, y, env);
 	if (env->h_life < 1)
 		env->h_end = 1;
 }
 
-
-
 void	runToPlayer(t_env *env, int i)
 {
-	int		mJx;
-	int 	mJy;
+	int		mjx;
+	int 	mjy;
 	int 	pMx;
 	int 	pMy;
 
-	mJx = (env->perso_x / env->coef) / 1;
-	mJy = (env->perso_y / env->coef) / 1;
+	mjx = (env->perso_x / env->coef) / 1;
+	mjy = (env->perso_y / env->coef) / 1;
 	pMx = (int)(env->sp[4].sprite[i].cd.x / env->coef);
 	pMy = (int)(env->sp[4].sprite[i].cd.y / env->coef);
-	check_card(env, mJx, mJy, i);
-	env->tab[(int)(env->sp[4].sprite[i].cd.y / env->coef)][(int)(env->sp[4].sprite[i].cd.x / env->coef)] = 14;
+	check_card(env, mjx, mjy, i);
+	env->tab[(int)(env->sp[4].sprite[i].cd.y / env->coef)]
+	[(int)(env->sp[4].sprite[i].cd.x / env->coef)] = 14;
 	env->sp[4].sprite[i].j = (int)(env->sp[4].sprite[i].cd.y / env->coef / 1);
 	env->sp[4].sprite[i].i = (int)(env->sp[4].sprite[i].cd.x / env->coef / 1);
-	if ((int)(env->sp[4].sprite[i].cd.y / env->coef / 1) != pMy / 1 || (int)(env->sp[4].sprite[i].cd.x / env->coef /1) != pMx / 1)
+	if ((int)(env->sp[4].sprite[i].cd.y / env->coef / 1) != pMy / 1 ||
+		(int)(env->sp[4].sprite[i].cd.x / env->coef /1) != pMx / 1)
 		env->tab[pMy][pMx] = 0;
 }
 
