@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   detection_mur_vertical.c                           :+:      :+:    :+:   */
+/*   verif_ver_shoot.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 18:48:58 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 21:54:27 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ static void	check_shoot(t_env *env, t_coord cd, int i, int j)
 		{
 			dist = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
 			dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);
-			env->sp[index_sp].sprite[k].detec[1].on = 1;
-			env->sp[index_sp].sprite[k].detec[1].dist = dist;
-			env->sp[index_sp].sprite[k].detec[1].cd = cd;
-			env->shoot.val_v = env->tab[j][i];
-			env->shoot.sp[1] = env->sp[index_sp].sprite[k];
-			env->shoot.det_v = 1;
+		//	env->sp[index_sp].sprite[k].detec[1].on = 1;
+		//	env->sp[index_sp].sprite[k].detec[1].dist = dist;
+		//	env->sp[index_sp].sprite[k].detec[1].cd = cd;
+			env->shoot[1].val = env->tab[j][i];
+			env->shoot[1].det = 1;
+			env->shoot[1].index = index_sp;
+			env->shoot[1].k = k;
+			env->shoot[1].d = dist;
 		}
 	}
 }
@@ -64,7 +66,7 @@ static void	ft_check_sprite(t_env *env, t_coord cd)
 		i = (int)(cd.x / env->coef);
 	j = (int)(cd.y / env->coef);
 	if ((env->tab[j][i] == WIN || env->tab[j][i] == MONKEY)
-		&& env->shoot.det_v == 0)
+		&& env->shoot[1].det == 0)
 		check_shoot(env, cd, i, j);
 }
 

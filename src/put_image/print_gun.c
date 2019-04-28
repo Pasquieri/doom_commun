@@ -6,17 +6,31 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 03:55:38 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 19:10:09 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 21:56:02 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-static void	deal_shoot(t_env *env, t_sprite sprite)
+static void	deal_shoot(t_env *env, int val, int o)
 {
-	sprite.alive = 0;
-	env->shoot.det_h = 0;
-	env->shoot.det_v = 0;
+	int	i;
+	int	j;
+
+
+	i = 0;
+	j= 0;
+	//env->tab[j][i] = 0;
+//	sprite.alive = 0;
+	o = 0;
+	if (val == MONKEY)
+	{
+		;
+	}
+	env->shoot[0].val = 0;
+	env->shoot[0].val = 0;
+	env->shoot[1].det = 0;
+	env->shoot[1].det = 0;
 }
 
 static void	shoot(t_env *env)
@@ -28,18 +42,18 @@ static void	shoot(t_env *env)
 	detec_shoot(env);
 	d_h = -1;
 	d_v = -1;
-	if (env->shoot.det_h == 0 ||env->shoot.det_v == 0)
+	if (env->shoot[0].det == 0 || env->shoot[1].det == 0)
 	{
-		if (env->shoot.det_h == 1)
-			d_h = env->shoot.sp[0].detec[0].dist;
-		if (env->shoot.det_v == 1)
-			d_v = env->shoot.sp[1].detec[1].dist;
+		if (env->shoot[0].det == 1)
+			d_h = env->shoot[0].d;
+		if (env->shoot[1].det == 1)
+			d_v = env->shoot[1].d;
 		d_h == - 1 ? d_h = d_v + 1 : d_h;
 		d_v == - 1 ? d_v = d_h + 1 : d_v;
 		if (d_h < d_v && d_h <= env->dist)
-			deal_shoot(env, env->shoot.sp[0]);
+			deal_shoot(env, env->shoot[0].val, 0);
 		else if (d_v <= d_h && d_v <= env->dist)
-			deal_shoot(env, env->shoot.sp[1]);
+			deal_shoot(env, env->shoot[1].val, 1);
 	}
 }
 
