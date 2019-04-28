@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/28 17:12:48 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:44:40 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 			ft_play_music(env->musique, ' ');
 		env->h_story = 0;
 	}
-	/*************** a modif pour changer l'arme etc ******************/
-	if (env->key[37] && env->gun == 1 && !env->menu) // coup de feu : key l
-	{
-		print_gun(env, 2);
-		mlx_put_image_to_window(env->mlx,env->win,env->m[0].img, 0,0);
-		mlx_put_image_to_window(env->mlx,env->win,env->m[1].img, 960,20);
-	}
-	/*******************************************************************/
 	if (env->key[29] && !env->menu)
 		env->lum_int = 370;
 	if (env->key[25] && !env->menu)
@@ -111,7 +103,15 @@ int			key_release(int key, t_env *env)
 		else if (key == 18)
 			env->skybox = 0;
 	}
-	/****************** a modifier pour changer l'arme ********************/
+	if (key == 37 && env->gun == 1 && !env->menu && env->h_ammo > 0) // coup de feu : key l
+	{
+		print_gun(env, 2);
+		mlx_put_image_to_window(env->mlx,env->win,env->m[0].img, 0,0);
+		mlx_put_image_to_window(env->mlx,env->win,env->m[1].img, 960,20);
+		print_hub(env);
+		system("/usr/bin/afplay -q 1 src/song/fire.mp3&");
+		env->h_ammo--;
+	}
 	if (key == 40 && !env->menu) // pour afficher le gun : key k
 	{
 		if (env->gun == 0)
@@ -119,7 +119,6 @@ int			key_release(int key, t_env *env)
 		else
 			env->gun = 0;
 	}
-	/**********************************************************************/
 	return (0);
 }
 
