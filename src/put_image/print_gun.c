@@ -49,8 +49,8 @@ static void	shoot(t_env *env)
 			d_h = env->shoot[0].d;
 		if (env->shoot[1].det == 1)
 			d_v = env->shoot[1].d;
-		d_h == - 1 ? d_h = d_v + 1 : d_h;
-		d_v == - 1 ? d_v = d_h + 1 : d_v;
+		d_h == -1 ? d_h = d_v + 1 : d_h;
+		d_v == -1 ? d_v = d_h + 1 : d_v;
 		if (d_h < d_v && d_h <= env->dist)
 			deal_shoot(env, 0);
 		else if (d_v <= d_h && d_v <= env->dist)
@@ -58,7 +58,7 @@ static void	shoot(t_env *env)
 	}
 }
 
-void	print_gun(t_env *env, int k)
+void		print_gun(t_env *env, int k)
 {
 	int	i;
 	int	j;

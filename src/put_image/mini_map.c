@@ -12,45 +12,6 @@
 
 #include "../../include/wolf3d.h"
 
-void		color_case(t_env *env) // case avec sprite coloriees
-{
-	int	i;
-	int	j;
-	int	x;
-	int	y;
-	int	color;
-
-	j = -1;
-	while (++j < env->y)
-	{
-		i = -1;
-		while (++i < env->x)
-		{
-			if ((env->tab[j][i] > 0 && env->tab[j][i] <= 7)
-					|| (env->tab[j][i] >= 9 && env->tab[j][i] <= 16))
-			{
-				y = j * env->coef - 1;
-				while (++y < (j * env->coef + env->coef))
-				{
-					x = i * env->coef - 1;
-					color = 1; // mur
-					if (env->tab[j][i] == 7 || env->tab[j][i] == 15)
-						color = 2; // porte
-					else if (env->tab[j][i] == 10 || env->tab[j][i] == 11)
-						color = 3; // grille & fenetre
-					else if (env->tab[j][i] == 12 || env->tab[j][i] == 13
-						|| env->tab[j][i] == 14 || env->tab[j][i] == 16)
-						color = 4; // autre sp;
-					else if (env->tab[j][i] == END)
-						color = 5;
-					while (++x < (i * env->coef + env->coef))
-						put_pxl_img(env, x, y, color);
-				}
-			}
-		}
-	}
-}
-
 static void	init_coord(t_coord *coord1, t_coord *coord3, t_env *env)
 {
 	coord3->x = coord1->x;
