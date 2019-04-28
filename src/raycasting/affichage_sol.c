@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 10:28:54 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/28 19:45:06 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 20:58:44 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	put_texture_floor(double psx, double psy, t_env *env, int y, int b)
 	int	p_y;
 	int	i;
 	int	j;
+	int	flou;
 
 	p_x = (int)(psx * 100) % 100;
 	p_y = (int)(psy * 100) % 100;
@@ -29,7 +30,9 @@ static void	put_texture_floor(double psx, double psy, t_env *env, int y, int b)
 			env->lum);
 	env->m[0].img_str[i + 2] = luminosite(env->text[b].img_str[j + 2],
 			env->lum);
-	env->m[0].img_str[i + 3] = (char)0;
+	flou = 100 - env->h_life;
+	flou < 0 ? flou = 0 : flou;
+	env->m[0].img_str[i + 3] = (char)flou;
 }
 
 double		pos_sol_x(double psx, double m, double ac_p, t_env *env)
