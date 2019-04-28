@@ -12,7 +12,7 @@
 
 #include "../../include/wolf3d.h"
 
-static void	put_texture_floor(double psx, double psy, t_env *env, int y)
+static void	put_texture_floor(double psx, double psy, t_env *env, int y, int b)
 {
 	int p_x;
 	int	p_y;
@@ -22,12 +22,12 @@ static void	put_texture_floor(double psx, double psy, t_env *env, int y)
 	p_x = (int)(psx * 100) % 100;
 	p_y = (int)(psy * 100) % 100;
 	i = 4 * env->img_x + y * env->m[0].s_l;
-	j = 4 * (int)(env->text[0].width * p_x / 100)
-		+ (int)(env->text[0].height * p_y / 100) * env->text[0].s_l;
-	env->m[0].img_str[i] = luminosite(env->text[0].img_str[j], env->lum);
-	env->m[0].img_str[i + 1] = luminosite(env->text[0].img_str[j + 1],
+	j = 4 * (int)(env->text[b].width * p_x / 100)
+		+ (int)(env->text[b].height * p_y / 100) * env->text[b].s_l;
+	env->m[0].img_str[i] = luminosite(env->text[b].img_str[j], env->lum);
+	env->m[0].img_str[i + 1] = luminosite(env->text[b].img_str[j + 1],
 			env->lum);
-	env->m[0].img_str[i + 2] = luminosite(env->text[0].img_str[j + 2],
+	env->m[0].img_str[i + 2] = luminosite(env->text[b].img_str[j + 2],
 			env->lum);
 	env->m[0].img_str[i + 3] = (char)0;
 }
@@ -83,14 +83,12 @@ double		pos_sol_y(double psy, double n, double ac_p, t_env *env)
 void		affichage_sol(double y, double h_percue, t_env *env)
 {
 	double ac_sol;
-	double tmp;
 	double pos_perso_x;
 	double pos_perso_y;
 
 	h_percue = 2;
 	pos_perso_x = env->perso_x / (double)env->coef;
 	pos_perso_y = env->perso_y / (double)env->coef;
-	tmp = (env->h_regard) / ((y - env->h_regard) / env->d_ecran);
 	while (y < W_HEIGHT)
 	{
 		ac_sol = (env->d_ecran * ((env->d_ecran * env->h_mur)
@@ -98,8 +96,17 @@ void		affichage_sol(double y, double h_percue, t_env *env)
 		ac_sol = ac_sol / env->d_ecran;
 		ac_sol = ac_sol / cos((env->angle - env->d_regard) * M_PI / 180);
 		env->lum = ac_sol * 255 / env->lum_int;
-		put_texture_floor(pos_sol_x(pos_perso_x, 0, ac_sol, env),
-			pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y);
+		if (env->tab[(int)pos_sol_y(pos_perso_y, 0, ac_sol, env)]
+			[(int)pos_sol_x(pos_perso_x, 0, ac_sol, env)] == DOOR_CLOSE)
+			put_texture_floor(pos_sol_x(pos_perso_x, 0, ac_sol, env),
+				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 0);
+		else if (env->tab[(int)pos_sol_y(pos_perso_y, 0, ac_sol, env)]
+			[(int)pos_sol_x(pos_perso_x, 0, ac_sol, env)] == END)
+			put_texture_floor(pos_sol_x(pos_perso_x, 0, ac_sol, env),
+				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 0);
+		else
+			put_texture_floor(pos_sol_x(pos_perso_x, 0, ac_sol, env),
+				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 0);
 		y++;
 	}
 }
