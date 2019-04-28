@@ -58,10 +58,13 @@ SRC = src/main.c\
 	  src/raycasting/affichage_plafond.c\
 	  \
 	  src/sprites/affichage_sprite.c\
+	  src/sprites/detec_shoot.c\
+	  src/sprites/verif_ver_shoot.c\
+	  src/sprites/verif_hor_shoot.c\
 	  src/sprites/detection_mur_sp.c\
-	  src/sprites/check_sprite.c\
 	  src/sprites/verif_mur_ver.c\
 	  src/sprites/verif_mur_hor.c\
+	  src/sprites/check_sprite.c\
 	  src/sprites/print_sprite_object.c\
 	  src/sprites/print_sprite_wall.c\
 	  src/sprites/calcul_spr.c

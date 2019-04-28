@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 15:03:00 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 19:06:46 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	check_grid_win(t_env *env, t_coord cd, int orient, int i, int j)
 	while (++k < env->sp[index_sp].nb)
 	{
 		if (env->sp[index_sp].sprite[k].i == i
-				&& env->sp[index_sp].sprite[k].j == j)
+				&& env->sp[index_sp].sprite[k].j == j
+				&& env->sp[index_sp].sprite[k].alive == 1)
 		{
 			dist = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
 			dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);

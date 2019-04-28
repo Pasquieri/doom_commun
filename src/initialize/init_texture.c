@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2011/03/01 20:15:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 16:22:56 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 19:49:39 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ int		init_texture(t_env *env)
 			"textures/7-door.XPM", &env->text[7].width, &env->text[7].height);
 	env->text[8].img = mlx_xpm_file_to_image(env->mlx,
 			"textures/door2.XPM", &env->text[8].width, &env->text[8].height);
-//	env->text[9].img = mlx_xpm_file_to_image(env->mlx,
-//			"textures/NOM_DE_LA_TEXTURE_DE_FIN.XPM", &env->text[9].width, &env->text[9].height);
+	env->text[9].img = mlx_xpm_file_to_image(env->mlx,
+			"textures/door_floor2.xpm", &env->text[9].width, &env->text[9].height);
+	env->text[10].img = mlx_xpm_file_to_image(env->mlx,
+			"textures/end.xpm", &env->text[10].width, &env->text[10].height);
 	env->text[21].img = mlx_xpm_file_to_image(env->mlx,
 			"textures/21-plafond_white.XPM",
 			&env->text[21].width, &env->text[21].height);
@@ -96,7 +98,7 @@ int		init_texture(t_env *env)
 	init_sprite(env);
 	v_text = verif_text(env, 0, 0); //nb de text pas get_data
 	v_sprt = verif_sprt(env, 0, 0); //nb de spri pas get_data
-	if (v_text != 11 || v_sprt != 0)
+	if (v_text != 9 || v_sprt != 0)
 		return (-1);
 	return (0);
 }

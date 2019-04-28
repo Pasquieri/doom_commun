@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 18:03:28 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/28 19:07:49 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,25 @@
 # include <stdio.h>
 # include <pthread.h>
 
-# define FLOOR 0 // SOL OK
+# define FLOOR 0
 # define W_GRAY 1
-# define W_WHITE 2 // WALL OK
+# define W_WHITE 2
 # define W_BLUE 3
 # define W_G_TAB 4
-# define W_W_TAB 5 // TAB OK
+# define W_W_TAB 5
 # define W_B_TAB 6
 # define DOOR 7 // OK : manque animation
 # define BEGIN 8
 # define END 9
 # define GRID 10 // OK : revoir pour afficher les 4 cotes ou pas
-# define WIN 11 // OK
-# define COLUMN 12 //sprite sans mouvements
-# define BANANA 13 // idem a ramasser : disparition & gain de vie
-# define MONKEY 14 // sprite en mouvement : ennemis
+# define WIN 11
+# define COLUMN 12
+# define BANANA 13
+# define MONKEY 14
 # define DOOR_CLOSE 15 // animation a faire
-# define SYRINGE 16 // 18
-# define PLAFOND 21 // PLAFOND OK
-# define SKY 22 // SKYBOX OK
+# define SYRINGE 16
+# define PLAFOND 21
+# define SKY 22
 # define NB_SP 9
 # define W_HEIGHT 870
 # define W_WIDTH 1200
@@ -114,24 +114,6 @@ typedef struct	s_det
 	t_coord	cd;
 }				t_det;
 
-/*typedef struct	s_test_sp
-{
-	double	alpha;
-	double	beta;
-	double	gamma;
-	double	a1;
-	double	a2;
-}				t_test_sp;*/
-
-/*typedef struct	s_cd
-{
-	t_coord	mid;
-	t_coord	left_h;
-	t_coord	left_b;
-	t_coord	right_h;
-	t_coord	right_b;
-}				t_cd;*/
-
 typedef struct	s_sprite
 {
 	int		i;
@@ -144,9 +126,6 @@ typedef struct	s_sprite
 	int		f_win_x;
 	t_coord	f_int;
 	double	f_angle;
-	t_coord	coin1;
-	t_coord	coin2;
-	t_test_sp	t;
 
 	int		win_h_x;
 	t_coord	cd_h;
@@ -155,10 +134,11 @@ typedef struct	s_sprite
 	t_coord	cd_v;
 	double	angle_v;*/
 
-	int		o_i;
-	double	a_i;
 	double	a1;
 	double	a2;
+
+	int		o_i;
+	double	a_i;
 	t_coord	cd_i;
 
 	int		o_f; // pour la fin du sprite a afficher
@@ -188,6 +168,15 @@ typedef struct	s_sp
 	int			nb;
 	t_sprite	*sprite;
 }				t_sp;
+
+typedef struct	s_shoot
+{
+	_Bool		det_h;
+	_Bool		det_v;
+	int			val_h;
+	int			val_v;
+	t_sprite	sp[2];
+}				t_shoot;
 
 typedef struct	s_env
 {
@@ -264,8 +253,8 @@ typedef struct	s_env
 	t_mlx	sp_t[NB_SP]; // textures des sprites
 	t_sp	sp[NB_SP];
 	t_coord	coord_spr;
-	int		lim_gun[5]; // seringue ??
 	_Bool	gun;
+	t_shoot	shoot;
 }				t_env;
 
 /*action*/
@@ -355,6 +344,9 @@ void			affichage_sprite(t_env *env);
 void			detection_mur_sp(t_env *env);
 int				verif_hor_sp(t_env *env, t_coord *coord);
 int				verif_ver_sp(t_env *env, t_coord *coord);
+void			detec_shoot(t_env *env);
+int				verif_hor_shoot(t_env *env, t_coord *coord);
+int				verif_ver_shoot(t_env *env, t_coord *coord);
 void			check_sprite(int i, int j, t_env *env, int orie, t_coord cd);
 void			print_sprite_object(t_env *env);
 void			print_sprite_wall(t_env *env);

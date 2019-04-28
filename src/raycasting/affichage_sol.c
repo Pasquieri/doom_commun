@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 10:28:54 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/21 19:32:11 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 19:45:06 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ void		affichage_sol(double y, double h_percue, t_env *env)
 		if (env->tab[(int)pos_sol_y(pos_perso_y, 0, ac_sol, env)]
 			[(int)pos_sol_x(pos_perso_x, 0, ac_sol, env)] == DOOR_CLOSE)
 			put_texture_floor(pos_sol_x(pos_perso_x, 0, ac_sol, env),
-				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 0);
+				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 9);
 		else if (env->tab[(int)pos_sol_y(pos_perso_y, 0, ac_sol, env)]
 			[(int)pos_sol_x(pos_perso_x, 0, ac_sol, env)] == END)
 			put_texture_floor(pos_sol_x(pos_perso_x, 0, ac_sol, env),
-				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 0);
+				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 10);
 		else
 			put_texture_floor(pos_sol_x(pos_perso_x, 0, ac_sol, env),
 				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 0);
