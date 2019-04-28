@@ -60,12 +60,13 @@ void	check_north(t_env *env, int i, int mJx)
 	mSy = ((int)(env->sp[4].sprite[i].cd.y) / env->coef) / 1;
 	if (mSx == mJx)
 		return ;
-/*	if (env->tab[mSx][mSy] != FLOOR && env->tab[mSx][mSy] != MONKEY)
+	if (env->tab[mSy][mSx] != FLOOR && env->tab[mSy][mSx] != MONKEY)
 	{
 		return;
-		printf("obstacle: %d (north)\n",env->tab[mSx][mSy] );
-	}*/
+		printf("obstacle: %d (north)\n",env->tab[mSy][mSx] );
+	}
 	env->sp[4].sprite[i].cd.x -= 0.3;
+	env->sp[4].sprite[i].i = (int)(env->sp[4].sprite[i].cd.x / env->coef / 1);
 }
 
 void	check_south(t_env *env, int i, int mJx)
@@ -77,12 +78,13 @@ void	check_south(t_env *env, int i, int mJx)
 	mSy = ((int)(env->sp[4].sprite[i].cd.y) / env->coef) / 1;
 	if (mSx == mJx)
 		return ;
-	/*if (env->tab[mSx][mSy] != FLOOR && env->tab[mSx][mSy] != MONKEY)
+	if (env->tab[mSy][mSx] != FLOOR && env->tab[mSy][mSx] != MONKEY)
 	{
 		return;
 		printf("obstacle: %d (south)\n",env->tab[mSx][mSy] );
-	}*/
+	}
 	env->sp[4].sprite[i].cd.x += 0.3;
+	env->sp[4].sprite[i].i = (int)(env->sp[4].sprite[i].cd.x / env->coef / 1);
 }
 
 void	check_east(t_env *env, int i, int mJy)
@@ -94,12 +96,13 @@ void	check_east(t_env *env, int i, int mJy)
 	mSy = ((int)(env->sp[4].sprite[i].cd.y - 1) / env->coef) / 1;
 	if (mSy == mJy)
 		return ;
-	/*if (env->tab[mSx][mSy] != FLOOR && env->tab[mSx][mSy] != MONKEY)
+	if (env->tab[mSy][mSx] != FLOOR && env->tab[mSy][mSx] != MONKEY)
 	{
 		return;
-		printf("obstacle: %d (east)\n",env->tab[mSx][mSy] );
-	}*/
+		printf("obstacle: %d (east)\n",env->tab[mSy][mSx] );
+	}
 	env->sp[4].sprite[i].cd.y -= 0.3;
+	env->sp[4].sprite[i].j = (int)(env->sp[4].sprite[i].cd.y / env->coef / 1);
 }
 
 void	check_west(t_env *env, int i, int mJy)
@@ -111,21 +114,26 @@ void	check_west(t_env *env, int i, int mJy)
 	mSy = ((int)(env->sp[4].sprite[i].cd.y + 1) / env->coef) / 1;
 	if (mSy == mJy)
 		return ;
-	/*if (env->tab[mSx][mSy] != FLOOR && env->tab[mSx][mSy] != MONKEY)
+	if (env->tab[mSy][mSx] != FLOOR && env->tab[mSy][mSx] != MONKEY)
 	{
 		return;
-		printf("obstacle: %d (west)\n",env->tab[mSx][mSy] );
-	}*/
+		printf("obstacle: %d (west)\n",env->tab[mSy][mSx] );
+	}
 	env->sp[4].sprite[i].cd.y += 0.3;
+	env->sp[4].sprite[i].j = (int)(env->sp[4].sprite[i].cd.y / env->coef / 1);
 }
 
 void	runToPlayer(t_env *env, int i) // colision mur a add
 {
-	int mJx;
-	int mJy;
+	int		mJx;
+	int 	mJy;
+	int 	pMx;
+	int 	pMy;
 
 	mJx = (env->perso_x / env->coef) / 1;
 	mJy = (env->perso_y / env->coef) / 1;
+	pMx = (int)(env->sp[4].sprite[i].cd.x / env->coef);
+	pMy = (int)(env->sp[4].sprite[i].cd.y / env->coef);
 	if (env->sp[4].sprite[i].cd.x / env->coef > env->perso_x / env->coef)
 		check_north(env, i, mJx);
 	else 
@@ -135,7 +143,8 @@ void	runToPlayer(t_env *env, int i) // colision mur a add
 	else
 		check_west(env, i, mJy);
 	env->tab[(int)(env->sp[4].sprite[i].cd.y / env->coef)][(int)(env->sp[4].sprite[i].cd.x / env->coef)] = 14;
-	
+	if ((int)(env->sp[4].sprite[i].cd.y / env->coef / 1) != pMy / 1 || (int)(env->sp[4].sprite[i].cd.x / env->coef /1) != pMx / 1)
+		env->tab[pMy][pMx] = 0;
 }
 
 void	ft_monkey(t_env *env)
