@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 16:57:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 17:29:52 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:05:00 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,14 @@ void			print_hub(t_env *env)
 				mlx_string_put(env->mlx, env->win, 510, 450, 0xD51515,
 						"Vous avez perdu :(");
 			else
-				mlx_string_put(env->mlx, env->win, 510, 450, 0x32901D,
-						"Vous avez gagne :)");
+			{
+				if (env->h_monkey <= 0)
+					mlx_string_put(env->mlx, env->win, 510, 450, 0x32901D,
+							"Vous avez gagne :)");
+				else
+					mlx_string_put(env->mlx, env->win, 365, 450, 0x32901D,
+							"Vous aviez presque gagne, il reste des singes :/");
+			}
 			mlx_string_put(env->mlx, env->win, 400, 500, 0x1A79D3,
 					"Appuyez sur [enter] pour revenir au menu");
 			mlx_string_put(env->mlx, env->win, 410, 530, 0x1A79D3,

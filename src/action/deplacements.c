@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:41:36 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 21:01:16 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 16:53:18 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,39 @@ int			check_wall(double xa, double ya, t_env *env)
 	x = env->perso_x + xa;
 	y = env->perso_y + ya;
 	if (check(env->tab[(int)y / env->coef][(int)x / env->coef], env)
-		&& check(env->tab[((int)y + 1) / env->coef][(int)x / env->coef], env)
-		&& check(env->tab[((int)y - 1) / env->coef][(int)x / env->coef], env)
-		&& check(env->tab[(int)y / env->coef][((int)x + 1) / env->coef], env)
-		&& check(env->tab[(int)y / env->coef][((int)x - 1) / env->coef], env))
+			&& check(env->tab[((int)y + 1) / env->coef][(int)x / env->coef], env)
+			&& check(env->tab[((int)y - 1) / env->coef][(int)x / env->coef], env)
+			&& check(env->tab[(int)y / env->coef][((int)x + 1) / env->coef], env)
+			&& check(env->tab[(int)y / env->coef][((int)x - 1) / env->coef], env))
 		return (0);
 	else
 		return (1);
+}
+
+static void	check_end(t_env *env)
+{
+	int	i;
+	int	j;
+
+	i = (int)(env->perso_x / env->coef);
+	j = (int)(env->perso_y / env->coef);
+	if (env->tab[j][i] == END && env->h_end == 0)
+	{
+		if (env->h_monkey <= 0)
+		{
+			system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
+			env->h_end = 1;
+			env->lum_int = 0;
+			system("/usr/bin/afplay -q 1 src/song/you_win.mp3&");
+		}
+		else
+		{
+			system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
+			env->h_end = 1;
+			env->lum_int = 0;
+			system("/usr/bin/afplay -q 1 src/song/try_again.mp3&");
+		}
+	}
 }
 
 void		deplacements(t_env *env)
@@ -58,4 +84,5 @@ void		deplacements(t_env *env)
 		deal_items(env, 3);
 		deal_items(env, 6);
 	}
+	check_end(env);
 }

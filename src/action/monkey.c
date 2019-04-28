@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 15:49:20 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/27 17:28:00 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/28 16:58:58 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,22 @@ void	attack(t_env *env, int i)
 		y = 1;
 	else if (((int)(env->sp[4].sprite[i].cd.y+3) / env->coef) / 1 == mJy)
 		y = 1;
-	if (x && y)
+	if (x && y && env->h_end == 0)
 	{
-		env->h_life -= 2;
-		system("/usr/bin/afplay -q 1 src/song/scream.mp3&");
+		env->h_life -= 10;
+		if (env->h_end <= 0)
+		{
+			if (env->h_life > 0)
+				system("/usr/bin/afplay -q 1 src/song/hit.mp3&");
+			else
+			{
+				system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
+				system("/usr/bin/afplay -q 1 src/song/scream.mp3&");
+				env->h_end = 1;
+				env->lum_int = 0;
+				system("/usr/bin/afplay -q 1 src/song/you_loose.mp3&");
+			}
+		}
 	}
 	if (env->h_life < 1)
 		env->h_end = 1;
