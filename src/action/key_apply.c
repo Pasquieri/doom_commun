@@ -58,7 +58,7 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		env->jump_move = 2;
 		env->jump = 1;
 	}
-	if (env->key[8] && !env->menu && (env->crouch == 0 || env->crouch == -2) && env->jump == 0 && env->coef_h_wall == 1)
+	if (env->key[8] && !env->menu && (env->crouch == 0 || env->crouch == -2) && env->jump == 0 && env->coef_h_wall == 1 && env->h_jump <= 0)
 	{
 		if (env->key[13])
 			env->jump_move = 13;
