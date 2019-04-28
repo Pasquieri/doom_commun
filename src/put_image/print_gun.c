@@ -6,30 +6,31 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 03:55:38 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 22:49:58 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 23:35:36 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-/*static void	deal_shoot(t_env *env, int val, int o)
+static void	deal_shoot(t_env *env, int o)
 {
 	int	i;
 	int	j;
+	int	k;
+	int	index;
 
-
-	i = 0;
-	j= 0;
-	//env->tab[j][i] = 0;
-//	sprite.alive = 0;
-	o = 0;
-	if (val == MONKEY)
+	index = env->shoot[o].index;
+	k = env->shoot[o].k;
+	i = env->sp[index].sprite[k].i;
+	j = env->sp[index].sprite[k].j;
+	if (env->tab[j][i] == WIN || env->tab[j][i] == MONKEY)
 	{
-		;
+		if (env->tab[j][i] == MONKEY)
+			env->h_monkey--;
+		env->sp[index].sprite[k].alive = 0;
+		env->tab[j][i] = 0;
 	}
-	env->shoot[0].val = 0;
-	env->shoot[0].val = 0;
-	env->shoot[1].det = 0;
+	env->shoot[0].det = 0;
 	env->shoot[1].det = 0;
 }
 
@@ -51,11 +52,11 @@ static void	shoot(t_env *env)
 		d_h == - 1 ? d_h = d_v + 1 : d_h;
 		d_v == - 1 ? d_v = d_h + 1 : d_v;
 		if (d_h < d_v && d_h <= env->dist)
-			deal_shoot(env, env->shoot[0].val, 0);
+			deal_shoot(env, 0);
 		else if (d_v <= d_h && d_v <= env->dist)
-			deal_shoot(env, env->shoot[1].val, 1);
+			deal_shoot(env, 1);
 	}
-}*/
+}
 
 void	print_gun(t_env *env, int k)
 {
@@ -64,8 +65,8 @@ void	print_gun(t_env *env, int k)
 	int	x;
 	int	y;
 
-//	if (k != 0)
-//		shoot(env);
+	if (k != 0)
+		shoot(env);
 	x = 400;
 	while (++x < W_WIDTH)
 	{

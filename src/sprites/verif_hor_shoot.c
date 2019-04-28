@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 19:12:01 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 22:50:31 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 23:24:12 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,14 @@ static void	check_shoot(t_env *env, t_coord cd, int i, int j)
 	{
 		if (env->sp[index_sp].sprite[k].i == i
 				&& env->sp[index_sp].sprite[k].j == j
-				&& env->sp[index_sp].sprite[k].alive == 0)
+				&& env->sp[index_sp].sprite[k].alive == 1)
 		{
 			dist = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
 			dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);
-		//	env->sp[index_sp].sprite[k].detec[0].on = 1;
-		//	env->sp[index_sp].sprite[k].detec[0].dist = dist;
-		//	env->sp[index_sp].sprite[k].detec[0].cd = cd;
-//			env->shoot[0].val = env->tab[j][i];
-//			env->shoot[0].index = index_sp;
-//			env->shoot[0].k = k;
-//			env->shoot[0].det = 1;
-//			env->shoot[0].d = dist;
+			env->shoot[0].index = index_sp;
+			env->shoot[0].k = k;
+			env->shoot[0].det = 1;
+			env->shoot[0].d = dist;
 		}
 	}
 }
@@ -66,8 +62,8 @@ static void	ft_check_sprite(t_env *env, t_coord cd)
 	else
 		j = (int)(cd.y / env->coef);
 	i = (int)(cd.x / env->coef);
-	if ((env->tab[j][i] == WIN || env->tab[j][i] == MONKEY))
-//		&& env->shoot[0].det == 0)
+	if ((env->tab[j][i] == WIN || env->tab[j][i] == MONKEY)
+		&& env->shoot[0].det == 0)
 		check_shoot(env, cd, i, j);
 }
 
