@@ -3,6 +3,7 @@ NAME = doom-nukem
 SRC = src/main.c\
 	  \
 	  src/initialize/init_sprite.c\
+	  src/initialize/init_tab_sprite.c\
 	  src/initialize/init_texture.c\
 	  src/initialize/init_env.c\
 	  src/initialize/win_init.c\

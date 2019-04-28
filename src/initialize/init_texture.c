@@ -20,7 +20,8 @@ static int	verif_sprt(t_env *env, int i, int k)
 			return (verif_sprt(env, ++i, ++k));
 		else if (env->sp_t[i].img_str == NULL && env->sp_t[i].img != NULL)
 		{
-			env->sp_t[i].img_str = mlx_get_data_addr(env->sp_t[i].img, &env->sp_t[i].bpp, &env->sp_t[i].s_l, &env->sp_t[i].end);
+			env->sp_t[i].img_str = mlx_get_data_addr(env->sp_t[i].img,
+				&env->sp_t[i].bpp, &env->sp_t[i].s_l, &env->sp_t[i].end);
 			return (verif_sprt(env, ++i, k));
 		}
 		else
@@ -37,7 +38,8 @@ static int	verif_text(t_env *env, int i, int k)
 			return (verif_text(env, ++i, ++k));
 		else if (env->text[i].img_str == NULL && env->text[i].img != NULL)
 		{
-			env->text[i].img_str = mlx_get_data_addr(env->text[i].img, &env->text[i].bpp, &env->text[i].s_l, &env->text[i].end);
+			env->text[i].img_str = mlx_get_data_addr(env->text[i].img,
+				&env->text[i].bpp, &env->text[i].s_l, &env->text[i].end);
 			return (verif_text(env, ++i, k));
 		}
 		else
@@ -71,33 +73,44 @@ static void	init_texture_wall(t_env *env)
 			&env->text[6].height);
 }
 
-int		init_texture(t_env *env)
+void		init_texture2(t_env *env)
+{
+	env->text[7].img = mlx_xpm_file_to_image(env->mlx,
+			"textures/7-door.XPM", &env->text[7].width,
+			&env->text[7].height);
+	env->text[8].img = mlx_xpm_file_to_image(env->mlx,
+			"textures/door2.XPM", &env->text[8].width,
+			&env->text[8].height);
+	env->text[9].img = mlx_xpm_file_to_image(env->mlx,
+			"textures/door_floor2.xpm", &env->text[9].width,
+			&env->text[9].height);
+	env->text[10].img = mlx_xpm_file_to_image(env->mlx,
+			"textures/end.xpm", &env->text[10].width,
+			&env->text[10].height);
+}
+
+int			init_texture(t_env *env)
 {
 	int		v_text;
 	int		v_sprt;
 
 	init_texture_wall(env);
-	env->text[7].img = mlx_xpm_file_to_image(env->mlx,
-			"textures/7-door.XPM", &env->text[7].width, &env->text[7].height);
-	env->text[8].img = mlx_xpm_file_to_image(env->mlx,
-			"textures/door2.XPM", &env->text[8].width, &env->text[8].height);
-	env->text[9].img = mlx_xpm_file_to_image(env->mlx,
-			"textures/door_floor2.xpm", &env->text[9].width, &env->text[9].height);
-	env->text[10].img = mlx_xpm_file_to_image(env->mlx,
-			"textures/end.xpm", &env->text[10].width, &env->text[10].height);
+	init_texture2(env);
 	env->text[21].img = mlx_xpm_file_to_image(env->mlx,
 			"textures/21-plafond_white.XPM",
 			&env->text[21].width, &env->text[21].height);
 	env->text[22].img = mlx_xpm_file_to_image(env->mlx,
-			"textures/space.XPM", &env->text[22].width, &env->text[22].height);
+			"textures/space.XPM", &env->text[22].width,
+			&env->text[22].height);
 	env->text[23].img = mlx_xpm_file_to_image(env->mlx,
 			"textures/savant_face.xpm",
 			&env->text[23].width, &env->text[23].height);
 	env->text[24].img = mlx_xpm_file_to_image(env->mlx,
-			"textures/space2.XPM", &env->text[24].width, &env->text[24].height);
+			"textures/space2.XPM", &env->text[24].width,
+			&env->text[24].height);
 	init_sprite(env);
-	v_text = verif_text(env, 0, 0); //nb de text pas get_data
-	v_sprt = verif_sprt(env, 0, 0); //nb de spri pas get_data
+	v_text = verif_text(env, 0, 0);
+	v_sprt = verif_sprt(env, 0, 0);
 	if (v_text != 9 || v_sprt != 0)
 		return (-1);
 	return (0);
