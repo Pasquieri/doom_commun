@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/28 17:10:00 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:37:10 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,7 @@ static void	init_var(t_env *env, int d_regard)
 	init_env(env);
 	(void)d_regard;
 	env->d_regard = env->perso_r;
-/*	env->lim_gun[0] = 0;   // pour les 4 imgs dans la sprite sheet :
-	env->lim_gun[1] = 150; // separation (x) entre chaque
-	env->lim_gun[2] = 365; // theoriquement ... a voir si besoin de le
-	env->lim_gun[3] = 575; // pour chaque sprite sheet ...
-	env->lim_gun[4] = 732;*/
+	env->gun = 1;
 }
 
 static void	print_text(t_env *env)
@@ -94,7 +90,6 @@ void		exec_calcul(t_env *env, int d_regard, int init)
 	print_cercle(env);
 	if (env->gun == 1)
 		print_gun(env, 0);
-	//	print_gun(env, 2);
 	mlx_put_image_to_window(env->mlx, env->win, env->m[0].img, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->win, env->m[1].img, 960, 20);
 	print_text(env);

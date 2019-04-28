@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:45:50 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 04:02:35 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:55:20 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int			trig_press(t_env *env)
 
 	i = 0;
 	if ((env->key[0] || env->key[1] || env->key[2] || env->key[13])
-			&& !env->menu)
+			&& !env->menu && env->h_end == 0)
 		deplacements(env);
 	if ((env->key[69] || env->key[78] || env->key[123] || env->key[124]
-				|| env->key[125] || env->key[126]) && !env->menu)
+		|| env->key[125] || env->key[126]) && !env->menu && env->h_end == 0)
 		rotation_regard(env);
-	if (env->key[27] || env->key[24])
+	if ((env->key[27] || env->key[24]) && env->h_end == 0)
 	{
 		if (env->key[27])
 			env->lum_int -= 3;

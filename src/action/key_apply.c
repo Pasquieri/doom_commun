@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/28 17:44:40 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/28 18:00:50 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 			ft_play_music(env->musique, ' ');
 		env->h_story = 0;
 	}
-	if (env->key[29] && !env->menu)
+	if (env->key[29] && !env->menu && env->h_end == 0)
 		env->lum_int = 370;
-	if (env->key[25] && !env->menu)
+	if (env->key[25] && !env->menu && env->h_end == 0)
 		env->lum_int = 25;
 	if (env->key[257] && !env->menu)
 		env->vitesse = SPEED * 2;
@@ -112,7 +112,7 @@ int			key_release(int key, t_env *env)
 		system("/usr/bin/afplay -q 1 src/song/fire.mp3&");
 		env->h_ammo--;
 	}
-	if (key == 40 && !env->menu) // pour afficher le gun : key k
+	if (key == 40 && !env->menu && env->h_end == 0) // pour afficher le gun : key k
 	{
 		if (env->gun == 0)
 			env->gun = 1;

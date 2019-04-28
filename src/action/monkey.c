@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 15:49:20 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/28 16:58:58 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:47:43 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	attack(t_env *env, int i)
 				env->h_end = 1;
 				env->lum_int = 0;
 				system("/usr/bin/afplay -q 1 src/song/you_loose.mp3&");
+				env->gun = 0;
 			}
 		}
 	}

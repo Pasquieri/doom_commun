@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:41:36 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 16:53:18 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:48:11 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	check_end(t_env *env)
 			env->lum_int = 0;
 			system("/usr/bin/afplay -q 1 src/song/try_again.mp3&");
 		}
+		env->gun = 0;
 	}
 }
 

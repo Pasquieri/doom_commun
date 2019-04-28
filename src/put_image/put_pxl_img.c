@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:51:35 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/26 16:51:14 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 18:06:05 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		put_pxl_img(t_env *env, int x, int y, int color)
 	int	i;
 	int	k;
 
-	if (color < 5)
+	if (color <= 5)
 		k = 1;
 	else
 		k = 0;
