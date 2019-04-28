@@ -12,7 +12,7 @@
 
 #include "../../include/wolf3d.h"
 
-char	luminosite(int text, int coef)
+char		luminosite(int text, int coef)
 {
 	int		tmp;
 
@@ -24,40 +24,34 @@ char	luminosite(int text, int coef)
 	return ((char)tmp);
 }
 
-void	put_texture_img2(t_env *env, t_mlx *text, int i, int j)
+void		put_texture_img(t_env *env, double h_percue, int y, t_mlx *text, double bep)
 {
+	float	p_x;
+	float	p_y;
+	int		i;
+	int		j;
 	int		flou;
 
+	if (env->orientation == 0)
+		p_x = fmod(env->coord_mur.x, (float)env->coef) * 100 / env->coef;
+	else
+		p_x = fmod(env->coord_mur.y, (float)env->coef) * 100 / env->coef;
+	if (y > (env->h_regard - (env->cmp_wall * bep)))
+		p_y = (y - (env->h_regard - (env->cmp_wall * bep))) * 100. / h_percue;
+	else
+		p_y = y * 100. / h_percue;
+	i = 4 * env->img_x + y * env->m[0].s_l;
+	j = 4 * (int)(text->width * p_x / 100)
+		+ (int)(text->height * p_y / 100) * text->s_l;
 	env->m[0].img_str[i] = luminosite((int)text->img_str[j], env->lum);
 	env->m[0].img_str[i + 1] = luminosite(text->img_str[j + 1], env->lum);
 	env->m[0].img_str[i + 2] = luminosite(text->img_str[j + 2], env->lum);
 	flou = 100 - env->h_life;
 	flou < 0 ? flou = 0 : flou;
 	env->m[0].img_str[i + 3] = (char)flou;
-}
-
-void	put_texture_img(t_env *env, double h_p, int y, t_mlx *t)
-{
-	float	p_x;
-	float	p_y;
-	int		i;
-	int		j;
-
-	if (env->orientation == 0)
-		p_x = fmod(env->coord_mur.x, (float)env->coef) * 100 / env->coef;
-	else
-		p_x = fmod(env->coord_mur.y, (float)env->coef) * 100 / env->coef;
-	if (y > (env->h_regard - (env->cmp_wall * env->bep)))
-		p_y = (y - (env->h_regard - (env->cmp_wall * env->bep))) * 100. / h_p;
-	else
-		p_y = y * 100. / h_p;
-	i = 4 * env->img_x + y * env->m[0].s_l;
-	j = 4 * (int)(t->width * p_x / 100)
-		+ (int)(t->height * p_y / 100) * t->s_l;
-	put_texture_img2(env, t, i, j);
 	if (env->wall_nb >= 4 && env->wall_nb <= 6 && env->cmp_wall == 1)
 	{
 		env->img_y = y;
-		print_tab(env, p_y, p_x, &env->sp_t[7]);
+		print_tab(env, p_y, p_x, &env->sp_t[7]); // sp[7] == tableau
 	}
 }

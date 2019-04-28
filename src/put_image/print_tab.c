@@ -12,6 +12,7 @@
 
 #include "../../include/wolf3d.h"
 
+
 void	print_tab(t_env *env, float p_y, float p_x, t_mlx *sp)
 {
 	int		i;

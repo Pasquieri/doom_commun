@@ -18,5 +18,6 @@ void	mouse_move(t_env *env)
 	{
 		mlx_mouse_hide();
 		mlx_mouse_move(env->win, 1200 / 2, 870 / 2);
+	//	exec_calcul(env, 0, 0);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 23:32:49 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 22:48:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,15 +118,33 @@ typedef struct	s_sprite
 {
 	int		i;
 	int		j;
+//	t_cd	c;
 	t_coord	cd;
+
+/****** SPRITES *******/
+/*	int		det;
+	int		f_win_x;
+	t_coord	f_int;
+	double	f_angle;
+
+	int		win_h_x;
+	t_coord	cd_h;
+	double	angle_h;
+	int		win_v_x;
+	t_coord	cd_v;
+	double	angle_v;*/
+
 	double	a1;
 	double	a2;
+
 	int		o_i;
 	double	a_i;
 	t_coord	cd_i;
+
 	int		o_f; // pour la fin du sprite a afficher
 	double	a_f;
 	t_coord	cd_f;
+
 	int		det;
 	int		det_hor;
 	int		win_x;
@@ -134,22 +152,15 @@ typedef struct	s_sprite
 	int		win_v_x;
 	t_coord	cd_h;
 	t_coord	cd_v;
+
 	t_det	detec[2];
 	_Bool	check;
+
 	_Bool	proximity;
 	_Bool	open;
 	_Bool	alive;
 	//int	ordre; //affichage sprite dans l'ordre ?
 }				t_sprite;
-
-typedef struct	s_shoot
-{
-	t_sprite	sp;
-	_Bool		det;
-	int			k;
-	int			index;
-	double		d;
-}				t_shoot;
 
 typedef struct	s_sp
 {
@@ -157,6 +168,23 @@ typedef struct	s_sp
 	int			nb;
 	t_sprite	*sprite;
 }				t_sp;
+
+typedef struct	s_shoot
+{
+	_Bool	det_h;
+	_Bool	det_v;
+	int		val_h;
+	int		val_v;
+	t_sprite	sp[2];
+
+//typedef struct	s_shoot
+//{
+	int			val;
+	_Bool		det;
+	int			k;
+	int			index;
+	double		d;
+}				t_shoot;
 
 typedef struct	s_env
 {
@@ -226,7 +254,7 @@ typedef struct	s_env
 	double	h_jump;
 	int		jump_move;
 	double	crouch;
-	double	bep;
+
 
 	t_rgb	rgb[10];
 	t_mlx	text[25];
@@ -234,7 +262,8 @@ typedef struct	s_env
 	t_sp	sp[NB_SP];
 	t_coord	coord_spr;
 	_Bool	gun;
-	t_shoot	shoot[2];
+	t_shoot	shoot;
+//	t_shoot	shoot[2];
 }				t_env;
 
 /*action*/
@@ -302,7 +331,8 @@ void			print_cercle(t_env *env);
 void			print_gun(t_env *env, int k);
 void			print_tab(t_env *env, float p_y, float p_x, t_mlx *sp);
 void			put_pxl_img(t_env *env, int x, int y, int color);
-void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text);
+void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text,
+					double bep);
 char			luminosite(int text, int coef);
 /*raycasting*/
 void			ft_pthread(t_env *env);

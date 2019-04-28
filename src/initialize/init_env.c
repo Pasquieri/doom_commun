@@ -14,17 +14,18 @@
 
 void	init_rgb(t_env *env)
 {
-	env->rgb[0] = (t_rgb){230, 230, 230, 0};
-	env->rgb[1] = (t_rgb){88, 68, 21, 100};
-	env->rgb[2] = (t_rgb){175, 175, 200, 100};
-	env->rgb[3] = (t_rgb){159, 161, 255, 0};
-	env->rgb[4] = (t_rgb){159, 0, 240, 0};
-	env->rgb[5] = (t_rgb){66, 220, 244, 0};
-	env->rgb[6] = (t_rgb){240, 130, 44, 0};
-	env->rgb[7] = (t_rgb){93, 145, 190, 0};
-	env->rgb[8] = (t_rgb){0, 0, 0, 100};
-	env->rgb[9] = (t_rgb){0, 0, 0, 0};
+	env->rgb[0] = (t_rgb){230, 230, 230, 0}; // blanc
+	env->rgb[1] = (t_rgb){88, 68, 21, 100}; // bleu/vert
+	env->rgb[2] = (t_rgb){175, 175, 200, 100}; // gris porte
+	env->rgb[3] = (t_rgb){159, 161, 255, 0}; // rose
+	env->rgb[4] = (t_rgb){159, 0, 240, 0}; // rouge
+	env->rgb[5] = (t_rgb){66, 220, 244, 0}; // vert
+	env->rgb[6] = (t_rgb){240, 130, 44, 0}; // bleu
+	env->rgb[7] = (t_rgb){93, 145, 190, 0}; // marron
+	env->rgb[8] = (t_rgb){0, 0, 0, 100}; // noir transparent
+	env->rgb[9] = (t_rgb){0, 0, 0, 0}; // noir
 }
+
 
 void	init_env(t_env *env)
 {
