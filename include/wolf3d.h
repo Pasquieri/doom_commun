@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 20:56:13 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 21:47:20 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,11 +171,10 @@ typedef struct	s_sp
 
 typedef struct	s_shoot
 {
-	_Bool		det_h;
-	_Bool		det_v;
-	int			val_h;
-	int			val_v;
-	t_sprite	sp[2];
+	int			val;
+	_Bool		det;
+	int			k;
+	int			index;
 }				t_shoot;
 
 typedef struct	s_env
@@ -254,7 +253,7 @@ typedef struct	s_env
 	t_sp	sp[NB_SP];
 	t_coord	coord_spr;
 	_Bool	gun;
-	t_shoot	shoot;
+	t_shoot	shoot[2];
 }				t_env;
 
 /*action*/
