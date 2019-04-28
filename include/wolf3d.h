@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 16:41:10 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/28 18:03:28 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ typedef struct	s_env
 	int		h_end;
 	int		h_help;
 	int		h_story;
+	int		free_sprite;
 
 	int		coef;
 	int		x;
