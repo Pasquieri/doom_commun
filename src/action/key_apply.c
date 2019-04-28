@@ -34,14 +34,18 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 		env->lum_int = 25;
 	if (env->key[257] && !env->menu)
 		env->vitesse = SPEED * 2;
-	if (env->key[83] && !env->menu && env->jump == 0 && env->crouch == 0)
+	if (env->key[83] && !env->menu && env->jump == 0 && env->crouch == 0 && env->h_jump == 0)
 		env->coef_h_wall = 1;
-	else if (env->key[84] && !env->menu && env->jump == 0 && env->crouch == 0)
+	else if (env->key[84] && !env->menu && env->jump == 0 && env->crouch == 0 && env->h_jump == 0)
 		env->coef_h_wall = 3;
-	else if (env->key[85] && !env->menu && env->jump == 0 && env->crouch == 0)
+	else if (env->key[85] && !env->menu && env->jump == 0 && env->crouch == 0 && env->h_jump == 0)
 		env->coef_h_wall = 5;
-	else if (env->key[86] && !env->menu && env->jump == 0 && env->crouch == 0)
+	else if (env->key[86] && !env->menu && env->jump == 0 && env->crouch == 0 && env->h_jump == 0)
 		env->coef_h_wall = 7;
+	if (env->key[15] && env->h_jump + 100 < (env->d_ecran * env->h_mur) / 2 && env->coef_h_wall == 1)
+		env->h_jump += 100;
+	if (env->key[3] && env->h_jump - 100 > (env->d_ecran * env->h_mur) / -2 && env->coef_h_wall == 1)
+		env->h_jump -= 100;
 	if (env->key[49] && !env->menu && env->jump == 0 && env->crouch == 0 && env->coef_h_wall == 1)
 	{
 		if (env->key[13])
@@ -98,8 +102,6 @@ int			key_release(int key, t_env *env)
 	{
 		if (env->skybox != 22 && key == 18)
 			env->skybox = 22;
-	//	else if (env->skybox != 24 && key == 19)
-	//		env->skybox = 24;
 		else if (key == 18)
 			env->skybox = 0;
 	}
