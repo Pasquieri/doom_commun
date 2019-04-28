@@ -274,6 +274,8 @@ void			deal_items(t_env *env, int k);
 void			ft_monkey(t_env *env);
 void			ft_crouch(t_env *env);
 void			ft_jump(t_env *env);
+void			check_card(t_env *env, int mJx, int mJy, int i);
+
 /*initialize*/
 void			init_rgb(t_env *env);
 void			init_env(t_env *env);
