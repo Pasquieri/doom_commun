@@ -11,6 +11,7 @@ SRC = src/main.c\
 	  src/action/deplacements.c\
 	  src/action/deplacements_extra.c\
 	  src/action/key_apply.c\
+	  src/action/key_press.c\
 	  src/action/rotation_regard.c\
 	  src/action/motion_notify.c \
 	  src/action/trig_press.c\
