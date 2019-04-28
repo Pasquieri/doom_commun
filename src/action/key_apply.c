@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 15:40:56 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/28 17:12:48 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacemen
 	/*************** a modif pour changer l'arme etc ******************/
 	if (env->key[37] && env->gun == 1 && !env->menu) // coup de feu : key l
 	{
-		print_gun(env, 3);
+		print_gun(env, 2);
 		mlx_put_image_to_window(env->mlx,env->win,env->m[0].img, 0,0);
 		mlx_put_image_to_window(env->mlx,env->win,env->m[1].img, 960,20);
 	}

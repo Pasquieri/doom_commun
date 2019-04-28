@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 21:31:37 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 15:05:44 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static void	ft_check_sprite(t_env *env, int o, t_coord cd)
 		check_grid_win(env, cd, o, i, j);
 	else
 		check_sprite(i, j, env, o, cd);
+	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN) // 28/04
+		check_sprite(i, j, env, o, cd); // 28/04
 }
 
 int			verif_ver_sp(t_env *env, t_coord *coord)

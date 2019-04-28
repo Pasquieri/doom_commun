@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 21:43:22 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 15:56:22 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	put_sprite_img(t_env *env, double h_percue, int y, t_mlx *sp_t, doub
 	i = 4 * env->img_x + y * env->m[0].s_l;
 	j = 4 * (int)(sp_t->width * p_x / 100)
 		+ (int)(sp_t->height * p_y / 100) * sp_t->s_l;
-	if (!sp_t->img_str[j + 3]) // si pas transparent
+	if (!sp_t->img_str[j + 3])
 	{
 		env->m[0].img_str[i] = luminosite((int)sp_t->img_str[j], env->lum);
 		env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
@@ -43,17 +43,21 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	double	h_percue;
 	double	test;
 
+	double	bep;
+	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
+		/ (d_sp * env->d_ecran);
+
 	h_percue = env->d_ecran * (env->h_mur / d_sp);
-	y = env->h_regard - (h_percue / 2);
-	test = - h_percue / 2;
-	if (i == 3 || i == 6) // pour avoir une banane plus petite : a revoir
-	{
-		h_percue /= 3;
-		y = env->h_regard + (h_percue / 2);
-		test = h_percue / 2;
-	}
-	y < 0. ? y = 0. : y;
+	y = env->h_regard - bep;
+	test = - bep;
+//	if (i == 3 || i == 6) // pour avoir une banane plus petite : a revoir
+//	{
+//		h_percue /= 3;
+//		y = env->h_regard + (h_percue / 2);
+//		test = + bep;
+//	}
 	lim = y + h_percue;
+	y < 0. ? y = 0. : y;
 
 	double	diff;
 	double	detec;
@@ -66,15 +70,10 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	detec < 0 ? detec = 0 : detec;
 	if (detec > diff)
 		detec = diff;
-
-	double	p_x;
-	p_x = detec * 100 / diff;
-//	printf("            angle i : %f, diff : %f, det : %f, p_x : %f\n", env->sp[i].sprite[cmp].a_i, diff, detec, p_x);
-
+//	printf("            angle i : %f, diff : %f, det : %f\n", env->sp[i].sprite[cmp].a_i, diff, detec);
 	env->img_x = env->sp[i].sprite[cmp].win_x;
 	while (detec > 0 && env->img_x < W_WIDTH)
 	{
-		p_x = detec * 100 / diff;
 		env->img_y = y + 1;
 		while (env->img_y < lim && env->img_y < W_HEIGHT)
 		{

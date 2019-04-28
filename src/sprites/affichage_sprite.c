@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 21:41:01 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 15:01:32 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void			affichage_sprite(t_env *env)
 	a = verif_angle(a);
 	x = -1;
 	action_proximity(env);
-	sprite_init(env); // ADD initialise les coords i de chaque sprite == -1;
+	sprite_init(env);
 	while (++x < W_WIDTH)
 	{
 		env->angle = verif_angle(a);

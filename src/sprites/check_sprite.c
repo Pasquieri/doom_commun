@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 21:42:58 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 15:03:00 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,27 +101,6 @@ void	check_sprite(int i, int j, t_env *env, int orient, t_coord cd)
 					fill_hor(index_sp, k, env, cd);
 				else if (env->sp[index_sp].sprite[k].alive == 1 && orient == 1)
 					fill_ver(index_sp, k, env, cd);
-				/******************* ADD 14/04 ***************************/
-			//	env->sp[index_sp].sprite[k].det = 1; // 14/04
-			//	if (env->sp[index_sp].sprite[k].detec[orient].on != 1)
-			//	{
-			//		env->sp[index_sp].sprite[k].detec[orient].on = 1;
-			//		if (orient == 0
-			//				&& env->sp[index_sp].sprite[k].cd_h.x == -1 && (env->sp[index_sp].sprite[k].cd_h.y == -1))
-			//		{
-			//			env->sp[index_sp].sprite[k].cd_h = cd;
-			//			env->sp[index_sp].sprite[k].win_h_x = env->img_x;
-			//			env->sp[index_sp].sprite[k].angle_h = env->angle; // 18/04
-			//		}
-			//		else if (orient == 1
-			//			&& env->sp[index_sp].sprite[k].cd_v.x == -1 && (env->sp[index_sp].sprite[k].cd_v.y == -1))
-			//		{
-			//			env->sp[index_sp].sprite[k].cd_v = cd;
-			//			env->sp[index_sp].sprite[k].win_v_x = env->img_x;
-			//			env->sp[index_sp].sprite[k].angle_v = env->angle; // 18/04
-			//		}
-			//	}
-				/***********************************************************/
 			}
 		}
 	}

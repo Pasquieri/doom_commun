@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 21:05:24 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 16:59:25 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	init_sprite_extra(t_env *env)
 		"textures/4-5-6-van_gogh.XPM", &env->sp_t[7].width,
 		&env->sp_t[7].height);
 	env->sp_t[8].img = mlx_xpm_file_to_image(env->mlx,
-		"textures/gun.XPM", &env->sp_t[8].width, &env->sp_t[8].height);
+		"textures/syringegun.xpm", &env->sp_t[8].width, &env->sp_t[8].height);
 }
 
 void		init_sprite(t_env *env)

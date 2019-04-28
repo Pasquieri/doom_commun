@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/24 20:45:53 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 15:23:44 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void		affichage_ciel(t_env *env, int y, double bep)
 	}
 }
 
-static void		affichage(double h_percue, t_env *env, int x)
+static void		affichage(double h_percue, t_env *env)
 {
 	double	y;
 	double	lim;
@@ -52,23 +52,17 @@ static void		affichage(double h_percue, t_env *env, int x)
 	double bep;
 	bep = (bc * adp) / ac;
 
-	(void)x;
 	lim = env->h_regard - (env->coef_h_wall * bep);
 	if (!env->skybox)
 		affichage_plafond(lim, h_percue, env);
 	else
 		affichage_ciel(env, 0, bep);
-
-/*	y = -1;
-	while (++y < lim && y < 870.)
-		put_pxl_img(env, x, y, 6);
-	y--;*/
 	env->cmp_wall = env->coef_h_wall;
 	while (env->cmp_wall > 0)
 	{
 		y = env->h_regard - (env->cmp_wall * bep) ;
-		y < 0 ? y = 0 : y;
 		lim = y + h_percue + 1;
+		y < 0 ? y = 0 : y;
 		env->lum = env->dist * 255 / env->lum_int;
 		env->wall_nb == 7 ? env->wall_nb = 8 : env->wall_nb;
 		if (env->cmp_wall == 1 && env->wall_nb == 8)
@@ -79,9 +73,6 @@ static void		affichage(double h_percue, t_env *env, int x)
 	}
 	y = env->h_regard - bep + h_percue;
 	affichage_sol(y, h_percue, env);
-/*	y--;
-	while (++y < 870.)
-		put_pxl_img(env, x, y, 7);*/
 }
 
 void			*affichage_mur(void *tab)
@@ -106,7 +97,7 @@ void			*affichage_mur(void *tab)
 		h_percue = env.d_ecran * (env.h_mur / dist);
 		env.lim_sol = env.h_regard + (h_percue / 2);
 		env.img_x = x;
-		affichage(h_percue, &env, x);
+		affichage(h_percue, &env);
 		a -= (60. / W_WIDTH);
 		x++;
 	}
