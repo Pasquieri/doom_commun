@@ -36,16 +36,18 @@ void	attack_bruit(int x, int y, t_env *env)
 
 void	attack(t_env *env, int i)
 {
-	int mjx = (env->perso_x / env->coef) / 1;
-	int mjy = (env->perso_y / env->coef) / 1;
+	int mjx;
+	int mjy;
 	int x;
 	int y;
 
+	mjx = (env->perso_x / env->coef) / 1;
+	mjy = (env->perso_y / env->coef) / 1;
 	x = 0;
 	y = 0;
 	if (((int)(env->sp[4].sprite[i].cd.x - 3) / env->coef) / 1 == mjx)
 		x = 1;
-	else if(((int)(env->sp[4].sprite[i].cd.x + 3) / env->coef) / 1 == mjx)
+	else if (((int)(env->sp[4].sprite[i].cd.x + 3) / env->coef) / 1 == mjx)
 		x = 1;
 	if (((int)(env->sp[4].sprite[i].cd.y - 3) / env->coef) / 1 == mjy)
 		y = 1;
@@ -56,37 +58,40 @@ void	attack(t_env *env, int i)
 		env->h_end = 1;
 }
 
-void	runToPlayer(t_env *env, int i)
+void	runtoplayer(t_env *env, int i)
 {
-	int		mjx;
-	int 	mjy;
-	int 	pMx;
-	int 	pMy;
+	int	mjx;
+	int mjy;
+	int pmx;
+	int pmy;
 
 	mjx = (env->perso_x / env->coef) / 1;
 	mjy = (env->perso_y / env->coef) / 1;
-	pMx = (int)(env->sp[4].sprite[i].cd.x / env->coef);
-	pMy = (int)(env->sp[4].sprite[i].cd.y / env->coef);
+	pmx = (int)(env->sp[4].sprite[i].cd.x / env->coef);
+	pmy = (int)(env->sp[4].sprite[i].cd.y / env->coef);
 	check_card(env, mjx, mjy, i);
 	env->tab[(int)(env->sp[4].sprite[i].cd.y / env->coef)]
 	[(int)(env->sp[4].sprite[i].cd.x / env->coef)] = 14;
 	env->sp[4].sprite[i].j = (int)(env->sp[4].sprite[i].cd.y / env->coef / 1);
 	env->sp[4].sprite[i].i = (int)(env->sp[4].sprite[i].cd.x / env->coef / 1);
-	if ((int)(env->sp[4].sprite[i].cd.y / env->coef / 1) != pMy / 1 ||
-		(int)(env->sp[4].sprite[i].cd.x / env->coef /1) != pMx / 1)
-		env->tab[pMy][pMx] = 0;
+	if ((int)(env->sp[4].sprite[i].cd.y / env->coef / 1) != pmy / 1
+		|| (int)(env->sp[4].sprite[i].cd.x / env->coef / 1) != pmx / 1)
+		env->tab[pmy][pmx] = 0;
 }
 
 void	ft_monkey(t_env *env)
 {
-	int k = env->sp[4].nb;
-	int i = 0;
+	int k;
+	int i;
+
+	k = env->sp[4].nb;
+	i = 0;
 	while (i < k)
 	{
 		if (env->time % 10 == 0)
 			attack(env, i);
 		if (env->sp[4].sprite[i].det == 1 && env->time % 1 == 0)
-			runToPlayer(env, i);
+			runtoplayer(env, i);
 		i++;
 	}
 }

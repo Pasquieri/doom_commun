@@ -12,7 +12,7 @@
 
 #include "../../include/wolf3d.h"
 
-void	deal_door(t_env *env)
+void		deal_door(t_env *env)
 {
 	int	i;
 	int	j;
@@ -39,7 +39,7 @@ void	deal_door(t_env *env)
 	}
 }
 
-void	deal_tab(t_env *env)
+void		deal_tab(t_env *env)
 {
 	int	cmp;
 
@@ -55,34 +55,28 @@ void	deal_tab(t_env *env)
 		}
 	}
 }
-/***************** RAMASSER LES BANANES ET SERINGUES ********************/
-// Quand les items auront la bonne taille, verifier que l'intervalle
-//  + / - 2 n'est pas trop grand
+
 static void	check_pos(t_env *env, int k, int cmp)
 {
-	double	p_x;
-	double	p_y;
 	double	spr_x;
 	double	spr_y;
 
-	p_x = env->perso_x;
-	p_y = env->perso_y;
 	spr_x = env->sp[k].sprite[cmp].cd.x;
 	spr_y = env->sp[k].sprite[cmp].cd.y;
 	if (env->sp[k].sprite[cmp].alive == 1)
 	{
-		if (p_x >= (spr_x - 2) && p_x <= (spr_x + 2)
-				&& p_y >= (spr_y - 2) && p_y <= (spr_y + 2))
+		if (env->perso_x >= (spr_x - 2) && env->perso_x <= (spr_x + 2)
+				&& env->perso_y >= (spr_y - 2) && env->perso_y <= (spr_y + 2))
 		{
 			if (k == 3)
 			{
 				env->h_life += 30;
-					system("/usr/bin/afplay -q 1 src/song/eat.mp3&");
+				system("/usr/bin/afplay -q 1 src/song/eat.mp3&");
 			}
 			else if (k == 6)
 			{
 				env->h_ammo += 15;
-					system("/usr/bin/afplay -q 1 src/song/ammo.mp3&");
+				system("/usr/bin/afplay -q 1 src/song/ammo.mp3&");
 			}
 			env->sp[k].sprite[cmp].alive = 0;
 			env->tab[env->sp[k].sprite[cmp].j][env->sp[k].sprite[cmp].i] = 0;
@@ -90,7 +84,7 @@ static void	check_pos(t_env *env, int k, int cmp)
 	}
 }
 
-void	deal_items(t_env *env, int k)
+void		deal_items(t_env *env, int k)
 {
 	int	cmp;
 	int	i;

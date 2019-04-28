@@ -33,10 +33,14 @@ int			check_wall(double xa, double ya, t_env *env)
 	x = env->perso_x + xa;
 	y = env->perso_y + ya;
 	if (check(env->tab[(int)y / env->coef][(int)x / env->coef], env)
-			&& check(env->tab[((int)y + 1) / env->coef][(int)x / env->coef], env)
-			&& check(env->tab[((int)y - 1) / env->coef][(int)x / env->coef], env)
-			&& check(env->tab[(int)y / env->coef][((int)x + 1) / env->coef], env)
-			&& check(env->tab[(int)y / env->coef][((int)x - 1) / env->coef], env))
+			&& check(env->tab[((int)y + 1) / env->coef]
+				[(int)x / env->coef], env)
+			&& check(env->tab[((int)y - 1) / env->coef]
+				[(int)x / env->coef], env)
+			&& check(env->tab[(int)y / env->coef]
+				[((int)x + 1) / env->coef], env)
+			&& check(env->tab[(int)y / env->coef][
+				((int)x - 1) / env->coef], env))
 		return (0);
 	else
 		return (1);

@@ -29,12 +29,9 @@ int		motion_notify(int x, int y, t_env *env)
 	env->d_regard = env->d_regard % 360;
 	if (env->d_regard < 0)
 		env->d_regard = env->d_regard + 360;
-
 	if (y < (W_HEIGHT / 2) && ((env->h_regard + (100 * tmp_y / 435)) < 800))
 		env->h_regard += (100 * tmp_y / (W_HEIGHT / 2));
 	else if (y > (W_HEIGHT / 2) && ((env->h_regard - 100 * tmp_y / 435) > 70))
 		env->h_regard -= (100 * tmp_y / (W_HEIGHT / 2));
-
-//	exec_calcul(env, 0, 0);
 	return (0);
 }
