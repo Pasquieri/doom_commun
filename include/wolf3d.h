@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 21:54:15 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 22:48:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,14 @@ typedef struct	s_sp
 
 typedef struct	s_shoot
 {
+	_Bool	det_h;
+	_Bool	det_v;
+	int		val_h;
+	int		val_v;
+	t_sprite	sp[2];
+
+//typedef struct	s_shoot
+//{
 	int			val;
 	_Bool		det;
 	int			k;
@@ -254,7 +262,8 @@ typedef struct	s_env
 	t_sp	sp[NB_SP];
 	t_coord	coord_spr;
 	_Bool	gun;
-	t_shoot	shoot[2];
+	t_shoot	shoot;
+//	t_shoot	shoot[2];
 }				t_env;
 
 /*action*/
@@ -276,7 +285,7 @@ void			ft_monkey(t_env *env);
 void			ft_crouch(t_env *env);
 void			ft_jump(t_env *env);
 void			check_card(t_env *env, int mJx, int mJy, int i);
-
+void			attack_bruit(int x, int y, t_env *env);
 /*initialize*/
 void			init_rgb(t_env *env);
 void			init_env(t_env *env);

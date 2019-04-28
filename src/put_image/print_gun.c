@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 03:55:38 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 21:56:02 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/28 22:49:58 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/wolf3d.h"
 
-static void	deal_shoot(t_env *env, int val, int o)
+/*static void	deal_shoot(t_env *env, int val, int o)
 {
 	int	i;
 	int	j;
@@ -55,7 +55,7 @@ static void	shoot(t_env *env)
 		else if (d_v <= d_h && d_v <= env->dist)
 			deal_shoot(env, env->shoot[1].val, 1);
 	}
-}
+}*/
 
 void	print_gun(t_env *env, int k)
 {
@@ -64,8 +64,8 @@ void	print_gun(t_env *env, int k)
 	int	x;
 	int	y;
 
-	if (k != 0)
-		shoot(env);
+//	if (k != 0)
+//		shoot(env);
 	x = 400;
 	while (++x < W_WIDTH)
 	{
