@@ -97,8 +97,13 @@ void		affichage_plafond(double y, double h_percue, t_env *env)
 				/ (env->d_ecran * (env->dist / tmp)));
 		ac_p = ac_p / cos((env->angle - env->d_regard) * M_PI / 180);
 		env->lum = ac_p * 255 / env->lum_int;
-		put_texture_sky(pos_plafond_x(pos_perso_x, 0, ac_p, env),
-			pos_plafond_y(pos_perso_y, 0, ac_p, env), env, y);
+		if (env->tab[(int)pos_sol_y(pos_perso_y, 0, ac_sol, env)]
+			[(int)pos_sol_x(pos_perso_x, 0, ac_sol, env)] == END)
+			put_texture_sky(pos_plafond_x(pos_perso_x, 0, ac_p, env),
+				pos_plafond_y(pos_perso_y, 0, ac_p, env), env, y);
+		else
+			put_texture_sky(pos_plafond_x(pos_perso_x, 0, ac_p, env),
+				pos_plafond_y(pos_perso_y, 0, ac_p, env), env, y);
 		y--;
 	}
 }
