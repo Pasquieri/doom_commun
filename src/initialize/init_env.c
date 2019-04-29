@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:48:45 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 20:59:16 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 22:13:15 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void	init_rgb(t_env *env)
 
 void	init_env(t_env *env)
 {
+	int	i;
+
+	i = -1;
+	while (++i < 604)
+		env->key[i] = 0;
 	env->perso_x = (env->perso_x + 1) * env->coef - env->coef / 2;
 	env->perso_y = (env->perso_y + 1) * env->coef - env->coef / 2;
 	env->nb_colonne = 1200;

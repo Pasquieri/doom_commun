@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:57:03 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 21:31:10 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 22:22:56 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,22 @@ static int	red_cross(int key)
 	(void)key;
 	system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
 	exit(0);
+	return (0);
+}
+
+static int	button_press(int button, int x, int y, t_env *env)
+{
+	if (button == 1 && env->gun == 1 && !env->menu && env->h_ammo > 0)
+	{
+		print_gun(env, 5);
+		mlx_put_image_to_window(env->mlx, env->win,env->m[0].img, 0, 0);
+		mlx_put_image_to_window(env->mlx, env->win,env->m[1].img, 960, 20);
+		print_hub(env);
+		system("/usr/bin/afplay -q 1 src/song/fire.mp3&");
+		env->h_ammo--;
+	}
+	(void)x;
+	(void)y;
 	return (0);
 }
 
@@ -38,6 +54,7 @@ int			main(int ac, char **av)
 	mlx_hook(env.win, 6, 1L << 13, motion_notify, &env);
 	mlx_hook(env.win, 2, 0, key_press, &env);
 	mlx_hook(env.win, 3, 0, key_release, &env);
+	mlx_hook(env.win, 4, 1L << 2, button_press, &env);
 	mlx_loop_hook(env.mlx, key_apply, &env);
 	mlx_hook(env.win, 17, 3, red_cross, &env);
 	mlx_loop(env.mlx);

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:53:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 18:05:34 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 22:25:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void		color_case(t_env *env) // case avec sprite coloriees
 		i = -1;
 		while (++i < env->x)
 		{
-			if ((env->tab[j][i] > 0 && env->tab[j][i] <= 7)
+			if (((env->tab[j][i] > 0 && env->tab[j][i] <= 7)
 					|| (env->tab[j][i] >= 9 && env->tab[j][i] <= 16))
+					&& env->tab[j][i] != 14)
 			{
 				y = j * env->coef - 1;
 				while (++y < (j * env->coef + env->coef))
@@ -39,7 +40,7 @@ void		color_case(t_env *env) // case avec sprite coloriees
 					else if (env->tab[j][i] == 10 || env->tab[j][i] == 11)
 						color = 3; // grille & fenetre
 					else if (env->tab[j][i] == 12 || env->tab[j][i] == 13
-						|| env->tab[j][i] == 14 || env->tab[j][i] == 16)
+						|| env->tab[j][i] == 16)
 						color = 4; // autre sp;
 					else if (env->tab[j][i] == END)
 						color = 5;

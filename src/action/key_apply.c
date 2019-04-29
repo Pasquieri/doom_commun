@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/29 13:12:42 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 22:21:09 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ int			key_release(int key, t_env *env)
 	if (key == 37 && env->gun == 1 && !env->menu && env->h_ammo > 0) // coup de feu : key l
 	{
 		print_gun(env, 5);
-		mlx_put_image_to_window(env->mlx,env->win,env->m[0].img, 0,0);
-		mlx_put_image_to_window(env->mlx,env->win,env->m[1].img, 960,20);
+		mlx_put_image_to_window(env->mlx, env->win,env->m[0].img, 0, 0);
+		mlx_put_image_to_window(env->mlx, env->win,env->m[1].img, 960, 20);
 		print_hub(env);
 		system("/usr/bin/afplay -q 1 src/song/fire.mp3&");
 		env->h_ammo--;
