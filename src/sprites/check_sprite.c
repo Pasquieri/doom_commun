@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 12:16:50 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 13:58:20 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ static void	fill_hor(int index_sp, int k, t_env *env, t_coord cd)
 		env->sp[index_sp].sprite[k].win_x = env->img_x;
 	}
 /**************** ajout pour final ... ****************************/
-//	env->sp[index_sp].sprite[k].det_hor_f = 1;
-//	env->sp[index_sp].sprite[k].cd_f = cd;
-//	env->sp[index_sp].sprite[k].o_f = 0;
-//	env->sp[index_sp].sprite[k].a_f = env->angle;
-//	env->sp[index_sp].sprite[k].win_x_f = env->img_x;
+	env->sp[index_sp].sprite[k].det_hor_f = 1;
+	env->sp[index_sp].sprite[k].cd_f = cd;
+	env->sp[index_sp].sprite[k].o_f = 0;
+	env->sp[index_sp].sprite[k].a_f = env->angle;
+	env->sp[index_sp].sprite[k].win_x_f = env->img_x;
 /******************************************************************/
 }
 
@@ -85,7 +85,7 @@ static void	fill_ver(int index_sp, int k, t_env *env, t_coord cd)
 		env->sp[index_sp].sprite[k].win_x = env->img_x;
 	}
 /**************** ajout pour final ... ****************************/
-/*	if (env->sp[index_sp].sprite[k].det_hor_f == 1)
+	if (env->sp[index_sp].sprite[k].det_hor_f == 1)
 		//	&& env->img_x == env->sp[index_sp].sprite[k].win_x_f)
 	{
 		d_ver = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
@@ -102,7 +102,7 @@ static void	fill_ver(int index_sp, int k, t_env *env, t_coord cd)
 		env->sp[index_sp].sprite[k].o_f = 0;
 		env->sp[index_sp].sprite[k].a_f = env->angle;
 		env->sp[index_sp].sprite[k].win_x_f = env->img_x;
-	}*/
+	}
 /******************************************************************/
 }
 

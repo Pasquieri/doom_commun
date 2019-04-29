@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 20:47:18 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/26 18:15:59 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 14:52:24 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,50 @@ double	verif_angle(double angle)
 	return (angle);
 }
 
+static t_coord	init_cd_a(t_coord mid, t_env *env, int sp_i, int sp_j)
+{
+	t_coord	cd_a;
+	int		p_i;
+	int		p_j;
+
+	p_i = (int)(env->perso_x / env->coef);
+	p_j = (int)(env->perso_y / env->coef);
+	cd_a = mid;
+	//if (env->d_regard == 0)
+	if (p_i < sp_i && p_j == sp_j)
+		cd_a.x = mid.x - env->coef / 2;
+	//else if (env->d_regard == 180)
+	else if (p_i > sp_i && p_j == sp_j)
+		cd_a.x = mid.x + env->coef / 2;
+	//else if (env->d_regard == 90)
+	else if (p_i == sp_i && p_j > sp_j)
+		cd_a.y = mid.y + env->coef / 2;
+	//else if (env->d_regard == 270)
+	else if (p_i == sp_i && p_j < sp_j)
+		cd_a.y = mid.y - env->coef / 2;
+/*	else if (p_i < sp_i && p_j < sp_j)
+	{
+		cd_a.x = mid.x - env->coef / 2;
+		cd_a.y = mid.y - env->coef / 2;
+	}
+	else if (p_i > sp_i && p_j < sp_j)
+	{
+		cd_a.x = mid.x + env->coef / 2;
+		cd_a.y = mid.y - env->coef / 2;
+	}
+	else if (p_i < sp_i && p_j > sp_j)
+	{
+		cd_a.x = mid.x - env->coef / 2;
+		cd_a.y = mid.y + env->coef / 2;
+	}
+	else if (p_i > sp_i && p_j > sp_j)
+	{
+		cd_a.x = mid.x + env->coef / 2;
+		cd_a.y = mid.y + env->coef / 2;
+	}*/
+	return (cd_a);
+}
+
 t_coord	init_lim_coord(t_env *env, int k, int cmp, double theta)
 {
 	t_coord	cd_a;
@@ -36,6 +80,8 @@ t_coord	init_lim_coord(t_env *env, int k, int cmp, double theta)
 	t_coord	cd_m_p;
 
 	cd_a = env->sp[k].sprite[cmp].cd;
+	cd_a = init_cd_a(env->sp[k].sprite[cmp].cd, env, env->sp[k].sprite[cmp].i,
+			env->sp[k].sprite[cmp].j);
 	cd_m.x = cd_a.x + 2.5;
 	cd_m.y = cd_a.y;
 	cd_m_p.x = cd_a.x + ((cd_m.x - cd_a.x) * cos(theta * M_PI / 180));

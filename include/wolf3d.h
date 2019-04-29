@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 12:27:53 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 14:42:21 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ typedef struct	s_sprite
 	int		o_i;
 	double	a_i;
 	t_coord	cd_i;
-	int		o_f; // pour la fin du sprite a afficher
+	int		o_f;
 	double	a_f;
 	t_coord	cd_f;
 	int		det;
@@ -141,7 +141,7 @@ typedef struct	s_sprite
 	_Bool	proximity;
 	_Bool	open;
 	_Bool	alive;
-	//int	ordre; //affichage sprite dans l'ordre ?
+	//int	ordre;
 }				t_sprite;
 
 typedef struct	s_sp

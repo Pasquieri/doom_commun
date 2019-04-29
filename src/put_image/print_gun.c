@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 03:55:38 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 12:33:59 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 13:17:52 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ static void	deal_shoot(t_env *env, int o)
 	j = env->sp[index].sprite[k].j;
 	if (env->tab[j][i] == WIN || env->tab[j][i] == MONKEY)
 	{
-		if (env->tab[j][i] == MONKEY)
+		if (env->tab[j][i] == MONKEY && env->sp[index].sprite[k].alive == 1)
 			env->h_monkey--;
 		env->sp[index].sprite[k].alive = 0;
-		env->tab[env->sp[index].sprite[k].j][env->sp[index].sprite[k].i] = 0;
 		env->tab[j][i] = 0;
 	}
 	env->shoot[0].det = 0;
@@ -41,6 +40,8 @@ static void	shoot(t_env *env)
 	double	d_h;
 
 	env->angle = env->d_regard;
+	env->shoot[0].det = 0;
+	env->shoot[1].det = 0;
 	detec_shoot(env);
 	d_h = -1;
 	d_v = -1;
@@ -71,11 +72,11 @@ void	print_gun(t_env *env, int k)
 	x = 400;
 	while (++x < W_WIDTH)
 	{
-		y = 455 + k;
+		y = 460 + k;
 		while (++y < W_HEIGHT)
 		{
 			i = 4 * x + y * env->m[0].s_l;
-			j = 4 * (x - 400) + (y - 455 + k) * env->sp_t[8].s_l;
+			j = 4 * (x - 400) + (y - 460 + k) * env->sp_t[8].s_l;
 			if (env->sp_t[8].img_str[j + 3] != -1)
 			{
 				env->m[0].img_str[i] = env->sp_t[8].img_str[j];

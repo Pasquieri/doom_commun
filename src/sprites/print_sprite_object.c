@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 12:19:33 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 14:00:00 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	print_sprite_object(t_env *env)
 			//	printf("      2 : %f, cd (%f,%f), a2: %f\n", theta, cd.x, cd.y, env->sp[i].sprite[cmp].a2);
 			//	printf("         sp mid : cd (%f,%f), angle i : %f\n", env->sp[i].sprite[cmp].cd.x, env->sp[i].sprite[cmp].cd.y, env->sp[i].sprite[cmp].a_i);
 			/****************** TEST ANGLE F ************************/
-			//		printf("angle i : %f, angle f : %f, a1 : %f, a2 : %f\n", env->sp[i].sprite[cmp].a_i, env->sp[i].sprite[cmp].a_f, env->sp[i].sprite[cmp].a1, env->sp[i].sprite[cmp].a2);
+					printf("angle i : %f, angle f : %f, a1 : %f, a2 : %f d_regard : %d\n", env->sp[i].sprite[cmp].a_i, env->sp[i].sprite[cmp].a_f, env->sp[i].sprite[cmp].a1, env->sp[i].sprite[cmp].a2, env->d_regard);
 				print_sprite(d_sp, env, i, cmp);
 			}
 		}

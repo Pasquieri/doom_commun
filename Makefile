@@ -91,7 +91,7 @@ $(NAME) : $(OBJ)
 	@mv a.out $(NAME)
 	@echo "${COLOR}all : Doom-nukem created √${COLOR_OFF}"
 
-./%.o : src/%.c
+./%.o : src/%.c $(HEADER)
 	@gcc -Wall -Werror -Wextra -I minilibx/ minilibx/libmlx.a\
 		-framework OpenGL -framework AppKit \
 		-c $< -o $@ -I $(HEADER) libft/libft.a
