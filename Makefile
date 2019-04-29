@@ -60,8 +60,8 @@ SRC = src/main.c\
 	  \
 	  src/sprites/affichage_sprite.c\
 	  src/sprites/detec_shoot.c\
-	  src/sprites/verif_ver_shoot.c\
-	  src/sprites/verif_hor_shoot.c\
+	  src/sprites/verif_shoot_ver.c\
+	  src/sprites/verif_shoot_hor.c\
 	  src/sprites/detection_mur_sp.c\
 	  src/sprites/verif_mur_ver.c\
 	  src/sprites/verif_mur_hor.c\

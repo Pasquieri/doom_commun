@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 22:48:59 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 10:29:27 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@
 # define W_G_TAB 4
 # define W_W_TAB 5
 # define W_B_TAB 6
-# define DOOR 7 // OK : manque animation
+# define DOOR 7
 # define BEGIN 8
 # define END 9
-# define GRID 10 // OK : revoir pour afficher les 4 cotes ou pas
+# define GRID 10
 # define WIN 11
 # define COLUMN 12
 # define BANANA 13
 # define MONKEY 14
-# define DOOR_CLOSE 15 // animation a faire
+# define DOOR_CLOSE 15
 # define SYRINGE 16
 # define PLAFOND 21
 # define SKY 22
@@ -118,44 +118,26 @@ typedef struct	s_sprite
 {
 	int		i;
 	int		j;
-//	t_cd	c;
 	t_coord	cd;
-
-/****** SPRITES *******/
-/*	int		det;
-	int		f_win_x;
-	t_coord	f_int;
-	double	f_angle;
-
-	int		win_h_x;
-	t_coord	cd_h;
-	double	angle_h;
-	int		win_v_x;
-	t_coord	cd_v;
-	double	angle_v;*/
-
 	double	a1;
 	double	a2;
-
 	int		o_i;
 	double	a_i;
 	t_coord	cd_i;
-
 	int		o_f; // pour la fin du sprite a afficher
 	double	a_f;
 	t_coord	cd_f;
-
 	int		det;
+	int		det_hor_f;
+	int		win_x_f;
 	int		det_hor;
 	int		win_x;
 	int		win_h_x;
 	int		win_v_x;
 	t_coord	cd_h;
 	t_coord	cd_v;
-
 	t_det	detec[2];
 	_Bool	check;
-
 	_Bool	proximity;
 	_Bool	open;
 	_Bool	alive;
@@ -171,14 +153,7 @@ typedef struct	s_sp
 
 typedef struct	s_shoot
 {
-	_Bool	det_h;
-	_Bool	det_v;
-	int		val_h;
-	int		val_v;
-	t_sprite	sp[2];
-
-//typedef struct	s_shoot
-//{
+	t_sprite	sp;
 	int			val;
 	_Bool		det;
 	int			k;
@@ -192,16 +167,11 @@ typedef struct	s_env
 	void	*win;
 	t_mlx	m[2];
 	_Bool	key[604];
-
-	//thread
 	int		current_thread;
 	int		angle_thread;
-
-	//Hub
 	void	*h_mlx;
 	void	*story_mlx;
-	t_mlx   hub_end;
-	//void	*h_end_mlx;
+	t_mlx	hub_end;
 	int		h_life;
 	int		h_monkey;
 	int		h_init;
@@ -210,7 +180,6 @@ typedef struct	s_env
 	int		h_help;
 	int		h_story;
 	int		free_sprite;
-
 	int		coef;
 	int		x;
 	int		y;
@@ -223,14 +192,11 @@ typedef struct	s_env
 	double	vitesse;
 	int		musique;
 	int		value;
-
-	//menu
 	int		detail;
 	int		menu;
 	int		menu_select;
 	int		map_entree;
 	t_mlx	menu_txt;
-
 	int		nb_colonne;
 	float	d_ecran;
 	int		h_mur;
@@ -248,25 +214,23 @@ typedef struct	s_env
 	int		skybox;
 	int		lum;
 	int		lum_int;
-
-	int 	time;
+	int		time;
 	double	jump;
 	double	h_jump;
 	int		jump_move;
 	double	crouch;
-
-
 	t_rgb	rgb[10];
 	t_mlx	text[25];
-	t_mlx	sp_t[NB_SP]; // textures des sprites
+	t_mlx	sp_t[NB_SP];
 	t_sp	sp[NB_SP];
 	t_coord	coord_spr;
 	_Bool	gun;
-	t_shoot	shoot;
-//	t_shoot	shoot[2];
+	t_shoot	shoot[2];
 }				t_env;
 
-/*action*/
+/*
+ ** action
+*/
 void			mouse_move(t_env *env);
 void			deplacements(t_env *env);
 int				check_wall(double xa, double ya, t_env *env);
@@ -286,7 +250,9 @@ void			ft_crouch(t_env *env);
 void			ft_jump(t_env *env);
 void			check_card(t_env *env, int mJx, int mJy, int i);
 void			attack_bruit(int x, int y, t_env *env);
-/*initialize*/
+/*
+ ** initialize
+*/
 void			init_rgb(t_env *env);
 void			init_env(t_env *env);
 
@@ -295,7 +261,9 @@ void			number_sprite(t_env *env);
 void			init_tab_sprite(t_env *env);
 int				init_texture(t_env *env);
 int				win_init(t_env *env);
-/*menu*/
+/*
+ ** menu
+*/
 void			menu_init(t_env *env);
 void			ft_play_music(int i, char c);
 char			*chaine_nb(char *str, int nb, int i, int j);
@@ -306,7 +274,9 @@ void			key_valid_menu(t_env *env);
 void			arrow_menu(t_env *env);
 void			open_menu(t_env *env);
 void			free_sprite(t_env *env);
-/*parser*/
+/*
+ ** parser
+*/
 int				check_file(int	fd, t_env *env);
 int				check_open_map(char *map, int fd, t_env *env);
 int				error_message(int num, t_env *env);
@@ -323,7 +293,9 @@ int				recup_info_player(char *str, char c);
 int				verif_valeur(char *str, t_env *env);
 int				wall_line(char *str, t_env *env);
 int				wall_row(char *str, int nb_char, t_env *env);
-/*put_image*/
+/*
+ ** put_image
+*/
 int				ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
 void			color_case(t_env *env);
 void			quadrillage(t_env *env);
@@ -334,7 +306,9 @@ void			put_pxl_img(t_env *env, int x, int y, int color);
 void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text,
 					double bep);
 char			luminosite(int text, int coef);
-/*raycasting*/
+/*
+ ** raycasting
+*/
 void			ft_pthread(t_env *env);
 void			*affichage_mur(void *env);
 int				intersection_horizontal(t_env *env, t_coord *cd);
@@ -350,7 +324,9 @@ void			exec_calcul(t_env *env, int d_regard, int init);
 void			clean_img(t_env *env);
 void			affichage_sol(double y, double h_percue, t_env *env);
 void			affichage_plafond(double y, double h_percue, t_env *env);
-/*sprites*/
+/*
+ ** sprites
+*/
 void			affichage_sprite(t_env *env);
 void			detection_mur_sp(t_env *env);
 int				verif_hor_sp(t_env *env, t_coord *coord);
@@ -365,7 +341,9 @@ void			check_grid_win(t_env *env, t_coord cd, int o, int i, int j);
 double			verif_angle(double angle);
 t_coord			init_lim_coord(t_env *env, int k, int cmp, double theta);
 double			init_lim_angle(t_env *env, t_coord cd);
-/*song*/
+/*
+ ** song
+*/
 int				recup_music(char *str);
 
 #endif

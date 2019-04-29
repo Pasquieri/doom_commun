@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verif_ver_shoot.c                                  :+:      :+:    :+:   */
+/*   verif_shoot_hor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 22:50:47 by cpalmier         ###   ########.fr       */
+/*   Created: 2019/04/21 19:12:01 by cpalmier          #+#    #+#             */
+/*   Updated: 2019/04/29 10:35:01 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,15 @@ static void	check_shoot(t_env *env, t_coord cd, int i, int j)
 	while (++k < env->sp[index_sp].nb)
 	{
 		if (env->sp[index_sp].sprite[k].i == i
-				&& env->sp[index_sp].sprite[k].j == j)
+				&& env->sp[index_sp].sprite[k].j == j
+				&& env->sp[index_sp].sprite[k].alive == 1)
 		{
 			dist = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
 			dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);
-		//	env->sp[index_sp].sprite[k].detec[1].on = 1;
-		//	env->sp[index_sp].sprite[k].detec[1].dist = dist;
-		//	env->sp[index_sp].sprite[k].detec[1].cd = cd;
-//			env->shoot[1].val = env->tab[j][i];
-//			env->shoot[1].det = 1;
-//			env->shoot[1].index = index_sp;
-//			env->shoot[1].k = k;
-//			env->shoot[1].d = dist;
+			env->shoot[0].index = index_sp;
+			env->shoot[0].k = k;
+			env->shoot[0].det = 1;
+			env->shoot[0].d = dist;
 		}
 	}
 }
@@ -60,21 +57,21 @@ static void	ft_check_sprite(t_env *env, t_coord cd)
 	int	i;
 	int	j;
 
-	if (env->angle > 90 && env->angle < 270)
-		i = ((cd.x) - 1) / env->coef;
+	if (env->angle > 0 && env->angle < 180)
+		j = ((cd.y) - 1) / env->coef;
 	else
-		i = (int)(cd.x / env->coef);
-	j = (int)(cd.y / env->coef);
-	if ((env->tab[j][i] == WIN || env->tab[j][i] == MONKEY))
-//		&& env->shoot[1].det == 0)
+		j = (int)(cd.y / env->coef);
+	i = (int)(cd.x / env->coef);
+	if ((env->tab[j][i] == WIN || env->tab[j][i] == MONKEY)
+		&& env->shoot[0].det == 0)
 		check_shoot(env, cd, i, j);
 }
 
-int			verif_ver_shoot(t_env *env, t_coord *coord)
+int	verif_hor_shoot(t_env *env, t_coord *coord)
 {
 	int	i;
 	int	j;
-
+	
 	if (init_coord_lim(env, coord) == -1)
 		return (-1);
 	i = (int)(coord->x / env->coef);
@@ -87,7 +84,7 @@ int			verif_ver_shoot(t_env *env, t_coord *coord)
 			coord->val = env->tab[j][i];
 			return (1);
 		}
-		i = ((coord->x) - 1) / env->coef;
+		j = ((coord->y) - 1) / env->coef;
 		if (env->tab[j][i] > 0 && env->tab[j][i] <= 7)
 		{
 			coord->val = env->tab[j][i];
@@ -96,4 +93,3 @@ int			verif_ver_shoot(t_env *env, t_coord *coord)
 	}
 	return (0);
 }
-
