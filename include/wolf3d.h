@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 14:42:21 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 21:30:53 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,23 +119,24 @@ typedef struct	s_sprite
 	int		i;
 	int		j;
 	t_coord	cd;
+	int		det;
 	double	a1;
 	double	a2;
+	double	a_mid;
 	int		o_i;
 	double	a_i;
 	t_coord	cd_i;
+	int		win_x;
+	int		det_hor;
 	int		o_f;
 	double	a_f;
 	t_coord	cd_f;
-	int		det;
-	int		det_hor_f;
 	int		win_x_f;
-	int		det_hor;
-	int		win_x;
-	int		win_h_x;
-	int		win_v_x;
+	int		det_hor_f;
 	t_coord	cd_h;
 	t_coord	cd_v;
+	int		win_h_x;
+	int		win_v_x;
 	t_det	detec[2];
 	_Bool	check;
 	_Bool	proximity;
@@ -223,6 +224,8 @@ typedef struct	s_env
 	t_mlx	text[25];
 	t_mlx	sp_t[NB_SP];
 	t_sp	sp[NB_SP];
+	double	d_end;
+	double	d_begin;
 	t_coord	coord_spr;
 	_Bool	gun;
 	t_shoot	shoot[2];
@@ -320,7 +323,7 @@ int				verif_hor(t_env *env, t_coord *coord);
 int				init_var_ver(t_env *env, double *ya, double *xa, t_coord *c2);
 int				coef_ver(t_env *env, int *coef_x, int *coef_y);
 int				verif_ver(t_env *env, t_coord *coord);
-void			exec_calcul(t_env *env, int d_regard, int init);
+void			exec_calcul(t_env *env, int init);
 void			clean_img(t_env *env);
 void			affichage_sol(double y, double h_percue, t_env *env);
 void			affichage_plafond(double y, double h_percue, t_env *env);

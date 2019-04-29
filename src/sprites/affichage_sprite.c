@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 15:01:32 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 19:51:14 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,16 @@ static void		initialize_struct(t_env *env, int k, int cmp)
 	env->sp[k].sprite[cmp].check = 0;
 }
 
-static void	check_obj_behind_wall(t_env *env)
+/*static void	check_obj_behind_wall(t_env *env)
 {
 	int		k;
 	int		cmp;
 	double	d_sp;
 
 	k = 1;
-	while (++k < NB_SP) // <= 6
+	while (++k <= 6 )
 	{
 		k == 5 ? k = k + 1 : k;
-		//if (k == 5)
-		//	k += 3;
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
 		{
@@ -55,7 +53,7 @@ static void	check_obj_behind_wall(t_env *env)
 			}
 		}
 	}
-}
+}*/
 
 static void		sprite_init(t_env *env)
 {
@@ -100,8 +98,8 @@ void			affichage_sprite(t_env *env)
 		detection_mur_sp(env);
 		env->dist = env->dist * cos((a - env->d_regard) * M_PI / 180);
 		env->img_x = x;
+	//	check_obj_behind_wall(env);
 		print_sprite_wall(env);
-		check_obj_behind_wall(env);
 		a -= (60. / W_WIDTH);
 	}
 	print_sprite_object(env);

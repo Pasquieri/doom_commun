@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/28 17:37:10 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 21:29:23 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		clean_img(t_env *env)
 	}
 	y = 0;
 	x = 0;
-	while (y < (1200 * 870))
+	while (y < (W_WIDTH * W_HEIGHT))
 	{
 		env->m[0].img_str[x] = (char)0;
 		env->m[0].img_str[x + 1] = (char)0;
@@ -41,12 +41,11 @@ void		clean_img(t_env *env)
 	}
 }
 
-static void	init_var(t_env *env, int d_regard)
+static void	init_var(t_env *env)
 {
 	env->map_entree = 0;
 	env->coef = 200 / (env->x);
 	init_env(env);
-	(void)d_regard;
 	env->d_regard = env->perso_r;
 	env->gun = 1;
 }
@@ -76,17 +75,16 @@ static void	print_text(t_env *env)
 	}
 }
 
-void		exec_calcul(t_env *env, int d_regard, int init)
+void		exec_calcul(t_env *env, int init)
 {
 	env->img_x = 0;
 	env->angle_thread = 0;
 	if (init == 1)
-		init_var(env, d_regard);
+		init_var(env);
 	clean_img(env);
 	ft_pthread(env);
 	affichage_sprite(env);
 	color_case(env);
-//	quadrillage(env); // enlever pour plus de lisibilite sur la mini map
 	print_cercle(env);
 	if (env->gun == 1)
 		print_gun(env, 0);
