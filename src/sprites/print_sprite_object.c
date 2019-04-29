@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 15:56:22 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 12:19:33 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	double	diff;
 	double	detec;
 	double	a_i;
+	double	a_f;
 	a_i = env->sp[i].sprite[cmp].a_i;
+	a_f = env->sp[i].sprite[cmp].a_f;
 	diff = verif_angle(env->sp[i].sprite[cmp].a1 - env->sp[i].sprite[cmp].a2);
 	detec = a_i - env->sp[i].sprite[cmp].a2;
 	if (detec < 0)
@@ -70,8 +72,17 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	detec < 0 ? detec = 0 : detec;
 	if (detec > diff)
 		detec = diff;
+
+/*	double	d_end;
+	d_end = env->sp[i].sprite[cmp].a_f - env->sp[i].sprite[cmp].a2;
+	if (d_end < 0)
+		d_end = (verif_angle(a_f + 90) - verif_angle(env->sp[i].sprite[cmp].a2 + 90));
+	d_end < 0 ? d_end = 0 : d_end;
+	if (d_end > diff) //
+		d_end = diff; // */
 //	printf("            angle i : %f, diff : %f, det : %f\n", env->sp[i].sprite[cmp].a_i, diff, detec);
 	env->img_x = env->sp[i].sprite[cmp].win_x;
+//	while (detec > d_end && env->img_x < W_WIDTH)
 	while (detec > 0 && env->img_x < W_WIDTH)
 	{
 		env->img_y = y + 1;
@@ -117,6 +128,8 @@ void	print_sprite_object(t_env *env)
 			//	printf("      2 : %f, a2: %f\n", theta, env->sp[i].sprite[cmp].a2);
 			//	printf("      2 : %f, cd (%f,%f), a2: %f\n", theta, cd.x, cd.y, env->sp[i].sprite[cmp].a2);
 			//	printf("         sp mid : cd (%f,%f), angle i : %f\n", env->sp[i].sprite[cmp].cd.x, env->sp[i].sprite[cmp].cd.y, env->sp[i].sprite[cmp].a_i);
+			/****************** TEST ANGLE F ************************/
+			//		printf("angle i : %f, angle f : %f, a1 : %f, a2 : %f\n", env->sp[i].sprite[cmp].a_i, env->sp[i].sprite[cmp].a_f, env->sp[i].sprite[cmp].a1, env->sp[i].sprite[cmp].a2);
 				print_sprite(d_sp, env, i, cmp);
 			}
 		}

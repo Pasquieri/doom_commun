@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 15:22:25 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 10:11:06 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	put_sprite_grid(t_env *env, double h_percue, int y, t_mlx *sp_t, dou
 			p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
 	else
 			p_x = fmod(env->coord_spr.y, (float)env->coef) * 100 / env->coef;
-	if (y > (env->h_regard - bep)) // *env->cmp_wall ??
+	if (y > (env->h_regard - bep))
 		p_y = (y - (env->h_regard - bep)) * 100. / h_percue;
 	else
 		p_y = y * 100. / h_percue;
@@ -80,7 +80,7 @@ static void	print_sprite(double d_sprite, t_env *env, int k, int cmp)
 	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
 		/ (d_sprite * env->d_ecran);
 	h_percue = env->d_ecran * (env->h_mur / d_sprite);
-	y = env->h_regard - bep; // - (env->cmp_wall * bep) ??
+	y = env->h_regard - bep;
 	lim = y + h_percue;
 	y < 0. ? y = -1. : y;
 	if ((k + 10) == GRID || (k + 10) == WIN)

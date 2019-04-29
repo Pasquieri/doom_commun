@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 03:55:38 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 10:32:46 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 12:33:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	deal_shoot(t_env *env, int o)
 		if (env->tab[j][i] == MONKEY)
 			env->h_monkey--;
 		env->sp[index].sprite[k].alive = 0;
+		env->tab[env->sp[index].sprite[k].j][env->sp[index].sprite[k].i] = 0;
 		env->tab[j][i] = 0;
 	}
 	env->shoot[0].det = 0;

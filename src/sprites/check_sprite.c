@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 19:06:46 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 12:16:50 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ static void	fill_hor(int index_sp, int k, t_env *env, t_coord cd)
 		env->sp[index_sp].sprite[k].a_i = env->angle;
 		env->sp[index_sp].sprite[k].win_x = env->img_x;
 	}
+/**************** ajout pour final ... ****************************/
+//	env->sp[index_sp].sprite[k].det_hor_f = 1;
+//	env->sp[index_sp].sprite[k].cd_f = cd;
+//	env->sp[index_sp].sprite[k].o_f = 0;
+//	env->sp[index_sp].sprite[k].a_f = env->angle;
+//	env->sp[index_sp].sprite[k].win_x_f = env->img_x;
+/******************************************************************/
 }
 
 static void	fill_ver(int index_sp, int k, t_env *env, t_coord cd)
@@ -77,6 +84,26 @@ static void	fill_ver(int index_sp, int k, t_env *env, t_coord cd)
 		env->sp[index_sp].sprite[k].a_i = env->angle;
 		env->sp[index_sp].sprite[k].win_x = env->img_x;
 	}
+/**************** ajout pour final ... ****************************/
+/*	if (env->sp[index_sp].sprite[k].det_hor_f == 1)
+		//	&& env->img_x == env->sp[index_sp].sprite[k].win_x_f)
+	{
+		d_ver = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
+		d_ver = d_ver * cos((env->angle - env->d_regard) * M_PI / 180);
+		d_hor = sqrt(pow(env->perso_x - env->sp[index_sp].sprite[k].cd_i.x, 2)
+				+ pow(env->perso_y - env->sp[index_sp].sprite[k].cd_i.y, 2));
+		d_hor = d_hor * cos((env->angle - env->d_regard) * M_PI / 180);
+		if (d_ver < d_hor)
+			env->sp[index_sp].sprite[k].det_hor_f = 0;
+	}
+	if (env->sp[index_sp].sprite[k].det_hor_f == 0)
+	{
+		env->sp[index_sp].sprite[k].cd_f = cd;
+		env->sp[index_sp].sprite[k].o_f = 0;
+		env->sp[index_sp].sprite[k].a_f = env->angle;
+		env->sp[index_sp].sprite[k].win_x_f = env->img_x;
+	}*/
+/******************************************************************/
 }
 
 void	check_sprite(int i, int j, t_env *env, int orient, t_coord cd)
@@ -87,6 +114,7 @@ void	check_sprite(int i, int j, t_env *env, int orient, t_coord cd)
 
 	value = -1;
 	if ((env->tab[j][i] >= COLUMN && env->tab[j][i] <= SYRINGE))
+//	if ((env->tab[j][i] >= GRID && env->tab[j][i] <= SYRINGE))
 		value = env->tab[j][i];
 	value == DOOR_CLOSE ? value = -1 : value;
 	if (value != -1)

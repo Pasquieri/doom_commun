@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 10:29:27 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 12:27:53 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,7 +248,7 @@ void			deal_items(t_env *env, int k);
 void			ft_monkey(t_env *env);
 void			ft_crouch(t_env *env);
 void			ft_jump(t_env *env);
-void			check_card(t_env *env, int mJx, int mJy, int i);
+void			check_card(t_env *env, int mjx, int mjy, int i);
 void			attack_bruit(int x, int y, t_env *env);
 /*
  ** initialize
