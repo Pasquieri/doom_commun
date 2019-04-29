@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 03:55:38 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 13:17:52 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/29 14:57:11 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ static void	deal_shoot(t_env *env, int o)
 	if (env->tab[j][i] == WIN || env->tab[j][i] == MONKEY)
 	{
 		if (env->tab[j][i] == MONKEY && env->sp[index].sprite[k].alive == 1)
+		{
+			system("/usr/bin/afplay -q 1 src/song/ouch.mp3&");
 			env->h_monkey--;
+		}
+		if (env->tab[j][i] == WIN && env->sp[index].sprite[k].alive == 1)
+			system("/usr/bin/afplay -q 1 src/song/glass.mp3&");
 		env->sp[index].sprite[k].alive = 0;
 		env->tab[j][i] = 0;
 	}
