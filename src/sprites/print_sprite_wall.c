@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:36:00 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:23:16 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/doom_nukem.h"
 
-static void	put_sprite_grid(t_env *env, double h_percue, int y, t_mlx *sp_t, double bep)
+static void	put_sprite_grid(t_env *env, double h_p, int y, t_mlx *sp_t, double bep)
 {
 	float	p_x;
 	float	p_y;
@@ -20,24 +20,23 @@ static void	put_sprite_grid(t_env *env, double h_percue, int y, t_mlx *sp_t, dou
 	int		j;
 
 	if (env->orientation == 0)
-			p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
+		p_x = fmod(env->coord_spr.x, (float)env->coef) * 100 / env->coef;
 	else
-			p_x = fmod(env->coord_spr.y, (float)env->coef) * 100 / env->coef;
+		p_x = fmod(env->coord_spr.y, (float)env->coef) * 100 / env->coef;
 	if (y > (env->h_regard - bep))
-		p_y = (y - (env->h_regard - bep)) * 100. / h_percue;
+		p_y = (y - (env->h_regard - bep)) * 100. / h_p;
 	else
-		p_y = y * 100. / h_percue;
+		p_y = y * 100. / h_p;
 	i = 4 * env->img_x + y * env->m[0].s_l;
 	j = 4 * (int)(sp_t->width * p_x / 100)
 		+ (int)(sp_t->height * p_y / 100) * sp_t->s_l;
 	if (!sp_t->img_str[j + 3])
 	{
-	env->m[0].img_str[i] = luminosite((int)sp_t->img_str[j], env->lum);
-	env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
-	env->m[0].img_str[i + 2] = luminosite(sp_t->img_str[j + 2], env->lum);
-	env->m[0].img_str[i + 3] = (char)0;
+		env->m[0].img_str[i] = luminosite((int)sp_t->img_str[j], env->lum);
+		env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
+		env->m[0].img_str[i + 2] = luminosite(sp_t->img_str[j + 2], env->lum);
+		env->m[0].img_str[i + 3] = (char)0;
 	}
-//	test_grid(env, h_percue, y, sp_t); // cf plus bas pour un test
 }
 
 static void	check_proximity(double d_sprite, t_env *env, int k, int cmp)
@@ -50,7 +49,8 @@ static void	check_proximity(double d_sprite, t_env *env, int k, int cmp)
 		a = env->sp[k].sprite[cmp].i;
 		b = env->sp[k].sprite[cmp].j;
 		env->sp[k].sprite[cmp].open = 1;
-		env->tab[b][a] == 7 ? env->sp[k].sprite[cmp].open = 0 : env->sp[k].sprite[cmp].open;
+		if (env->tab[b][a] == 7)
+			env->sp[k].sprite[cmp].open = 0;
 		if (d_sprite < (3 * env->coef / 2))
 			env->sp[k].sprite[cmp].proximity = 1;
 		else
@@ -70,13 +70,13 @@ static void	print_sprite(double d_sprite, t_env *env, int k, int cmp)
 	double	y;
 	double	lim;
 	double	h_percue;
-	double bep;
+	double	bep;
 
-	if (k == 5 || k == 7) /************ DOOR **************/
+	if (k == 5 || k == 7)
 	{
 		check_proximity(d_sprite, env, k, cmp);
 		return ;
-	} /****************************************************/
+	}
 	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
 		/ (d_sprite * env->d_ecran);
 	h_percue = env->d_ecran * (env->h_mur / d_sprite);
@@ -114,8 +114,8 @@ static double	ft_distance(t_env *env, int k, int cmp)
 
 void	print_sprite_wall(t_env *env)
 {
-	int	k;
-	int	cmp;
+	int		k;
+	int		cmp;
 	double	d_sprite;
 
 	k = -1;
@@ -137,58 +137,3 @@ void	print_sprite_wall(t_env *env)
 		}
 	}
 }
-
-
-
-
-
-/*********** TEST GRID 4 murs *************/
-
-/*static void	test_grid(t_env *env, double h_percue, int y, t_mlx *sp_t)
-{
-	float	p_x;
-	float	p_y;
-	int		i;
-	int		j;
-	t_coord	cd;
-	double	dist;
-
-	cd = env->coord_spr;
-	if (env->orientation == 0)
-	{
-		if (env->d_regard >= 0 && env->d_regard < 180)
-			cd.y -= env->coef;
-		else
-			cd.y += env->coef;
-		p_x = fmod(cd.x, (float)env->coef) * 100 / env->coef;
-	}
-	else
-	{
-		if (env->d_regard >= 90 && env->d_regard < 270)
-			cd.x -= env->coef;
-		else
-			cd.x += env->coef;
-		p_x = fmod(cd.y, (float)env->coef) * 100 / env->coef;
-	}
-	dist = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y , 2));
-	dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);
-	h_percue = env->d_regard * (env->h_mur / dist);
-
-	if (y > (env->h_regard - (h_percue / 2)))
-		p_y = (y - (env->h_regard - (h_percue / 2.))) * 100. / h_percue;
-	else
-		p_y = y * 100. / h_percue;
-	i = 4 * env->img_x + y * env->m[0].s_l;
-	j = 4 * (int)(sp_t->width * p_x / 100)
-		+ (int)(sp_t->height * p_y / 100) * sp_t->s_l;
-	if (!sp_t->img_str[j + 3]) // si pas transparent
-	{
-	//env->m[0].img_str[i] = luminosite((int)sp_t->img_str[j], env->lum);
-	//env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
-	//env->m[0].img_str[i + 2] = luminosite(sp_t->img_str[j + 2], env->lum);
-	env->m[0].img_str[i + 3] = (char)0;
-		env->m[0].img_str[i] = (char)150;
-		env->m[0].img_str[i + 1] = (char)100;
-		env->m[0].img_str[i + 2] = (char)250;
-	}
-}*/

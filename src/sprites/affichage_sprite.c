@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:36:39 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:12:43 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ static void		initialize_struct(t_env *env, int k, int cmp)
 	env->sp[k].sprite[cmp].check_f = 0;
 }
 
-static void	check_origine(t_env *env, double a, int k, int cmp)
+/*
+ ** rajouter une comparaison avec le milieu du sprite pour
+ ** trouver le vrai 1er angle : monkey
+*/
+
+static void		check_origine(t_env *env, double a, int k, int cmp)
 {
 	double	d_sp;
 
@@ -48,12 +53,10 @@ static void	check_origine(t_env *env, double a, int k, int cmp)
 			env->sp[k].sprite[cmp].a_f = env->sp[k].sprite[cmp].a_i;
 			env->sp[k].sprite[cmp].win_x_f = env->sp[k].sprite[cmp].win_x;
 		}
-		// rajouter une comparaison avec le milieu du sprite pour 
-		// trouver le vrai 1er angle : monkey
 	}
 }
 
-static void	check_obj_behind_wall(t_env *env, double a)
+static void		check_obj_behind_wall(t_env *env, double a)
 {
 	int		k;
 	int		cmp;

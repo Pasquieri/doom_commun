@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:35:16 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:30:47 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,6 @@ typedef struct	s_sp
 
 typedef struct	s_shoot
 {
-	t_sprite	sp;
 	int			val;
 	_Bool		det;
 	int			k;

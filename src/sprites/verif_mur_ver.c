@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:35:50 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:25:02 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ static void	ft_check_sprite(t_env *env, t_coord cd)
 		check_grid_win(env, cd, 1, i, j);
 	else
 		check_sprite(i, j, env, 1, cd);
-	if (env->angle > 90 && env->angle < 270) //
-		i = (int)(cd.x / env->coef); //
-	else //
-		i = ((cd.x) - 1) / env->coef; //
-	check_sprite(i, j, env, 1, cd); //
-	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN) // 28/04
-		check_sprite(i, j, env, 1, cd); // 28/04
+	if (env->angle > 90 && env->angle < 270)
+		i = (int)(cd.x / env->coef);
+	else
+		i = ((cd.x) - 1) / env->coef;
+	check_sprite(i, j, env, 1, cd);
+	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN)
+		check_sprite(i, j, env, 1, cd);
 }
 
 int			verif_ver_sp(t_env *env, t_coord *coord)
@@ -79,4 +79,3 @@ int			verif_ver_sp(t_env *env, t_coord *coord)
 	}
 	return (0);
 }
-

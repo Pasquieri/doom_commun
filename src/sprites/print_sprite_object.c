@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:36:08 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:20:25 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	calcul_pourcent(t_env *env, t_sprite sp)
 	double	a_win;
 
 //	printf("BEFORE a_i : %f, a1 : %f, a_f : %f, a2 : %f\n", sp.a_i, sp.a1, sp.a_f, sp.a2);
-	if (sp.a_i > sp.a1 || verif_angle(sp.a_i + 90) > verif_angle(sp.a1 + 90)) // ??
+	if (sp.a_i > sp.a1 || verif_angle(sp.a_i + 90) > verif_angle(sp.a1 + 90))
 		sp.a_i = sp.a1;
 	if (sp.a_f < sp.a2 || verif_angle(sp.a_f + 90) < verif_angle(sp.a2 + 90))
 		sp.a_f = sp.a2;
@@ -113,8 +113,7 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	}
 }
 
-
-void	print_sprite_object(t_env *env, int i, int cmp)
+void		print_sprite_object(t_env *env, int i, int cmp)
 {
 	double	d_sp;
 	double	theta;

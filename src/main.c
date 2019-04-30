@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:57:03 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:35:32 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:27:32 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static int	button_press(int button, int x, int y, t_env *env)
 	if (button == 1 && env->gun == 1 && !env->menu && env->h_ammo > 0)
 	{
 		print_gun(env, 5, 9);
-		mlx_put_image_to_window(env->mlx, env->win,env->m[0].img, 0, 0);
-		mlx_put_image_to_window(env->mlx, env->win,env->m[1].img, 960, 20);
+		mlx_put_image_to_window(env->mlx, env->win, env->m[0].img, 0, 0);
+		mlx_put_image_to_window(env->mlx, env->win, env->m[1].img, 960, 20);
 		print_hub(env);
 		system("/usr/bin/afplay -q 1 src/song/fire.mp3&");
 		env->h_ammo--;
@@ -50,7 +50,6 @@ int			main(int ac, char **av)
 	env.menu = 1;
 	env.menu_select = 1;
 	open_menu(&env);
-//	system("/usr/bin/afplay -q 1 src/song/musique1.mp3&");
 	mlx_hook(env.win, 6, 1L << 13, motion_notify, &env);
 	mlx_hook(env.win, 2, 0, key_press, &env);
 	mlx_hook(env.win, 3, 0, key_release, &env);

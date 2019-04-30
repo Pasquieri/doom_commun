@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:35:39 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:26:07 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	check_shoot(t_env *env, t_coord cd, int i, int j)
 				&& env->sp[index_sp].sprite[k].j == j
 				&& env->sp[index_sp].sprite[k].alive == 1)
 		{
-			dist = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
+			dist = sqrt(pow(env->perso_x - cd.x, 2)
+					+ pow(env->perso_y - cd.y, 2));
 			dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);
 			env->shoot[1].det = 1;
 			env->shoot[1].index = index_sp;
@@ -93,4 +94,3 @@ int			verif_ver_shoot(t_env *env, t_coord *coord)
 	}
 	return (0);
 }
-

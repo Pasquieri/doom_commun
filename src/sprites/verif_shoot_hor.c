@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 19:12:01 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:35:45 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:25:39 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	check_shoot(t_env *env, t_coord cd, int i, int j)
 				&& env->sp[index_sp].sprite[k].j == j
 				&& env->sp[index_sp].sprite[k].alive == 1)
 		{
-			dist = sqrt(pow(env->perso_x - cd.x, 2) + pow(env->perso_y - cd.y, 2));
+			dist = sqrt(pow(env->perso_x - cd.x, 2)
+					+ pow(env->perso_y - cd.y, 2));
 			dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);
 			env->shoot[0].index = index_sp;
 			env->shoot[0].k = k;
@@ -67,11 +68,11 @@ static void	ft_check_sprite(t_env *env, t_coord cd)
 		check_shoot(env, cd, i, j);
 }
 
-int	verif_hor_shoot(t_env *env, t_coord *coord)
+int			verif_hor_shoot(t_env *env, t_coord *coord)
 {
 	int	i;
 	int	j;
-	
+
 	if (init_coord_lim(env, coord) == -1)
 		return (-1);
 	i = (int)(coord->x / env->coef);

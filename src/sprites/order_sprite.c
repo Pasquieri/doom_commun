@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:15:20 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:36:14 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:19:22 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,15 @@ static void	print_sort(t_env *env, t_sort *sort, int nb_det)
 	free(sort);
 }
 
-void	order_sprite(t_env *env)
+void		order_sprite(t_env *env)
 {
 	int		i;
 	int		cmp;
 	int		nb_det;
 	t_sort	*sort;
 
-//	i = -1;
 	i = 1;
+//	i = -1;
 	nb_det = 0;
 	while (++i <= 6)
 	{
@@ -87,7 +87,9 @@ void	order_sprite(t_env *env)
 			if (env->sp[i].sprite[cmp].det == 1)
 			{
 				nb_det++;
-				env->sp[i].sprite[cmp].d_sp = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd.x, 2) + pow(env->perso_y - env->sp[i].sprite[cmp].cd.y, 2));
+				env->sp[i].sprite[cmp].d_sp = sqrt(pow(env->perso_x
+						- env->sp[i].sprite[cmp].cd.x, 2)
+						+ pow(env->perso_y - env->sp[i].sprite[cmp].cd.y, 2));
 			//	printf("nb_det %d, i : %d, cmp : %d\n", nb_det, i, cmp);
 			}
 	}
@@ -97,5 +99,4 @@ void	order_sprite(t_env *env)
 	sort_sprite(sort, nb_det);
 //	printf("eeee :  %d\n", nb_det);
 	print_sort(env, sort, nb_det);
-//	printf("fff\n");
 }

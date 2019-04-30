@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 19:12:01 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:35:55 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:24:26 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ static void	ft_check_sprite(t_env *env, t_coord cd)
 		check_grid_win(env, cd, 0, i, j);
 	else
 		check_sprite(i, j, env, 0, cd);
-	if (env->angle > 0 && env->angle < 180) //
-		j = (int)(cd.y / env->coef);//
-	else//
-		j = (int)((cd.y) - 1) / env->coef;//
-	check_sprite(i, j, env, 0, cd);//
-	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN) // 28/04
-		check_sprite(i, j, env, 0, cd); // 28/04
+	if (env->angle > 0 && env->angle < 180)
+		j = (int)(cd.y / env->coef);
+	else
+		j = (int)((cd.y) - 1) / env->coef;
+	check_sprite(i, j, env, 0, cd);
+	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN)
+		check_sprite(i, j, env, 0, cd);
 }
 
-int	verif_hor_sp(t_env *env, t_coord *coord)
+int			verif_hor_sp(t_env *env, t_coord *coord)
 {
 	int	i;
 	int	j;
-	
+
 	if (init_coord_lim(env, coord) == -1)
 		return (-1);
 	i = (int)(coord->x / env->coef);
