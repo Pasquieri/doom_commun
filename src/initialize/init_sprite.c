@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 18:02:11 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 16:18:57 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void		init_tab_sprite(t_env *env)
 		k == 7 ? env->sp[k].val = 4 : env->sp[k].val;
 		x = 0;
 		if (!(env->sp[k].sprite = (t_sprite *)malloc(sizeof(t_sprite)
-						* (env->sp[k].nb + 1))))
+						* env->sp[k].nb)))
 			return ;
 		j = -1;
 		while (++j < env->y)

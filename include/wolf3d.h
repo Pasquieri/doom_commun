@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 13:56:13 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 16:50:38 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ typedef struct	s_sprite
 	int		i;
 	int		j;
 	t_coord	cd;
+	double	d_sp;
 	int		det;
 	double	a1;
 	double	a2;
@@ -163,6 +164,13 @@ typedef struct	s_shoot
 	double		d;
 }				t_shoot;
 
+typedef struct	s_sort
+{
+	int		i;
+	int		cmp;
+	double	dist;
+}				t_sort;
+
 typedef struct	s_env
 {
 	void	*mlx;
@@ -170,7 +178,7 @@ typedef struct	s_env
 	t_mlx	m[2];
 	_Bool	key[604];
 	int		current_thread;
-	int		angle_thread;
+	double	angle_thread;
 	void	*h_mlx;
 	void	*story_mlx;
 	t_mlx	hub_end;
@@ -339,12 +347,13 @@ void			detec_shoot(t_env *env);
 int				verif_hor_shoot(t_env *env, t_coord *coord);
 int				verif_ver_shoot(t_env *env, t_coord *coord);
 void			check_sprite(int i, int j, t_env *env, int orie, t_coord cd);
-void			print_sprite_object(t_env *env);
+void			print_sprite_object(t_env *env, int i, int cmp);
 void			print_sprite_wall(t_env *env);
 void			check_grid_win(t_env *env, t_coord cd, int o, int i, int j);
 double			verif_angle(double angle);
 t_coord			init_lim_coord(t_env *env, int k, int cmp, double theta);
 double			init_lim_angle(t_env *env, t_coord cd);
+void			order_sprite(t_env *env);
 /*
  ** song
 */

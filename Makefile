@@ -68,6 +68,7 @@ SRC = src/main.c\
 	  src/sprites/check_sprite.c\
 	  src/sprites/print_sprite_object.c\
 	  src/sprites/print_sprite_wall.c\
+	  src/sprites/order_sprite.c\
 	  src/sprites/calcul_spr.c
 
 

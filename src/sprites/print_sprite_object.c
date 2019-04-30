@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 15:06:45 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 15:19:57 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,21 +98,21 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 }
 
 
-void	print_sprite_object(t_env *env)
+void	print_sprite_object(t_env *env, int i, int cmp)
 {
-	int	i;
-	int	cmp;
+//	int	i;
+//	int	cmp;
 	double	d_sp;
 	double	theta;
 	t_coord	cd;
 
-	i = 1;
-	while (++i <= 6)
-	{
-		cmp = -1;
-		while (++cmp < env->sp[i].nb)
-		{
-			if (env->sp[i].sprite[cmp].det == 1)
+//	i = 1;
+//	while (++i <= 6)
+//	{
+//		cmp = -1;
+//		while (++cmp < env->sp[i].nb)
+//		{
+//			if (env->sp[i].sprite[cmp].det == 1)
 			{
 				env->sp[i].sprite[cmp].a_mid = init_lim_angle(env, env->sp[i].sprite[cmp].cd);
 				d_sp = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd.x, 2)
@@ -130,6 +130,6 @@ void	print_sprite_object(t_env *env)
 				env->sp[i].sprite[cmp].a2 = init_lim_angle(env, cd);
 				print_sprite(d_sp, env, i, cmp);
 			}
-		}
-	}
+//		}
+//	}
 }
