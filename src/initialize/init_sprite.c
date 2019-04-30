@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 16:18:57 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 20:15:27 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static void	init_sprite_extra(t_env *env)
 		&env->sp_t[7].height);
 	env->sp_t[8].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/syringegun.xpm", &env->sp_t[8].width, &env->sp_t[8].height);
+	env->sp_t[9].img = mlx_xpm_file_to_image(env->mlx,
+		"textures/syringegun_shoot.xpm", &env->sp_t[9].width,
+		&env->sp_t[9].height);
 }
 
 void		init_sprite(t_env *env)
@@ -34,11 +37,14 @@ void		init_sprite(t_env *env)
 		"textures/9-win4.xpm", &env->sp_t[1].width, &env->sp_t[1].height);
 	env->sp_t[2].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/12-column.XPM", &env->sp_t[2].width, &env->sp_t[2].height);
-//printf("w : %d, h : %d\n", env->sp_t[2].width, env->sp_t[2].height);
 	env->sp_t[3].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/13-banana.XPM", &env->sp_t[3].width, &env->sp_t[3].height);
 	env->sp_t[4].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/monkeymiddle.XPM", &env->sp_t[4].width, &env->sp_t[4].height);
+	env->sp_t[10].img = mlx_xpm_file_to_image(env->mlx,
+		"textures/monkeyleft.XPM", &env->sp_t[10].width, &env->sp_t[10].height);
+	env->sp_t[11].img = mlx_xpm_file_to_image(env->mlx,
+		"textures/monkeyright.XPM", &env->sp_t[11].width, &env->sp_t[11].height);
 	init_sprite_extra(env);
 }
 
@@ -82,6 +88,7 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 		pos_y = j * coef + coef / 2;
 		sp->sprite[*x].cd.x = pos_x;
 		sp->sprite[*x].cd.y = pos_y;
+		sp->sprite[*x].monkey = 0;
 	}
 	else if (sp->val == COLUMN || sp->val == BANANA || sp->val == SYRINGE)
 	{

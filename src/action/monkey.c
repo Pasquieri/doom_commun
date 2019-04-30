@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 15:49:20 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/30 15:00:36 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 20:07:30 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	attack_bruit(int x, int y, t_env *env)
 {
 	if (x && y && env->h_end == 0)
 	{
-		env->h_life -= 10;
+		env->h_life -= 25;
 		if (env->h_end <= 0)
 		{
 			if (env->h_life > 0)
@@ -77,6 +77,7 @@ void	runtoplayer(t_env *env, int i)
 	if ((int)(env->sp[4].sprite[i].cd.y / env->coef / 1) != pmy / 1
 		|| (int)(env->sp[4].sprite[i].cd.x / env->coef / 1) != pmx / 1)
 		env->tab[pmy][pmx] = 0;
+	env->sp[4].sprite[i].monkey++;
 }
 
 void	ft_monkey(t_env *env)
@@ -93,8 +94,13 @@ void	ft_monkey(t_env *env)
 					+ pow(env->perso_y - env->sp[4].sprite[i].cd.y, 2));
 		if (env->time % 10 == 0 && env->sp[4].sprite[i].alive == 1)
 			attack(env, i);
-		if (env->time % 1 == 0 && env->sp[4].sprite[i].alive == 1 && d_monkey < 80)
-			runtoplayer(env, i);
+		if (env->time % 1 == 0)
+		{
+			if (env->sp[4].sprite[i].det == 1 && d_monkey < 80)
+				runtoplayer(env, i);
+			else if (env->sp[4].sprite[i].alive == 1 && d_monkey < 20)
+				runtoplayer(env, i);
+		}
 		i++;
 	}
 }

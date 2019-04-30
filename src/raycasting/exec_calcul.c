@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:40:29 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/29 21:29:23 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 19:27:46 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		exec_calcul(t_env *env, int init)
 	color_case(env);
 	print_cercle(env);
 	if (env->gun == 1)
-		print_gun(env, 0);
+		print_gun(env, 0, 8);
 	mlx_put_image_to_window(env->mlx, env->win, env->m[0].img, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->win, env->m[1].img, 960, 20);
 	print_text(env);

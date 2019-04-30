@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:57:03 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 22:22:56 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 19:43:38 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	button_press(int button, int x, int y, t_env *env)
 {
 	if (button == 1 && env->gun == 1 && !env->menu && env->h_ammo > 0)
 	{
-		print_gun(env, 5);
+		print_gun(env, 5, 9);
 		mlx_put_image_to_window(env->mlx, env->win,env->m[0].img, 0, 0);
 		mlx_put_image_to_window(env->mlx, env->win,env->m[1].img, 960, 20);
 		print_hub(env);

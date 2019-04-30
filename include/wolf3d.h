@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 16:50:38 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 20:15:54 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,12 +139,12 @@ typedef struct	s_sprite
 	int		win_h_x;
 	int		win_v_x;
 	t_det	detec[2];
+	int		monkey;
 	_Bool	check_i;
 	_Bool	check_f;
 	_Bool	proximity;
 	_Bool	open;
 	_Bool	alive;
-	//int	ordre;
 }				t_sprite;
 
 typedef struct	s_sp
@@ -231,7 +231,7 @@ typedef struct	s_env
 	double	crouch;
 	t_rgb	rgb[10];
 	t_mlx	text[25];
-	t_mlx	sp_t[NB_SP];
+	t_mlx	sp_t[NB_SP + 3];
 	t_sp	sp[NB_SP];
 	double	d_end;
 	double	d_begin;
@@ -312,7 +312,7 @@ int				ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
 void			color_case(t_env *env);
 void			quadrillage(t_env *env);
 void			print_cercle(t_env *env);
-void			print_gun(t_env *env, int k);
+void			print_gun(t_env *env, int k, int nb);
 void			print_tab(t_env *env, float p_y, float p_x, t_mlx *sp);
 void			put_pxl_img(t_env *env, int x, int y, int color);
 void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text,

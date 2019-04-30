@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 15:19:57 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 20:10:42 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,19 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	double	h_percue;
 	double	diff;
 	double	bep;
+	int tmp;
 
+	tmp = i;
+	if (i == 4)
+	{
+		if ((env->sp[4].sprite[cmp].monkey % 4) == 0
+				|| (env->sp[4].sprite[cmp].monkey % 4) == 2)
+			tmp = 4;
+		else if ((env->sp[4].sprite[cmp].monkey % 4) == 1)
+			tmp = 10;
+		else if ((env->sp[4].sprite[cmp].monkey % 4) == 3)
+			tmp = 11;
+	}
 	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
 		/ (d_sp * env->d_ecran);
 	h_percue = env->d_ecran * (env->h_mur / d_sp);
@@ -91,7 +103,7 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	{
 		env->img_y = y;
 		while (++env->img_y < lim && env->img_y < W_HEIGHT)
-			put_sprite_img(env, h_percue, &env->sp_t[i], diff, bep);
+			put_sprite_img(env, h_percue, &env->sp_t[tmp], diff, bep);
 		env->d_begin -= (60. / W_WIDTH);
 		env->img_x++;
 	}

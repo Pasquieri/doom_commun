@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 10:11:06 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 19:02:27 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,19 +137,6 @@ void	print_sprite_wall(t_env *env)
 		}
 	}
 }
-
-
-
-
-
-
-
-//	printf("coord milieu : (%f,%f), coord_spr : (%f,%f)\n", env->sp[i].sprite[cmp].cd.x, env->sp[i].sprite[cmp].cd.y, env->coord_spr.x, env->coord_spr.y);
-
-			/*if (env->sp[i].sprite[cmp].detec[0].on == 1)
-				printf("i = %d horizontal DETEC : %d\n",i, i + 10);
-			if (env->sp[i].sprite[cmp].detec[1].on == 1)
-				printf("i = %d vertical DETEC : %d\n\n",i, i + 10);*/
 
 
 
