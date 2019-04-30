@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 17:40:11 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 17:43:54 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:41:29 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static void		put_pxl(t_env *env, int x, int y, int color)
 {

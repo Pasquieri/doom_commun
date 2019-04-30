@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 19:12:01 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 13:46:19 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:35:55 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static int	init_coord_lim(t_env *env, t_coord *coord)
 {
@@ -49,8 +49,8 @@ static void	ft_check_sprite(t_env *env, t_coord cd)
 	else//
 		j = (int)((cd.y) - 1) / env->coef;//
 	check_sprite(i, j, env, 0, cd);//
-//	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN) // 28/04
-//		check_sprite(i, j, env, o, cd); // 28/04
+	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN) // 28/04
+		check_sprite(i, j, env, 0, cd); // 28/04
 }
 
 int	verif_hor_sp(t_env *env, t_coord *coord)

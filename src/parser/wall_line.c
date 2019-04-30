@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 16:50:34 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/26 17:59:59 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:43:00 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 int		wall_line(char *str, t_env *env)
 {

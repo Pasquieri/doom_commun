@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:43:51 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/10 01:43:20 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:37:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static void		stock_info(t_env *env, t_coord *cd, t_coord *perso, int nb)
 {

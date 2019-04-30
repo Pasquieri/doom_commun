@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 15:25:06 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/03 18:25:13 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:42:18 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 int		check_open_map(char *map, int fd, t_env *env)
 {

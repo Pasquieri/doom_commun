@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:44:47 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/15 18:46:19 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:40:48 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 int		win_init(t_env *env)
 {

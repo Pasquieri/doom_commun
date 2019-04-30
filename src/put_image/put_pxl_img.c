@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:51:35 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 18:06:05 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:38:47 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 void		put_pxl_img(t_env *env, int x, int y, int color)
 {

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*   doom_nukem.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 20:15:54 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:35:16 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF3D_H
-# define WOLF3D_H
+#ifndef DOOM_NUKEM_H
+# define DOOM_NUKEM_H
 
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
@@ -235,6 +235,7 @@ typedef struct	s_env
 	t_sp	sp[NB_SP];
 	double	d_end;
 	double	d_begin;
+	double	diff;
 	t_coord	coord_spr;
 	_Bool	gun;
 	t_shoot	shoot[2];

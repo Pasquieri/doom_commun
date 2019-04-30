@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 03:55:38 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 20:02:30 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:38:38 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 /*static void	print_dead(t_env *env)
 {

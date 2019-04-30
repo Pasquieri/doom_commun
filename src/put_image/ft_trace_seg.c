@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:48:31 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/21 17:48:33 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:38:27 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static int	cas_1(t_env *env, t_coord coord1, t_coord coord2)
 {

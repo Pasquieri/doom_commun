@@ -6,11 +6,20 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:43:26 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/30 15:11:53 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:05:49 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
+
+void	mouse_move(t_env *env)
+{
+	if (env->menu != 1)
+	{
+		mlx_mouse_hide();
+		mlx_mouse_move(env->win, 1200 / 2, 870 / 2);
+	}
+}
 
 int		motion_notify(int x, int y, t_env *env)
 {

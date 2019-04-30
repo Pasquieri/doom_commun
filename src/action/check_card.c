@@ -6,11 +6,11 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 21:45:45 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/28 21:45:46 by cjulliar         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:39:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 void	check_north(t_env *env, int i, int mjx)
 {

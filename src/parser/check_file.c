@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:25:16 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 16:33:08 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:42:11 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static int	free_error(char *line1, t_env *env, int i)
 {

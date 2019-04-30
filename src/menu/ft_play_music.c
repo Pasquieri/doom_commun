@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 13:09:15 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 16:56:34 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:41:03 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 void	ft_play_music(int i, char c)
 {

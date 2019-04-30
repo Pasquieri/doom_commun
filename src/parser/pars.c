@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 16:41:37 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 16:37:17 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:42:42 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 int		pars_init(int argc, char **argv, t_env *env)
 {

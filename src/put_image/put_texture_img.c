@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:49:23 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 21:01:27 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:38:52 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 char		luminosite(int text, int coef)
 {

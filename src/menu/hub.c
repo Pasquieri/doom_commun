@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 16:57:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/28 17:05:00 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:54:00 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static void		story_affiche(t_env *env)
 {
@@ -79,6 +79,27 @@ static void		affiche_hub_extra(t_env *env)
 		help_affiche(env);
 }
 
+static void		affiche_hub(t_env *env)
+{
+	mlx_put_image_to_window(env->mlx, env->win, env->hub_end.img, 200, 400);
+	if (env->h_life <= 0)
+		mlx_string_put(env->mlx, env->win, 510, 450, 0xD51515,
+			"Vous avez perdu :(");
+	else
+	{
+		if (env->h_monkey <= 0)
+			mlx_string_put(env->mlx, env->win, 510, 450, 0x32901D,
+				"Vous avez gagne :)");
+		else
+			mlx_string_put(env->mlx, env->win, 365, 450, 0x32901D,
+				"Vous aviez presque gagne, il reste des singes :/");
+	}
+	mlx_string_put(env->mlx, env->win, 400, 500, 0x1A79D3,
+		"Appuyez sur [enter] pour revenir au menu");
+	mlx_string_put(env->mlx, env->win, 410, 530, 0x1A79D3,
+		"Appuyez sur [esc] pour quitter le jeu");
+}
+
 void			print_hub(t_env *env)
 {
 	if (env->h_init == 0)
@@ -89,26 +110,7 @@ void			print_hub(t_env *env)
 		if (env->h_end <= 0)
 			affiche_hub_extra(env);
 		else
-		{
-			mlx_put_image_to_window(env->mlx, env->win,
-					env->hub_end.img, 200, 400);
-			if (env->h_life <= 0)
-				mlx_string_put(env->mlx, env->win, 510, 450, 0xD51515,
-						"Vous avez perdu :(");
-			else
-			{
-				if (env->h_monkey <= 0)
-					mlx_string_put(env->mlx, env->win, 510, 450, 0x32901D,
-							"Vous avez gagne :)");
-				else
-					mlx_string_put(env->mlx, env->win, 365, 450, 0x32901D,
-							"Vous aviez presque gagne, il reste des singes :/");
-			}
-			mlx_string_put(env->mlx, env->win, 400, 500, 0x1A79D3,
-					"Appuyez sur [enter] pour revenir au menu");
-			mlx_string_put(env->mlx, env->win, 410, 530, 0x1A79D3,
-					"Appuyez sur [esc] pour quitter le jeu");
-		}
+			affiche_hub(env);
 	}
 	else
 		story_affiche(env);

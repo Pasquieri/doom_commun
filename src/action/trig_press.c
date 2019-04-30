@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:45:50 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 21:29:50 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:43:58 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 int			trig_press(t_env *env)
 {

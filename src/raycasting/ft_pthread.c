@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 20:48:26 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/21 19:43:58 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:38:19 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 void	ft_pthread(t_env *env)
 {

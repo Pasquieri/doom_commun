@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:56:40 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 16:46:45 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:42:47 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static char	*remplit_str(char *str, char c)
 {

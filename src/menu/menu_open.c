@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 20:37:03 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/28 18:03:53 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:41:37 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static void			affiche_menu_valide(t_env *env, t_color_menu *color_menu)
 {

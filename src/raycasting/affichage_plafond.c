@@ -6,11 +6,11 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 10:28:54 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/28 20:58:03 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:44:20 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static void	put_texture_sky(double pos_px, double pos_py, t_env *env, int y)
 {

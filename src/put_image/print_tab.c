@@ -6,12 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 18:59:10 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/03/28 18:59:46 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:38:42 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
-
+#include "../../include/doom_nukem.h"
 
 void	print_tab(t_env *env, float p_y, float p_x, t_mlx *sp)
 {

@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 16:40:33 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/03/03 17:53:37 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:42:38 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 int		malloc_tab(t_env *env)
 {

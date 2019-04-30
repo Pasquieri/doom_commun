@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 19:01:36 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:36:39 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static void		initialize_struct(t_env *env, int k, int cmp)
 {
@@ -28,6 +28,31 @@ static void		initialize_struct(t_env *env, int k, int cmp)
 	env->sp[k].sprite[cmp].check_f = 0;
 }
 
+static void	check_origine(t_env *env, double a, int k, int cmp)
+{
+	double	d_sp;
+
+	if (env->sp[k].sprite[cmp].det == 1
+			&& env->sp[k].sprite[cmp].check_i == 0)
+	{
+		d_sp = sqrt(pow(env->perso_x - env->sp[k].sprite[cmp].cd_i.x, 2)
+				+ pow(env->perso_y - env->sp[k].sprite[cmp].cd_i.y, 2));
+		d_sp = d_sp * cos((a - env->d_regard) * M_PI / 180);
+		if (d_sp > env->dist)
+			initialize_struct(env, k, cmp);
+		else
+		{
+			env->sp[k].sprite[cmp].check_i = 1;
+			env->sp[k].sprite[cmp].cd_f = env->sp[k].sprite[cmp].cd_i;
+			env->sp[k].sprite[cmp].o_f = env->sp[k].sprite[cmp].o_i;
+			env->sp[k].sprite[cmp].a_f = env->sp[k].sprite[cmp].a_i;
+			env->sp[k].sprite[cmp].win_x_f = env->sp[k].sprite[cmp].win_x;
+		}
+		// rajouter une comparaison avec le milieu du sprite pour 
+		// trouver le vrai 1er angle : monkey
+	}
+}
+
 static void	check_obj_behind_wall(t_env *env, double a)
 {
 	int		k;
@@ -41,25 +66,7 @@ static void	check_obj_behind_wall(t_env *env, double a)
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
 		{
-			if (env->sp[k].sprite[cmp].det == 1
-					&& env->sp[k].sprite[cmp].check_i == 0)
-			{
-				d_sp = sqrt(pow(env->perso_x - env->sp[k].sprite[cmp].cd_i.x, 2)
-						+ pow(env->perso_y - env->sp[k].sprite[cmp].cd_i.y, 2));
-				d_sp = d_sp * cos((a - env->d_regard) * M_PI / 180);
-				if (d_sp > env->dist)
-					initialize_struct(env, k, cmp);
-				else
-				{
-					env->sp[k].sprite[cmp].check_i = 1;
-					env->sp[k].sprite[cmp].cd_f = env->sp[k].sprite[cmp].cd_i;
-					env->sp[k].sprite[cmp].o_f = env->sp[k].sprite[cmp].o_i;
-					env->sp[k].sprite[cmp].a_f = env->sp[k].sprite[cmp].a_i;
-					env->sp[k].sprite[cmp].win_x_f = env->sp[k].sprite[cmp].win_x;
-				}
-				// rajouter une comparaison avec le milieu du sprite pour 
-				// trouver le vrai 1er angle : monkey
-			}
+			check_origine(env, a, k, cmp);
 			if (env->sp[k].sprite[cmp].det == 1
 					&& env->sp[k].sprite[cmp].check_i == 1)
 			{
@@ -85,12 +92,6 @@ static void		sprite_init(t_env *env)
 		while (++cmp < env->sp[k].nb)
 			initialize_struct(env, k, cmp);
 	}
-}
-
-static void		action_proximity(t_env *env)
-{
-	int	cmp;
-
 	cmp = -1;
 	while (++cmp < env->sp[5].nb)
 		env->sp[5].sprite[cmp].proximity = 0;
@@ -98,7 +99,6 @@ static void		action_proximity(t_env *env)
 	while (++cmp < env->sp[7].nb)
 		env->sp[7].sprite[cmp].proximity = 0;
 }
-
 
 void			affichage_sprite(t_env *env)
 {
@@ -108,7 +108,6 @@ void			affichage_sprite(t_env *env)
 	a = env->d_regard + 30;
 	a = verif_angle(a);
 	x = -1;
-	action_proximity(env);
 	sprite_init(env);
 	while (++x < W_WIDTH)
 	{
@@ -122,5 +121,3 @@ void			affichage_sprite(t_env *env)
 	}
 	order_sprite(env);
 }
-
-

@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 14:27:35 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:36:30 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 void	check_grid_win(t_env *env, t_coord cd, int orient, int i, int j)
 {
@@ -125,8 +125,8 @@ void	check_sprite(int i, int j, t_env *env, int orient, t_coord cd)
 	int		index_sp;
 
 	value = -1;
-	if ((env->tab[j][i] >= COLUMN && env->tab[j][i] <= SYRINGE))
-//	if ((env->tab[j][i] >= GRID && env->tab[j][i] <= SYRINGE))
+//	if ((env->tab[j][i] >= COLUMN && env->tab[j][i] <= SYRINGE))
+	if ((env->tab[j][i] >= GRID && env->tab[j][i] <= SYRINGE))
 		value = env->tab[j][i];
 	value == DOOR_CLOSE ? value = -1 : value;
 	if (value != -1)

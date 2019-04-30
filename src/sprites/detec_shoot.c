@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:43:51 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 21:09:50 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:36:24 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static void	ft_distance(t_coord coord1, t_coord coord2, t_env *env)
 {

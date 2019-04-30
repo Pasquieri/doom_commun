@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:41:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/30 19:34:09 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:48:31 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 int			key_press(int key, t_env *env) // il faut reduire la vitesse de deplacement pendant le saut
 {
@@ -147,4 +147,3 @@ int			key_apply(t_env *env)
 		trig_press(env);
 	return (0);
 }
-

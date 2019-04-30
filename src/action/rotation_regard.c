@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 13:44:10 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/28 21:26:34 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:40:10 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 void	rotation_regard(t_env *env)
 {

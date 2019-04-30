@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2011/03/01 20:15:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 20:21:52 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:49:44 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static int	verif_sprt(t_env *env, int i, int k)
 {
@@ -84,7 +84,7 @@ static void	init_texture_door(t_env *env)
 			&env->text[9].height);
 }
 
-int		init_texture(t_env *env)
+int			init_texture(t_env *env)
 {
 	int		v_text;
 	int		v_sprt;

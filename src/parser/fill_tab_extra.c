@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 15:26:07 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 16:35:53 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:42:32 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 int		verif_case(char c)
 {

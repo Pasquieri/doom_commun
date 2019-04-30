@@ -6,26 +6,49 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:48:45 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 14:10:40 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:07:27 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 void	init_rgb(t_env *env)
 {
-	env->rgb[0] = (t_rgb){230, 230, 230, 0}; // blanc
-	env->rgb[1] = (t_rgb){88, 68, 21, 100}; // bleu/vert
-	env->rgb[2] = (t_rgb){175, 175, 200, 100}; // gris porte
-	env->rgb[3] = (t_rgb){159, 161, 255, 0}; // rose
-	env->rgb[4] = (t_rgb){159, 0, 240, 0}; // rouge
-	env->rgb[5] = (t_rgb){66, 220, 244, 0}; // vert
-	env->rgb[6] = (t_rgb){240, 130, 44, 0}; // bleu
-	env->rgb[7] = (t_rgb){93, 145, 190, 0}; // marron
-	env->rgb[8] = (t_rgb){0, 0, 0, 100}; // noir transparent
-	env->rgb[9] = (t_rgb){0, 0, 0, 0}; // noir
+	env->rgb[0] = (t_rgb){230, 230, 230, 0};
+	env->rgb[1] = (t_rgb){88, 68, 21, 100};
+	env->rgb[2] = (t_rgb){175, 175, 200, 100};
+	env->rgb[3] = (t_rgb){159, 161, 255, 0};
+	env->rgb[4] = (t_rgb){159, 0, 240, 0};
+	env->rgb[5] = (t_rgb){66, 220, 244, 0};
+	env->rgb[6] = (t_rgb){240, 130, 44, 0};
+	env->rgb[7] = (t_rgb){93, 145, 190, 0};
+	env->rgb[8] = (t_rgb){0, 0, 0, 100};
+	env->rgb[9] = (t_rgb){0, 0, 0, 0};
 }
 
+void	number_sprite(t_env *env)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < NB_SP)
+		env->sp[i].nb = 0;
+	j = -1;
+	while (++j < env->y)
+	{
+		i = -1;
+		while (++i < env->x)
+		{
+			if (env->tab[j][i] == DOOR)
+				env->sp[5].nb++;
+			else if (env->tab[j][i] >= 10 && env->tab[j][i] <= 16)
+				env->sp[env->tab[j][i] - 10].nb++;
+			else if (env->tab[j][i] >= 4 && env->tab[j][i] <= 6)
+				env->sp[7].nb++;
+		}
+	}
+}
 
 void	init_env(t_env *env)
 {

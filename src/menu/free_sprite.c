@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 05:08:38 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/28 18:02:43 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:40:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 void	free_sprite(t_env *env)
 {

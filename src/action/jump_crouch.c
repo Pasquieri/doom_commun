@@ -6,11 +6,11 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 14:34:26 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/27 14:34:27 by cjulliar         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:39:50 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 void	jump_hup(t_env *env, int jump_height)
 {

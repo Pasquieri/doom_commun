@@ -6,11 +6,11 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 13:09:06 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/27 17:23:45 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:40:54 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static int		ft_size(int nb)
 {

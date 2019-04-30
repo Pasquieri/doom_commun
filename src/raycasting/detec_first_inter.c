@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:49:16 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/21 19:33:39 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:37:54 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 int			intersection_horizontal(t_env *env, t_coord *cd)
 {

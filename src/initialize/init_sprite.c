@@ -6,11 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 20:15:27 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 22:07:10 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 static void	init_sprite_extra(t_env *env)
 {
@@ -44,32 +44,9 @@ void		init_sprite(t_env *env)
 	env->sp_t[10].img = mlx_xpm_file_to_image(env->mlx,
 		"textures/monkeyleft.XPM", &env->sp_t[10].width, &env->sp_t[10].height);
 	env->sp_t[11].img = mlx_xpm_file_to_image(env->mlx,
-		"textures/monkeyright.XPM", &env->sp_t[11].width, &env->sp_t[11].height);
+		"textures/monkeyright.XPM", &env->sp_t[11].width,
+		&env->sp_t[11].height);
 	init_sprite_extra(env);
-}
-
-void		number_sprite(t_env *env)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < NB_SP)
-		env->sp[i].nb = 0;
-	j = -1;
-	while (++j < env->y)
-	{
-		i = -1;
-		while (++i < env->x)
-		{
-			if (env->tab[j][i] == DOOR)
-				env->sp[5].nb++;
-			else if (env->tab[j][i] >= 10 && env->tab[j][i] <= 16)
-				env->sp[env->tab[j][i] - 10].nb++;
-			else if (env->tab[j][i] >= 4 && env->tab[j][i] <= 6)
-				env->sp[7].nb++;
-		}
-	}
 }
 
 static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
@@ -82,15 +59,10 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 	sp->sprite[*x].i = i;
 	sp->sprite[*x].j = j;
 	sp->sprite[*x].alive = 1;
-	if (sp->val == MONKEY) // pour test affichage monkey hors du milieu d'une case
-	{
-		pos_x = i * coef + coef / 2;
-		pos_y = j * coef + coef / 2;
-		sp->sprite[*x].cd.x = pos_x;
-		sp->sprite[*x].cd.y = pos_y;
+	if (sp->val == MONKEY)
 		sp->sprite[*x].monkey = 0;
-	}
-	else if (sp->val == COLUMN || sp->val == BANANA || sp->val == SYRINGE)
+	if (sp->val == COLUMN || sp->val == BANANA || sp->val == SYRINGE
+			|| sp->val == MONKEY)
 	{
 		pos_x = i * coef + coef / 2;
 		pos_y = j * coef + coef / 2;
@@ -100,11 +72,30 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 	*x += 1;
 }
 
+static void	fill_tab_sprite(t_env *env, int k, int *x)
+{
+	int	i;
+	int	j;
+
+	j = -1;
+	while (++j < env->y)
+	{
+		i = -1;
+		while (++i < env->x)
+		{
+			if (k == 5 && env->tab[j][i] == 15)
+				env->sp[k].sprite[*x].open = 1;
+			if (env->tab[j][i] == env->sp[k].val
+					|| (k == 5 && env->tab[j][i] == 15) || (k == 7
+					&& (env->tab[j][i] == 5 || env->tab[j][i] == 6)))
+				fill_info_sprite(&env->sp[k], x, i, j);
+		}
+	}
+}
+
 void		init_tab_sprite(t_env *env)
 {
 	int	k;
-	int	i;
-	int	j;
 	int	x;
 
 	k = -1;
@@ -115,22 +106,9 @@ void		init_tab_sprite(t_env *env)
 		k == 7 ? env->sp[k].val = 4 : env->sp[k].val;
 		x = 0;
 		if (!(env->sp[k].sprite = (t_sprite *)malloc(sizeof(t_sprite)
-						* env->sp[k].nb)))
+			* env->sp[k].nb)))
 			return ;
-		j = -1;
-		while (++j < env->y)
-		{
-			i = -1;
-			while (++i < env->x)
-			{
-				if (k == 5 && env->tab[j][i] == 15) // porte ouverte a test
-					env->sp[k].sprite[x].open = 1; // a test
-				if (env->tab[j][i] == env->sp[k].val
-						|| (k == 5 && env->tab[j][i] == 15) || (k == 7
-							&& (env->tab[j][i] == 5 || env->tab[j][i] == 6)))
-					fill_info_sprite(&env->sp[k], &x, i, j);
-			}
-		}
+		fill_tab_sprite(env, k, &x);
 	}
 	env->free_sprite = 1;
 }

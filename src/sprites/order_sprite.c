@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:15:20 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 17:47:46 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:36:14 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
-static void	fill_sort_tab(t_env *env, t_sort *sort, int nb_det)
+static void	fill_sort_tab(t_env *env, t_sort *sort)
 {
 	int	i;
 	int	cmp;
@@ -34,13 +34,6 @@ static void	fill_sort_tab(t_env *env, t_sort *sort, int nb_det)
 			}
 		}
 	}
-	(void)nb_det;
-/*	int tmp;
-	tmp = -1;
-	while (++tmp < nb_det)
-	{
-		printf("nb_det : %d i : %d, cmp : %d, dist : %f\n", nb_det, sort[tmp].i, sort[tmp].cmp, sort[tmp].dist);
-	}*/
 }
 
 static void	sort_sprite(t_sort *sort, int nb_det)
@@ -83,6 +76,7 @@ void	order_sprite(t_env *env)
 	int		nb_det;
 	t_sort	*sort;
 
+//	i = -1;
 	i = 1;
 	nb_det = 0;
 	while (++i <= 6)
@@ -94,28 +88,14 @@ void	order_sprite(t_env *env)
 			{
 				nb_det++;
 				env->sp[i].sprite[cmp].d_sp = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd.x, 2) + pow(env->perso_y - env->sp[i].sprite[cmp].cd.y, 2));
+			//	printf("nb_det %d, i : %d, cmp : %d\n", nb_det, i, cmp);
 			}
 	}
 	if (!(sort = (t_sort *)malloc(sizeof(t_sort) * nb_det)))
 		return ;
-	fill_sort_tab(env, sort, nb_det);
+	fill_sort_tab(env, sort);
 	sort_sprite(sort, nb_det);
+//	printf("eeee :  %d\n", nb_det);
 	print_sort(env, sort, nb_det);
+//	printf("fff\n");
 }
-
-
-/*void	order_sprite(t_env *env)
-{
-	int	i;
-	int	cmp;
-
-	i = 1;
-	while (++i <= 6)
-	{
-		cmp = -1;
-		while (++cmp < env->sp[i].nb)
-			if (env->sp[i].sprite[cmp].det == 1)
-				print_sprite_object(env, i, cmp);
-	}
-	order_sprite_t(env);
-}*/

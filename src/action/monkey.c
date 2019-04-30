@@ -6,11 +6,11 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 15:49:20 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/30 20:07:30 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:48:13 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/wolf3d.h"
+#include "../../include/doom_nukem.h"
 
 void	attack_bruit(int x, int y, t_env *env)
 {
@@ -82,8 +82,8 @@ void	runtoplayer(t_env *env, int i)
 
 void	ft_monkey(t_env *env)
 {
-	int k;
-	int i;
+	int		k;
+	int		i;
 	double	d_monkey;
 
 	k = env->sp[4].nb;
@@ -94,7 +94,7 @@ void	ft_monkey(t_env *env)
 					+ pow(env->perso_y - env->sp[4].sprite[i].cd.y, 2));
 		if (env->time % 10 == 0 && env->sp[4].sprite[i].alive == 1)
 			attack(env, i);
-		if (env->time % 1 == 0)
+		if (env->time % 1 == 0 && !env->menu)
 		{
 			if (env->sp[4].sprite[i].det == 1 && d_monkey < 80)
 				runtoplayer(env, i);
