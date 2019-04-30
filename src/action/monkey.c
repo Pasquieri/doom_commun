@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 15:49:20 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/29 12:29:55 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 15:00:36 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,17 @@ void	ft_monkey(t_env *env)
 {
 	int k;
 	int i;
+	double	d_monkey;
 
 	k = env->sp[4].nb;
 	i = 0;
 	while (i < k)
 	{
+		d_monkey = sqrt(pow(env->perso_x - env->sp[4].sprite[i].cd.x, 2)
+					+ pow(env->perso_y - env->sp[4].sprite[i].cd.y, 2));
 		if (env->time % 10 == 0 && env->sp[4].sprite[i].alive == 1)
 			attack(env, i);
-		if (env->sp[4].sprite[i].det == 1 && env->time % 1 == 0)
+		if (env->time % 1 == 0 && env->sp[4].sprite[i].alive == 1 && d_monkey < 80)
 			runtoplayer(env, i);
 		i++;
 	}

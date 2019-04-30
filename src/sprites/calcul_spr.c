@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 20:47:18 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 20:28:45 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 12:41:07 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_coord	init_lim_coord(t_env *env, int k, int cmp, double theta)
 
 	cd_a = env->sp[k].sprite[cmp].cd;
 	cd_m.x = cd_a.x + 2.5;
+	if (k == 3 || k == 6)
+		cd_m.x = cd_a.x + 2.5 / 4;
 	cd_m.y = cd_a.y;
 	cd_m_p.x = cd_a.x + ((cd_m.x - cd_a.x) * cos(theta * M_PI / 180));
 	cd_m_p.y = cd_a.y - (cd_m.x - cd_a.x) * sin(theta * M_PI / 180);

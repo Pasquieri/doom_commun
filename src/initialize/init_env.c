@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:48:45 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 22:13:15 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 14:10:40 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_env(t_env *env)
 	env->h_regard = W_HEIGHT / 2;
 	env->lim = env->x * env->coef - (env->coef / 2);
 	env->lum_int = 125;
-	env->vitesse = 0.8;
+	env->vitesse = SPEED;
 	env->jump = 0;
 	env->h_jump = 0;
 	env->jump_move = -1;

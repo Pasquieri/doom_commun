@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 21:25:52 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 15:06:45 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,28 @@ static void	calcul_pourcent(t_env *env, t_sprite sp, double diff)
 {
 	double	a_win;
 
-	if (sp.a_i > sp.a1)
+//	printf("BEFORE a_i : %f, a1 : %f, a_f : %f, a2 : %f\n", sp.a_i, sp.a1, sp.a_f, sp.a2);
+	if (sp.a_i > sp.a1 || verif_angle(sp.a_i + 90) > verif_angle(sp.a1 + 90)) // ??
 		sp.a_i = sp.a1;
-	//|| verif_angle(env->sp[i].sprite[cmp].a_i + 90) > verif_angle(a1 + 90)) // ??
 	if (sp.a_f < sp.a2 || verif_angle(sp.a_f + 90) < verif_angle(sp.a2 + 90))
 		sp.a_f = sp.a2;
+//	printf("AFTER a_i : %f, a1 : %f, a_f : %f, a2 : %f\n", sp.a_i, sp.a1, sp.a_f, sp.a2);
+
 	env->d_begin = sp.a_i - sp.a2;
+	env->d_end = sp.a_f - sp.a2;
+//	printf("BEFORE d_begin : %f d_end : %f\n", env->d_begin, env->d_end);
+
 	if (env->d_begin < 0)
 		env->d_begin = verif_angle(sp.a_i + 90) - verif_angle(sp.a2 + 90);
 	env->d_begin < 0 ? env->d_begin = 0 : env->d_begin; // ??
 	if (env->d_begin > diff)
 		env->d_begin = diff;
-	env->d_end = sp.a_f - sp.a2;
 	if (env->d_end < 0)
 		env->d_end = verif_angle(sp.a_f + 90) - verif_angle(sp.a2 + 90);
 	if (env->d_end > diff)
 		env->d_end = diff;
+//	printf("AFTER d_begin : %f d_end : %f\n\n", env->d_begin, env->d_end);
+
 	a_win = verif_angle(env->d_regard + 30) - sp.a_i;
 	if (a_win < 0)
 		a_win = verif_angle(env->d_regard + 120) - verif_angle(sp.a_i + 90);
@@ -76,17 +82,11 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	h_percue = env->d_ecran * (env->h_mur / d_sp);
 	y = env->h_regard - bep;
 	if (i == 3 || i == 6)
-		h_percue /= 3;
+		h_percue /= 4;
 	lim = y + h_percue - 1;
 	y < 0. ? y = 0. : y;
 	diff = verif_angle(env->sp[i].sprite[cmp].a1 - env->sp[i].sprite[cmp].a2);
 	calcul_pourcent(env, env->sp[i].sprite[cmp], diff);
-	if (i == 3 || i == 6)
-	{
-		diff /= 3;
-//		env->d_begin -= 2 * env->d_begin / 3;
-//		env->d_end += 2 * env->d_end / 3;
-	}
 	while (env->d_begin > env->d_end && env->img_x < W_WIDTH)
 	{
 		env->img_y = y;

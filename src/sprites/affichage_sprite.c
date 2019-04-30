@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 22:14:56 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 14:43:10 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ static void		initialize_struct(t_env *env, int k, int cmp)
 	env->sp[k].sprite[cmp].cd_v.x = -1;
 	env->sp[k].sprite[cmp].cd_v.y = -1;
 	env->sp[k].sprite[cmp].win_v_x = 0;
-	env->sp[k].sprite[cmp].check = 0;
+	env->sp[k].sprite[cmp].check_i = 0;
+	env->sp[k].sprite[cmp].check_f = 0;
 }
 
-/*static void	check_obj_behind_wall(t_env *env)
+static void	check_obj_behind_wall(t_env *env, double a)
 {
 	int		k;
 	int		cmp;
@@ -41,56 +42,36 @@ static void		initialize_struct(t_env *env, int k, int cmp)
 		while (++cmp < env->sp[k].nb)
 		{
 			if (env->sp[k].sprite[cmp].det == 1
-					&& env->sp[k].sprite[cmp].check == 0)
+					&& env->sp[k].sprite[cmp].check_i == 0)
 			{
 				d_sp = sqrt(pow(env->perso_x - env->sp[k].sprite[cmp].cd_i.x, 2)
 						+ pow(env->perso_y - env->sp[k].sprite[cmp].cd_i.y, 2));
-				env->sp[k].sprite[cmp].check = 1;
+				d_sp = d_sp * cos((a - env->d_regard) * M_PI / 180);
 				if (d_sp > env->dist)
 					initialize_struct(env, k, cmp);
+				else
+				{
+					env->sp[k].sprite[cmp].check_i = 1;
+					env->sp[k].sprite[cmp].cd_f = env->sp[k].sprite[cmp].cd_i;
+					env->sp[k].sprite[cmp].o_f = env->sp[k].sprite[cmp].o_i;
+					env->sp[k].sprite[cmp].a_f = env->sp[k].sprite[cmp].a_i;
+					env->sp[k].sprite[cmp].win_x_f = env->sp[k].sprite[cmp].win_x;
+				}
 				// rajouter une comparaison avec le milieu du sprite pour 
 				// trouver le vrai 1er angle : monkey
 			}
-		}
-	}
-}*/
-
-/*static void	check_obj_behind_wall(t_env *env)
-{
-	int		i;
-	int		cmp;
-	double	d_sp;
-
-	i = 1;
-	while (++i <= 6)
-	{
-		i == 5 ? i = i + 1 : i;
-		cmp = -1;
-		while (++cmp < env->sp[i].nb)
-		{
-			if (env->sp[i].sprite[cmp].det == 1)
-			//		&& env->sp[i].sprite[cmp].alive == 1)
+			if (env->sp[k].sprite[cmp].det == 1
+					&& env->sp[k].sprite[cmp].check_i == 1)
 			{
-					//printf(" BEFORE a_i : %f, win_x : %d, o_i : %d\n", env->sp[i].sprite[cmp].a_i, env->sp[i].sprite[cmp].win_x, env->sp[i].sprite[cmp].o_i);
-				if (env->img_x == env->sp[i].sprite[cmp].win_x)
-			//	if (env->sp[i].sprite[cmp].check == 0)
-				{
-					d_sp = sqrt(pow(env->perso_x - env->sp[i].sprite[cmp].cd_i.x, 2)
-					+ pow(env->perso_y - env->sp[i].sprite[cmp].cd_i.y, 2));
-					d_sp = d_sp * cos((env->angle - env->d_regard) * M_PI / 180);
-					int init;
-					init = 0;
-					if (d_sp > env->dist)
-					{
-						initialize_struct(env, i, cmp);
-						init = 1;
-					}
-			//		printf("INIT ? : %d a_i : %f, win_x ; %d\n", init, env->sp[i].sprite[cmp].a_i, env->sp[i].sprite[cmp].win_x);
-				}
+				d_sp = sqrt(pow(env->perso_x - env->sp[k].sprite[cmp].cd_f.x, 2)
+						+ pow(env->perso_y - env->sp[k].sprite[cmp].cd_f.y, 2));
+				d_sp = d_sp * cos((a - env->d_regard) * M_PI / 180);
+				if (d_sp > env->dist)
+					env->sp[k].sprite[cmp].check_f = 1;
 			}
 		}
 	}
-}*/
+}
 
 static void		sprite_init(t_env *env)
 {
@@ -135,7 +116,7 @@ void			affichage_sprite(t_env *env)
 		detection_mur_sp(env);
 		env->dist = env->dist * cos((a - env->d_regard) * M_PI / 180);
 		env->img_x = x;
-	//	check_obj_behind_wall(env);
+		check_obj_behind_wall(env, a);
 		print_sprite_wall(env);
 		a -= (60. / W_WIDTH);
 	}

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/29 21:30:53 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/04/30 13:56:13 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define NB_SP 9
 # define W_HEIGHT 870
 # define W_WIDTH 1200
-# define SPEED 0.5
+# define SPEED 1
 
 typedef struct	s_coord
 {
@@ -138,7 +138,8 @@ typedef struct	s_sprite
 	int		win_h_x;
 	int		win_v_x;
 	t_det	detec[2];
-	_Bool	check;
+	_Bool	check_i;
+	_Bool	check_f;
 	_Bool	proximity;
 	_Bool	open;
 	_Bool	alive;
