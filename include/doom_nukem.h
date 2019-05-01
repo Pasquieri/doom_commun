@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 22:30:47 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:49:00 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,10 @@ typedef struct	s_sprite
 	t_coord	cd_f;
 	int		win_x_f;
 	int		det_hor_f;
-	t_coord	cd_h;
-	t_coord	cd_v;
-	int		win_h_x;
-	int		win_v_x;
+//	t_coord	cd_h;
+//	t_coord	cd_v;
+//	int		win_h_x;
+//	int		win_v_x;
 	t_det	detec[2];
 	int		monkey;
 	_Bool	check_i;

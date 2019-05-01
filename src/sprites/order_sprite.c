@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:15:20 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 15:09:25 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 17:21:49 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ static void	fill_sort_tab(t_env *env, t_sort *sort, int nb_det)
 	int	cmp;
 	int	k;
 
-//	i = 1;
-	i = -1;
 	k = 0;
+	i = -1;
 	while (++i <= 6)
 	{
 		cmp = -1;
@@ -44,10 +43,11 @@ static void	sort_sprite(t_sort *sort, int nb_det)
 	t_sort	tmp;
 
 	k = -1;
-	while (++k < (nb_det - 1))
+	while (++k < nb_det)
 	{
 		i = k + 1;
 		while (++i < nb_det)
+		{
 			if (sort[i].dist < sort[k].dist)
 			{
 				tmp.i = sort[k].i;
@@ -60,6 +60,7 @@ static void	sort_sprite(t_sort *sort, int nb_det)
 				sort[i].cmp = tmp.cmp;
 				sort[i].dist = tmp.dist;
 			}
+		}
 	}
 }
 
@@ -68,6 +69,18 @@ static void	print_sort(t_env *env, t_sort *sort, int nb_det)
 	while (--nb_det >= 0)
 		print_sprite_object(env, sort[nb_det].i, sort[nb_det].cmp);
 	free(sort);
+}
+
+static void	ft_print(t_sort *sort, int nb_det, t_env *env)
+{
+	int	k;
+
+	k = -1;
+	(void)env;
+	while (++k < nb_det)
+	{
+		printf("sort[%d], i : %d, cmp : %d, dist : %f\n", k, sort[k].i, sort[k].cmp, sort[k].dist);
+	}
 }
 
 void		order_sprite(t_env *env)
@@ -94,6 +107,10 @@ void		order_sprite(t_env *env)
 	if (!(sort = (t_sort *)malloc(sizeof(t_sort) * nb_det)))
 		return ;
 	fill_sort_tab(env, sort, nb_det);
+	printf("avant tri : \n");
+	ft_print(sort, nb_det, env);
+	printf("\n apres tri : \n");
 	sort_sprite(sort, nb_det);
+	ft_print(sort, nb_det, env);
 	print_sort(env, sort, nb_det);
 }

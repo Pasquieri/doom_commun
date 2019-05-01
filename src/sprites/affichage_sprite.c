@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 22:12:43 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:50:22 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void		initialize_struct(t_env *env, int k, int cmp)
 	env->sp[k].sprite[cmp].det = 0;
 	env->sp[k].sprite[cmp].win_x = 0;
 	env->sp[k].sprite[cmp].detec[0].on = 0;
-	env->sp[k].sprite[cmp].cd_h.x = -1;
-	env->sp[k].sprite[cmp].cd_h.y = -1;
-	env->sp[k].sprite[cmp].win_h_x = 0;
+//	env->sp[k].sprite[cmp].cd_h.x = -1;
+//	env->sp[k].sprite[cmp].cd_h.y = -1;
+//	env->sp[k].sprite[cmp].win_h_x = 0;
 	env->sp[k].sprite[cmp].detec[1].on = 0;
-	env->sp[k].sprite[cmp].cd_v.x = -1;
-	env->sp[k].sprite[cmp].cd_v.y = -1;
-	env->sp[k].sprite[cmp].win_v_x = 0;
+//	env->sp[k].sprite[cmp].cd_v.x = -1;
+//	env->sp[k].sprite[cmp].cd_v.y = -1;
+//	env->sp[k].sprite[cmp].win_v_x = 0;
 	env->sp[k].sprite[cmp].check_i = 0;
 	env->sp[k].sprite[cmp].check_f = 0;
 }
@@ -62,7 +62,7 @@ static void		check_obj_behind_wall(t_env *env, double a)
 	int		cmp;
 	double	d_sp;
 
-	k = 1;
+	k = -1;
 	while (++k <= 6)
 	{
 		k == 5 ? k = k + 1 : k;
