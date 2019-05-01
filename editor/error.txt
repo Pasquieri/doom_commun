@@ -1,0 +1,31 @@
+INIT FILE ERROR:
+    -100 : error argument[1] (file) O_WRONLY
+    -101 : error argument[1] (file) O_RDONLY
+    READ PLAYER ERROR:
+        -110 : error get_next_line
+        -111 : File don't start by "player("
+        -112 : Line don't end by ')'
+        -113 : malloc string value of player error
+        -114 : split error
+        -115 : trim error
+        -116 : value is not a number
+        -117 : player x coord error
+        -118 : player y coord error
+        -119 : player rotation coord error
+        -120 : player don't have 3 values
+    READ MUSIC ERROR:
+        -121 : error get_next_line
+        -122 : line don't contain number
+        -123 : music value is invalid
+    READ MAP ERROR:
+        -124 : error malloc strnew
+        -125 : error malloc strjoin
+        -126 : Invalid size of MAP
+        -127 : split error entire map
+        -128 : split error by line
+        -129 : map don't contain only number
+        -130 : map don't contain right value
+        -131 : player on map is not valid
+        -132 : map should have 40 values by line
+        -133 : only one position possible for the player
+        -134 : map should have 40 line of 40 values
