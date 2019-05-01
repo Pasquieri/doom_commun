@@ -6,92 +6,63 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:53:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:44:13 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 19:46:11 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/doom_nukem.h"
 
-void		color_case(t_env *env) // case avec sprite coloriees
+static void			color_case_extra(t_env *env, t_color_case *c_case)
 {
-	int	i;
-	int	j;
-	int	x;
-	int	y;
-	int	color;
-
-	j = -1;
-	while (++j < env->y)
+	while (++c_case->y < (c_case->j * env->coef + env->coef))
 	{
-		i = -1;
-		while (++i < env->x)
+		c_case->x = c_case->i * env->coef - 1;
+		c_case->color = 1;
+		if (env->tab[c_case->j][c_case->i] == 7 ||
+				env->tab[c_case->j][c_case->i] == 15)
+			c_case->color = 2;
+		else if (env->tab[c_case->j][c_case->i] == 10 ||
+				env->tab[c_case->j][c_case->i] == 11)
+			c_case->color = 3;
+		else if (env->tab[c_case->j][c_case->i] == 12 ||
+				env->tab[c_case->j][c_case->i] == 13
+			|| env->tab[c_case->j][c_case->i] == 16)
+			c_case->color = 4;
+		else if (env->tab[c_case->j][c_case->i] == END)
+			c_case->color = 5;
+		while (++c_case->x < (c_case->i * env->coef + env->coef))
+			put_pxl_img(env, c_case->x, c_case->y, c_case->color);
+	}
+}
+
+void				color_case(t_env *env)
+{
+	t_color_case	c_case;
+
+	c_case.j = -1;
+	while (++c_case.j < env->y)
+	{
+		c_case.i = -1;
+		while (++c_case.i < env->x)
 		{
-			if (((env->tab[j][i] > 0 && env->tab[j][i] <= 7)
-					|| (env->tab[j][i] >= 9 && env->tab[j][i] <= 16))
-					&& env->tab[j][i] != 14)
+			if (((env->tab[c_case.j][c_case.i] > 0
+							&& env->tab[c_case.j][c_case.i] <= 7)
+					|| (env->tab[c_case.j][c_case.i] >= 9
+						&& env->tab[c_case.j][c_case.i] <= 16))
+					&& env->tab[c_case.j][c_case.i] != 14)
 			{
-				y = j * env->coef - 1;
-				while (++y < (j * env->coef + env->coef))
-				{
-					x = i * env->coef - 1;
-					color = 1; // mur
-					if (env->tab[j][i] == 7 || env->tab[j][i] == 15)
-						color = 2; // porte
-					else if (env->tab[j][i] == 10 || env->tab[j][i] == 11)
-						color = 3; // grille & fenetre
-					else if (env->tab[j][i] == 12 || env->tab[j][i] == 13
-						|| env->tab[j][i] == 16)
-						color = 4; // autre sp;
-					else if (env->tab[j][i] == END)
-						color = 5;
-					while (++x < (i * env->coef + env->coef))
-						put_pxl_img(env, x, y, color);
-				}
+				c_case.y = c_case.j * env->coef - 1;
+				color_case_extra(env, &c_case);
 			}
 		}
 	}
 }
 
-static void	init_coord(t_coord *coord1, t_coord *coord3, t_env *env)
+static void			cercle(t_env *env, t_cercle param)
 {
-	coord3->x = coord1->x;
-	coord3->y = coord1->y - env->coef;
-}
-
-void		quadrillage(t_env *env)
-{
-	int		i;
-	int		j;
-	t_coord	coord1;
-	t_coord	coord2;
-	t_coord	coord3;
-
-	j = -1;
-	while (++j <= env->y)
-	{
-		coord1.y = j * env->coef;
-		coord2.y = j * env->coef;
-		i = -1;
-		while (++i <= env->x)
-		{
-			coord1.x = i * env->coef;
-			coord2.x = (i + 1) * env->coef;
-			if ((i + 1) <= env->x)
-				ft_trace_seg(env, coord1, coord2);
-			if (j > 0)
-			{
-				init_coord(&coord1, &coord3, env);
-				ft_trace_seg(env, coord1, coord3);
-			}
-		}
-	}
-}
-
-static void	cercle(t_env *env, t_cercle param)
-{
-	int x;
-	int y;
-	int m;
+	int				x;
+	int				y;
+	int				m;
 
 	x = 0;
 	y = param.rayon;
@@ -116,9 +87,9 @@ static void	cercle(t_env *env, t_cercle param)
 	}
 }
 
-void		print_cercle(t_env *env)
+void				print_cercle(t_env *env)
 {
-	t_cercle	param_cercle;
+	t_cercle		param_cercle;
 
 	param_cercle.coord.x = env->perso_x;
 	param_cercle.coord.y = env->perso_y;

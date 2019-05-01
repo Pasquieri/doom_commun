@@ -48,6 +48,7 @@ SRC = src/main.c\
 	  src/put_image/put_texture_img.c\
 	  src/put_image/print_tab.c\
 	  src/put_image/print_gun.c\
+	  src/put_image/quadrillage.c\
 	  \
 	  src/raycasting/ft_pthread.c\
 	  src/raycasting/detec_first_inter.c\

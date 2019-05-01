@@ -107,6 +107,15 @@ typedef struct	s_mlx
 	int		height;
 }				t_mlx;
 
+typedef struct s_color_case
+{
+	int	i;
+	int	j;
+	int	x;
+	int	y;
+	int	color;
+}				t_color_case;
+
 typedef struct	s_det
 {
 	_Bool	on;
