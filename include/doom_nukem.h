@@ -247,6 +247,7 @@ typedef struct	s_env
 	t_coord	coord_spr;
 	_Bool	gun;
 	t_shoot	shoot[2];
+	int		dy;
 }				t_env;
 
 /*
@@ -359,7 +360,7 @@ int				verif_ver_shoot(t_env *env, t_coord *coord);
 void			check_sprite(int i, int j, t_env *env, int orie, t_coord cd);
 void			print_sprite_object(t_env *env, int i, int cmp);
 void			print_sprite_wall(t_env *env, int i, int cmp);
-void			check_door_prox(t_env *env, t_coord cd, int o, int i, int j);
+void			check_grid_win(t_env *env, t_coord cd, int o, int i, int j);
 double			verif_angle(double angle);
 t_coord			init_lim_coord(t_env *env, int k, int cmp, double theta);
 double			init_lim_angle(t_env *env, t_coord cd);

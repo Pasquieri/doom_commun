@@ -12,7 +12,7 @@
 
 #include "../../include/doom_nukem.h"
 
-static void	put_texture_floor(double psx, double psy, t_env *env, int y, int b)
+static void	put_texture_floor(double psx, double psy, t_env *env, int b)
 {
 	int p_x;
 	int	p_y;
@@ -22,7 +22,7 @@ static void	put_texture_floor(double psx, double psy, t_env *env, int y, int b)
 
 	p_x = (int)(psx * 100) % 100;
 	p_y = (int)(psy * 100) % 100;
-	i = 4 * env->img_x + y * env->m[0].s_l;
+	i = 4 * env->img_x + env->dy * env->m[0].s_l;
 	j = 4 * (int)(env->text[b].width * p_x / 100)
 		+ (int)(env->text[b].height * p_y / 100) * env->text[b].s_l;
 	env->m[0].img_str[i] = luminosite(env->text[b].img_str[j], env->lum);
@@ -83,6 +83,17 @@ double		pos_sol_y(double psy, double n, double ac_p, t_env *env)
 	}
 }
 
+double		calc_ac_sol(t_env *env, double y)
+{
+	double ac_sol;
+
+	ac_sol = (env->d_ecran * ((env->d_ecran * env->h_mur)
+		/ 2 + env->h_jump)) / (y - env->h_regard);
+	ac_sol = ac_sol / env->d_ecran;
+	ac_sol = ac_sol / cos((env->angle - env->d_regard) * M_PI / 180);
+	return (ac_sol);
+}
+
 void		affichage_sol(double y, double h_percue, t_env *env)
 {
 	double ac_sol;
@@ -94,22 +105,20 @@ void		affichage_sol(double y, double h_percue, t_env *env)
 	pos_perso_y = env->perso_y / (double)env->coef;
 	while (y < W_HEIGHT)
 	{
-		ac_sol = (env->d_ecran * ((env->d_ecran * env->h_mur)
-		/ 2 + env->h_jump)) / (y - env->h_regard);
-		ac_sol = ac_sol / env->d_ecran;
-		ac_sol = ac_sol / cos((env->angle - env->d_regard) * M_PI / 180);
+		ac_sol = calc_ac_sol(env, y);
 		env->lum = ac_sol * 255 / env->lum_int;
+		env->dy = y;
 		if (env->tab[(int)pos_sol_y(pos_perso_y, 0, ac_sol, env)]
 			[(int)pos_sol_x(pos_perso_x, 0, ac_sol, env)] == DOOR_CLOSE)
 			put_texture_floor(pos_sol_x(pos_perso_x, 0, ac_sol, env),
-				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 9);
+				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, 9);
 		else if (env->tab[(int)pos_sol_y(pos_perso_y, 0, ac_sol, env)]
 			[(int)pos_sol_x(pos_perso_x, 0, ac_sol, env)] == END)
 			put_texture_floor(pos_sol_x(pos_perso_x, 0, ac_sol, env),
-				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 10);
+				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, 10);
 		else
 			put_texture_floor(pos_sol_x(pos_perso_x, 0, ac_sol, env),
-				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, y, 0);
+				pos_sol_y(pos_perso_y, 0, ac_sol, env), env, 0);
 		y++;
 	}
 }

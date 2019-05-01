@@ -36,21 +36,12 @@ static void		affichage_ciel(t_env *env, int y, double bep)
 	}
 }
 
-static void		affichage(double h_percue, t_env *env)
+static void		affichage(double h_percue, t_env *env, double bep, double y)
 {
-	double	y;
 	double	lim;
-	double	ddp;
-	double	adp;
-	double	bc;
-	double	ac;
-	double	bep;
 
-	ddp = env->d_ecran * env->h_mur;
-	adp = ddp / 2 - env->h_jump;
-	bc = env->d_ecran;
-	ac = env->dist * env->d_ecran;
-	bep = (bc * adp) / ac;
+	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
+	/ (env->dist * env->d_ecran);
 	lim = env->h_regard - (env->coef_h_wall * bep);
 	if (!env->skybox)
 		affichage_plafond(lim, h_percue, env);
@@ -96,7 +87,7 @@ void			*affichage_mur(void *tab)
 		h_percue = env.d_ecran * (env.h_mur / dist);
 		env.lim_sol = env.h_regard + (h_percue / 2);
 		env.img_x = x;
-		affichage(h_percue, &env);
+		affichage(h_percue, &env, 0.0, 0.0);
 		a -= (60. / W_WIDTH);
 		x++;
 	}
