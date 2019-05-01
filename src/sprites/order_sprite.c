@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:15:20 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 18:02:01 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:27:46 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,19 @@ static void	sort_sprite(t_sort *sort, int nb_det)
 			sort[i].dist = tmp.dist;
 			k = -1;
 			i = 0;
-		};
+		}
 	}
 }
 
 static void	print_sort(t_env *env, t_sort *sort, int nb_det)
 {
 	while (--nb_det >= 0)
-		print_sprite_object(env, sort[nb_det].i, sort[nb_det].cmp);
+	{
+		if (sort[nb_det].i == 0 || sort[nb_det].i == 1)
+			print_sprite_wall(env, sort[nb_det].i, sort[nb_det].cmp);
+		else
+			print_sprite_object(env, sort[nb_det].i, sort[nb_det].cmp);
+	}
 	free(sort);
 }
 

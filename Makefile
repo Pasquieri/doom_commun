@@ -66,6 +66,7 @@ SRC = src/main.c\
 	  src/sprites/detection_mur_sp.c\
 	  src/sprites/verif_mur_ver.c\
 	  src/sprites/verif_mur_hor.c\
+	  src/sprites/check_proximity.c\
 	  src/sprites/check_sprite.c\
 	  src/sprites/print_sprite_object.c\
 	  src/sprites/print_sprite_wall.c\
