@@ -14,7 +14,6 @@
 
 void	jump_hup(t_env *env, int jump_height)
 {
-	env->vitesse = SPEED / 3;
 	if (env->jump >= 1)
 	{
 		env->jump = 0;
@@ -53,7 +52,7 @@ void	jump_down(t_env *env, int jump_height)
 	{
 		env->jump = 1;
 		env->h_jump = 0;
-		env->vitesse = SPEED;
+		env->vitesse *= 2;
 		env->jump_move = -1;
 	}
 	env->jump = env->jump - 1;
@@ -63,7 +62,7 @@ void	ft_jump(t_env *env)
 {
 	int jump_height;
 
-	env->vitesse = SPEED / 3;
+	env->vitesse = 0.5;
 	jump_height = 100;
 	if (env->jump > 0)
 		jump_hup(env, jump_height);
@@ -76,7 +75,7 @@ void	ft_crouch(t_env *env)
 	int h_crouch_height;
 
 	h_crouch_height = 50;
-	env->vitesse = SPEED / 3;
+	env->vitesse = 0.5;
 	if (env->crouch == -1)
 	{
 		if (env->h_jump - h_crouch_height > (env->d_ecran * env->h_mur) / -3)
@@ -92,7 +91,7 @@ void	ft_crouch(t_env *env)
 		{
 			env->crouch = 0;
 			env->h_jump = 0;
-			env->vitesse = SPEED;
+			env->vitesse *= 2;
 		}
 	}
 }
