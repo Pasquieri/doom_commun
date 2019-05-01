@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 15:04:42 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 16:43:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,13 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
 		/ (d_sp * env->d_ecran);
 	h_percue = env->d_ecran * (env->h_mur / d_sp);
-	y = env->h_regard - bep;
 	if (i == 3 || i == 6)
+	{
+		bep = (env->d_ecran * ((env->d_ecran * (env->h_mur / 10)) / 2
+					- env->h_jump)) / (d_sp * env->d_ecran);
 		h_percue /= 4;
+	}
+	y = env->h_regard - bep;
 	lim = y + h_percue - 1;
 	y < 0. ? y = 0. : y;
 	calcul_pourcent(env, env->sp[i].sprite[cmp]);
