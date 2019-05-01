@@ -6,26 +6,27 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 15:15:20 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 22:19:22 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:09:25 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/doom_nukem.h"
 
-static void	fill_sort_tab(t_env *env, t_sort *sort)
+static void	fill_sort_tab(t_env *env, t_sort *sort, int nb_det)
 {
 	int	i;
 	int	cmp;
 	int	k;
 
-	i = 1;
+//	i = 1;
+	i = -1;
 	k = 0;
 	while (++i <= 6)
 	{
 		cmp = -1;
 		while (++cmp < env->sp[i].nb)
 		{
-			if (env->sp[i].sprite[cmp].det == 1)
+			if (env->sp[i].sprite[cmp].det == 1 && k < nb_det)
 			{
 				sort[k].i = i;
 				sort[k].cmp = cmp;
@@ -76,12 +77,10 @@ void		order_sprite(t_env *env)
 	int		nb_det;
 	t_sort	*sort;
 
-	i = 1;
-//	i = -1;
+	i = -1;
 	nb_det = 0;
 	while (++i <= 6)
 	{
-	//	i == 5 ? i = i + 1 : i;
 		cmp = -1;
 		while (++cmp < env->sp[i].nb)
 			if (env->sp[i].sprite[cmp].det == 1)
@@ -90,13 +89,11 @@ void		order_sprite(t_env *env)
 				env->sp[i].sprite[cmp].d_sp = sqrt(pow(env->perso_x
 						- env->sp[i].sprite[cmp].cd.x, 2)
 						+ pow(env->perso_y - env->sp[i].sprite[cmp].cd.y, 2));
-			//	printf("nb_det %d, i : %d, cmp : %d\n", nb_det, i, cmp);
 			}
 	}
 	if (!(sort = (t_sort *)malloc(sizeof(t_sort) * nb_det)))
 		return ;
-	fill_sort_tab(env, sort);
+	fill_sort_tab(env, sort, nb_det);
 	sort_sprite(sort, nb_det);
-//	printf("eeee :  %d\n", nb_det);
 	print_sort(env, sort, nb_det);
 }

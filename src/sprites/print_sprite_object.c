@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 22:20:25 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:04:42 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ static int	monkey_texture(t_env *env, int i, int cmp)
 			tmp = 10;
 		else if ((env->sp[4].sprite[cmp].monkey % 4) == 3)
 			tmp = 11;
+		/*if ((env->sp[4].sprite[cmp].monkey % 8) == 2 || (env->sp[4].sprite[cmp].monkey % 8) == 1)
+			tmp = 10;
+		else if ((env->sp[4].sprite[cmp].monkey % 8) == 6 || (env->sp[4].sprite[cmp].monkey % 8) == 7)
+			tmp = 11;
+		else
+			tmp = 4;*/
 	}
 	return (tmp);
 }

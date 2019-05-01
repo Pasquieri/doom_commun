@@ -6,13 +6,13 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 22:23:16 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 14:53:39 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/doom_nukem.h"
 
-static void	put_sprite_grid(t_env *env, double h_p, int y, t_mlx *sp_t, double bep)
+/*static void	put_sprite_grid(t_env *env, double h_p, int y, t_mlx *sp_t, double bep)
 {
 	float	p_x;
 	float	p_y;
@@ -37,7 +37,7 @@ static void	put_sprite_grid(t_env *env, double h_p, int y, t_mlx *sp_t, double b
 		env->m[0].img_str[i + 2] = luminosite(sp_t->img_str[j + 2], env->lum);
 		env->m[0].img_str[i + 3] = (char)0;
 	}
-}
+}*/
 
 static void	check_proximity(double d_sprite, t_env *env, int k, int cmp)
 {
@@ -67,17 +67,17 @@ static void	check_proximity(double d_sprite, t_env *env, int k, int cmp)
 
 static void	print_sprite(double d_sprite, t_env *env, int k, int cmp)
 {
-	double	y;
-	double	lim;
-	double	h_percue;
-	double	bep;
+//	double	y;
+//	double	lim;
+//	double	h_percue;
+//	double	bep;
 
 	if (k == 5 || k == 7)
 	{
 		check_proximity(d_sprite, env, k, cmp);
 		return ;
 	}
-	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
+/*	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
 		/ (d_sprite * env->d_ecran);
 	h_percue = env->d_ecran * (env->h_mur / d_sprite);
 	y = env->h_regard - bep;
@@ -88,7 +88,7 @@ static void	print_sprite(double d_sprite, t_env *env, int k, int cmp)
 		{
 			if ((k + 10) == GRID || ((int)y + env->img_x) % 2 == 0)
 				put_sprite_grid(env, h_percue, y, &env->sp_t[k], bep);
-		}
+		}*/
 }
 
 static double	ft_distance(t_env *env, int k, int cmp)
@@ -118,9 +118,12 @@ void	print_sprite_wall(t_env *env)
 	int		cmp;
 	double	d_sprite;
 
-	k = -1;
-	while (++k < NB_SP - 1)
+//	k = -1;
+	k = 4;
+//	while (++k < NB_SP - 1)
+	while (++k < 8)
 	{
+		k == 6 ? k = 7 : k; //
 		cmp = -1;
 		while (++cmp < env->sp[k].nb)
 		{

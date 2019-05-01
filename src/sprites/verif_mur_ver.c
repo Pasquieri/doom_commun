@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 22:25:02 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 14:33:26 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ static void	ft_check_sprite(t_env *env, t_coord cd)
 	else
 		i = (int)(cd.x / env->coef);
 	j = (int)(cd.y / env->coef);
-	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN
-			|| env->tab[j][i] == DOOR_CLOSE || env->tab[j][i] == DOOR
+//	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN
+//			|| env->tab[j][i] == DOOR_CLOSE || env->tab[j][i] == DOOR
+	if (env->tab[j][i] == DOOR_CLOSE || env->tab[j][i] == DOOR
 			|| (env->tab[j][i] >= W_G_TAB && env->tab[j][i] <= W_B_TAB))
 		check_grid_win(env, cd, 1, i, j);
 	else
@@ -49,8 +50,8 @@ static void	ft_check_sprite(t_env *env, t_coord cd)
 	else
 		i = ((cd.x) - 1) / env->coef;
 	check_sprite(i, j, env, 1, cd);
-	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN)
-		check_sprite(i, j, env, 1, cd);
+//	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN)
+//		check_sprite(i, j, env, 1, cd);
 }
 
 int			verif_ver_sp(t_env *env, t_coord *coord)

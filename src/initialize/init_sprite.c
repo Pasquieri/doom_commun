@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:48:32 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 22:07:10 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:09:39 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,10 @@ static void	fill_info_sprite(t_sp *sp, int *x, int i, int j)
 	sp->sprite[*x].alive = 1;
 	if (sp->val == MONKEY)
 		sp->sprite[*x].monkey = 0;
-	if (sp->val == COLUMN || sp->val == BANANA || sp->val == SYRINGE
-			|| sp->val == MONKEY)
-	{
-		pos_x = i * coef + coef / 2;
-		pos_y = j * coef + coef / 2;
-		sp->sprite[*x].cd.x = pos_x;
-		sp->sprite[*x].cd.y = pos_y;
-	}
+	pos_x = i * coef + coef / 2;
+	pos_y = j * coef + coef / 2;
+	sp->sprite[*x].cd.x = pos_x;
+	sp->sprite[*x].cd.y = pos_y;
 	*x += 1;
 }
 
