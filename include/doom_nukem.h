@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 20:54:05 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 21:12:03 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct	s_mlx
 	int		height;
 }				t_mlx;
 
-typedef struct s_color_case
+typedef struct	s_color_case
 {
 	int	i;
 	int	j;
