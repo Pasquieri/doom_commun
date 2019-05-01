@@ -55,7 +55,7 @@ int				valid_map(t_editor *editor)
 		while (point.x < GRID_SIZE)
 		{
 			if (!check_border(editor->tiles[point.y][point.x].type,
-			point.y, point.x))
+				point.y, point.x))
 				return (0);
 			point.x++;
 		}

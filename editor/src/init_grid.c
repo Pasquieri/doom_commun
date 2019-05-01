@@ -51,13 +51,13 @@ int				init_grid(t_data_mlx data, t_tile **tiles)
 	}
 	limit_grid(&img);
 	mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, img.mlx_image, PADDING,
-	PADDING);
+		PADDING);
 	mlx_destroy_image(data.mlx_ptr, img.mlx_image);
 	return (TRUE);
 }
 
 int				grid_collection(t_data_mlx data, t_tile **tiles,
-t_collection *collection)
+	t_collection *collection)
 {
 	int i;
 	int j;

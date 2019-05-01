@@ -34,7 +34,7 @@ int		init(int argc, char **argv, t_editor *editor)
 		if (!(file_to_tiles(editor->file.file, editor->tiles)))
 			return (FALSE);
 		if (!(grid_collection(editor->data, editor->tiles,
-		editor->collection)))
+				editor->collection)))
 			return (error(-5, editor));
 	}
 	return (TRUE);

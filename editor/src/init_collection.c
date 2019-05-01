@@ -13,7 +13,7 @@
 #include "../editor.h"
 
 t_collection			*free_collection(int size,
-t_collection *collection, t_data_mlx data)
+	t_collection *collection, t_data_mlx data)
 {
 	int i;
 

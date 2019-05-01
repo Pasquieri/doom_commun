@@ -13,105 +13,105 @@
 #include "../editor.h"
 
 static	void	*init_xpm_first_part(int tex, t_data_mlx data,
-t_point *xpm_size)
+	t_point *xpm_size)
 {
 	if (tex == FLOOR)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr, "textures/floor.xpm",
-		&xpm_size->x, &xpm_size->y));
+				&xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == W_GRAY)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr, "textures/grey_wall.xpm",
-		&xpm_size->x, &xpm_size->y));
+				&xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == W_WHITE)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr, "textures/white_wall.xpm",
-		&xpm_size->x, &xpm_size->y));
+				&xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == W_BLUE)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr, "textures/blue_wall.xpm",
-		&xpm_size->x, &xpm_size->y));
+				&xpm_size->x, &xpm_size->y));
 	}
 	return (NULL);
 }
 
 static	void	*init_xpm_second_part(int tex, t_data_mlx data,
-t_point *xpm_size)
+	t_point *xpm_size)
 {
 	if (tex == W_G_TAB)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/grey_wall_tab.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/grey_wall_tab.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == W_W_TAB)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/white_wall_tab.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/white_wall_tab.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == W_B_TAB)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/blue_wall_tab.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/blue_wall_tab.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == DOOR)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/door.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/door.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	return (NULL);
 }
 
 static	void	*init_xpm_third_part(int tex, t_data_mlx data,
-t_point *xpm_size)
+	t_point *xpm_size)
 {
 	if (tex == BEGIN)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/perso.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/perso.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == END)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/end.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/end.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == GRID)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/grid.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/grid.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == WIN)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/window.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/window.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	return (NULL);
 }
 
 static	void	*init_xpm_last_part(int tex, t_data_mlx data,
-t_point *xpm_size)
+	t_point *xpm_size)
 {
 	if (tex == COLUMN)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/column.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/column.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == BANANA)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/banane.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/banane.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == MONKEY)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/monkey.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/monkey.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	else if (tex == SYRINGE)
 	{
 		return (mlx_xpm_file_to_image(data.mlx_ptr,
-		"textures/syringe.xpm", &xpm_size->x, &xpm_size->y));
+				"textures/syringe.xpm", &xpm_size->x, &xpm_size->y));
 	}
 	return (NULL);
 }

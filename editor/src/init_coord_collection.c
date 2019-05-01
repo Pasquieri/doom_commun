@@ -17,12 +17,12 @@ static	t_point			init_coord_collection_first_part(int tex)
 	if (tex == 0)
 	{
 		return ((t_point){(GRID_SQUARE + (PADDING * 2) + 125),
-		FLOOR_POSITION});
+			FLOOR_POSITION});
 	}
 	else if (tex >= 1 && tex <= 3)
 	{
 		return ((t_point){((GRID_SQUARE + (PADDING * 2) + 125)
-			+ ((tex - 1) * TILE) + ((tex - 1) * PADDING)), WALL_POSITION});
+				+ ((tex - 1) * TILE) + ((tex - 1) * PADDING)), WALL_POSITION});
 	}
 	else if (tex >= 4 && tex <= 6)
 	{
@@ -49,17 +49,17 @@ static	t_point			init_coord_collection_last_part(int tex)
 	else if (tex == 12)
 	{
 		return ((t_point){(GRID_SQUARE + (PADDING * 2) + 125),
-		COLUMN_POSITION});
+			COLUMN_POSITION});
 	}
 	else if (tex == 13)
 	{
 		return ((t_point){(GRID_SQUARE + (PADDING * 2) + 125),
-		BANANA_POSITION});
+			BANANA_POSITION});
 	}
 	else if (tex == 14)
 	{
 		return ((t_point){(GRID_SQUARE + (PADDING * 2) + 125),
-		MONKEY_POSITION});
+			MONKEY_POSITION});
 	}
 	return ((t_point){0, 0});
 }
@@ -73,7 +73,7 @@ t_point					init_coord_collection(int tex)
 	else if (tex == 15)
 	{
 		return ((t_point){(GRID_SQUARE + (PADDING * 2) + 125),
-		SYRINGE_POSITION});
+			SYRINGE_POSITION});
 	}
 	return ((t_point){0, 0});
 }

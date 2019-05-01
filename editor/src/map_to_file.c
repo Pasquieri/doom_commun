@@ -68,8 +68,8 @@ int			print_tiles(t_editor *editor)
 	i = 0;
 	if (!get_write(editor))
 		return (-7);
-	print_player(editor->tiles, search_player(editor->tiles)
-			, editor->file.fd_write);
+	print_player(editor->tiles, search_player(editor->tiles),
+		editor->file.fd_write);
 	ft_putnbr_fd(editor->music, editor->file.fd_write);
 	ft_putchar_fd('\n', editor->file.fd_write);
 	while (i < GRID_SIZE)

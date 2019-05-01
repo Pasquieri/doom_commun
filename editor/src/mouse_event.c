@@ -35,9 +35,9 @@ int		click_press(int button, int x, int y, t_editor *editor)
 void	coord_of_index_tiles(int x, int y, t_point *point, t_tile **tiles)
 {
 	point->x = tiles[(y - PADDING) / TILE][(x - PADDING) / TILE].coord.x
-	+ PADDING;
+		+ PADDING;
 	point->y = tiles[(y - PADDING) / TILE][(x - PADDING) / TILE].coord.y
-	+ PADDING;
+		+ PADDING;
 }
 
 int		on_mouse_event(int x, int y, t_editor *editor)
@@ -47,17 +47,17 @@ int		on_mouse_event(int x, int y, t_editor *editor)
 	if (editor->loop == 1)
 	{
 		if ((x > PADDING && x < (GRID_SQUARE + PADDING))
-		&& y > (PADDING) && y < (GRID_SQUARE + PADDING))
+			&& y > (PADDING) && y < (GRID_SQUARE + PADDING))
 		{
 			coord_of_index_tiles(x, y, &point, editor->tiles);
 			if (editor->button == 1)
 			{
 				add_selected_on_grid(point, editor,
-				(t_point){((x - PADDING) / TILE), ((y - PADDING) / TILE)});
+					(t_point){((x - PADDING) / TILE), ((y - PADDING) / TILE)});
 			}
 			if (editor->button == 2)
 				remove_on_grid(point, editor,
-				(t_point){((x - PADDING) / TILE), ((y - PADDING) / TILE)});
+					(t_point){((x - PADDING) / TILE), ((y - PADDING) / TILE)});
 		}
 	}
 	return (0);
