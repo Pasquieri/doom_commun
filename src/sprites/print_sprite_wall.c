@@ -6,27 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 19:11:17 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 19:59:00 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/doom_nukem.h"
-
-static int	init_coord_lim(t_env *env, t_coord *coord)
-{
-	int	lim;
-
-	lim = env->x * env->coef;
-	if (coord->x > lim || coord->y > lim || coord->x < 0 || coord->y < 0)
-	{
-		coord->x > lim ? coord->x = lim : coord->x;
-		coord->y > lim ? coord->y = lim : coord->y;
-		coord->x < 0 ? coord->x = 0 : coord->x;
-		coord->y < 0 ? coord->y = 0 : coord->y;
-		return (-1);
-	}
-	return (0);
-}
 
 static int		verif_hor_grid(t_env *env, t_coord *coord, int k, int cmp)
 {
@@ -170,7 +154,6 @@ void	print_sprite_wall(t_env *env, int i, int cmp)
 	int	xf;
 	double	a;
 	double	dist;
-//	double	h_percue;
 
 	env->img_x = env->sp[i].sprite[cmp].win_x;
 	xf = env->sp[i].sprite[cmp].win_x_f;
@@ -184,5 +167,4 @@ void	print_sprite_wall(t_env *env, int i, int cmp)
 		print_sprite(dist, env, i);
 		a -= (60. / W_WIDTH);
 	}
-	
 }

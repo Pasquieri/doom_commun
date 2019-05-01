@@ -6,11 +6,27 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:49:16 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 21:37:54 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 19:33:54 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/doom_nukem.h"
+
+int			init_coord_lim(t_env *env, t_coord *coord)
+{
+	int	lim;
+
+	lim = env->x * env->coef;
+	if (coord->x > lim || coord->y > lim || coord->x < 0 || coord->y < 0)
+	{
+		coord->x > lim ? coord->x = lim : coord->x;
+		coord->y > lim ? coord->y = lim : coord->y;
+		coord->x < 0 ? coord->x = 0 : coord->x;
+		coord->y < 0 ? coord->y = 0 : coord->y;
+		return (-1);
+	}
+	return (0);
+}
 
 int			intersection_horizontal(t_env *env, t_coord *cd)
 {

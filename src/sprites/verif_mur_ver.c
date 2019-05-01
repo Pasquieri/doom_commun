@@ -6,43 +6,26 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 14:33:26 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 19:49:53 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/doom_nukem.h"
-
-static int	init_coord_lim(t_env *env, t_coord *coord)
-{
-	int	lim;
-
-	lim = env->x * env->coef;
-	if (coord->x > lim || coord->y > lim || coord->x < 0 || coord->y < 0)
-	{
-		coord->x > lim ? coord->x = lim : coord->x;
-		coord->y > lim ? coord->y = lim : coord->y;
-		coord->x < 0 ? coord->x = 0 : coord->x;
-		coord->y < 0 ? coord->y = 0 : coord->y;
-		return (-1);
-	}
-	return (0);
-}
 
 static void	ft_check_sprite(t_env *env, t_coord cd)
 {
 	int	i;
 	int	j;
 
+	env->orientation = 1;
 	if (env->angle > 90 && env->angle < 270)
 		i = ((cd.x) - 1) / env->coef;
 	else
 		i = (int)(cd.x / env->coef);
 	j = (int)(cd.y / env->coef);
-//	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN
-//			|| env->tab[j][i] == DOOR_CLOSE || env->tab[j][i] == DOOR
 	if (env->tab[j][i] == DOOR_CLOSE || env->tab[j][i] == DOOR
 			|| (env->tab[j][i] >= W_G_TAB && env->tab[j][i] <= W_B_TAB))
-		check_grid_win(env, cd, 1, i, j);
+		check_door_prox(env, cd, i, j);
 	else
 		check_sprite(i, j, env, 1, cd);
 	if (env->angle > 90 && env->angle < 270)
@@ -50,8 +33,6 @@ static void	ft_check_sprite(t_env *env, t_coord cd)
 	else
 		i = ((cd.x) - 1) / env->coef;
 	check_sprite(i, j, env, 1, cd);
-//	if (env->tab[j][i] == GRID || env->tab[j][i] == WIN)
-//		check_sprite(i, j, env, 1, cd);
 }
 
 int			verif_ver_sp(t_env *env, t_coord *coord)

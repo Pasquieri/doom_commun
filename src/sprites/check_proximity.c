@@ -6,13 +6,39 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:53:39 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 18:10:28 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 19:47:50 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/doom_nukem.h"
 
-static void	deal_proximity(double d_sprite, t_env *env, int k, int cmp)
+void			check_door_prox(t_env *env, t_coord cd, int i, int j)
+{
+	int		k;
+	int		index_sp;
+	double	dist;
+
+	k = -1;
+	if (env->tab[j][i] == DOOR || env->tab[j][i] == DOOR_CLOSE)
+		index_sp = 5;
+	if (env->tab[j][i] >= W_G_TAB && env->tab[j][i] <= W_B_TAB)
+		index_sp = 7;
+	while (++k < env->sp[index_sp].nb)
+	{
+		if (env->sp[index_sp].sprite[k].i == i
+				&& env->sp[index_sp].sprite[k].j == j
+				&& env->sp[index_sp].sprite[k].alive == 1)
+		{
+			dist = sqrt(pow(env->perso_x - cd.x, 2)
+					+ pow(env->perso_y - cd.y, 2));
+			dist = dist * cos((env->angle - env->d_regard) * M_PI / 180);
+			env->sp[index_sp].sprite[k].detec[env->orientation].on = 1;
+			env->sp[index_sp].sprite[k].detec[env->orientation].dist = dist;
+		}
+	}
+}
+
+static void		deal_proximity(double d_sprite, t_env *env, int k, int cmp)
 {
 	int	a;
 	int	b;
@@ -56,7 +82,7 @@ static double	ft_distance(t_env *env, int k, int cmp)
 	return (dist0);
 }
 
-void	check_proximity(t_env *env)
+void			check_proximity(t_env *env)
 {
 	int		k;
 	int		cmp;
