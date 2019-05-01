@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 19:30:50 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 19:59:42 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,6 +335,7 @@ void			ft_pthread(t_env *env);
 void			*affichage_mur(void *env);
 int				intersection_horizontal(t_env *env, t_coord *cd);
 int				intersection_vertical(t_env *env, t_coord *cd);
+int				init_coord_lim(t_env *env, t_coord *coord);
 double			detection_mur(t_env *env);
 int				init_var_hor(t_env *env, double *ya, double *xa, t_coord *c1);
 int				coef_hor(t_env *env, int *coef_x, int *coef_y);
@@ -350,7 +351,7 @@ void			affichage_plafond(double y, double h_percue, t_env *env);
  ** sprites
 */
 void			affichage_sprite(t_env *env);
-void			detection_mur_sp(t_env *env);
+void			detection_sp(t_env *env);
 int				verif_hor_sp(t_env *env, t_coord *coord);
 int				verif_ver_sp(t_env *env, t_coord *coord);
 void			detec_shoot(t_env *env);
@@ -360,7 +361,7 @@ int				verif_ver_shoot(t_env *env, t_coord *coord);
 void			check_sprite(int i, int j, t_env *env, int orie, t_coord cd);
 void			print_sprite_object(t_env *env, int i, int cmp);
 void			print_sprite_wall(t_env *env, int i, int cmp);
-void			check_grid_win(t_env *env, t_coord cd, int o, int i, int j);
+void			check_door_prox(t_env *env, t_coord cd, int i, int j);
 double			verif_angle(double angle);
 t_coord			init_lim_coord(t_env *env, int k, int cmp, double theta);
 double			init_lim_angle(t_env *env, t_coord cd);

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 20:47:18 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 22:29:20 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 19:22:28 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,6 @@ t_coord			init_lim_coord(t_env *env, int k, int cmp, double theta)
 	cd_m_p.y = cd_a.y - (cd_m.x - cd_a.x) * sin(theta * M_PI / 180);
 	return (cd_m_p);
 }
-
-/*
- ** pas sure de son utilite
-*/
 
 static double	deal_exceptions(t_env *env, t_coord cd, double a)
 {

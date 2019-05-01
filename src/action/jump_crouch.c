@@ -6,7 +6,7 @@
 /*   By: cjulliar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 14:34:26 by cjulliar          #+#    #+#             */
-/*   Updated: 2019/04/30 21:39:50 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 19:20:46 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	jump_hup(t_env *env, int jump_height)
 		{
 			if (env->jump_move != -1)
 			{
-			printf("1 %d\n", env->jump_move);
 				if (env->jump_move == 1 || env->jump_move == 13)
 					depla_vertical(env, env->jump_move);
 				else if (env->jump_move == 0 || env->jump_move == 2)

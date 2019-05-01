@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   detection_mur_sp.c                                 :+:      :+:    :+:   */
+/*   detection_sp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:43:51 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 22:18:03 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 19:57:08 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	ft_distance(t_coord coord1, t_coord coord2, t_env *env)
 		env->dist = dist2;
 }
 
-void		detection_mur_sp(t_env *env)
+void		detection_sp(t_env *env)
 {
 	double	xa;
 	double	ya;
@@ -46,6 +46,31 @@ void		detection_mur_sp(t_env *env)
 	init_var_ver(env, &ya, &xa, &coord2);
 	coef_ver(env, &coef.x, &coef.y);
 	while (verif_ver_sp(env, &coord2) == 0)
+	{
+		coord2.x += (xa * coef.x);
+		coord2.y += (ya * coef.y);
+	}
+	ft_distance(coord1, coord2, env);
+}
+
+void		detec_shoot(t_env *env)
+{
+	double	xa;
+	double	ya;
+	t_coord	coord1;
+	t_coord	coord2;
+	t_coef	coef;
+
+	init_var_hor(env, &ya, &xa, &coord1);
+	coef_hor(env, &coef.x, &coef.y);
+	while (verif_hor_shoot(env, &coord1) == 0)
+	{
+		coord1.x += (xa * coef.x);
+		coord1.y += (ya * coef.y);
+	}
+	init_var_ver(env, &ya, &xa, &coord2);
+	coef_ver(env, &coef.x, &coef.y);
+	while (verif_ver_shoot(env, &coord2) == 0)
 	{
 		coord2.x += (xa * coef.x);
 		coord2.y += (ya * coef.y);
