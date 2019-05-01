@@ -21,6 +21,7 @@ void	jump_hup(t_env *env, int jump_height)
 		{
 			if (env->jump_move != -1)
 			{
+			printf("1 %d\n", env->jump_move);
 				if (env->jump_move == 1 || env->jump_move == 13)
 					depla_vertical(env, env->jump_move);
 				else if (env->jump_move == 0 || env->jump_move == 2)
@@ -62,7 +63,7 @@ void	ft_jump(t_env *env)
 {
 	int jump_height;
 
-	env->vitesse = 0.5;
+	env->vitesse = 0.25;
 	jump_height = 100;
 	if (env->jump > 0)
 		jump_hup(env, jump_height);
@@ -75,7 +76,7 @@ void	ft_crouch(t_env *env)
 	int h_crouch_height;
 
 	h_crouch_height = 50;
-	env->vitesse = 0.5;
+	env->vitesse = 0.25;
 	if (env->crouch == -1)
 	{
 		if (env->h_jump - h_crouch_height > (env->d_ecran * env->h_mur) / -3)

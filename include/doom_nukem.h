@@ -42,7 +42,7 @@
 # define NB_SP 9
 # define W_HEIGHT 870
 # define W_WIDTH 1200
-# define SPEED 1
+# define SPEED 0.5
 
 typedef struct	s_coord
 {
