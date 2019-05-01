@@ -6,14 +6,14 @@
 /*   By: cyfelbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 13:53:26 by cyfelbac          #+#    #+#             */
-/*   Updated: 2019/03/15 13:53:27 by cyfelbac         ###   ########.fr       */
+/*   Updated: 2019/05/01 20:05:08 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EDITOR_H
 # define EDITOR_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <mlx.h>
 # include <sys/types.h>
 # include <sys/stat.h>

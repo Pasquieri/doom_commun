@@ -32,7 +32,7 @@ SRC = 	src/map_to_file.c\
 OBJ = $(SRC:.c=.o)
 FLAGS = -Wall -Werror -Wextra
 CC = gcc
-LIB	=	-L libft/ -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -l ft
+LIB	=	-L ../libft/ -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -l ft
 HEADERS = includes/ -I/usr/local/include
 RED		= \033[1;31m
 GREEN	= \033[1;32m
@@ -42,7 +42,7 @@ NC		= \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@make -C libft
+	@make -C ../libft
 	@$(CC) $(FLAGS) -I $(HEADERS) $(LIB) $(OBJ) -o $(NAME)
 	@echo "[$(YELLOW)✓$(NC)] Executable $(NAME) compiled"
 
@@ -52,12 +52,12 @@ $(NAME): $(OBJ)
 
 clean:
 	@rm -f $(OBJ)
-	@make clean -C libft/
+	@make clean -C ../libft/
 	@echo "[$(RED)-$(NC)] Objects from $(NAME) cleaned"
 
 fclean: clean
 	@rm -f $(NAME)
-	@make fclean -C libft/
+	@make fclean -C ../libft/
 	@echo "[$(RED)-$(NC)] Executable $(NAME) cleaned"
 
 re: fclean all
