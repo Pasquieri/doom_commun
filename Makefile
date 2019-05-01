@@ -44,6 +44,7 @@ SRC = src/main.c\
 	  \
       src/put_image/ft_trace_seg.c\
       src/put_image/put_pxl_img.c\
+	  src/put_image/put_sprite_img.c\
 	  src/put_image/mini_map.c\
 	  src/put_image/put_texture_img.c\
 	  src/put_image/print_tab.c\
@@ -64,8 +65,7 @@ SRC = src/main.c\
 	  src/sprites/verif_shoot_ver.c\
 	  src/sprites/verif_shoot_hor.c\
 	  src/sprites/detection_sp.c\
-	  src/sprites/verif_mur_ver.c\
-	  src/sprites/verif_mur_hor.c\
+	  src/sprites/verif_sp.c\
 	  src/sprites/check_proximity.c\
 	  src/sprites/check_sprite.c\
 	  src/sprites/print_sprite_object.c\
@@ -88,6 +88,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	make -C libft
 	make -C minilibx
+	make -C editor
 	@gcc -Wall -Werror -Wextra -I minilibx/ minilibx/libmlx.a \
 		-framework OpenGL -framework AppKit \
 		$(HEADER) $(SRC) libft/libft.a
@@ -102,11 +103,13 @@ $(NAME) : $(OBJ)
 clean :
 	make -C libft clean
 	make -C minilibx clean
+	make -C editor clean
 	@rm -rf $(OBJ)
 	@echo "${COLOR}Doom-nukem clean √${COLOR_OFF}"
 
 fclean : clean
 	make -C libft fclean
+	make -C editor fclean
 	@rm -rf $(NAME)
 	@echo "${COLOR}Doom-nukem fclean √${COLOR_OFF}"
 

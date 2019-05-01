@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 16:57:46 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/04/30 21:54:00 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 21:01:30 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static void		help_affiche(t_env *env)
 	mlx_string_put(env->mlx, env->win, 220, 450, 0xFFFFFF,
 		"[H] : Ouvrir / Fermer l'aide              [Shift] : Courir");
 	mlx_string_put(env->mlx, env->win, 220, 480, 0xFFFFFF,
-		"[Enter] : Ouvrir le menu                  [ESC] : Fermer");
+		"[Enter] : Ouvrir le menu                  [R] [F] : Voler");
 	mlx_string_put(env->mlx, env->win, 220, 510, 0xFFFFFF,
-		"[WASD] : Se deplacer                      [1] [2] : Skybox");
+		"[WASD] : Se deplacer                      [1] : Skybox");
 	mlx_string_put(env->mlx, env->win, 220, 540, 0xFFFFFF,
 		"[Fleches] [Souris] : Rotation regard      [1-4] : Hauteur des murs");
 	mlx_string_put(env->mlx, env->win, 220, 570, 0xFFFFFF,

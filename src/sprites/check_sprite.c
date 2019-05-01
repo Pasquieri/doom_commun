@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 21:25:44 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 19:30:53 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 20:53:51 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	fill_ver(int index_sp, int k, t_env *env, t_coord cd)
 		fill_ver_final(index_sp, k, env, cd);
 }
 
-void		check_sprite(int i, int j, t_env *env, int orient, t_coord cd)
+void		check_sprite(int i, int j, t_env *env, t_coord cd)
 {
 	int		value;
 	int		k;
@@ -114,9 +114,9 @@ void		check_sprite(int i, int j, t_env *env, int orient, t_coord cd)
 					&& env->sp[index_sp].sprite[k].j == j
 					&& env->sp[index_sp].sprite[k].alive == 1)
 			{
-				if (orient == 0)
+				if (env->orientation == 0)
 					fill_hor(index_sp, k, env, cd);
-				else if (orient == 1)
+				else if (env->orientation == 1)
 					fill_ver(index_sp, k, env, cd);
 			}
 		}

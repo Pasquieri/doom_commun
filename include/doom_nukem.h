@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 19:59:42 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 20:54:05 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../minilibx/mlx.h"
 # include <math.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include <pthread.h>
 
 # define FLOOR 0
@@ -143,10 +142,6 @@ typedef struct	s_sprite
 	t_coord	cd_f;
 	int		win_x_f;
 	int		det_hor_f;
-//	t_coord	cd_h;
-//	t_coord	cd_v;
-//	int		win_h_x;
-//	int		win_v_x;
 	t_det	detec[2];
 	int		monkey;
 	_Bool	check_i;
@@ -325,8 +320,9 @@ void			print_cercle(t_env *env);
 void			print_gun(t_env *env, int k, int nb);
 void			print_tab(t_env *env, float p_y, float p_x, t_mlx *sp);
 void			put_pxl_img(t_env *env, int x, int y, int color);
-void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text,
-					double bep);
+void			put_texture_img(t_env *env, double h_per, int y, t_mlx *text);
+void			put_sprite_img(t_env *env, double h_p, t_mlx *sp_t, double bep);
+void			put_sprite_grid(t_env *e, double h_p, t_mlx *sp_t, double bep);
 char			luminosite(int text, int coef);
 /*
  ** raycasting
@@ -355,10 +351,13 @@ void			detection_sp(t_env *env);
 int				verif_hor_sp(t_env *env, t_coord *coord);
 int				verif_ver_sp(t_env *env, t_coord *coord);
 void			detec_shoot(t_env *env);
-void			check_proximity(t_env *env);
 int				verif_hor_shoot(t_env *env, t_coord *coord);
 int				verif_ver_shoot(t_env *env, t_coord *coord);
-void			check_sprite(int i, int j, t_env *env, int orie, t_coord cd);
+double			detection_grid_win(t_env *env, int k, int cmp);
+int				verif_hor_grid(t_env *env, t_coord *coord, int k, int cmp);
+int				verif_ver_grid(t_env *env, t_coord *coord, int k, int cmp);
+void			check_proximity(t_env *env);
+void			check_sprite(int i, int j, t_env *env, t_coord cd);
 void			print_sprite_object(t_env *env, int i, int cmp);
 void			print_sprite_wall(t_env *env, int i, int cmp);
 void			check_door_prox(t_env *env, t_coord cd, int i, int j);

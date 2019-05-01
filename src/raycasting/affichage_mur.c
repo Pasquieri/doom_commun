@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/04/30 22:11:11 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 20:26:02 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		affichage(double h_percue, t_env *env, double bep, double y)
 	double	lim;
 
 	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
-	/ (env->dist * env->d_ecran);
+			/ (env->dist * env->d_ecran);
 	lim = env->h_regard - (env->coef_h_wall * bep);
 	if (!env->skybox)
 		affichage_plafond(lim, h_percue, env);
@@ -58,7 +58,7 @@ static void		affichage(double h_percue, t_env *env, double bep, double y)
 		if (env->cmp_wall == 1 && env->wall_nb == 8)
 			env->wall_nb = 7;
 		while (++y <= lim && y < 870.)
-			put_texture_img(env, h_percue, y, &env->text[env->wall_nb], bep);
+			put_texture_img(env, h_percue, y, &env->text[env->wall_nb]);
 		env->cmp_wall -= 2;
 	}
 	y = env->h_regard - bep + h_percue;

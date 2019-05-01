@@ -6,7 +6,7 @@
 /*   By: mpasquie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:19:17 by mpasquie          #+#    #+#             */
-/*   Updated: 2019/05/01 15:19:19 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/05/01 20:58:29 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	key_gun(int key, t_env *env)
 {
-	if (key == 37 && env->gun == 1 && !env->menu && env->h_ammo > 0)
+	if (key == 269 && env->gun == 1 && !env->menu && env->h_ammo > 0)
 	{
 		print_gun(env, 5, 9);
 		mlx_put_image_to_window(env->mlx, env->win, env->m[0].img, 0, 0);

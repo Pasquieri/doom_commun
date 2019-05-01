@@ -6,35 +6,11 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:30:27 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/05/01 20:01:44 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/05/01 20:50:32 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/doom_nukem.h"
-
-static void	put_sprite_img(t_env *env, double h_percue, t_mlx *sp_t, double bep)
-{
-	float	p_x;
-	float	p_y;
-	int		i;
-	int		j;
-
-	p_x = env->d_begin * 100. / env->diff;
-	if (env->img_y > (env->h_regard - bep))
-		p_y = (env->img_y - (env->h_regard - bep)) * 100. / h_percue;
-	else
-		p_y = env->img_y * 100. / h_percue;
-	i = 4 * env->img_x + env->img_y * env->m[0].s_l;
-	j = 4 * (int)(sp_t->width * p_x / 100)
-		+ (int)(sp_t->height * p_y / 100) * sp_t->s_l;
-	if (!sp_t->img_str[j + 3])
-	{
-		env->m[0].img_str[i] = luminosite((int)sp_t->img_str[j], env->lum);
-		env->m[0].img_str[i + 1] = luminosite(sp_t->img_str[j + 1], env->lum);
-		env->m[0].img_str[i + 2] = luminosite(sp_t->img_str[j + 2], env->lum);
-		env->m[0].img_str[i + 3] = (char)0;
-	}
-}
 
 static void	calcul_pourcent(t_env *env, t_sprite sp)
 {
@@ -82,6 +58,13 @@ static int	monkey_texture(t_env *env, int i, int cmp)
 	return (tmp);
 }
 
+static void	proportion(t_env *env, double d_sp, double *bep, double *h_percue)
+{
+	*bep = (env->d_ecran * ((env->d_ecran * (env->h_mur / 10)) / 2
+			- env->h_jump)) / (d_sp * env->d_ecran);
+	*h_percue /= 4;
+}
+
 static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 {
 	double	y;
@@ -91,15 +74,11 @@ static void	print_sprite(double d_sp, t_env *env, int i, int cmp)
 	int		tmp;
 
 	tmp = monkey_texture(env, i, cmp);
-	bep = (env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
-		/ (d_sp * env->d_ecran);
+	bep = ((env->d_ecran * ((env->d_ecran * env->h_mur) / 2 - env->h_jump))
+			/ (d_sp * env->d_ecran));
 	h_percue = env->d_ecran * (env->h_mur / d_sp);
 	if (i == 3 || i == 6)
-	{
-		bep = (env->d_ecran * ((env->d_ecran * (env->h_mur / 10)) / 2
-				- env->h_jump)) / (d_sp * env->d_ecran);
-		h_percue /= 4;
-	}
+		proportion(env, d_sp, &bep, &h_percue);
 	y = env->h_regard - bep;
 	lim = y + h_percue - 1;
 	y < 0. ? y = 0. : y;
